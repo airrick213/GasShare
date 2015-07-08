@@ -1,0 +1,25 @@
+PODS:
+  - Alamofire (1.2.3)
+  - Bond (3.9.0)
+  - ConvenienceKit (0.1.0)
+  - GoogleMaps (1.10.1)
+  - MBProgressHUD (0.9.1)
+  - SwiftyJSON (2.2.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - Bond
+  - ConvenienceKit
+  - GoogleMaps
+  - MBProgressHUD
+  - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: 5550bf0b575ed1a4bf9be572f9463e1015cc169e
+  Bond: 994ccc56aebfe2707d7b5e76f6d665a5beefa45b
+  ConvenienceKit: 083548558dedc22a586c1e1fbf3aa217728715af
+  GoogleMaps: ebf08677f181d9c2dcdbd1721d206f02beccc9b1
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  SwiftyJSON: 0b3e6c07af17ff745e77e8e9984097b55c956e5c
+
+COCOAPODS: 0.37.2

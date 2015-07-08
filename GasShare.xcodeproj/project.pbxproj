@@ -8,11 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		072892921B4DB7530060960A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072892911B4DB7530060960A /* AppDelegate.swift */; };
-		072892941B4DB7530060960A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072892931B4DB7530060960A /* ViewController.swift */; };
 		072892971B4DB7530060960A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 072892951B4DB7530060960A /* Main.storyboard */; };
 		072892991B4DB7530060960A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 072892981B4DB7530060960A /* Images.xcassets */; };
 		0728929C1B4DB7530060960A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0728929A1B4DB7530060960A /* LaunchScreen.xib */; };
 		072892A81B4DB7530060960A /* GasShareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072892A71B4DB7530060960A /* GasShareTests.swift */; };
+		074A1F6A1B4DB88D00F01CB2 /* GasMileageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A1F631B4DB88D00F01CB2 /* GasMileageViewController.swift */; };
+		074A1F6B1B4DB88D00F01CB2 /* GasPriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A1F641B4DB88D00F01CB2 /* GasPriceViewController.swift */; };
+		074A1F6C1B4DB88D00F01CB2 /* MapSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A1F651B4DB88D00F01CB2 /* MapSearchViewController.swift */; };
+		074A1F6D1B4DB88D00F01CB2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A1F661B4DB88D00F01CB2 /* MapViewController.swift */; };
+		074A1F6E1B4DB88D00F01CB2 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A1F671B4DB88D00F01CB2 /* RouteViewController.swift */; };
+		074A1F6F1B4DB88D00F01CB2 /* InputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A1F691B4DB88D00F01CB2 /* InputTextField.swift */; };
+		839D6984ECB623561649FDAB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E31020FC501B7AB4336490 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,16 +32,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03E31020FC501B7AB4336490 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0728928C1B4DB7530060960A /* GasShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GasShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		072892901B4DB7530060960A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		072892911B4DB7530060960A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		072892931B4DB7530060960A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		072892961B4DB7530060960A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		072892981B4DB7530060960A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0728929B1B4DB7530060960A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		072892A11B4DB7530060960A /* GasShareTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GasShareTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		072892A61B4DB7530060960A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		072892A71B4DB7530060960A /* GasShareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasShareTests.swift; sourceTree = "<group>"; };
+		074A1F631B4DB88D00F01CB2 /* GasMileageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GasMileageViewController.swift; sourceTree = "<group>"; };
+		074A1F641B4DB88D00F01CB2 /* GasPriceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GasPriceViewController.swift; sourceTree = "<group>"; };
+		074A1F651B4DB88D00F01CB2 /* MapSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapSearchViewController.swift; sourceTree = "<group>"; };
+		074A1F661B4DB88D00F01CB2 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		074A1F671B4DB88D00F01CB2 /* RouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
+		074A1F691B4DB88D00F01CB2 /* InputTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
+		7D7B2130FDE731CD7F287A96 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		E071A125770EC0D0267D96EE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				839D6984ECB623561649FDAB /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +77,8 @@
 				0728928E1B4DB7530060960A /* GasShare */,
 				072892A41B4DB7530060960A /* GasShareTests */,
 				0728928D1B4DB7530060960A /* Products */,
+				B1990ED3CE4DD1473E383DD8 /* Pods */,
+				F03950030880E3F5C000744F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,8 +94,13 @@
 		0728928E1B4DB7530060960A /* GasShare */ = {
 			isa = PBXGroup;
 			children = (
+				074A1F681B4DB88D00F01CB2 /* Views */,
+				074A1F631B4DB88D00F01CB2 /* GasMileageViewController.swift */,
+				074A1F641B4DB88D00F01CB2 /* GasPriceViewController.swift */,
+				074A1F651B4DB88D00F01CB2 /* MapSearchViewController.swift */,
+				074A1F661B4DB88D00F01CB2 /* MapViewController.swift */,
+				074A1F671B4DB88D00F01CB2 /* RouteViewController.swift */,
 				072892911B4DB7530060960A /* AppDelegate.swift */,
-				072892931B4DB7530060960A /* ViewController.swift */,
 				072892951B4DB7530060960A /* Main.storyboard */,
 				072892981B4DB7530060960A /* Images.xcassets */,
 				0728929A1B4DB7530060960A /* LaunchScreen.xib */,
@@ -112,6 +134,31 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		074A1F681B4DB88D00F01CB2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				074A1F691B4DB88D00F01CB2 /* InputTextField.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B1990ED3CE4DD1473E383DD8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E071A125770EC0D0267D96EE /* Pods.debug.xcconfig */,
+				7D7B2130FDE731CD7F287A96 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F03950030880E3F5C000744F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				03E31020FC501B7AB4336490 /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -119,9 +166,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 072892AB1B4DB7530060960A /* Build configuration list for PBXNativeTarget "GasShare" */;
 			buildPhases = (
+				E7F0AD7F5F9A7D1DCFF28EE5 /* Check Pods Manifest.lock */,
 				072892881B4DB7530060960A /* Sources */,
 				072892891B4DB7530060960A /* Frameworks */,
 				0728928A1B4DB7530060960A /* Resources */,
+				C5B503C93D469C406007066A /* Embed Pods Frameworks */,
+				77AD42EE76E806C79BD7363E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -175,6 +225,39 @@
 			knownRegions = (
 				en,
 				Base,
+				ar,
+				ca,
+				cs,
+				da,
+				de,
+				el,
+				en_GB,
+				es,
+				fi,
+				fr,
+				he,
+				hr,
+				hu,
+				id,
+				it,
+				ja,
+				ko,
+				ms,
+				nb,
+				nl,
+				pl,
+				pt,
+				pt_PT,
+				ro,
+				ru,
+				sk,
+				sv,
+				th,
+				tr,
+				uk,
+				vi,
+				zh_CN,
+				zh_TW,
 			);
 			mainGroup = 072892831B4DB7530060960A;
 			productRefGroup = 0728928D1B4DB7530060960A /* Products */;
@@ -207,13 +290,66 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		77AD42EE76E806C79BD7363E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C5B503C93D469C406007066A /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E7F0AD7F5F9A7D1DCFF28EE5 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		072892881B4DB7530060960A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				072892941B4DB7530060960A /* ViewController.swift in Sources */,
+				074A1F6B1B4DB88D00F01CB2 /* GasPriceViewController.swift in Sources */,
 				072892921B4DB7530060960A /* AppDelegate.swift in Sources */,
+				074A1F6E1B4DB88D00F01CB2 /* RouteViewController.swift in Sources */,
+				074A1F6A1B4DB88D00F01CB2 /* GasMileageViewController.swift in Sources */,
+				074A1F6D1B4DB88D00F01CB2 /* MapViewController.swift in Sources */,
+				074A1F6F1B4DB88D00F01CB2 /* InputTextField.swift in Sources */,
+				074A1F6C1B4DB88D00F01CB2 /* MapSearchViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,8 +476,14 @@
 		};
 		072892AC1B4DB7530060960A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E071A125770EC0D0267D96EE /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/GoogleMaps/Frameworks",
+					"$(PROJECT_DIR)/Pods/GoogleMaps/GoogleMapsSDKDemos",
+				);
 				INFOPLIST_FILE = GasShare/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -350,8 +492,14 @@
 		};
 		072892AD1B4DB7530060960A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7D7B2130FDE731CD7F287A96 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/GoogleMaps/Frameworks",
+					"$(PROJECT_DIR)/Pods/GoogleMaps/GoogleMapsSDKDemos",
+				);
 				INFOPLIST_FILE = GasShare/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -411,6 +559,7 @@
 				072892AD1B4DB7530060960A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		072892AE1B4DB7530060960A /* Build configuration list for PBXNativeTarget "GasShareTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +568,7 @@
 				072892B01B4DB7530060960A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
