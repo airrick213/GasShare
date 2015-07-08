@@ -12,7 +12,7 @@ class GasMileageViewController: UIViewController {
 
     @IBOutlet weak var gasMileageTextField: UITextField!
     @IBOutlet weak var gasMileagePickerView: UIPickerView!
-    let suggestedMileageValues = ["Don't Use Suggestions", "Two-Seater Car: 23", "Minicompact Car: 24", "Subcompact Car: 24", "Compact Car: 26", "Midsize Car: 25", "Large Car: 21", "Wagon: 26", "Small Pickup: 20", "Pickup Truck: 19", "Minivan: 21", "Small SUV: 23", "SUV: 18"]
+    let suggestedMileageValues = ["Don't Use Suggestions", "Compact Car: 26", "Large Car: 21", "Midsize Car: 25", "Minicompact Car: 24", "Minivan: 21", "Pickup Truck: 19", "Small Pickup: 20", "Small SUV: 23", "Subcompact Car: 24", "SUV: 18", "Two-Seater Car: 23", "Wagon: 26"]
     var selectedSuggestedMileageValue: Int = 0
     
     override func viewDidLoad() {
