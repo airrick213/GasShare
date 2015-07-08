@@ -62,26 +62,20 @@ class MapSearchViewController: UIViewController {
         let json = JSON(data)
         
         if let result = json["results"][0].dictionary {
-            var addressComponents = result["address_components"]!.array
-            addressComponents = addressComponents!.filter { $0["types"][0] == "locality"  || $0["types"][0] == "administrative_area_level_1" }
-            addressComponents = addressComponents!.map { $0["long_name"] }
-            
-            var location = [String]()
-            if let addressComponents = addressComponents {
-                for component in addressComponents {
-                    location.append(component["long_name"].string!)
-                }
-            }
+            let addressComponents = result["address_components"]!.array
+            let location = addressComponents!
+                .filter { $0["types"][0] == "locality"  || $0["types"][0] == "administrative_area_level_1" }
+                .map { $0["long_name"].string! }
             
             mapViewController.selectedLocation = ", ".join(location)
             
-            let latitude = result["geometry"]["location"]["lat"]
-            let longitude = result["geometry"]["location"]["lng"]
+            let latitude = result["geometry"]!["location"]["lat"].double
+            let longitude = result["geometry"]!["location"]["lng"].double
+
+            mapViewController.selectedCoordinate.latitude = latitude!
+            mapViewController.selectedCoordinate.longitude = longitude!
             
-            mapViewController.selectedCoordinate.latitude = latitude
-            mapViewController.selectedCoordinate.longitude = longitude
-            
-            mapViewController.setMarker(coordinate: mapViewController.selectedCoordinate!, usedSearchBar: true)
+            mapViewController.setMarker(coordinate: mapViewController.selectedCoordinate, usedSearchBar: true)
         }
     }
 

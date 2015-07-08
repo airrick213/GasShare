@@ -16,8 +16,8 @@ class MapViewController: UIViewController {
     let geoCoder = GMSGeocoder()
     var placesClient: GMSPlacesClient!
     var mapView: GMSMapView!
-    var selectedCoordinate: CLLocationCoordinate2D?
-    var selectedLocation: String?
+    var selectedCoordinate = CLLocationCoordinate2D()
+    var selectedLocation = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
