@@ -8,6 +8,9 @@
 
 import UIKit
 import GoogleMaps
+import MBProgressHUD
+import SwiftyJSON
+import Alamofire
 import CoreLocation
 
 class GasPriceViewController: UIViewController {
@@ -16,6 +19,7 @@ class GasPriceViewController: UIViewController {
     var gasMileage: Int!
     var selectedCoordinate = CLLocationCoordinate2D()
     var selectedLocation = ""
+    var regPrice: Double = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +31,7 @@ class GasPriceViewController: UIViewController {
     
     @IBAction func unwindToSegue(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
-            if identifier == "Cancel" {
-                gasStationLocationLabel.text = "You haven't entered a location yet"
-            }
-            else if identifier == "Done" {
+            if identifier == "Done" {
                 let source = segue.sourceViewController as! MapSearchViewController
                 self.selectedCoordinate = source.mapViewController.selectedCoordinate
                 self.selectedLocation = source.mapViewController.selectedLocation
@@ -40,9 +41,72 @@ class GasPriceViewController: UIViewController {
                 }
                 
                 else {
-                    gasStationLocationLabel.text = selectedLocation + ": " //+ price
+                    findGasPrices()
                 }
             }
+        }
+    }
+    
+    func findGasPrices() {
+        let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
+        
+        let apiKey = "rfej9napna"
+        
+        let paramString1 = "/stations/radius/\(selectedCoordinate.latitude)/\(selectedCoordinate.longitude)"
+        let paramString2 = "/5/reg/distance/\(apiKey).json"
+        let requestString = "http://devapi.mygasfeed.com/" + paramString1 + paramString2
+        
+        
+        Alamofire.request(.GET, requestString, parameters: nil).responseJSON(options: .allZeros) { (_, response, data, error) -> Void in
+            hud.hide(true)
+            
+            if self.requestSucceeded(response, error: error) {
+                self.handleResponse(data!)
+            }
+            else {
+                UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again.", delegate: nil, cancelButtonTitle: "OK").show()
+            }
+        }
+    }
+    
+    func requestSucceeded(response: NSURLResponse!, error: NSError!) -> Bool {
+        if let httpResponse = response as? NSHTTPURLResponse {
+            return error == nil && httpResponse.statusCode >= 200 && httpResponse.statusCode < 300
+        }
+        
+        return false
+    }
+    
+    func handleResponse(data: AnyObject) {
+        let json = JSON(data)
+        
+        if let stations = json["stations"].array {
+            let regPrices = stations.map { NSString(string: $0["reg_price"].string!).doubleValue }
+            
+            regPrice = average(regPrices)
+        }
+        
+        reloadLabel()
+    }
+    
+    func average(nums: [Double]) -> Double {
+        var sum: Double = 0
+        var count: Double = 0
+        for num in nums {
+            sum += num
+            count++
+        }
+        
+        return sum / count
+    }
+    
+    func reloadLabel() {
+        if regPrice == 0 {
+            gasStationLocationLabel.text = "\(selectedLocation): Gas price could not be found"
+        }
+        else {
+            let priceString = NSString(format: "\(selectedLocation): $%.2f", regPrice)
+            gasStationLocationLabel.text = priceString as String
         }
     }
 
@@ -55,5 +119,5 @@ class GasPriceViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
 }
