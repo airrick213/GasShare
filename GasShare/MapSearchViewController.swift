@@ -64,7 +64,7 @@ class MapSearchViewController: UIViewController {
         if let result = json["results"][0].dictionary {
             let addressComponents = result["address_components"]!.array
             let location = addressComponents!
-                .filter { $0["types"][0] == "locality"  || $0["types"][0] == "administrative_area_level_1" }
+                .filter { $0["types"][0] == "locality" || $0["types"][0] == "administrative_area_level_1"}
                 .map { $0["long_name"].string! }
             
             mapViewController.selectedLocation = ", ".join(location)
@@ -75,7 +75,8 @@ class MapSearchViewController: UIViewController {
             mapViewController.selectedCoordinate.latitude = latitude!
             mapViewController.selectedCoordinate.longitude = longitude!
             
-            mapViewController.setMarker(coordinate: mapViewController.selectedCoordinate, usedSearchBar: true)
+            mapViewController.usedSearchBar = true
+            mapViewController.moveCamera(coordinate: mapViewController.selectedCoordinate)
         }
     }
 

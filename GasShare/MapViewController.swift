@@ -18,6 +18,8 @@ class MapViewController: UIViewController {
     var mapView: GMSMapView!
     var selectedCoordinate = CLLocationCoordinate2D()
     var selectedLocation = ""
+    var firstLocation = true
+    var usedSearchBar = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +29,7 @@ class MapViewController: UIViewController {
         locationManager.startUpdatingLocation()
         
         //camera's coordinates are dummy values
-        var camera = GMSCameraPosition.cameraWithLatitude(40, longitude: -100, zoom: 3)
+        let camera = GMSCameraPosition.cameraWithLatitude(40, longitude: -100, zoom: 3)
         mapView = GMSMapView.mapWithFrame(self.view.bounds, camera: camera)
         
         mapView.delegate = self
@@ -44,27 +46,54 @@ class MapViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    //reverse geocoding only needs to occur if the search bar wasn't used
-    func setMarker(#coordinate: CLLocationCoordinate2D, usedSearchBar: Bool) {
+    func moveCamera(#coordinate: CLLocationCoordinate2D) {
+        if !firstLocation {
+            let camera = GMSCameraPosition.cameraWithLatitude(coordinate.latitude, longitude: coordinate.longitude, zoom: 12)
+            mapView.camera = camera
+        }
+    }
+    
+    func setMarker(#coordinate: CLLocationCoordinate2D) {
         mapView.clear()
         
         self.selectedCoordinate = coordinate
         let marker = GMSMarker(position: coordinate)
         marker.appearAnimation = kGMSMarkerAnimationPop
         
-        if usedSearchBar {
-            marker.title = self.selectedLocation
-        }
-        else {
-            self.geoCoder.reverseGeocodeCoordinate(coordinate, completionHandler: { (result: GMSReverseGeocodeResponse?, error: NSError?) -> Void in
-                let address = result!.firstResult()
-                self.selectedLocation = address.locality.capitalizedString + ", " + address.country.capitalizedString
-                
-                marker.title = self.selectedLocation
-            })
-        }
+        marker.title = self.selectedLocation
         
         marker.map = mapView
+        
+        if !usedSearchBar {
+            reverseGeocode(coordinate: coordinate)
+        }
+        else {
+            usedSearchBar = false
+        }
+    }
+    
+    func reverseGeocode(#coordinate: CLLocationCoordinate2D) {
+        self.geoCoder.reverseGeocodeCoordinate(coordinate, completionHandler: { (result: GMSReverseGeocodeResponse?, error: NSError?) -> Void in
+            if let address = result?.firstResult() {
+                self.selectedLocation = ""
+                
+                if let locality = address.locality {
+                    self.selectedLocation += locality.capitalizedString
+                }
+                
+                if let administrativeArea = address.administrativeArea {
+                    if !self.selectedLocation.isEmpty {
+                        self.selectedLocation += ", "
+                    }
+                    
+                    self.selectedLocation += administrativeArea.capitalizedString
+                }
+            }
+            
+            let marker = GMSMarker(position: coordinate)
+            marker.title = self.selectedLocation
+            marker.map = self.mapView
+        })
     }
 
 }
@@ -72,7 +101,16 @@ class MapViewController: UIViewController {
 extension MapViewController: GMSMapViewDelegate {
     
     func mapView(mapView: GMSMapView!, didLongPressAtCoordinate coordinate: CLLocationCoordinate2D) {
-        setMarker(coordinate: coordinate, usedSearchBar: false)
+        moveCamera(coordinate: coordinate)
+    }
+    
+    func mapView(mapView: GMSMapView!, idleAtCameraPosition position: GMSCameraPosition!) {
+        if !firstLocation {
+            setMarker(coordinate: position.target)
+        }
+        else {
+            firstLocation = false
+        }
     }
     
 }
