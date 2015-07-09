@@ -71,7 +71,7 @@ class MapSearchViewController: UIViewController {
             
             let latitude = result["geometry"]!["location"]["lat"].double
             let longitude = result["geometry"]!["location"]["lng"].double
-
+            
             mapViewController.selectedCoordinate.latitude = latitude!
             mapViewController.selectedCoordinate.longitude = longitude!
             

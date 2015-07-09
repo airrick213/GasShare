@@ -14,6 +14,8 @@ class GasPriceViewController: UIViewController {
     
     @IBOutlet weak var gasStationLocationLabel: UILabel!
     var gasMileage: Int!
+    var selectedCoordinate = CLLocationCoordinate2D()
+    var selectedLocation = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +31,17 @@ class GasPriceViewController: UIViewController {
                 gasStationLocationLabel.text = "You haven't entered a location yet"
             }
             else if identifier == "Done" {
-                //set label text to location
+                let source = segue.sourceViewController as! MapSearchViewController
+                self.selectedCoordinate = source.mapViewController.selectedCoordinate
+                self.selectedLocation = source.mapViewController.selectedLocation
+                
+                if selectedLocation == "" {
+                    gasStationLocationLabel.text = "You haven't selected a location yet"
+                }
+                
+                else {
+                    gasStationLocationLabel.text = selectedLocation + ": " //+ price
+                }
             }
         }
     }
