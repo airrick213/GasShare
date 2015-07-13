@@ -15,14 +15,17 @@ import CoreLocation
 
 class GasPriceViewController: UIViewController {
     
-    @IBOutlet weak var gasStationLocationLabel: UILabel!
+    @IBOutlet weak var gasPriceTextField: InputTextField!
+    @IBOutlet weak var gasPriceLabel: UILabel!
     var gasMileage: Int!
     var selectedCoordinate = CLLocationCoordinate2D()
     var selectedLocation = ""
-    var regPrice: Double = 0
+    var gasPrice: Double = 0
+    let gasType = "reg"
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,11 +40,12 @@ class GasPriceViewController: UIViewController {
                 self.selectedLocation = source.mapViewController.selectedLocation
                 
                 if selectedLocation == "" {
-                    gasStationLocationLabel.text = "You haven't selected a location yet"
+                    gasPriceLabel.text = "You haven't selected a location yet"
                 }
                 
                 else {
                     findGasPrices()
+                    gasPriceTextField.enabled = false
                 }
             }
         }
@@ -53,7 +57,7 @@ class GasPriceViewController: UIViewController {
         let apiKey = "rfej9napna"
         
         let paramString1 = "/stations/radius/\(selectedCoordinate.latitude)/\(selectedCoordinate.longitude)"
-        let paramString2 = "/5/reg/distance/\(apiKey).json"
+        let paramString2 = "/5/\(gasType)/distance/\(apiKey).json"
         let requestString = "http://devapi.mygasfeed.com/" + paramString1 + paramString2
         
         
@@ -81,9 +85,9 @@ class GasPriceViewController: UIViewController {
         let json = JSON(data)
         
         if let stations = json["stations"].array {
-            let regPrices = stations.map { NSString(string: $0["reg_price"].string!).doubleValue }
+            let prices = stations.map { NSString(string: $0["\(self.gasType)_price"].string!).doubleValue }
             
-            regPrice = average(regPrices)
+            gasPrice = average(prices)
         }
         
         reloadLabel()
@@ -101,23 +105,50 @@ class GasPriceViewController: UIViewController {
     }
     
     func reloadLabel() {
-        if regPrice == 0 {
-            gasStationLocationLabel.text = "\(selectedLocation): Gas price could not be found"
+        if gasPrice == 0 {
+            gasPriceLabel.text = "\(selectedLocation): Gas price could not be found"
         }
         else {
-            let priceString = NSString(format: "\(selectedLocation): $%.2f", regPrice)
-            gasStationLocationLabel.text = priceString as String
+            let priceString = NSString(format: "\(selectedLocation): $%.2f", gasPrice)
+            gasPriceLabel.text = priceString as String
         }
     }
 
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        if identifier == "GasPriceDone" {
+            if (gasPriceTextField.text.isEmpty && gasPriceLabel.text == "You haven't selected a location yet") || gasPriceLabel.text!.rangeOfString("could not be found") != nil {
+                let alert = UIAlertView()
+                alert.title = "No Gas Price"
+                alert.message = "Please enter your gas price or select the location of your gas station"
+                alert.addButtonWithTitle("OK")
+                alert.show()
+                
+                return false
+            }
+            else {
+                return true
+            }
+        }
+        
+        return true
     }
-    */
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "GasPriceDone" {
+            let routeViewController = segue.destinationViewController as! RouteViewController
+            
+            if gasPriceLabel.text == "You haven't selected a location yet" || gasPriceLabel.text!.rangeOfString("could not be found") != nil {
+                routeViewController.gasPrice = NSString(string: gasPriceTextField.text!).doubleValue
+            }
+            else {
+                routeViewController.gasPrice = gasPrice
+            }
+        
+            routeViewController.gasMileage = gasMileage
+        }
+    }
+
 }

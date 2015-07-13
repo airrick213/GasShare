@@ -18,6 +18,7 @@
 		074A1F6D1B4DB88D00F01CB2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A1F661B4DB88D00F01CB2 /* MapViewController.swift */; };
 		074A1F6E1B4DB88D00F01CB2 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A1F671B4DB88D00F01CB2 /* RouteViewController.swift */; };
 		074A1F6F1B4DB88D00F01CB2 /* InputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A1F691B4DB88D00F01CB2 /* InputTextField.swift */; };
+		07E52A9F1B505595006FFB7A /* CalculationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E52A9E1B505595006FFB7A /* CalculationViewController.swift */; };
 		839D6984ECB623561649FDAB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E31020FC501B7AB4336490 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -48,6 +49,7 @@
 		074A1F661B4DB88D00F01CB2 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		074A1F671B4DB88D00F01CB2 /* RouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
 		074A1F691B4DB88D00F01CB2 /* InputTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
+		07E52A9E1B505595006FFB7A /* CalculationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculationViewController.swift; sourceTree = "<group>"; };
 		7D7B2130FDE731CD7F287A96 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E071A125770EC0D0267D96EE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,6 +102,7 @@
 				074A1F651B4DB88D00F01CB2 /* MapSearchViewController.swift */,
 				074A1F661B4DB88D00F01CB2 /* MapViewController.swift */,
 				074A1F671B4DB88D00F01CB2 /* RouteViewController.swift */,
+				07E52A9E1B505595006FFB7A /* CalculationViewController.swift */,
 				072892911B4DB7530060960A /* AppDelegate.swift */,
 				072892951B4DB7530060960A /* Main.storyboard */,
 				072892981B4DB7530060960A /* Images.xcassets */,
@@ -343,6 +346,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07E52A9F1B505595006FFB7A /* CalculationViewController.swift in Sources */,
 				074A1F6B1B4DB88D00F01CB2 /* GasPriceViewController.swift in Sources */,
 				072892921B4DB7530060960A /* AppDelegate.swift in Sources */,
 				074A1F6E1B4DB88D00F01CB2 /* RouteViewController.swift in Sources */,

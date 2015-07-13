@@ -9,6 +9,11 @@
 import UIKit
 
 class RouteViewController: UIViewController {
+    
+    @IBOutlet weak var routeDistanceTextField: UITextField!
+    var gasMileage: Int!
+    var gasPrice: Double!
+    var routeDistance: Double!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,16 +25,38 @@ class RouteViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        if identifier == "RouteDistanceDone" {
+            if routeDistanceTextField.text.isEmpty {
+                let alert = UIAlertView()
+                alert.title = "No Route Distance"
+                alert.message = "Please enter the distance of your route"
+                alert.addButtonWithTitle("OK")
+                alert.show()
+                
+                return false
+            }
+            else {
+                return true
+            }
+        }
+        
+        return true
     }
-    */
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "RouteDistanceDone" {
+            let calculationViewController = segue.destinationViewController as! CalculationViewController
+            
+            routeDistance = NSString(string: routeDistanceTextField.text).doubleValue
+            
+            calculationViewController.gasPrice = gasPrice
+            calculationViewController.gasMileage = gasMileage
+            calculationViewController.routeDistance = routeDistance
+        }
+    }
 
 }

@@ -10,7 +10,7 @@ import UIKit
 
 class GasMileageViewController: UIViewController {
 
-    @IBOutlet weak var gasMileageTextField: UITextField!
+    @IBOutlet weak var gasMileageTextField: InputTextField!
     @IBOutlet weak var gasMileagePickerView: UIPickerView!
     let suggestedMileageValues = ["Don't Use Suggestions", "Compact Car: 26", "Large Car: 21", "Midsize Car: 25", "Minicompact Car: 24", "Minivan: 21", "Pickup Truck: 19", "Small Pickup: 20", "Small SUV: 23", "Subcompact Car: 24", "SUV: 18", "Two-Seater Car: 23", "Wagon: 26"]
     var selectedSuggestedMileageValue: Int = 0
@@ -68,6 +68,7 @@ class GasMileageViewController: UIViewController {
             let gasMileage = suggestedMileageValueString.substringFromIndex(advance(suggestedMileageValueString.startIndex, count(suggestedMileageValueString) - 2)).toInt()
             gasPriceViewController.gasMileage = gasMileage
         }
+        
     }
 
 }
