@@ -23,20 +23,6 @@
                                 <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SuB-Cj-F8k">
-                                <rect key="frame" x="140" y="378" width="320" height="180"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="025-Af-TrC"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="8qi-Km-UH1"/>
-                                </connections>
-                            </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your car's gas mileage ($/gal)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="owY-Rd-Ky3">
                                 <rect key="frame" x="146" y="154" width="309" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -57,19 +43,34 @@
                                 <color key="textColor" red="0.45490196078431372" green="0.45490196078431372" blue="0.45490196078431372" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SuB-Cj-F8k">
+                                <rect key="frame" x="21" y="381" width="558" height="162"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="025-Af-TrC"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="8qi-Km-UH1"/>
+                                </connections>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" red="0.67911862320000005" green="0.86971511619999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="1kN-2J-hVQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0hU-jJ-eMs"/>
                             <constraint firstItem="WgQ-eB-AMT" firstAttribute="top" secondItem="1kN-2J-hVQ" secondAttribute="bottom" constant="60" id="1w3-Or-trk"/>
                             <constraint firstItem="wJj-5f-Qet" firstAttribute="centerX" secondItem="WgQ-eB-AMT" secondAttribute="centerX" id="CrA-al-koC"/>
-                            <constraint firstItem="SuB-Cj-F8k" firstAttribute="top" secondItem="wJj-5f-Qet" secondAttribute="bottom" id="O0G-TB-aFi"/>
                             <constraint firstItem="WgQ-eB-AMT" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="PDu-4r-SaQ"/>
-                            <constraint firstItem="wJj-5f-Qet" firstAttribute="top" secondItem="WgQ-eB-AMT" secondAttribute="bottom" constant="40" id="WC9-v8-IqI"/>
+                            <constraint firstItem="SuB-Cj-F8k" firstAttribute="top" secondItem="wJj-5f-Qet" secondAttribute="bottom" constant="5" id="PfO-Te-pyN"/>
                             <constraint firstItem="SuB-Cj-F8k" firstAttribute="centerX" secondItem="wJj-5f-Qet" secondAttribute="centerX" id="Y5i-N9-oR8"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" relation="lessThanOrEqual" secondItem="SuB-Cj-F8k" secondAttribute="bottom" constant="40" id="jn0-ak-icU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="SuB-Cj-F8k" secondAttribute="trailing" constant="5" id="dUR-Xw-kWL"/>
+                            <constraint firstItem="SuB-Cj-F8k" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="5" id="kqL-dZ-xIk"/>
                             <constraint firstItem="1kN-2J-hVQ" firstAttribute="centerX" secondItem="WgQ-eB-AMT" secondAttribute="centerX" id="qRq-Xt-H6w"/>
                             <constraint firstItem="owY-Rd-Ky3" firstAttribute="centerX" secondItem="1kN-2J-hVQ" secondAttribute="centerX" id="tUd-en-qu5"/>
+                            <constraint firstItem="wJj-5f-Qet" firstAttribute="top" secondItem="WgQ-eB-AMT" secondAttribute="bottom" constant="40" id="ulB-lA-hZY"/>
                             <constraint firstItem="1kN-2J-hVQ" firstAttribute="top" secondItem="owY-Rd-Ky3" secondAttribute="bottom" constant="20" id="x4P-XD-43L"/>
                         </constraints>
                     </view>
