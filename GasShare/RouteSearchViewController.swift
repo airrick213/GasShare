@@ -1,8 +1,8 @@
 //
-//  MapViewController.swift
+//  RouteSearchViewController.swift
 //  GasShare
 //
-//  Created by Eric Kim on 7/7/15.
+//  Created by Eric Kim on 7/13/15.
 //  Copyright (c) 2015 Eric Kim. All rights reserved.
 //
 
@@ -13,19 +13,19 @@ import MBProgressHUD
 import SwiftyJSON
 import Alamofire
 
-class MapSearchViewController: UIViewController {
-
+class RouteSearchViewController: UIViewController {
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var containerView: UIView!
-    var mapViewController: MapViewController!
+    var routeMapViewController: RouteMapViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mapViewController = self.childViewControllers.first as! MapViewController
-        containerView.addSubview(mapViewController.view)
+        routeMapViewController = self.childViewControllers.first as! RouteMapViewController
+        containerView.addSubview(routeMapViewController.view)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -63,26 +63,36 @@ class MapSearchViewController: UIViewController {
         
         if let result = json["results"][0].dictionary {
             let addressComponents = result["address_components"]!.array
+            let thoroughfare = addressComponents!
+                .filter { $0["types"][0] == "street_number" || $0["types"][0] == "route" }
+                .map { $0["long_name"].string! }
+            
             let location = addressComponents!
                 .filter { $0["types"][0] == "locality" || $0["types"][0] == "administrative_area_level_1" }
                 .map { $0["long_name"].string! }
             
-            mapViewController.selectedLocation = ", ".join(location)
+            routeMapViewController.selectedLocation = ""
+            
+            if thoroughfare.count == 2 {
+                routeMapViewController.selectedLocation = " ".join(thoroughfare) + ", "
+            }
+            
+            routeMapViewController.selectedLocation += ", ".join(location)
             
             let latitude = result["geometry"]!["location"]["lat"].double
             let longitude = result["geometry"]!["location"]["lng"].double
             
-            mapViewController.selectedCoordinate.latitude = latitude!
-            mapViewController.selectedCoordinate.longitude = longitude!
+            routeMapViewController.selectedCoordinate.latitude = latitude!
+            routeMapViewController.selectedCoordinate.longitude = longitude!
             
-            mapViewController.usedSearchBar = true
-            mapViewController.moveCamera(coordinate: mapViewController.selectedCoordinate)
+            routeMapViewController.usedSearchBar = true
+            routeMapViewController.moveCamera(coordinate: routeMapViewController.selectedCoordinate)
         }
     }
-
+    
 }
 
-extension MapSearchViewController: UISearchBarDelegate {
+extension RouteSearchViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchForLocation(searchBar.text)

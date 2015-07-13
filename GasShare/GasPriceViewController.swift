@@ -51,6 +51,10 @@ class GasPriceViewController: UIViewController {
         }
     }
     
+    
+    //MARK: myGasFeed Code
+    
+    
     func findGasPrices() {
         let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
         
@@ -92,6 +96,7 @@ class GasPriceViewController: UIViewController {
         
         reloadLabel()
     }
+    
     
     func average(nums: [Double]) -> Double {
         var sum: Double = 0
