@@ -54,15 +54,9 @@ class MapViewController: UIViewController {
     }
     
     func setMarker(#coordinate: CLLocationCoordinate2D) {
-        mapView.clear()
-        
         self.selectedCoordinate = coordinate
-        let marker = GMSMarker(position: coordinate)
-        marker.appearAnimation = kGMSMarkerAnimationPop
         
-        marker.title = self.selectedLocation
-        
-        marker.map = mapView
+        makeMarker(coordinate: coordinate)
         
         if !usedSearchBar {
             reverseGeocode(coordinate: coordinate)
@@ -90,10 +84,19 @@ class MapViewController: UIViewController {
                 }
             }
             
-            let marker = GMSMarker(position: coordinate)
-            marker.title = self.selectedLocation
-            marker.map = self.mapView
+            self.makeMarker(coordinate: coordinate)
         })
+    }
+    
+    func makeMarker(#coordinate: CLLocationCoordinate2D) {
+        mapView.clear()
+        
+        let marker = GMSMarker(position: coordinate)
+        marker.appearAnimation = kGMSMarkerAnimationPop
+        
+        marker.title = self.selectedLocation
+        
+        marker.map = mapView
     }
 
 }

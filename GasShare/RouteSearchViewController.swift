@@ -15,9 +15,12 @@ import Alamofire
 
 class RouteSearchViewController: UIViewController {
     
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var startSearchBar: UISearchBar!
+    @IBOutlet weak var endSearchBar: UISearchBar!
     @IBOutlet weak var containerView: UIView!
     var routeMapViewController: RouteMapViewController!
+    var gasMileage: Int!
+    var gasPrice: Double!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +34,7 @@ class RouteSearchViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func searchForLocation(searchText: String) {
+    func searchForLocation(searchText: String, searchingStartLocation: Bool) {
         let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
         
         let htmlString = searchText.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.allZeros, range: Range<String.Index>(start: searchText.startIndex, end: searchText.endIndex))
@@ -42,7 +45,7 @@ class RouteSearchViewController: UIViewController {
             hud.hide(true)
             
             if self.requestSucceeded(response, error: error) {
-                self.handleResponse(data!)
+                self.handleResponse(data!, searchingStartLocation: searchingStartLocation)
             }
             else {
                 UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again.", delegate: nil, cancelButtonTitle: "OK").show()
@@ -58,7 +61,7 @@ class RouteSearchViewController: UIViewController {
         return false
     }
     
-    func handleResponse(data: AnyObject) {
+    func handleResponse(data: AnyObject, searchingStartLocation: Bool) {
         let json = JSON(data)
         
         if let result = json["results"][0].dictionary {
@@ -71,22 +74,45 @@ class RouteSearchViewController: UIViewController {
                 .filter { $0["types"][0] == "locality" || $0["types"][0] == "administrative_area_level_1" }
                 .map { $0["long_name"].string! }
             
-            routeMapViewController.selectedLocation = ""
-            
-            if thoroughfare.count == 2 {
-                routeMapViewController.selectedLocation = " ".join(thoroughfare) + ", "
-            }
-            
-            routeMapViewController.selectedLocation += ", ".join(location)
-            
             let latitude = result["geometry"]!["location"]["lat"].double
             let longitude = result["geometry"]!["location"]["lng"].double
             
-            routeMapViewController.selectedCoordinate.latitude = latitude!
-            routeMapViewController.selectedCoordinate.longitude = longitude!
+            if searchingStartLocation {
+                routeMapViewController.startLocation = ""
             
-            routeMapViewController.usedSearchBar = true
-            routeMapViewController.moveCamera(coordinate: routeMapViewController.selectedCoordinate)
+                if thoroughfare.count > 1 {
+                    routeMapViewController.startLocation = " ".join(thoroughfare) + ", "
+                }
+            
+                routeMapViewController.startLocation += ", ".join(location)
+            
+                routeMapViewController.startCoordinate.latitude = latitude!
+                routeMapViewController.startCoordinate.longitude = longitude!
+            
+                routeMapViewController.moveCamera(coordinate: routeMapViewController.startCoordinate)
+                
+                routeMapViewController.startMarker?.map = nil
+                
+                routeMapViewController.setMarker(searchingStartLocation: true)
+            }
+            else {
+                routeMapViewController.endLocation = ""
+                
+                if thoroughfare.count > 1 {
+                    routeMapViewController.endLocation = " ".join(thoroughfare) + ", "
+                }
+                
+                routeMapViewController.endLocation += ", ".join(location)
+                
+                routeMapViewController.endCoordinate.latitude = latitude!
+                routeMapViewController.endCoordinate.longitude = longitude!
+                
+                routeMapViewController.moveCamera(coordinate: routeMapViewController.endCoordinate)
+                
+                routeMapViewController.endMarker?.map = nil
+                
+                routeMapViewController.setMarker(searchingStartLocation: false)
+            }
         }
     }
     
@@ -94,8 +120,20 @@ class RouteSearchViewController: UIViewController {
 
 extension RouteSearchViewController: UISearchBarDelegate {
     
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        searchBar.alpha = 1.0
+    }
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        searchBar.alpha = 1.0
+    }
+    
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        searchBar.alpha = 0.7
+    }
+    
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        searchForLocation(searchBar.text)
+        searchForLocation(searchBar.text, searchingStartLocation: (searchBar === startSearchBar))
     }
     
 }

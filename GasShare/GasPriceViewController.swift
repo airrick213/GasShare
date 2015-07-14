@@ -143,16 +143,16 @@ class GasPriceViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "GasPriceDone" {
-            let routeViewController = segue.destinationViewController as! RouteViewController
+            let routeSearchViewController = segue.destinationViewController as! RouteSearchViewController
             
             if gasPriceLabel.text == "You haven't selected a location yet" || gasPriceLabel.text!.rangeOfString("could not be found") != nil {
-                routeViewController.gasPrice = NSString(string: gasPriceTextField.text!).doubleValue
+                routeSearchViewController.gasPrice = NSString(string: gasPriceTextField.text!).doubleValue
             }
             else {
-                routeViewController.gasPrice = gasPrice
+                routeSearchViewController.gasPrice = gasPrice
             }
         
-            routeViewController.gasMileage = gasMileage
+            routeSearchViewController.gasMileage = gasMileage
         }
     }
 

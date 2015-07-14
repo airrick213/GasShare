@@ -18,10 +18,13 @@ class RouteMapViewController: UIViewController {
     let geoCoder = GMSGeocoder()
     var placesClient: GMSPlacesClient!
     var mapView: GMSMapView!
-    var selectedCoordinate = CLLocationCoordinate2D()
-    var selectedLocation = ""
+    var startCoordinate = CLLocationCoordinate2D()
+    var startLocation = ""
+    var endCoordinate = CLLocationCoordinate2D()
+    var endLocation = ""
     var firstLocation = true
-    var usedSearchBar = false
+    var startMarker: GMSMarker?
+    var endMarker: GMSMarker?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,60 +53,36 @@ class RouteMapViewController: UIViewController {
     
     func moveCamera(#coordinate: CLLocationCoordinate2D) {
         if !firstLocation {
-            let camera = GMSCameraPosition.cameraWithLatitude(coordinate.latitude, longitude: coordinate.longitude, zoom: 12)
+            let camera = GMSCameraPosition.cameraWithLatitude(coordinate.latitude, longitude: coordinate.longitude, zoom: 13)
             mapView.camera = camera
         }
     }
     
-    func setMarker(#coordinate: CLLocationCoordinate2D) {
-        mapView.clear()
-        
-        self.selectedCoordinate = coordinate
-        let marker = GMSMarker(position: coordinate)
-        marker.appearAnimation = kGMSMarkerAnimationPop
-        
-        marker.title = self.selectedLocation
-        
-        marker.map = mapView
-        
-        if !usedSearchBar {
-            reverseGeocode(coordinate: coordinate)
-        }
-        else {
-            usedSearchBar = false
-        }
+    func setMarker(#searchingStartLocation: Bool) {
+        makeMarker(searchingStartLocation: searchingStartLocation)
     }
     
-    func reverseGeocode(#coordinate: CLLocationCoordinate2D) {
-        self.geoCoder.reverseGeocodeCoordinate(coordinate, completionHandler: { (result: GMSReverseGeocodeResponse?, error: NSError?) -> Void in
-            if let address = result?.firstResult() {
-                self.selectedLocation = ""
-                
-                if let thoroughfare = address.thoroughfare {
-                    self.selectedLocation = thoroughfare
-                }
-                
-                if let locality = address.locality {
-                    if !self.selectedLocation.isEmpty {
-                        self.selectedLocation += ", "
-                    }
-                    
-                    self.selectedLocation += locality.capitalizedString
-                }
-                
-                if let administrativeArea = address.administrativeArea {
-                    if !self.selectedLocation.isEmpty {
-                        self.selectedLocation += ", "
-                    }
-                    
-                    self.selectedLocation += administrativeArea.capitalizedString
-                }
-            }
+    func makeMarker(#searchingStartLocation: Bool) {
+        let coordinate = mapView.camera.target
+        
+        if searchingStartLocation {
+            startMarker = GMSMarker(position: coordinate)
+            startMarker!.appearAnimation = kGMSMarkerAnimationPop
             
-            let marker = GMSMarker(position: coordinate)
-            marker.title = self.selectedLocation
-            marker.map = self.mapView
-        })
+            startMarker!.title = self.startLocation
+            
+            startMarker!.map = mapView
+        }
+        else {
+            endMarker = GMSMarker(position: coordinate)
+            endMarker!.appearAnimation = kGMSMarkerAnimationPop
+            
+            endMarker!.title = self.endLocation
+            
+            endMarker!.icon = GMSMarker.markerImageWithColor(UIColor.blueColor())
+            
+            endMarker!.map = mapView
+        }
     }
     
 }
@@ -115,12 +94,7 @@ extension RouteMapViewController: GMSMapViewDelegate {
     }
     
     func mapView(mapView: GMSMapView!, idleAtCameraPosition position: GMSCameraPosition!) {
-        if !firstLocation {
-            setMarker(coordinate: position.target)
-        }
-        else {
-            firstLocation = false
-        }
+        firstLocation = false
     }
     
 }
