@@ -239,7 +239,7 @@
                     <navigationItem key="navigationItem" title="Gas Price" id="D1T-L8-Esi">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="0NA-vg-S4e">
                             <connections>
-                                <segue destination="DW4-jH-Nul" kind="show" id="o9c-Ch-5Tb"/>
+                                <segue destination="DW4-jH-Nul" kind="show" identifier="GasPriceDone" id="o9c-Ch-5Tb"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -386,9 +386,9 @@
                                 </connections>
                             </searchBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t18-qh-jmr">
-                                <rect key="frame" x="261" y="516" width="77" height="24"/>
+                                <rect key="frame" x="261" y="496" width="77" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" red="0.38039215686274508" green="0.38039215686274508" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.027805624138220963" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -408,7 +408,7 @@
                             <constraint firstItem="7L9-Mt-312" firstAttribute="leading" secondItem="v3g-TN-6cv" secondAttribute="leading" id="Sg6-dt-rZD"/>
                             <constraint firstAttribute="trailing" secondItem="7L9-Mt-312" secondAttribute="trailing" id="ao9-nH-DMA"/>
                             <constraint firstItem="7L9-Mt-312" firstAttribute="top" secondItem="y1z-3B-NOE" secondAttribute="bottom" id="dWG-18-r2f"/>
-                            <constraint firstItem="81l-iW-HvA" firstAttribute="top" secondItem="t18-qh-jmr" secondAttribute="bottom" constant="60" id="h3o-Op-lGN"/>
+                            <constraint firstItem="81l-iW-HvA" firstAttribute="top" secondItem="t18-qh-jmr" secondAttribute="bottom" constant="80" id="h3o-Op-lGN"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -417,14 +417,9 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Route" id="2XE-M2-6di">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="rFb-WA-Rf3">
-                            <connections>
-                                <segue destination="STD-TN-Ffi" kind="unwind" identifier="Cancel" unwindAction="unwindToSegue:" id="rsm-YN-qz6"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="9Fo-Nc-vQk">
                             <connections>
-                                <segue destination="STD-TN-Ffi" kind="unwind" identifier="Done" unwindAction="unwindToSegue:" id="9tl-sx-y1y"/>
+                                <segue destination="9dL-Sj-ND3" kind="show" identifier="RouteDistanceDone" id="yyO-aj-d0B"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -436,7 +431,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4an-Oh-cXJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="STD-TN-Ffi" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1686" y="305"/>
         </scene>

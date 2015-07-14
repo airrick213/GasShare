@@ -22,6 +22,7 @@ class RouteSearchViewController: UIViewController {
     var routeMapViewController: RouteMapViewController!
     var gasMileage: Int!
     var gasPrice: Double!
+    var routeDistance: Double = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -147,6 +148,39 @@ class RouteSearchViewController: UIViewController {
         if let result = json["rows"][0]["elements"][0]["distance"]["text"].string {
             distanceLabel.text = result
             distanceLabel.hidden = false
+            
+            routeDistance = NSString(string: distanceLabel.text!.componentsSeparatedByString(" ")[0]).doubleValue
+        }
+    }
+    
+    //MARK: Navigation
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        if identifier == "RouteDistanceDone" {
+            if self.routeMapViewController.startMarker == nil || self.routeMapViewController.endMarker == nil {
+                let alert = UIAlertView()
+                alert.title = "No Route Distance"
+                alert.message = "Please select the start and end locations of your route"
+                alert.addButtonWithTitle("OK")
+                alert.show()
+    
+                return false
+            }
+            else {
+                return true
+            }
+        }
+    
+        return true
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "RouteDistanceDone" {
+            let calculationViewController = segue.destinationViewController as! CalculationViewController
+            
+            calculationViewController.gasMileage = gasMileage
+            calculationViewController.gasPrice = gasPrice
+            calculationViewController.routeDistance = routeDistance
         }
     }
     
