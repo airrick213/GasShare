@@ -265,25 +265,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tte-DO-EiJ">
-                                <rect key="frame" x="277" y="208" width="46" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <rect key="frame" x="274" y="203.5" width="52.5" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.3803921569" green="0.3803921569" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Individual Cost: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dma-zC-Igo">
-                                <rect key="frame" x="238" y="419.5" width="124" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <rect key="frame" x="229.5" y="421" width="141.5" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.3803921569" green="0.3803921569" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Passengers: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcz-F7-zUX">
-                                <rect key="frame" x="208" y="289" width="185.5" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <rect key="frame" x="194.5" y="287.5" width="212.5" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.3803921569" green="0.3803921569" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="1fc-Ab-4bF">
-                                <rect key="frame" x="253" y="330" width="94" height="29"/>
+                                <rect key="frame" x="253" y="332" width="94" height="29"/>
                                 <connections>
                                     <action selector="numberOfPassengersChanged:" destination="9dL-Sj-ND3" eventType="valueChanged" id="uh9-1S-e0m"/>
                                 </connections>
@@ -385,6 +385,12 @@
                                     <outlet property="delegate" destination="DW4-jH-Nul" id="UbO-z2-hES"/>
                                 </connections>
                             </searchBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t18-qh-jmr">
+                                <rect key="frame" x="261" y="516" width="77" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.38039215686274508" green="0.38039215686274508" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -397,10 +403,12 @@
                             <constraint firstAttribute="centerX" secondItem="Ncf-lo-Z3n" secondAttribute="centerX" id="H21-0g-ISm"/>
                             <constraint firstItem="81l-iW-HvA" firstAttribute="top" secondItem="7L9-Mt-312" secondAttribute="bottom" id="Jje-pc-g4K"/>
                             <constraint firstAttribute="centerX" secondItem="nLO-gb-4Ae" secondAttribute="centerX" id="Nyn-v5-xgs"/>
+                            <constraint firstAttribute="centerX" secondItem="t18-qh-jmr" secondAttribute="centerX" id="PK6-u5-dG6"/>
                             <constraint firstItem="nLO-gb-4Ae" firstAttribute="leading" secondItem="v3g-TN-6cv" secondAttribute="leadingMargin" id="PXH-Fl-iZn"/>
                             <constraint firstItem="7L9-Mt-312" firstAttribute="leading" secondItem="v3g-TN-6cv" secondAttribute="leading" id="Sg6-dt-rZD"/>
                             <constraint firstAttribute="trailing" secondItem="7L9-Mt-312" secondAttribute="trailing" id="ao9-nH-DMA"/>
                             <constraint firstItem="7L9-Mt-312" firstAttribute="top" secondItem="y1z-3B-NOE" secondAttribute="bottom" id="dWG-18-r2f"/>
+                            <constraint firstItem="81l-iW-HvA" firstAttribute="top" secondItem="t18-qh-jmr" secondAttribute="bottom" constant="60" id="h3o-Op-lGN"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -422,6 +430,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="containerView" destination="7L9-Mt-312" id="HRN-LV-3cf"/>
+                        <outlet property="distanceLabel" destination="t18-qh-jmr" id="doS-rL-gZb"/>
                         <outlet property="endSearchBar" destination="nLO-gb-4Ae" id="IXp-Sv-I8d"/>
                         <outlet property="startSearchBar" destination="Ncf-lo-Z3n" id="f0q-oO-Iph"/>
                     </connections>

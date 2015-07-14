@@ -15,6 +15,7 @@ import Alamofire
 
 class RouteSearchViewController: UIViewController {
     
+    @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var startSearchBar: UISearchBar!
     @IBOutlet weak var endSearchBar: UISearchBar!
     @IBOutlet weak var containerView: UIView!
@@ -27,6 +28,7 @@ class RouteSearchViewController: UIViewController {
         
         routeMapViewController = self.childViewControllers.first as! RouteMapViewController
         containerView.addSubview(routeMapViewController.view)
+        distanceLabel.hidden = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -45,7 +47,7 @@ class RouteSearchViewController: UIViewController {
             hud.hide(true)
             
             if self.requestSucceeded(response, error: error) {
-                self.handleResponse(data!, searchingStartLocation: searchingStartLocation)
+                self.handleLocationSearchResponse(data!, searchingStartLocation: searchingStartLocation)
             }
             else {
                 UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again.", delegate: nil, cancelButtonTitle: "OK").show()
@@ -61,7 +63,7 @@ class RouteSearchViewController: UIViewController {
         return false
     }
     
-    func handleResponse(data: AnyObject, searchingStartLocation: Bool) {
+    func handleLocationSearchResponse(data: AnyObject, searchingStartLocation: Bool) {
         let json = JSON(data)
         
         if let result = json["results"][0].dictionary {
@@ -116,6 +118,38 @@ class RouteSearchViewController: UIViewController {
         }
     }
     
+    
+    //MARK: Calculating Distance
+    
+    func calculateDistance(#origin: CLLocationCoordinate2D, destination: CLLocationCoordinate2D) {
+        let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
+        
+        let apiKey = "AIzaSyBQG_Le3xsE49W7dprNafDCgZ0vhdWIytw"
+        let originParam = "origins=\(origin.latitude),\(origin.longitude)"
+        let destinationParam = "destinations=\(destination.latitude),\(destination.longitude)"
+        let requestString = "https://maps.googleapis.com/maps/api/distancematrix/json?\(originParam)&\(destinationParam)&units=imperial&key=\(apiKey)"
+        
+        Alamofire.request(.POST, requestString, parameters: nil).responseJSON(options: .allZeros) { (_, response, data, error) -> Void in
+            hud.hide(true)
+            
+            if self.requestSucceeded(response, error: error) {
+                self.handleDistanceCalculationResponse(data!)
+            }
+            else {
+                UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again.", delegate: nil, cancelButtonTitle: "OK").show()
+            }
+        }
+    }
+    
+    func handleDistanceCalculationResponse(data: AnyObject) {
+        let json = JSON(data)
+        
+        if let result = json["rows"][0]["elements"][0]["distance"]["text"].string {
+            distanceLabel.text = result
+            distanceLabel.hidden = false
+        }
+    }
+    
 }
 
 extension RouteSearchViewController: UISearchBarDelegate {
@@ -134,6 +168,10 @@ extension RouteSearchViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchForLocation(searchBar.text, searchingStartLocation: (searchBar === startSearchBar))
+        
+        if self.routeMapViewController.startMarker != nil && self.routeMapViewController.endMarker != nil {
+            calculateDistance(origin: routeMapViewController.startCoordinate, destination: routeMapViewController.endCoordinate)
+        }
     }
     
 }
