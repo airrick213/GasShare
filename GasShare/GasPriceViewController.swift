@@ -41,11 +41,11 @@ class GasPriceViewController: UIViewController {
                 
                 if selectedLocation == "" {
                     gasPriceLabel.text = "You haven't selected a location yet"
+                    gasPriceTextField.enabled = true
                 }
                 
                 else {
                     findGasPrices()
-                    gasPriceTextField.enabled = false
                 }
             }
         }
@@ -94,6 +94,7 @@ class GasPriceViewController: UIViewController {
             gasPrice = average(prices)
         }
         
+        gasPriceTextField.enabled = false
         reloadLabel()
     }
     

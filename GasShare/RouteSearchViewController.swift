@@ -116,6 +116,10 @@ class RouteSearchViewController: UIViewController {
                 
                 routeMapViewController.setMarker(searchingStartLocation: false)
             }
+            
+            if routeMapViewController.startMarker != nil && routeMapViewController.endMarker != nil {
+                calculateDistance(origin: routeMapViewController.startCoordinate, destination: routeMapViewController.endCoordinate)
+            }
         }
     }
     
@@ -202,10 +206,6 @@ extension RouteSearchViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchForLocation(searchBar.text, searchingStartLocation: (searchBar === startSearchBar))
-        
-        if self.routeMapViewController.startMarker != nil && self.routeMapViewController.endMarker != nil {
-            calculateDistance(origin: routeMapViewController.startCoordinate, destination: routeMapViewController.endCoordinate)
-        }
     }
     
 }
