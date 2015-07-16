@@ -47,10 +47,9 @@ class MapViewController: UIViewController {
     }
     
     func moveCamera(#coordinate: CLLocationCoordinate2D) {
-        if !firstLocation {
-            let camera = GMSCameraPosition.cameraWithLatitude(coordinate.latitude, longitude: coordinate.longitude, zoom: 12)
-            mapView.camera = camera
-        }
+        let cameraUpdate = GMSCameraUpdate.setTarget(coordinate, zoom: 13)
+        
+        mapView.animateWithCameraUpdate(cameraUpdate)
     }
     
     func setMarker(#coordinate: CLLocationCoordinate2D) {

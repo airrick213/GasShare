@@ -102,30 +102,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Lxc-jz-UKb">
-                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RxS-oy-y92">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <connections>
+                                    <segue destination="CcF-z7-Ibb" kind="embed" id="u4D-ST-M3s"/>
+                                </connections>
+                            </containerView>
+                            <searchBar alpha="0.69999999999999996" contentMode="redraw" placeholder="Select Location" translatesAutoresizingMaskIntoConstraints="NO" id="Lxc-jz-UKb">
+                                <rect key="frame" x="16" y="74" width="568" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="jak-HM-i2f"/>
+                                </constraints>
                                 <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                 <connections>
                                     <outlet property="delegate" destination="F4J-Pm-6KJ" id="qi8-1M-FC8"/>
                                 </connections>
                             </searchBar>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RxS-oy-y92">
-                                <rect key="frame" x="0.0" y="108" width="600" height="492"/>
-                                <connections>
-                                    <segue destination="CcF-z7-Ibb" kind="embed" id="u4D-ST-M3s"/>
-                                </connections>
-                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="RxS-oy-y92" firstAttribute="top" secondItem="lc2-BJ-JcZ" secondAttribute="bottom" id="2rI-uN-fcW"/>
                             <constraint firstAttribute="trailing" secondItem="RxS-oy-y92" secondAttribute="trailing" id="Bw8-ok-jxD"/>
-                            <constraint firstItem="Lxc-jz-UKb" firstAttribute="top" secondItem="lc2-BJ-JcZ" secondAttribute="bottom" id="HtS-PS-bgw"/>
-                            <constraint firstItem="RxS-oy-y92" firstAttribute="top" secondItem="Lxc-jz-UKb" secondAttribute="bottom" id="JSc-V2-aAO"/>
-                            <constraint firstItem="Lxc-jz-UKb" firstAttribute="leading" secondItem="cio-EV-xBq" secondAttribute="leading" id="KED-hm-H7I"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Lxc-jz-UKb" secondAttribute="trailing" id="Ei0-Y3-YdB"/>
+                            <constraint firstItem="Lxc-jz-UKb" firstAttribute="top" secondItem="lc2-BJ-JcZ" secondAttribute="bottom" constant="10" id="HtS-PS-bgw"/>
                             <constraint firstItem="jhZ-bW-Nyz" firstAttribute="top" secondItem="RxS-oy-y92" secondAttribute="bottom" id="RBK-zM-oWz"/>
                             <constraint firstItem="RxS-oy-y92" firstAttribute="leading" secondItem="cio-EV-xBq" secondAttribute="leading" id="YUH-4T-nlD"/>
                             <constraint firstAttribute="centerX" secondItem="Lxc-jz-UKb" secondAttribute="centerX" id="cfv-2q-qT2"/>
-                            <constraint firstAttribute="trailing" secondItem="Lxc-jz-UKb" secondAttribute="trailing" id="rgB-Ie-Tpf"/>
+                            <constraint firstItem="Lxc-jz-UKb" firstAttribute="leading" secondItem="cio-EV-xBq" secondAttribute="leadingMargin" id="lbF-5P-jR6"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Map" id="nCu-sQ-mi4">
@@ -337,7 +340,7 @@
                         <viewControllerLayoutGuide type="bottom" id="ui0-pc-qjk"/>
                     </layoutGuides>
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="df9-Ec-ffA">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="492"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>

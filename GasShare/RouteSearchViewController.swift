@@ -29,6 +29,7 @@ class RouteSearchViewController: UIViewController {
         
         routeMapViewController = self.childViewControllers.first as! RouteMapViewController
         containerView.addSubview(routeMapViewController.view)
+        endSearchBar.hidden = true
         distanceLabel.hidden = true
     }
     
@@ -47,21 +48,13 @@ class RouteSearchViewController: UIViewController {
         Alamofire.request(.POST, requestString, parameters: nil).responseJSON(options: .allZeros) { (_, response, data, error) -> Void in
             hud.hide(true)
             
-            if self.requestSucceeded(response, error: error) {
+            if AlamofireHelper.requestSucceeded(response, error: error) {
                 self.handleLocationSearchResponse(data!, searchingStartLocation: searchingStartLocation)
             }
             else {
                 UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again.", delegate: nil, cancelButtonTitle: "OK").show()
             }
         }
-    }
-    
-    func requestSucceeded(response: NSURLResponse!, error: NSError!) -> Bool {
-        if let httpResponse = response as? NSHTTPURLResponse {
-            return error == nil && httpResponse.statusCode >= 200 && httpResponse.statusCode < 300
-        }
-        
-        return false
     }
     
     func handleLocationSearchResponse(data: AnyObject, searchingStartLocation: Bool) {
@@ -91,12 +84,10 @@ class RouteSearchViewController: UIViewController {
             
                 routeMapViewController.startCoordinate.latitude = latitude!
                 routeMapViewController.startCoordinate.longitude = longitude!
-            
-                routeMapViewController.moveCamera(coordinate: routeMapViewController.startCoordinate)
                 
                 routeMapViewController.startMarker?.map = nil
                 
-                routeMapViewController.setMarker(searchingStartLocation: true)
+                routeMapViewController.setMarker(coordinate: routeMapViewController.startCoordinate, searchingStartLocation: true)
             }
             else {
                 routeMapViewController.endLocation = ""
@@ -110,11 +101,9 @@ class RouteSearchViewController: UIViewController {
                 routeMapViewController.endCoordinate.latitude = latitude!
                 routeMapViewController.endCoordinate.longitude = longitude!
                 
-                routeMapViewController.moveCamera(coordinate: routeMapViewController.endCoordinate)
-                
                 routeMapViewController.endMarker?.map = nil
                 
-                routeMapViewController.setMarker(searchingStartLocation: false)
+                routeMapViewController.setMarker(coordinate: routeMapViewController.endCoordinate, searchingStartLocation: false)
             }
             
             if routeMapViewController.startMarker != nil && routeMapViewController.endMarker != nil {
@@ -122,7 +111,6 @@ class RouteSearchViewController: UIViewController {
             }
         }
     }
-    
     
     //MARK: Calculating Distance
     
@@ -137,7 +125,7 @@ class RouteSearchViewController: UIViewController {
         Alamofire.request(.POST, requestString, parameters: nil).responseJSON(options: .allZeros) { (_, response, data, error) -> Void in
             hud.hide(true)
             
-            if self.requestSucceeded(response, error: error) {
+            if AlamofireHelper.requestSucceeded(response, error: error) {
                 self.handleDistanceCalculationResponse(data!)
             }
             else {
@@ -151,17 +139,23 @@ class RouteSearchViewController: UIViewController {
         
         if let result = json["rows"][0]["elements"][0]["distance"]["text"].string {
             distanceLabel.text = result
-            distanceLabel.hidden = false
             
-            routeDistance = NSString(string: distanceLabel.text!.componentsSeparatedByString(" ")[0]).doubleValue
+            let routeDistanceString = distanceLabel.text!.componentsSeparatedByString(" ")[0]
+            let formattedString = NSString(string: routeDistanceString).stringByReplacingOccurrencesOfString(",", withString: "")
+            routeDistance = NSString(string: formattedString).doubleValue
         }
+        else {
+            distanceLabel.text = "Could not find distance"
+        }
+        
+        distanceLabel.hidden = false
     }
     
     //MARK: Navigation
     
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
         if identifier == "RouteDistanceDone" {
-            if self.routeMapViewController.startMarker == nil || self.routeMapViewController.endMarker == nil {
+            if self.routeMapViewController.startMarker == nil || self.routeMapViewController.endMarker == nil || distanceLabel.text == "Could not find distance" {
                 let alert = UIAlertView()
                 alert.title = "No Route Distance"
                 alert.message = "Please select the start and end locations of your route"
@@ -205,7 +199,15 @@ extension RouteSearchViewController: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        searchForLocation(searchBar.text, searchingStartLocation: (searchBar === startSearchBar))
+        if searchBar === startSearchBar {
+            searchForLocation(searchBar.text, searchingStartLocation: true)
+            endSearchBar.hidden = false
+            endSearchBar.becomeFirstResponder()
+        }
+        else {
+            searchForLocation(searchBar.text, searchingStartLocation: false)
+            endSearchBar.resignFirstResponder()
+        }
     }
     
 }

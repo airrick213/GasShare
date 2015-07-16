@@ -41,21 +41,13 @@ class MapSearchViewController: UIViewController {
         Alamofire.request(.POST, requestString, parameters: nil).responseJSON(options: .allZeros) { (_, response, data, error) -> Void in
             hud.hide(true)
             
-            if self.requestSucceeded(response, error: error) {
+            if AlamofireHelper.requestSucceeded(response, error: error) {
                 self.handleResponse(data!)
             }
             else {
                 UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again.", delegate: nil, cancelButtonTitle: "OK").show()
             }
         }
-    }
-    
-    func requestSucceeded(response: NSURLResponse!, error: NSError!) -> Bool {
-        if let httpResponse = response as? NSHTTPURLResponse {
-            return error == nil && httpResponse.statusCode >= 200 && httpResponse.statusCode < 300
-        }
-        
-        return false
     }
     
     func handleResponse(data: AnyObject) {
@@ -83,6 +75,18 @@ class MapSearchViewController: UIViewController {
 }
 
 extension MapSearchViewController: UISearchBarDelegate {
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        searchBar.alpha = 1.0
+    }
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        searchBar.alpha = 1.0
+    }
+    
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        searchBar.alpha = 0.7
+    }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchForLocation(searchBar.text)

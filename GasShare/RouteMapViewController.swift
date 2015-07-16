@@ -22,7 +22,6 @@ class RouteMapViewController: UIViewController {
     var startLocation = ""
     var endCoordinate = CLLocationCoordinate2D()
     var endLocation = ""
-    var firstLocation = true
     var startMarker: GMSMarker?
     var endMarker: GMSMarker?
     
@@ -37,8 +36,6 @@ class RouteMapViewController: UIViewController {
         let camera = GMSCameraPosition.cameraWithLatitude(40, longitude: -100, zoom: 3)
         mapView = GMSMapView.mapWithFrame(self.view.bounds, camera: camera)
         
-        mapView.delegate = self
-        
         mapView.myLocationEnabled = true
         mapView.settings.myLocationButton = true
         mapView.settings.compassButton = true
@@ -52,19 +49,18 @@ class RouteMapViewController: UIViewController {
     }
     
     func moveCamera(#coordinate: CLLocationCoordinate2D) {
-        if !firstLocation {
-            let camera = GMSCameraPosition.cameraWithLatitude(coordinate.latitude, longitude: coordinate.longitude, zoom: 13)
-            mapView.camera = camera
-        }
-    }
-    
-    func setMarker(#searchingStartLocation: Bool) {
-        makeMarker(searchingStartLocation: searchingStartLocation)
-    }
-    
-    func makeMarker(#searchingStartLocation: Bool) {
-        let coordinate = mapView.camera.target
+        let cameraUpdate = GMSCameraUpdate.setTarget(coordinate, zoom: 13)
         
+        mapView.animateWithCameraUpdate(cameraUpdate)
+    }
+    
+    func moveCameraBetweenPoints(#coordinate1: CLLocationCoordinate2D, coordinate2: CLLocationCoordinate2D) {
+        let cameraUpdate = GMSCameraUpdate.fitBounds(GMSCoordinateBounds(coordinate: coordinate1, coordinate: coordinate2))
+        
+        mapView.animateWithCameraUpdate(cameraUpdate)
+    }
+    
+    func setMarker(#coordinate: CLLocationCoordinate2D, searchingStartLocation: Bool) {
         if searchingStartLocation {
             startMarker = GMSMarker(position: coordinate)
             startMarker!.appearAnimation = kGMSMarkerAnimationPop
@@ -83,18 +79,16 @@ class RouteMapViewController: UIViewController {
             
             endMarker!.map = mapView
         }
-    }
-    
-}
-
-extension RouteMapViewController: GMSMapViewDelegate {
-    
-    func mapView(mapView: GMSMapView!, didLongPressAtCoordinate coordinate: CLLocationCoordinate2D) {
-        moveCamera(coordinate: coordinate)
-    }
-    
-    func mapView(mapView: GMSMapView!, idleAtCameraPosition position: GMSCameraPosition!) {
-        firstLocation = false
+        
+        if startMarker != nil && endMarker != nil {
+            moveCameraBetweenPoints(coordinate1: startCoordinate, coordinate2: endCoordinate)
+        }
+        else if startMarker != nil {
+            moveCamera(coordinate: startCoordinate)
+        }
+        else {
+            moveCamera(coordinate: endCoordinate)
+        }
     }
     
 }
