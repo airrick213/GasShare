@@ -14,7 +14,7 @@ class CalculationViewController: UIViewController {
     @IBOutlet weak var numberOfPassengersLabel: UILabel!
     @IBOutlet weak var individualCostLabel: UILabel!
     
-    var gasMileage: Int!
+    var gasMileage: Double!
     var gasPrice: Double!
     var routeDistance: Double!
     var totalPrice: Double!
@@ -23,12 +23,7 @@ class CalculationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var gasMileageDouble: Double = 0
-        for x in 1...gasMileage {
-            gasMileageDouble++
-        }
-        
-        totalPrice = (gasPrice / gasMileageDouble) * routeDistance
+        totalPrice = (gasPrice / gasMileage) * routeDistance
         totalLabel.text! += NSString(format: "$%.2f", totalPrice) as String
         
         updateNumberOfPassengersLabel(1.0)

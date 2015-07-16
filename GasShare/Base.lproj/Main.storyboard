@@ -35,7 +35,7 @@
                                     <constraint firstAttribute="width" constant="50" id="Ib2-XD-jLv"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose from suggested values" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="wJj-5f-Qet">
                                 <rect key="frame" x="164" y="352" width="273" height="24"/>
@@ -304,7 +304,13 @@
                             <constraint firstItem="rcz-F7-zUX" firstAttribute="top" secondItem="Tte-DO-EiJ" secondAttribute="bottom" constant="60" id="zkF-uA-RDt"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Calculation" id="WDs-Bv-DCl"/>
+                    <navigationItem key="navigationItem" title="Calculation" id="WDs-Bv-DCl">
+                        <barButtonItem key="rightBarButtonItem" title="Start Over" id="Xms-tA-J5c">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="show" identifier="StartOver" id="URs-yy-RZc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="individualCostLabel" destination="dma-zC-Igo" id="Kfc-XZ-S4t"/>
                         <outlet property="numberOfPassengersLabel" destination="rcz-F7-zUX" id="N8Q-Fe-TpA"/>
@@ -456,4 +462,7 @@
             <point key="canvasLocation" x="1686" y="954"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="URs-yy-RZc"/>
+    </inferredMetricsTieBreakers>
 </document>

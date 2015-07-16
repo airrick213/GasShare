@@ -20,6 +20,13 @@
 		0789A6E51B54389C00E206AD /* RouteSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0789A6E41B54389C00E206AD /* RouteSearchViewController.swift */; };
 		0789A6E71B5439D400E206AD /* RouteMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0789A6E61B5439D400E206AD /* RouteMapViewController.swift */; };
 		0791F3F41B56DC44006FEED8 /* AlamofireHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0791F3F31B56DC44006FEED8 /* AlamofireHelper.swift */; };
+		079DB1501B582CDA00D21C77 /* ACWebScraper.m in Sources */ = {isa = PBXBuildFile; fileRef = 079DB1421B582CDA00D21C77 /* ACWebScraper.m */; };
+		079DB1511B582CDA00D21C77 /* ACWebScraperQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 079DB1441B582CDA00D21C77 /* ACWebScraperQueue.m */; };
+		079DB1521B582CDA00D21C77 /* ACWebScrapingActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 079DB1471B582CDA00D21C77 /* ACWebScrapingActivityIndicatorManager.m */; };
+		079DB1531B582CDA00D21C77 /* ACWebScrapingClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 079DB1491B582CDA00D21C77 /* ACWebScrapingClient.m */; };
+		079DB1541B582CDA00D21C77 /* ACWebScrapingOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 079DB14B1B582CDA00D21C77 /* ACWebScrapingOperation.m */; };
+		079DB1551B582CDA00D21C77 /* NSString+Javascript.m in Sources */ = {isa = PBXBuildFile; fileRef = 079DB14D1B582CDA00D21C77 /* NSString+Javascript.m */; };
+		079DB1561B582CDA00D21C77 /* UIWebView+Document.m in Sources */ = {isa = PBXBuildFile; fileRef = 079DB14F1B582CDA00D21C77 /* UIWebView+Document.m */; };
 		07E52A9F1B505595006FFB7A /* CalculationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E52A9E1B505595006FFB7A /* CalculationViewController.swift */; };
 		839D6984ECB623561649FDAB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E31020FC501B7AB4336490 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -53,6 +60,22 @@
 		0789A6E41B54389C00E206AD /* RouteSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteSearchViewController.swift; sourceTree = "<group>"; };
 		0789A6E61B5439D400E206AD /* RouteMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteMapViewController.swift; sourceTree = "<group>"; };
 		0791F3F31B56DC44006FEED8 /* AlamofireHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireHelper.swift; sourceTree = "<group>"; };
+		079DB1411B582CDA00D21C77 /* ACWebScraper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACWebScraper.h; sourceTree = "<group>"; };
+		079DB1421B582CDA00D21C77 /* ACWebScraper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACWebScraper.m; sourceTree = "<group>"; };
+		079DB1431B582CDA00D21C77 /* ACWebScraperQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACWebScraperQueue.h; sourceTree = "<group>"; };
+		079DB1441B582CDA00D21C77 /* ACWebScraperQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACWebScraperQueue.m; sourceTree = "<group>"; };
+		079DB1451B582CDA00D21C77 /* ACWebScraping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACWebScraping.h; sourceTree = "<group>"; };
+		079DB1461B582CDA00D21C77 /* ACWebScrapingActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACWebScrapingActivityIndicatorManager.h; sourceTree = "<group>"; };
+		079DB1471B582CDA00D21C77 /* ACWebScrapingActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACWebScrapingActivityIndicatorManager.m; sourceTree = "<group>"; };
+		079DB1481B582CDA00D21C77 /* ACWebScrapingClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACWebScrapingClient.h; sourceTree = "<group>"; };
+		079DB1491B582CDA00D21C77 /* ACWebScrapingClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACWebScrapingClient.m; sourceTree = "<group>"; };
+		079DB14A1B582CDA00D21C77 /* ACWebScrapingOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACWebScrapingOperation.h; sourceTree = "<group>"; };
+		079DB14B1B582CDA00D21C77 /* ACWebScrapingOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACWebScrapingOperation.m; sourceTree = "<group>"; };
+		079DB14C1B582CDA00D21C77 /* NSString+Javascript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Javascript.h"; sourceTree = "<group>"; };
+		079DB14D1B582CDA00D21C77 /* NSString+Javascript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Javascript.m"; sourceTree = "<group>"; };
+		079DB14E1B582CDA00D21C77 /* UIWebView+Document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+Document.h"; sourceTree = "<group>"; };
+		079DB14F1B582CDA00D21C77 /* UIWebView+Document.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+Document.m"; sourceTree = "<group>"; };
+		079DB1571B582D1600D21C77 /* GasShare-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GasShare-Bridging-Header.h"; sourceTree = "<group>"; };
 		07E52A9E1B505595006FFB7A /* CalculationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculationViewController.swift; sourceTree = "<group>"; };
 		7D7B2130FDE731CD7F287A96 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E071A125770EC0D0267D96EE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -100,6 +123,7 @@
 		0728928E1B4DB7530060960A /* GasShare */ = {
 			isa = PBXGroup;
 			children = (
+				079DB1401B582C1600D21C77 /* Headers */,
 				0791F3EE1B56DA26006FEED8 /* Helpers */,
 				074A1F681B4DB88D00F01CB2 /* Views */,
 				074A1F631B4DB88D00F01CB2 /* GasMileageViewController.swift */,
@@ -113,6 +137,7 @@
 				072892951B4DB7530060960A /* Main.storyboard */,
 				072892981B4DB7530060960A /* Images.xcassets */,
 				0728929A1B4DB7530060960A /* LaunchScreen.xib */,
+				079DB1571B582D1600D21C77 /* GasShare-Bridging-Header.h */,
 				0728928F1B4DB7530060960A /* Supporting Files */,
 			);
 			path = GasShare;
@@ -157,6 +182,28 @@
 				0791F3F31B56DC44006FEED8 /* AlamofireHelper.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		079DB1401B582C1600D21C77 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				079DB1411B582CDA00D21C77 /* ACWebScraper.h */,
+				079DB1421B582CDA00D21C77 /* ACWebScraper.m */,
+				079DB1431B582CDA00D21C77 /* ACWebScraperQueue.h */,
+				079DB1441B582CDA00D21C77 /* ACWebScraperQueue.m */,
+				079DB1451B582CDA00D21C77 /* ACWebScraping.h */,
+				079DB1461B582CDA00D21C77 /* ACWebScrapingActivityIndicatorManager.h */,
+				079DB1471B582CDA00D21C77 /* ACWebScrapingActivityIndicatorManager.m */,
+				079DB1481B582CDA00D21C77 /* ACWebScrapingClient.h */,
+				079DB1491B582CDA00D21C77 /* ACWebScrapingClient.m */,
+				079DB14A1B582CDA00D21C77 /* ACWebScrapingOperation.h */,
+				079DB14B1B582CDA00D21C77 /* ACWebScrapingOperation.m */,
+				079DB14C1B582CDA00D21C77 /* NSString+Javascript.h */,
+				079DB14D1B582CDA00D21C77 /* NSString+Javascript.m */,
+				079DB14E1B582CDA00D21C77 /* UIWebView+Document.h */,
+				079DB14F1B582CDA00D21C77 /* UIWebView+Document.m */,
+			);
+			path = Headers;
 			sourceTree = "<group>";
 		};
 		B1990ED3CE4DD1473E383DD8 /* Pods */ = {
@@ -360,7 +407,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				079DB1521B582CDA00D21C77 /* ACWebScrapingActivityIndicatorManager.m in Sources */,
 				0791F3F41B56DC44006FEED8 /* AlamofireHelper.swift in Sources */,
+				079DB1511B582CDA00D21C77 /* ACWebScraperQueue.m in Sources */,
 				07E52A9F1B505595006FFB7A /* CalculationViewController.swift in Sources */,
 				074A1F6B1B4DB88D00F01CB2 /* GasPriceViewController.swift in Sources */,
 				072892921B4DB7530060960A /* AppDelegate.swift in Sources */,
@@ -368,8 +417,13 @@
 				0789A6E51B54389C00E206AD /* RouteSearchViewController.swift in Sources */,
 				074A1F6D1B4DB88D00F01CB2 /* MapViewController.swift in Sources */,
 				074A1F6F1B4DB88D00F01CB2 /* InputTextField.swift in Sources */,
+				079DB1551B582CDA00D21C77 /* NSString+Javascript.m in Sources */,
+				079DB1561B582CDA00D21C77 /* UIWebView+Document.m in Sources */,
+				079DB1531B582CDA00D21C77 /* ACWebScrapingClient.m in Sources */,
+				079DB1541B582CDA00D21C77 /* ACWebScrapingOperation.m in Sources */,
 				074A1F6C1B4DB88D00F01CB2 /* MapSearchViewController.swift in Sources */,
 				0789A6E71B5439D400E206AD /* RouteMapViewController.swift in Sources */,
+				079DB1501B582CDA00D21C77 /* ACWebScraper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

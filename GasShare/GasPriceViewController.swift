@@ -17,15 +17,25 @@ class GasPriceViewController: UIViewController {
     
     @IBOutlet weak var gasPriceTextField: InputTextField!
     @IBOutlet weak var gasPriceLabel: UILabel!
-    var gasMileage: Int!
+    var gasMileage: Double!
     var selectedCoordinate = CLLocationCoordinate2D()
     var selectedLocation = ""
+    var zipcode = ""
     var gasPrice: Double = 0
     let gasType = "reg"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        gasPriceTextField.delegate = self
+        
+        let tapRecognizer = UITapGestureRecognizer()
+        tapRecognizer.addTarget(self, action: "didTapView")
+        self.view.addGestureRecognizer(tapRecognizer)
+    }
+    
+    func didTapView() {
+        self.view.endEditing(true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,31 +55,65 @@ class GasPriceViewController: UIViewController {
                 }
                 
                 else {
-                    findGasPrices()
+                    searchForZipcode()
                 }
             }
         }
     }
     
-    
-    //MARK: myGasFeed Code
-    
-    
-    func findGasPrices() {
+    func searchForZipcode() {
         let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
         
-        let apiKey = "rfej9napna"
+        let locationArray = selectedLocation.componentsSeparatedByString(", ")
+        if locationArray.count < 2 {
+            UIAlertView(title: "Sorry", message: "Could not find city or state, please select a different location", delegate: nil, cancelButtonTitle: "OK").show()
+            return
+        }
         
-        let paramString1 = "/stations/radius/\(selectedCoordinate.latitude)/\(selectedCoordinate.longitude)"
-        let paramString2 = "/5/\(gasType)/distance/\(apiKey).json"
-        let requestString = "http://devapi.mygasfeed.com/" + paramString1 + paramString2
-        
+        let apiKey = "DOEnsVzSQtaFH5HcYyGFINH2GAgo8EYLtC9VyIOocZ4U4L63jMI2Aq5g0lF90DVt"
+        let params = "\(apiKey)/city-zips.json/\(locationArray[0])/\(locationArray[1])"
+        var requestString = "http://www.zipcodeapi.com/rest/\(params)"
+        requestString = requestString.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.allZeros, range: Range<String.Index>(start: requestString.startIndex, end: requestString.endIndex))
         
         Alamofire.request(.GET, requestString, parameters: nil).responseJSON(options: .allZeros) { (_, response, data, error) -> Void in
             hud.hide(true)
             
-            if self.requestSucceeded(response, error: error) {
-                self.handleResponse(data!)
+            if AlamofireHelper.requestSucceeded(response, error: error) {
+                self.handleSearchZipcodeResponse(data!)
+            }
+            else {
+                UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again", delegate: nil, cancelButtonTitle: "OK").show()
+            }
+        }
+    }
+    
+    func handleSearchZipcodeResponse(data: AnyObject) {
+        let json = JSON(data)
+        
+        if let result = json["zip_codes"].array {
+            if let zipcode = result[0].string {
+                self.zipcode = zipcode
+                findGasPrice()
+            }
+            else {
+                UIAlertView(title: "Sorry", message: "Could not find zipcode, please select a different location", delegate: nil, cancelButtonTitle: "OK").show()
+            }
+        }
+    }
+    
+    //MARK: Gas Price Code
+    
+    func findGasPrice() {
+        let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
+        
+        let requestString = "http://www.motortrend.com/gas_prices/34/\(zipcode)/"
+        
+        
+        Alamofire.request(.GET, requestString, parameters: nil).responseString { (_, response, data, error) -> Void in
+            hud.hide(true)
+            
+            if AlamofireHelper.requestSucceeded(response, error: error) {
+                self.handleFindGasPriceResponse(data!)
             }
             else {
                 UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again.", delegate: nil, cancelButtonTitle: "OK").show()
@@ -77,15 +121,7 @@ class GasPriceViewController: UIViewController {
         }
     }
     
-    func requestSucceeded(response: NSURLResponse!, error: NSError!) -> Bool {
-        if let httpResponse = response as? NSHTTPURLResponse {
-            return error == nil && httpResponse.statusCode >= 200 && httpResponse.statusCode < 300
-        }
-        
-        return false
-    }
-    
-    func handleResponse(data: AnyObject) {
+    func handleFindGasPriceResponse(data: AnyObject) {
         let json = JSON(data)
         
         if let stations = json["stations"].array {
@@ -157,4 +193,18 @@ class GasPriceViewController: UIViewController {
         }
     }
 
+}
+
+extension GasPriceViewController: UITextFieldDelegate {
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if textField.text.rangeOfString(".") != nil {
+            if (string.rangeOfString(".") != nil || count(textField.text.componentsSeparatedByString(".")[1]) + count(string) > 2) {
+                return false
+            }
+        }
+        
+        return true
+    }
+    
 }

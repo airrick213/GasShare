@@ -42,7 +42,7 @@ class MapSearchViewController: UIViewController {
             hud.hide(true)
             
             if AlamofireHelper.requestSucceeded(response, error: error) {
-                self.handleResponse(data!)
+                self.handleSearchLocationResponse(data!)
             }
             else {
                 UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again.", delegate: nil, cancelButtonTitle: "OK").show()
@@ -50,14 +50,14 @@ class MapSearchViewController: UIViewController {
         }
     }
     
-    func handleResponse(data: AnyObject) {
+    func handleSearchLocationResponse(data: AnyObject) {
         let json = JSON(data)
         
         if let result = json["results"][0].dictionary {
             let addressComponents = result["address_components"]!.array
             let location = addressComponents!
                 .filter { $0["types"][0] == "locality" || $0["types"][0] == "administrative_area_level_1" }
-                .map { $0["long_name"].string! }
+                .map { $0["short_name"].string! }
             
             mapViewController.selectedLocation = ", ".join(location)
             

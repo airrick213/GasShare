@@ -18,6 +18,7 @@ class GasMileageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        gasMileageTextField.delegate = self
         gasMileagePickerView.dataSource = self
         gasMileagePickerView.delegate = self
         
@@ -61,16 +62,30 @@ class GasMileageViewController: UIViewController {
         let gasPriceViewController = segue.destinationViewController as! GasPriceViewController
         
         if selectedSuggestedMileageValue == 0 {
-            gasPriceViewController.gasMileage = gasMileageTextField.text.toInt()
+            gasPriceViewController.gasMileage = NSString(string: gasMileageTextField.text).doubleValue
         }
         else {
             let suggestedMileageValueString = suggestedMileageValues[selectedSuggestedMileageValue]
-            let gasMileage = suggestedMileageValueString.substringFromIndex(advance(suggestedMileageValueString.startIndex, count(suggestedMileageValueString) - 2)).toInt()
+            let gasMileage = NSString(string: suggestedMileageValueString.substringFromIndex(advance(suggestedMileageValueString.startIndex, count(suggestedMileageValueString) - 2))).doubleValue
             gasPriceViewController.gasMileage = gasMileage
         }
         
     }
+    
+}
 
+extension GasMileageViewController: UITextFieldDelegate {
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if textField.text.rangeOfString(".") != nil {
+            if (string.rangeOfString(".") != nil || count(textField.text.componentsSeparatedByString(".")[1]) + count(string) > 2) {
+                return false
+            }
+        }
+        
+        return true
+    }
+    
 }
 
 extension GasMileageViewController: UIPickerViewDataSource {

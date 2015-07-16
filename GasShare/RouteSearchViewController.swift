@@ -20,7 +20,7 @@ class RouteSearchViewController: UIViewController {
     @IBOutlet weak var endSearchBar: UISearchBar!
     @IBOutlet weak var containerView: UIView!
     var routeMapViewController: RouteMapViewController!
-    var gasMileage: Int!
+    var gasMileage: Double!
     var gasPrice: Double!
     var routeDistance: Double = -1
     
