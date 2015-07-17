@@ -186,13 +186,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You haven't selected a location yet" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1EX-yZ-CnG">
-                                <rect key="frame" x="147" y="448" width="305.5" height="24"/>
+                                <rect key="frame" x="147" y="428" width="305.5" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uoj-PC-nlq">
-                                <rect key="frame" x="240" y="392" width="120" height="36"/>
+                                <rect key="frame" x="240" y="372" width="120" height="36"/>
                                 <color key="backgroundColor" red="0.043137254901960784" green="0.37647058823529411" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="Ip7-IU-uOO"/>
@@ -218,20 +218,65 @@
                                 <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i5k-hj-Zm5">
+                                <rect key="frame" x="282.5" y="472" width="35" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Plus">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="plusGasButtonTapped:" destination="D2a-Hv-2DZ" eventType="touchUpInside" id="BCm-Ba-M3s"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w1w-Vr-Lcg">
+                                <rect key="frame" x="170.5" y="472" width="62" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Regular">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="regularGasButtonTapped:" destination="D2a-Hv-2DZ" eventType="touchUpInside" id="hB7-q9-EJE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="81e-eP-tFt">
+                                <rect key="frame" x="367.5" y="472" width="72" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Premium">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="premiumGasButtonTapped:" destination="D2a-Hv-2DZ" eventType="touchUpInside" id="CI5-Lr-Qpo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.63956876429999998" green="1" blue="0.77176157270000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="i5k-hj-Zm5" firstAttribute="top" secondItem="1EX-yZ-CnG" secondAttribute="bottom" constant="20" id="4yL-lc-ZkA"/>
                             <constraint firstItem="B6S-WK-3Gv" firstAttribute="top" secondItem="zgd-zq-0de" secondAttribute="bottom" constant="20" id="5FU-lP-0GN"/>
                             <constraint firstItem="QLa-MO-Nff" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="VH4-lx-Xpo" secondAttribute="leadingMargin" id="737-IY-eks"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="zgd-zq-0de" secondAttribute="trailing" id="9Da-Eh-DfE"/>
                             <constraint firstAttribute="centerX" secondItem="uoj-PC-nlq" secondAttribute="centerX" id="Bh7-vO-0dH"/>
                             <constraint firstAttribute="centerY" secondItem="QLa-MO-Nff" secondAttribute="centerY" id="DB2-mO-6im"/>
+                            <constraint firstItem="i5k-hj-Zm5" firstAttribute="leading" secondItem="w1w-Vr-Lcg" secondAttribute="trailing" constant="50" id="DY9-Wn-IW1"/>
                             <constraint firstItem="5Ud-eh-Zhn" firstAttribute="top" secondItem="B6S-WK-3Gv" secondAttribute="bottom" constant="45" id="GJm-XF-khN"/>
-                            <constraint firstItem="uoj-PC-nlq" firstAttribute="top" secondItem="QLa-MO-Nff" secondAttribute="bottom" constant="80" id="O13-42-ehV"/>
+                            <constraint firstItem="w1w-Vr-Lcg" firstAttribute="baseline" secondItem="i5k-hj-Zm5" secondAttribute="baseline" id="MdC-Mq-Cgy"/>
+                            <constraint firstItem="uoj-PC-nlq" firstAttribute="top" secondItem="QLa-MO-Nff" secondAttribute="bottom" constant="60" id="O13-42-ehV"/>
+                            <constraint firstItem="81e-eP-tFt" firstAttribute="baseline" secondItem="i5k-hj-Zm5" secondAttribute="baseline" id="ODV-d3-i2Y"/>
+                            <constraint firstItem="81e-eP-tFt" firstAttribute="leading" secondItem="i5k-hj-Zm5" secondAttribute="trailing" constant="50" id="WPA-ua-Ft7"/>
                             <constraint firstAttribute="centerX" secondItem="B6S-WK-3Gv" secondAttribute="centerX" id="aBa-cu-vJj"/>
                             <constraint firstItem="1EX-yZ-CnG" firstAttribute="top" secondItem="uoj-PC-nlq" secondAttribute="bottom" constant="20" id="dcC-cX-bW7"/>
                             <constraint firstItem="QLa-MO-Nff" firstAttribute="top" secondItem="5Ud-eh-Zhn" secondAttribute="bottom" constant="45" id="kmQ-UJ-if5"/>
                             <constraint firstAttribute="centerX" secondItem="QLa-MO-Nff" secondAttribute="centerX" id="kns-Hc-hvr"/>
+                            <constraint firstAttribute="centerX" secondItem="i5k-hj-Zm5" secondAttribute="centerX" id="p6I-QZ-3uk"/>
                             <constraint firstItem="zgd-zq-0de" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="VH4-lx-Xpo" secondAttribute="leadingMargin" id="q3v-fR-g2J"/>
                             <constraint firstAttribute="centerX" secondItem="5Ud-eh-Zhn" secondAttribute="centerX" id="sOh-sQ-ez1"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="QLa-MO-Nff" secondAttribute="trailing" id="xQH-8x-K3d"/>
@@ -249,6 +294,9 @@
                     <connections>
                         <outlet property="gasPriceLabel" destination="1EX-yZ-CnG" id="VTQ-Um-L2S"/>
                         <outlet property="gasPriceTextField" destination="B6S-WK-3Gv" id="OAU-K0-Frh"/>
+                        <outlet property="plusGasButton" destination="i5k-hj-Zm5" id="6BD-b5-BaO"/>
+                        <outlet property="premiumGasButton" destination="81e-eP-tFt" id="ktw-D9-Ccy"/>
+                        <outlet property="regularGasButton" destination="w1w-Vr-Lcg" id="Mpb-Ak-hY7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dir-go-JnG" userLabel="First Responder" sceneMemberID="firstResponder"/>

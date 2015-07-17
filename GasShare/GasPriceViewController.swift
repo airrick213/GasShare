@@ -18,6 +18,10 @@ class GasPriceViewController: UIViewController {
     
     @IBOutlet weak var gasPriceTextField: InputTextField!
     @IBOutlet weak var gasPriceLabel: UILabel!
+    @IBOutlet weak var regularGasButton: UIButton!
+    @IBOutlet weak var plusGasButton: UIButton!
+    @IBOutlet weak var premiumGasButton: UIButton!
+    
     var gasMileage: Double!
     var selectedCoordinate = CLLocationCoordinate2D()
     var selectedLocation = ""
@@ -34,6 +38,10 @@ class GasPriceViewController: UIViewController {
         let tapRecognizer = UITapGestureRecognizer()
         tapRecognizer.addTarget(self, action: "didTapView")
         self.view.addGestureRecognizer(tapRecognizer)
+        
+        regularGasButton.hidden = true
+        plusGasButton.hidden = true
+        premiumGasButton.hidden = true
     }
     
     func didTapView() {
@@ -43,6 +51,31 @@ class GasPriceViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    @IBAction func regularGasButtonTapped(sender: AnyObject) {
+        reloadLabel(regPrice)
+        
+        regularGasButton.selected = true
+        plusGasButton.selected = false
+        premiumGasButton.selected = false
+    }
+    
+    @IBAction func plusGasButtonTapped(sender: AnyObject) {
+        reloadLabel(plusPrice)
+        
+        regularGasButton.selected = false
+        plusGasButton.selected = true
+        premiumGasButton.selected = false
+    }
+    
+    @IBAction func premiumGasButtonTapped(sender: AnyObject) {
+        reloadLabel(prePrice)
+        
+        regularGasButton.selected = false
+        plusGasButton.selected = false
+        premiumGasButton.selected = true
+    }
+    
     
     @IBAction func unwindToSegue(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
@@ -54,6 +87,14 @@ class GasPriceViewController: UIViewController {
                 if selectedLocation == "" {
                     gasPriceLabel.text = "You haven't selected a location yet"
                     gasPriceTextField.enabled = true
+                    
+                    regularGasButton.selected = false
+                    plusGasButton.selected = false
+                    premiumGasButton.selected = false
+                    
+                    regularGasButton.hidden = true
+                    plusGasButton.hidden = true
+                    premiumGasButton.hidden = true
                 }
                 
                 else {
@@ -62,8 +103,6 @@ class GasPriceViewController: UIViewController {
             }
         }
     }
-    
-    
     
     func searchForZipcode() {
         let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
@@ -190,6 +229,13 @@ class GasPriceViewController: UIViewController {
         
         gasPriceTextField.enabled = false
         reloadLabel(regPrice)
+        regularGasButton.selected = true
+        plusGasButton.selected = false
+        premiumGasButton.selected = false
+        
+        regularGasButton.hidden = false
+        plusGasButton.hidden = false
+        premiumGasButton.hidden = false
     }
     
     

@@ -201,8 +201,14 @@ extension RouteSearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         if searchBar === startSearchBar {
             searchForLocation(searchBar.text, searchingStartLocation: true)
-            endSearchBar.hidden = false
-            endSearchBar.becomeFirstResponder()
+            
+            if endSearchBar.hidden == true {
+                endSearchBar.hidden = false
+                endSearchBar.becomeFirstResponder()
+            }
+            else {
+                searchBar.resignFirstResponder()
+            }
         }
         else {
             searchForLocation(searchBar.text, searchingStartLocation: false)
