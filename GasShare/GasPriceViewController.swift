@@ -12,6 +12,7 @@ import MBProgressHUD
 import SwiftyJSON
 import Alamofire
 import CoreLocation
+import Foundation
 
 class GasPriceViewController: UIViewController {
     
@@ -21,8 +22,9 @@ class GasPriceViewController: UIViewController {
     var selectedCoordinate = CLLocationCoordinate2D()
     var selectedLocation = ""
     var zipcode = ""
-    var gasPrice: Double = 0
-    let gasType = "reg"
+    var regPrice: Double = 0
+    var plusPrice: Double = 0
+    var prePrice: Double = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +63,8 @@ class GasPriceViewController: UIViewController {
         }
     }
     
+    
+    
     func searchForZipcode() {
         let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
         
@@ -70,7 +74,7 @@ class GasPriceViewController: UIViewController {
             return
         }
         
-        let apiKey = "DOEnsVzSQtaFH5HcYyGFINH2GAgo8EYLtC9VyIOocZ4U4L63jMI2Aq5g0lF90DVt"
+        let apiKey = "AFxjkQ3OQOUhs8uSZu3jAGEOeqMieViOAP8VFcKw0FOtNimNMp7n6LbkcYCrTVfu"
         let params = "\(apiKey)/city-zips.json/\(locationArray[0])/\(locationArray[1])"
         var requestString = "http://www.zipcodeapi.com/rest/\(params)"
         requestString = requestString.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.allZeros, range: Range<String.Index>(start: requestString.startIndex, end: requestString.endIndex))
@@ -122,16 +126,70 @@ class GasPriceViewController: UIViewController {
     }
     
     func handleFindGasPriceResponse(data: AnyObject) {
-        let json = JSON(data)
+        let html = data as! String
         
-        if let stations = json["stations"].array {
-            let prices = stations.map { NSString(string: $0["\(self.gasType)_price"].string!).doubleValue }
-            
-            gasPrice = average(prices)
+        var error: NSError?
+        var parser = HTMLParser(html: html, error: &error)
+        
+        if error != nil {
+            UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again.", delegate: nil, cancelButtonTitle: "OK").show()
         }
         
+        var bodyNode = parser.body
+        
+        var regPrices = [Double]()
+        var plusPrices = [Double]()
+        var prePrices = [Double]()
+        
+        var count = 0
+        var numCells = 0
+        
+        if let priceNodes = bodyNode?.findChildTags("td") {
+            for node in priceNodes {
+                let contents = node.contents
+                
+                if !contents.isEmpty {
+                    if numCells > 10 {
+                        if contents[contents.startIndex] == "$" {
+                            let startIndex = advance(contents.startIndex, 1)
+                            let endIndex = advance(contents.startIndex, 6)
+                            let doubleValue = NSString(string: contents.substringWithRange(Range<String.Index>(start: startIndex, end: endIndex))).doubleValue
+                            
+                            if doubleValue > 0 {
+                                if count == 0 {
+                                    regPrices.append(doubleValue)
+                                }
+                                else if count == 1 {
+                                    plusPrices.append(doubleValue)
+                                }
+                                else if count == 2 {
+                                    prePrices.append(doubleValue)
+                                }
+                            }
+                            
+                            count = (count + 1) % 4
+                        }
+                        
+                        else if contents == "N/A" {
+                            count = (count + 1) % 4
+                        }
+                    }
+                    
+                    numCells++
+                    if numCells == 70 {
+                        break
+                    }
+                }
+            }
+        }
+        
+        
+        regPrice = average(regPrices)
+        plusPrice = average(plusPrices)
+        prePrice = average(prePrices)
+        
         gasPriceTextField.enabled = false
-        reloadLabel()
+        reloadLabel(regPrice)
     }
     
     
@@ -146,12 +204,12 @@ class GasPriceViewController: UIViewController {
         return sum / count
     }
     
-    func reloadLabel() {
-        if gasPrice == 0 {
+    func reloadLabel(price: Double) {
+        if price == 0 {
             gasPriceLabel.text = "\(selectedLocation): Gas price could not be found"
         }
         else {
-            let priceString = NSString(format: "\(selectedLocation): $%.2f", gasPrice)
+            let priceString = NSString(format: "\(selectedLocation): $%.2f", price)
             gasPriceLabel.text = priceString as String
         }
     }
@@ -186,7 +244,9 @@ class GasPriceViewController: UIViewController {
                 routeSearchViewController.gasPrice = NSString(string: gasPriceTextField.text!).doubleValue
             }
             else {
-                routeSearchViewController.gasPrice = gasPrice
+                let labelText = gasPriceLabel.text!
+                let strIndex = advance(labelText.startIndex, count(labelText) - 4)
+                routeSearchViewController.gasPrice = NSString(string: labelText.substringFromIndex(strIndex)).doubleValue
             }
         
             routeSearchViewController.gasMileage = gasMileage
