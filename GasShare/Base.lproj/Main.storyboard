@@ -20,7 +20,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="WgQ-eB-AMT">
                                 <rect key="frame" x="286" y="219.5" width="28.5" height="38.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="0.22148620437993682" blue="0.22825859197169573" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your car's gas mileage (mi/gal)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="owY-Rd-Ky3">
@@ -115,13 +115,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RxS-oy-y92">
+                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RxS-oy-y92">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <connections>
                                     <segue destination="CcF-z7-Ibb" kind="embed" id="u4D-ST-M3s"/>
                                 </connections>
                             </containerView>
-                            <searchBar alpha="0.69999999999999996" contentMode="redraw" placeholder="Select Location" translatesAutoresizingMaskIntoConstraints="NO" id="Lxc-jz-UKb">
+                            <searchBar alpha="0.69999999999999996" contentMode="redraw" misplaced="YES" placeholder="Select Location" translatesAutoresizingMaskIntoConstraints="NO" id="Lxc-jz-UKb">
                                 <rect key="frame" x="16" y="74" width="568" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="jak-HM-i2f"/>
@@ -181,7 +181,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ud-eh-Zhn">
                                 <rect key="frame" x="286" y="219.5" width="28.5" height="38.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="0.2214862044" blue="0.22825859200000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B6S-WK-3Gv" customClass="InputTextField" customModule="GasShare" customModuleProvider="target">
@@ -331,25 +331,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tte-DO-EiJ">
-                                <rect key="frame" x="274" y="203.5" width="52.5" height="24"/>
+                                <rect key="frame" x="274" y="157" width="52.5" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.3803921569" green="0.3803921569" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Individual Cost: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dma-zC-Igo">
-                                <rect key="frame" x="229.5" y="421" width="141.5" height="24"/>
+                                <rect key="frame" x="229.5" y="374.5" width="141.5" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.3803921569" green="0.3803921569" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Passengers: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcz-F7-zUX">
-                                <rect key="frame" x="194.5" y="287.5" width="212.5" height="24"/>
+                                <rect key="frame" x="194.5" y="241" width="212.5" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.3803921569" green="0.3803921569" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="1fc-Ab-4bF">
-                                <rect key="frame" x="253" y="332" width="94" height="29"/>
+                                <rect key="frame" x="253" y="285.5" width="94" height="29"/>
                                 <connections>
                                     <action selector="numberOfPassengersChanged:" destination="9dL-Sj-ND3" eventType="valueChanged" id="uh9-1S-e0m"/>
                                 </connections>
@@ -360,9 +360,9 @@
                             <constraint firstAttribute="centerX" secondItem="1fc-Ab-4bF" secondAttribute="centerX" id="4vB-yO-sD3"/>
                             <constraint firstItem="1fc-Ab-4bF" firstAttribute="top" secondItem="rcz-F7-zUX" secondAttribute="bottom" constant="20" id="63s-ls-3Zj"/>
                             <constraint firstAttribute="centerX" secondItem="dma-zC-Igo" secondAttribute="centerX" id="6dy-Zj-YFz"/>
-                            <constraint firstAttribute="centerY" secondItem="rcz-F7-zUX" secondAttribute="centerY" id="JR6-SC-lVK"/>
                             <constraint firstItem="dma-zC-Igo" firstAttribute="top" secondItem="1fc-Ab-4bF" secondAttribute="bottom" constant="60" id="QMj-Jn-GsL"/>
                             <constraint firstAttribute="centerX" secondItem="rcz-F7-zUX" secondAttribute="centerX" id="YBi-wm-2AU"/>
+                            <constraint firstAttribute="centerY" secondItem="1fc-Ab-4bF" secondAttribute="centerY" id="eT2-zj-9oB"/>
                             <constraint firstAttribute="centerX" secondItem="Tte-DO-EiJ" secondAttribute="centerX" id="uJy-qH-TCL"/>
                             <constraint firstItem="rcz-F7-zUX" firstAttribute="top" secondItem="Tte-DO-EiJ" secondAttribute="bottom" constant="60" id="zkF-uA-RDt"/>
                         </constraints>
@@ -431,13 +431,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7L9-Mt-312">
+                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7L9-Mt-312">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <connections>
                                     <segue destination="od0-3L-u5X" kind="embed" id="adV-Pp-tm6"/>
                                 </connections>
                             </containerView>
-                            <searchBar alpha="0.69999999999999996" contentMode="redraw" placeholder="Start Location" translatesAutoresizingMaskIntoConstraints="NO" id="Ncf-lo-Z3n">
+                            <searchBar alpha="0.69999999999999996" contentMode="redraw" misplaced="YES" placeholder="Start Location" translatesAutoresizingMaskIntoConstraints="NO" id="Ncf-lo-Z3n">
                                 <rect key="frame" x="16" y="74" width="568" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="kLR-Rk-a6n"/>
@@ -447,7 +447,7 @@
                                     <outlet property="delegate" destination="DW4-jH-Nul" id="FxV-0W-EGf"/>
                                 </connections>
                             </searchBar>
-                            <searchBar alpha="0.69999999999999996" contentMode="redraw" placeholder="End Location" translatesAutoresizingMaskIntoConstraints="NO" id="nLO-gb-4Ae">
+                            <searchBar alpha="0.69999999999999996" contentMode="redraw" misplaced="YES" placeholder="End Location" translatesAutoresizingMaskIntoConstraints="NO" id="nLO-gb-4Ae">
                                 <rect key="frame" x="16" y="118" width="568" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="F1w-ZO-qE1"/>
@@ -460,7 +460,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t18-qh-jmr">
                                 <rect key="frame" x="261" y="496" width="77" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" red="1" green="0.0" blue="0.027805624138220963" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="0.2214862044" blue="0.22825859200000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
