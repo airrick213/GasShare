@@ -88,13 +88,7 @@ class GasPriceViewController: UIViewController {
                     gasPriceLabel.text = "You haven't selected a location yet"
                     gasPriceTextField.enabled = true
                     
-                    regularGasButton.selected = false
-                    plusGasButton.selected = false
-                    premiumGasButton.selected = false
-                    
-                    regularGasButton.hidden = true
-                    plusGasButton.hidden = true
-                    premiumGasButton.hidden = true
+                    deactivateButtons()
                 }
                 
                 else {
@@ -102,6 +96,16 @@ class GasPriceViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    func deactivateButtons() {
+        regularGasButton.selected = false
+        plusGasButton.selected = false
+        premiumGasButton.selected = false
+        
+        regularGasButton.hidden = true
+        plusGasButton.hidden = true
+        premiumGasButton.hidden = true
     }
     
     func searchForZipcode() {
@@ -151,7 +155,6 @@ class GasPriceViewController: UIViewController {
         
         let requestString = "http://www.motortrend.com/gas_prices/34/\(zipcode)/"
         
-        
         Alamofire.request(.GET, requestString, parameters: nil).responseString { (_, response, data, error) -> Void in
             hud.hide(true)
             
@@ -159,7 +162,9 @@ class GasPriceViewController: UIViewController {
                 self.handleFindGasPriceResponse(data!)
             }
             else {
-                UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again.", delegate: nil, cancelButtonTitle: "OK").show()
+                self.gasPriceLabel.text = "\(self.selectedLocation): Gas price could not be found"
+                
+                self.deactivateButtons()
             }
         }
     }
@@ -172,6 +177,9 @@ class GasPriceViewController: UIViewController {
         
         if error != nil {
             UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again.", delegate: nil, cancelButtonTitle: "OK").show()
+            
+            self.gasPriceLabel.text = "\(self.selectedLocation): Gas price could not be found"
+            deactivateButtons()
         }
         
         var bodyNode = parser.body
