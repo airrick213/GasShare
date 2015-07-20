@@ -15,26 +15,49 @@ import Alamofire
 
 class RouteSearchViewController: UIViewController {
     
+    @IBOutlet weak var baseView: UIView!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var startSearchBar: UISearchBar!
     @IBOutlet weak var endSearchBar: UISearchBar!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var useCurrentLocationButtonTopConstraint: NSLayoutConstraint!
     
-    var routeMapViewController: RouteMapViewController!
     var gasMileage: Double!
     var gasPrice: Double!
     var routeDistance: Double = -1
     var searchingStartLocation = true
     
+    // map variables
+    let locationManager = CLLocationManager()
+    let geoCoder = GMSGeocoder()
+    var placesClient: GMSPlacesClient!
+    var mapView: GMSMapView!
+    var startCoordinate = CLLocationCoordinate2D()
+    var startLocation = ""
+    var endCoordinate = CLLocationCoordinate2D()
+    var endLocation = ""
+    var startMarker: GMSMarker?
+    var endMarker: GMSMarker?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        routeMapViewController = self.childViewControllers.first as! RouteMapViewController
-        containerView.addSubview(routeMapViewController.view)
         endSearchBar.hidden = true
         useCurrentLocationButtonTopConstraint.constant = 0
         distanceLabel.hidden = true
+        
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
+        //camera's coordinates are dummy values
+        let camera = GMSCameraPosition.cameraWithLatitude(40, longitude: -100, zoom: 3)
+        mapView = GMSMapView.mapWithFrame(self.view.bounds, camera: camera)
+        
+        mapView.myLocationEnabled = true
+        mapView.settings.compassButton = true
+        
+        baseView.addSubview(mapView)
     }
     
     override func didReceiveMemoryWarning() {
@@ -43,8 +66,15 @@ class RouteSearchViewController: UIViewController {
     }
     
     @IBAction func useCurrentLocationButtonTapped(sender: AnyObject) {
-        if let myLocation = routeMapViewController.mapView.myLocation {
-            routeMapViewController.reverseGeocode(coordinate: myLocation.coordinate)
+        if let myLocation = mapView.myLocation {
+            if searchingStartLocation {
+                startCoordinate = myLocation.coordinate
+            }
+            else {
+                endCoordinate = myLocation.coordinate
+            }
+            
+            reverseGeocode(coordinate: myLocation.coordinate)
         }
         else {
             UIAlertView(title: "Sorry", message: "Could not find current location, please make sure that location features are turned on", delegate: nil, cancelButtonTitle: "OK").show()
@@ -87,40 +117,32 @@ class RouteSearchViewController: UIViewController {
             let longitude = result["geometry"]!["location"]["lng"].double
             
             if searchingStartLocation {
-                routeMapViewController.startLocation = ""
+                startLocation = ""
             
                 if thoroughfare.count > 1 {
-                    routeMapViewController.startLocation = " ".join(thoroughfare) + ", "
+                    startLocation = " ".join(thoroughfare) + ", "
                 }
             
-                routeMapViewController.startLocation += ", ".join(location)
+                startLocation += ", ".join(location)
             
-                routeMapViewController.startCoordinate.latitude = latitude!
-                routeMapViewController.startCoordinate.longitude = longitude!
+                startCoordinate.latitude = latitude!
+                startCoordinate.longitude = longitude!
                 
-                routeMapViewController.startMarker?.map = nil
-                
-                routeMapViewController.setMarker(coordinate: routeMapViewController.startCoordinate)
+                setMarker(coordinate: startCoordinate)
             }
             else {
-                routeMapViewController.endLocation = ""
+                endLocation = ""
                 
                 if thoroughfare.count > 1 {
-                    routeMapViewController.endLocation = " ".join(thoroughfare) + ", "
+                    endLocation = " ".join(thoroughfare) + ", "
                 }
                 
-                routeMapViewController.endLocation += ", ".join(location)
+                endLocation += ", ".join(location)
                 
-                routeMapViewController.endCoordinate.latitude = latitude!
-                routeMapViewController.endCoordinate.longitude = longitude!
+                endCoordinate.latitude = latitude!
+                endCoordinate.longitude = longitude!
                 
-                routeMapViewController.endMarker?.map = nil
-                
-                routeMapViewController.setMarker(coordinate: routeMapViewController.endCoordinate)
-            }
-            
-            if routeMapViewController.startMarker != nil && routeMapViewController.endMarker != nil {
-                calculateDistance(origin: routeMapViewController.startCoordinate, destination: routeMapViewController.endCoordinate)
+                setMarker(coordinate: endCoordinate)
             }
         }
     }
@@ -168,7 +190,7 @@ class RouteSearchViewController: UIViewController {
     
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
         if identifier == "RouteDistanceDone" {
-            if self.routeMapViewController.startMarker == nil || self.routeMapViewController.endMarker == nil || distanceLabel.text == "Could not find distance" {
+            if startMarker == nil || endMarker == nil || distanceLabel.text == "Could not find distance" {
                 let alert = UIAlertView()
                 alert.title = "No Route Distance"
                 alert.message = "Please select the start and end locations of your route"
@@ -195,6 +217,134 @@ class RouteSearchViewController: UIViewController {
         }
     }
     
+    //MARK: Map Methods
+    
+    func moveCamera(#coordinate: CLLocationCoordinate2D) {
+        let cameraUpdate = GMSCameraUpdate.setTarget(coordinate, zoom: 13)
+        
+        mapView.animateWithCameraUpdate(cameraUpdate)
+    }
+    
+    func moveCameraBetweenPoints(#coordinate1: CLLocationCoordinate2D, coordinate2: CLLocationCoordinate2D) {
+        let cameraUpdate = GMSCameraUpdate.fitBounds(GMSCoordinateBounds(coordinate: coordinate1, coordinate: coordinate2))
+        
+        mapView.animateWithCameraUpdate(cameraUpdate)
+    }
+    
+    func setMarker(#coordinate: CLLocationCoordinate2D) {
+        if searchingStartLocation {
+            startMarker?.map = nil
+            
+            startMarker = GMSMarker(position: coordinate)
+            startMarker!.appearAnimation = kGMSMarkerAnimationPop
+            
+            startMarker!.title = self.startLocation
+            
+            startMarker!.map = mapView
+        }
+        else {
+            endMarker?.map = nil
+            
+            endMarker = GMSMarker(position: coordinate)
+            endMarker!.appearAnimation = kGMSMarkerAnimationPop
+            
+            endMarker!.title = self.endLocation
+            
+            endMarker!.icon = GMSMarker.markerImageWithColor(UIColor.blueColor())
+            
+            endMarker!.map = mapView
+        }
+        
+        if startMarker != nil && endMarker != nil {
+            moveCameraBetweenPoints(coordinate1: startCoordinate, coordinate2: endCoordinate)
+            
+            calculateDistance(origin: startCoordinate, destination: endCoordinate)
+        }
+        else if startMarker != nil {
+            moveCamera(coordinate: startCoordinate)
+        }
+        else {
+            moveCamera(coordinate: endCoordinate)
+        }
+        
+        checkSearchBar()
+    }
+    
+    func checkSearchBar() {
+        if searchingStartLocation {
+            if endSearchBar.hidden == true {
+                endSearchBar.hidden = false
+                endSearchBar.becomeFirstResponder()
+                useCurrentLocationButtonTopConstraint.constant = 44
+            }
+            else {
+                startSearchBar.resignFirstResponder()
+            }
+        }
+        else {
+            endSearchBar.resignFirstResponder()
+        }
+    }
+    
+    func reverseGeocode(#coordinate: CLLocationCoordinate2D) {
+        self.geoCoder.reverseGeocodeCoordinate(coordinate, completionHandler: { (result: GMSReverseGeocodeResponse?, error: NSError?) -> Void in
+            if let address = result?.firstResult() {
+                if self.searchingStartLocation {
+                    self.startLocation = ""
+                    
+                    if let thoroughfare = address.thoroughfare {
+                        self.startLocation += thoroughfare.capitalizedString
+                    }
+                    
+                    if let locality = address.locality {
+                        if !self.startLocation.isEmpty {
+                            self.startLocation += ", "
+                        }
+                        
+                        self.startLocation += locality.capitalizedString
+                    }
+                    
+                    if let administrativeArea = address.administrativeArea {
+                        if !self.startLocation.isEmpty {
+                            self.startLocation += ", "
+                        }
+                        
+                        self.startLocation += administrativeArea.capitalizedString
+                    }
+                    
+                    self.startSearchBar.text = self.startLocation
+                }
+                else {
+                    self.endLocation = ""
+                    
+                    if let thoroughfare = address.thoroughfare {
+                        self.endLocation += thoroughfare.capitalizedString
+                    }
+                    
+                    if let locality = address.locality {
+                        if !self.endLocation.isEmpty {
+                            self.endLocation += ", "
+                        }
+                        
+                        self.endLocation += locality.capitalizedString
+                    }
+                    
+                    if let administrativeArea = address.administrativeArea {
+                        if !self.endLocation.isEmpty {
+                            self.endLocation += ", "
+                        }
+                        
+                        self.endLocation += administrativeArea.capitalizedString
+                    }
+                    
+                    self.endSearchBar.text = self.endLocation
+                }
+            }
+            
+            self.setMarker(coordinate: coordinate)
+        })
+    }
+    
 }
 
 extension RouteSearchViewController: UISearchBarDelegate {
@@ -215,20 +365,6 @@ extension RouteSearchViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchForLocation(searchBar.text)
-        
-        if searchBar === startSearchBar {
-            if endSearchBar.hidden == true {
-                endSearchBar.hidden = false
-                endSearchBar.becomeFirstResponder()
-                useCurrentLocationButtonTopConstraint.constant = 44
-            }
-            else {
-                startSearchBar.resignFirstResponder()
-            }
-        }
-        else {
-            endSearchBar.resignFirstResponder()
-        }
     }
     
 }

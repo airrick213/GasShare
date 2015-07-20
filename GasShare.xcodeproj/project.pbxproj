@@ -18,7 +18,6 @@
 		074A1F6D1B4DB88D00F01CB2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A1F661B4DB88D00F01CB2 /* MapViewController.swift */; };
 		074A1F6F1B4DB88D00F01CB2 /* InputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A1F691B4DB88D00F01CB2 /* InputTextField.swift */; };
 		0789A6E51B54389C00E206AD /* RouteSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0789A6E41B54389C00E206AD /* RouteSearchViewController.swift */; };
-		0789A6E71B5439D400E206AD /* RouteMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0789A6E61B5439D400E206AD /* RouteMapViewController.swift */; };
 		0791F3F41B56DC44006FEED8 /* AlamofireHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0791F3F31B56DC44006FEED8 /* AlamofireHelper.swift */; };
 		079DB15B1B58501200D21C77 /* HTMLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079DB1591B58501200D21C77 /* HTMLNode.swift */; };
 		079DB15C1B58501200D21C77 /* HTMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079DB15A1B58501200D21C77 /* HTMLParser.swift */; };
@@ -54,7 +53,6 @@
 		074A1F661B4DB88D00F01CB2 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		074A1F691B4DB88D00F01CB2 /* InputTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
 		0789A6E41B54389C00E206AD /* RouteSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteSearchViewController.swift; sourceTree = "<group>"; };
-		0789A6E61B5439D400E206AD /* RouteMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteMapViewController.swift; sourceTree = "<group>"; };
 		0791F3F31B56DC44006FEED8 /* AlamofireHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireHelper.swift; sourceTree = "<group>"; };
 		079DB1591B58501200D21C77 /* HTMLNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLNode.swift; sourceTree = "<group>"; };
 		079DB15A1B58501200D21C77 /* HTMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLParser.swift; sourceTree = "<group>"; };
@@ -117,7 +115,6 @@
 				074A1F651B4DB88D00F01CB2 /* MapSearchViewController.swift */,
 				074A1F661B4DB88D00F01CB2 /* MapViewController.swift */,
 				0789A6E41B54389C00E206AD /* RouteSearchViewController.swift */,
-				0789A6E61B5439D400E206AD /* RouteMapViewController.swift */,
 				07E52A9E1B505595006FFB7A /* CalculationViewController.swift */,
 				072892911B4DB7530060960A /* AppDelegate.swift */,
 				072892951B4DB7530060960A /* Main.storyboard */,
@@ -391,7 +388,6 @@
 				074A1F6F1B4DB88D00F01CB2 /* InputTextField.swift in Sources */,
 				079DB15C1B58501200D21C77 /* HTMLParser.swift in Sources */,
 				074A1F6C1B4DB88D00F01CB2 /* MapSearchViewController.swift in Sources */,
-				0789A6E71B5439D400E206AD /* RouteMapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
