@@ -115,12 +115,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RxS-oy-y92">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="97W-Em-F2M">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                                <connections>
-                                    <segue destination="CcF-z7-Ibb" kind="embed" id="u4D-ST-M3s"/>
-                                </connections>
-                            </containerView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <searchBar alpha="0.69999999999999996" contentMode="redraw" placeholder="Select Location" translatesAutoresizingMaskIntoConstraints="NO" id="Lxc-jz-UKb">
                                 <rect key="frame" x="16" y="74" width="568" height="44"/>
                                 <constraints>
@@ -131,17 +129,29 @@
                                     <outlet property="delegate" destination="F4J-Pm-6KJ" id="qi8-1M-FC8"/>
                                 </connections>
                             </searchBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Opd-NG-xhn">
+                                <rect key="frame" x="16" y="118" width="188" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Use Current Location">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="useCurrentLocationButtonTapped:" destination="F4J-Pm-6KJ" eventType="touchUpInside" id="dN0-80-EYC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="RxS-oy-y92" firstAttribute="top" secondItem="lc2-BJ-JcZ" secondAttribute="bottom" id="2rI-uN-fcW"/>
-                            <constraint firstAttribute="trailing" secondItem="RxS-oy-y92" secondAttribute="trailing" id="Bw8-ok-jxD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Lxc-jz-UKb" secondAttribute="trailing" id="Ei0-Y3-YdB"/>
                             <constraint firstItem="Lxc-jz-UKb" firstAttribute="top" secondItem="lc2-BJ-JcZ" secondAttribute="bottom" constant="10" id="HtS-PS-bgw"/>
-                            <constraint firstItem="jhZ-bW-Nyz" firstAttribute="top" secondItem="RxS-oy-y92" secondAttribute="bottom" id="RBK-zM-oWz"/>
-                            <constraint firstItem="RxS-oy-y92" firstAttribute="leading" secondItem="cio-EV-xBq" secondAttribute="leading" id="YUH-4T-nlD"/>
+                            <constraint firstAttribute="trailing" secondItem="97W-Em-F2M" secondAttribute="trailing" id="I2q-8f-GWJ"/>
+                            <constraint firstItem="97W-Em-F2M" firstAttribute="top" secondItem="lc2-BJ-JcZ" secondAttribute="bottom" id="JNx-xd-Y7T"/>
+                            <constraint firstItem="97W-Em-F2M" firstAttribute="leading" secondItem="cio-EV-xBq" secondAttribute="leading" id="Sa6-nv-mo3"/>
+                            <constraint firstItem="Opd-NG-xhn" firstAttribute="leading" secondItem="cio-EV-xBq" secondAttribute="leadingMargin" id="TUx-Hg-flF"/>
                             <constraint firstAttribute="centerX" secondItem="Lxc-jz-UKb" secondAttribute="centerX" id="cfv-2q-qT2"/>
                             <constraint firstItem="Lxc-jz-UKb" firstAttribute="leading" secondItem="cio-EV-xBq" secondAttribute="leadingMargin" id="lbF-5P-jR6"/>
+                            <constraint firstItem="jhZ-bW-Nyz" firstAttribute="top" secondItem="97W-Em-F2M" secondAttribute="bottom" id="nxG-iD-Kj7"/>
+                            <constraint firstItem="Opd-NG-xhn" firstAttribute="top" secondItem="Lxc-jz-UKb" secondAttribute="bottom" id="ulx-ph-Sdp"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Map" id="nCu-sQ-mi4">
@@ -157,7 +167,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="containerView" destination="RxS-oy-y92" id="Y7X-u1-8V2"/>
+                        <outlet property="baseView" destination="97W-Em-F2M" id="ocl-3i-6W8"/>
                         <outlet property="searchBar" destination="Lxc-jz-UKb" id="s1i-bK-ji9"/>
                     </connections>
                 </viewController>
@@ -399,25 +409,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rv7-Ng-cMZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-398" y="305"/>
-        </scene>
-        <!--Map View Controller-->
-        <scene sceneID="2AS-8m-QDy">
-            <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="CcF-z7-Ibb" customClass="MapViewController" customModule="GasShare" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="XaB-W9-GUt"/>
-                        <viewControllerLayoutGuide type="bottom" id="ui0-pc-qjk"/>
-                    </layoutGuides>
-                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="df9-Ec-ffA">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <toolbarItems/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Vtx-Ca-aLg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1686" y="-403"/>
         </scene>
         <!--Route Search-->
         <scene sceneID="Ai7-Fa-gnR">

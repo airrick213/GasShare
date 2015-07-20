@@ -81,8 +81,8 @@ class GasPriceViewController: UIViewController {
         if let identifier = segue.identifier {
             if identifier == "Done" {
                 let source = segue.sourceViewController as! MapSearchViewController
-                self.selectedCoordinate = source.mapViewController.selectedCoordinate
-                self.selectedLocation = source.mapViewController.selectedLocation
+                self.selectedCoordinate = source.selectedCoordinate
+                self.selectedLocation = source.selectedLocation
                 
                 if selectedLocation == "" {
                     gasPriceLabel.text = "You haven't selected a location yet"

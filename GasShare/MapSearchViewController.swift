@@ -1,5 +1,5 @@
 //
-//  MapViewController.swift
+//  MapSearchViewController.swift
 //  GasShare
 //
 //  Created by Eric Kim on 7/7/15.
@@ -15,20 +15,51 @@ import Alamofire
 
 class MapSearchViewController: UIViewController {
 
+    @IBOutlet weak var baseView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var containerView: UIView!
-    var mapViewController: MapViewController!
+    
+    // map variables
+    let locationManager = CLLocationManager()
+    let geocoder = GMSGeocoder()
+    var placesClient: GMSPlacesClient!
+    var mapView: GMSMapView!
+    var selectedCoordinate = CLLocationCoordinate2D()
+    var selectedLocation = ""
+    var firstLocation = true
+    var usedSearchBar = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mapViewController = self.childViewControllers.first as! MapViewController
-        containerView.addSubview(mapViewController.view)
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
+        //camera's coordinates are dummy values
+        let camera = GMSCameraPosition.cameraWithLatitude(40, longitude: -100, zoom: 3)
+        mapView = GMSMapView.mapWithFrame(self.view.bounds, camera: camera)
+        
+        mapView.delegate = self
+        
+        mapView.myLocationEnabled = true
+        
+        baseView.addSubview(mapView)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func useCurrentLocationButtonTapped(sender: AnyObject) {
+        if let myLocation = mapView.myLocation {
+            MapHelper.moveCamera(mapView: mapView, coordinate: myLocation.coordinate)
+            setMarker(coordinate: myLocation.coordinate)
+        }
+        else {
+            UIAlertView(title: "Sorry", message: "Could not find current location, please make sure that location features are enabled", delegate: nil, cancelButtonTitle: "OK").show()
+        }
+
     }
     
     func searchForLocation(searchText: String) {
@@ -59,19 +90,61 @@ class MapSearchViewController: UIViewController {
                 .filter { $0["types"][0] == "locality" || $0["types"][0] == "administrative_area_level_1" }
                 .map { $0["short_name"].string! }
             
-            mapViewController.selectedLocation = ", ".join(location)
+            selectedLocation = ", ".join(location)
             
             let latitude = result["geometry"]!["location"]["lat"].double
             let longitude = result["geometry"]!["location"]["lng"].double
             
-            mapViewController.selectedCoordinate.latitude = latitude!
-            mapViewController.selectedCoordinate.longitude = longitude!
+            selectedCoordinate.latitude = latitude!
+            selectedCoordinate.longitude = longitude!
             
-            mapViewController.usedSearchBar = true
-            mapViewController.moveCamera(coordinate: mapViewController.selectedCoordinate)
+            usedSearchBar = true
+            MapHelper.moveCamera(mapView: mapView, coordinate: selectedCoordinate)
         }
     }
-
+    
+    //MARK: Map Methods
+    
+    func setMarker(#coordinate: CLLocationCoordinate2D) {
+        self.selectedCoordinate = coordinate
+        
+        if usedSearchBar {
+            usedSearchBar = false
+        }
+        else {
+            reverseGeocode(coordinate: coordinate)
+        }
+        
+        mapView.clear()
+        
+        let marker = GMSMarker(position: coordinate)
+        marker.appearAnimation = kGMSMarkerAnimationPop
+        
+        marker.title = self.selectedLocation
+        
+        marker.map = mapView
+    }
+    
+    func reverseGeocode(#coordinate: CLLocationCoordinate2D) {
+        self.geocoder.reverseGeocodeCoordinate(coordinate, completionHandler: { (result: GMSReverseGeocodeResponse?, error: NSError?) -> Void in
+            if let address = result?.firstResult() {
+                self.selectedLocation = ""
+                
+                if let locality = address.locality {
+                    self.selectedLocation += locality.capitalizedString
+                }
+                
+                if let administrativeArea = address.administrativeArea {
+                    if !self.selectedLocation.isEmpty {
+                        self.selectedLocation += ", "
+                    }
+                    
+                    self.selectedLocation += administrativeArea.capitalizedString
+                }
+            }
+        })
+    }
+    
 }
 
 extension MapSearchViewController: UISearchBarDelegate {
@@ -90,6 +163,23 @@ extension MapSearchViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchForLocation(searchBar.text)
+    }
+    
+}
+
+extension MapSearchViewController: GMSMapViewDelegate {
+    
+    func mapView(mapView: GMSMapView!, didLongPressAtCoordinate coordinate: CLLocationCoordinate2D) {
+        MapHelper.moveCamera(mapView: mapView, coordinate: coordinate)
+    }
+    
+    func mapView(mapView: GMSMapView!, idleAtCameraPosition position: GMSCameraPosition!) {
+        if !firstLocation {
+            setMarker(coordinate: position.target)
+        }
+        else {
+            firstLocation = false
+        }
     }
     
 }

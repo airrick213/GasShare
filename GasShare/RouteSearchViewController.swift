@@ -29,7 +29,7 @@ class RouteSearchViewController: UIViewController {
     
     // map variables
     let locationManager = CLLocationManager()
-    let geoCoder = GMSGeocoder()
+    let geocoder = GMSGeocoder()
     var placesClient: GMSPlacesClient!
     var mapView: GMSMapView!
     var startCoordinate = CLLocationCoordinate2D()
@@ -42,10 +42,6 @@ class RouteSearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        endSearchBar.hidden = true
-        useCurrentLocationButtonTopConstraint.constant = 0
-        distanceLabel.hidden = true
-        
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
@@ -55,9 +51,12 @@ class RouteSearchViewController: UIViewController {
         mapView = GMSMapView.mapWithFrame(self.view.bounds, camera: camera)
         
         mapView.myLocationEnabled = true
-        mapView.settings.compassButton = true
         
         baseView.addSubview(mapView)
+        
+        endSearchBar.hidden = true
+        useCurrentLocationButtonTopConstraint.constant = 0
+        distanceLabel.hidden = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -77,7 +76,7 @@ class RouteSearchViewController: UIViewController {
             reverseGeocode(coordinate: myLocation.coordinate)
         }
         else {
-            UIAlertView(title: "Sorry", message: "Could not find current location, please make sure that location features are turned on", delegate: nil, cancelButtonTitle: "OK").show()
+            UIAlertView(title: "Sorry", message: "Could not find current location, please make sure that location features are enabled", delegate: nil, cancelButtonTitle: "OK").show()
         }
     }
     
@@ -219,12 +218,6 @@ class RouteSearchViewController: UIViewController {
     
     //MARK: Map Methods
     
-    func moveCamera(#coordinate: CLLocationCoordinate2D) {
-        let cameraUpdate = GMSCameraUpdate.setTarget(coordinate, zoom: 13)
-        
-        mapView.animateWithCameraUpdate(cameraUpdate)
-    }
-    
     func moveCameraBetweenPoints(#coordinate1: CLLocationCoordinate2D, coordinate2: CLLocationCoordinate2D) {
         let cameraUpdate = GMSCameraUpdate.fitBounds(GMSCoordinateBounds(coordinate: coordinate1, coordinate: coordinate2))
         
@@ -261,10 +254,10 @@ class RouteSearchViewController: UIViewController {
             calculateDistance(origin: startCoordinate, destination: endCoordinate)
         }
         else if startMarker != nil {
-            moveCamera(coordinate: startCoordinate)
+            MapHelper.moveCamera(mapView: mapView, coordinate: startCoordinate)
         }
         else {
-            moveCamera(coordinate: endCoordinate)
+            MapHelper.moveCamera(mapView: mapView, coordinate: endCoordinate)
         }
         
         checkSearchBar()
@@ -287,7 +280,7 @@ class RouteSearchViewController: UIViewController {
     }
     
     func reverseGeocode(#coordinate: CLLocationCoordinate2D) {
-        self.geoCoder.reverseGeocodeCoordinate(coordinate, completionHandler: { (result: GMSReverseGeocodeResponse?, error: NSError?) -> Void in
+        self.geocoder.reverseGeocodeCoordinate(coordinate, completionHandler: { (result: GMSReverseGeocodeResponse?, error: NSError?) -> Void in
             if let address = result?.firstResult() {
                 if self.searchingStartLocation {
                     self.startLocation = ""
