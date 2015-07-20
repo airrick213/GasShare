@@ -19,10 +19,13 @@ class RouteSearchViewController: UIViewController {
     @IBOutlet weak var startSearchBar: UISearchBar!
     @IBOutlet weak var endSearchBar: UISearchBar!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var useCurrentLocationButtonTopConstraint: NSLayoutConstraint!
+    
     var routeMapViewController: RouteMapViewController!
     var gasMileage: Double!
     var gasPrice: Double!
     var routeDistance: Double = -1
+    var searchingStartLocation = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +33,7 @@ class RouteSearchViewController: UIViewController {
         routeMapViewController = self.childViewControllers.first as! RouteMapViewController
         containerView.addSubview(routeMapViewController.view)
         endSearchBar.hidden = true
+        useCurrentLocationButtonTopConstraint.constant = 0
         distanceLabel.hidden = true
     }
     
@@ -38,7 +42,16 @@ class RouteSearchViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func searchForLocation(searchText: String, searchingStartLocation: Bool) {
+    @IBAction func useCurrentLocationButtonTapped(sender: AnyObject) {
+        if let myLocation = routeMapViewController.mapView.myLocation {
+            routeMapViewController.reverseGeocode(coordinate: myLocation.coordinate)
+        }
+        else {
+            UIAlertView(title: "Sorry", message: "Could not find current location, please make sure that location features are turned on", delegate: nil, cancelButtonTitle: "OK").show()
+        }
+    }
+    
+    func searchForLocation(searchText: String) {
         let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
         
         let htmlString = searchText.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.allZeros, range: Range<String.Index>(start: searchText.startIndex, end: searchText.endIndex))
@@ -49,7 +62,7 @@ class RouteSearchViewController: UIViewController {
             hud.hide(true)
             
             if AlamofireHelper.requestSucceeded(response, error: error) {
-                self.handleLocationSearchResponse(data!, searchingStartLocation: searchingStartLocation)
+                self.handleLocationSearchResponse(data!)
             }
             else {
                 UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again.", delegate: nil, cancelButtonTitle: "OK").show()
@@ -57,7 +70,7 @@ class RouteSearchViewController: UIViewController {
         }
     }
     
-    func handleLocationSearchResponse(data: AnyObject, searchingStartLocation: Bool) {
+    func handleLocationSearchResponse(data: AnyObject) {
         let json = JSON(data)
         
         if let result = json["results"][0].dictionary {
@@ -87,7 +100,7 @@ class RouteSearchViewController: UIViewController {
                 
                 routeMapViewController.startMarker?.map = nil
                 
-                routeMapViewController.setMarker(coordinate: routeMapViewController.startCoordinate, searchingStartLocation: true)
+                routeMapViewController.setMarker(coordinate: routeMapViewController.startCoordinate)
             }
             else {
                 routeMapViewController.endLocation = ""
@@ -103,7 +116,7 @@ class RouteSearchViewController: UIViewController {
                 
                 routeMapViewController.endMarker?.map = nil
                 
-                routeMapViewController.setMarker(coordinate: routeMapViewController.endCoordinate, searchingStartLocation: false)
+                routeMapViewController.setMarker(coordinate: routeMapViewController.endCoordinate)
             }
             
             if routeMapViewController.startMarker != nil && routeMapViewController.endMarker != nil {
@@ -192,6 +205,8 @@ extension RouteSearchViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
         searchBar.alpha = 1.0
+        
+        searchingStartLocation = (searchBar === startSearchBar)
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
@@ -199,19 +214,19 @@ extension RouteSearchViewController: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchForLocation(searchBar.text)
+        
         if searchBar === startSearchBar {
-            searchForLocation(searchBar.text, searchingStartLocation: true)
-            
             if endSearchBar.hidden == true {
                 endSearchBar.hidden = false
                 endSearchBar.becomeFirstResponder()
+                useCurrentLocationButtonTopConstraint.constant = 44
             }
             else {
-                searchBar.resignFirstResponder()
+                startSearchBar.resignFirstResponder()
             }
         }
         else {
-            searchForLocation(searchBar.text, searchingStartLocation: false)
             endSearchBar.resignFirstResponder()
         }
     }

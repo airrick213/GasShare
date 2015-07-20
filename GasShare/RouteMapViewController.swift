@@ -24,6 +24,7 @@ class RouteMapViewController: UIViewController {
     var endLocation = ""
     var startMarker: GMSMarker?
     var endMarker: GMSMarker?
+    var routeSearchViewController: RouteSearchViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,10 +38,11 @@ class RouteMapViewController: UIViewController {
         mapView = GMSMapView.mapWithFrame(self.view.bounds, camera: camera)
         
         mapView.myLocationEnabled = true
-        mapView.settings.myLocationButton = true
         mapView.settings.compassButton = true
         
         self.view = mapView
+        
+        routeSearchViewController = self.parentViewController as! RouteSearchViewController
     }
     
     override func didReceiveMemoryWarning() {
@@ -60,8 +62,8 @@ class RouteMapViewController: UIViewController {
         mapView.animateWithCameraUpdate(cameraUpdate)
     }
     
-    func setMarker(#coordinate: CLLocationCoordinate2D, searchingStartLocation: Bool) {
-        if searchingStartLocation {
+    func setMarker(#coordinate: CLLocationCoordinate2D) {
+        if routeSearchViewController.searchingStartLocation {
             startMarker = GMSMarker(position: coordinate)
             startMarker!.appearAnimation = kGMSMarkerAnimationPop
             
@@ -89,6 +91,65 @@ class RouteMapViewController: UIViewController {
         else {
             moveCamera(coordinate: endCoordinate)
         }
+    }
+    
+    func reverseGeocode(#coordinate: CLLocationCoordinate2D) {
+        self.geoCoder.reverseGeocodeCoordinate(coordinate, completionHandler: { (result: GMSReverseGeocodeResponse?, error: NSError?) -> Void in
+            if let address = result?.firstResult() {
+                if self.routeSearchViewController.searchingStartLocation {
+                    self.startLocation = ""
+                    
+                    if let thoroughfare = address.thoroughfare {
+                        self.startLocation += thoroughfare.capitalizedString
+                    }
+                    
+                    if let locality = address.locality {
+                        if !self.startLocation.isEmpty {
+                            self.startLocation += ", "
+                        }
+                        
+                        self.startLocation += locality.capitalizedString
+                    }
+                    
+                    if let administrativeArea = address.administrativeArea {
+                        if !self.startLocation.isEmpty {
+                            self.startLocation += ", "
+                        }
+                        
+                        self.startLocation += administrativeArea.capitalizedString
+                    }
+                    
+                    self.routeSearchViewController.startSearchBar.text = self.startLocation
+                }
+                else {
+                    self.endLocation = ""
+                    
+                    if let thoroughfare = address.thoroughfare {
+                        self.endLocation += thoroughfare.capitalizedString
+                    }
+                    
+                    if let locality = address.locality {
+                        if !self.endLocation.isEmpty {
+                            self.endLocation += ", "
+                        }
+                        
+                        self.endLocation += locality.capitalizedString
+                    }
+                    
+                    if let administrativeArea = address.administrativeArea {
+                        if !self.endLocation.isEmpty {
+                            self.endLocation += ", "
+                        }
+                        
+                        self.endLocation += administrativeArea.capitalizedString
+                    }
+                    
+                    self.routeSearchViewController.endSearchBar.text = self.endLocation
+                }
+            }
+            
+            self.setMarker(coordinate: coordinate)
+        })
     }
     
 }
