@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="uK9-NO-JCE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pmW-Ru-1ob">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -470,34 +471,17 @@
                                     <constraint firstItem="eQ7-hc-ETn" firstAttribute="top" secondItem="MJP-0x-NF6" secondAttribute="topMargin" id="6Wt-hh-qgj"/>
                                     <constraint firstItem="POd-XV-zJF" firstAttribute="bottom" secondItem="MJP-0x-NF6" secondAttribute="bottomMargin" id="Hsi-jL-4Hn"/>
                                     <constraint firstItem="eQ7-hc-ETn" firstAttribute="leading" secondItem="MJP-0x-NF6" secondAttribute="leadingMargin" id="NCI-T6-8oH"/>
-                                    <constraint firstItem="WH9-Iz-Bvx" firstAttribute="leading" secondItem="MJP-0x-NF6" secondAttribute="leading" id="RJi-C8-ws6"/>
                                     <constraint firstItem="WH9-Iz-Bvx" firstAttribute="leading" secondItem="MJP-0x-NF6" secondAttribute="leadingMargin" id="SFe-4O-LcL"/>
                                     <constraint firstItem="POd-XV-zJF" firstAttribute="trailing" secondItem="MJP-0x-NF6" secondAttribute="trailingMargin" id="bNi-lV-uRV"/>
                                     <constraint firstItem="WH9-Iz-Bvx" firstAttribute="top" secondItem="eQ7-hc-ETn" secondAttribute="bottom" id="ePz-jp-Trf"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="WH9-Iz-Bvx" secondAttribute="trailing" id="eUU-4e-VQL"/>
-                                    <constraint firstAttribute="trailing" secondItem="WH9-Iz-Bvx" secondAttribute="trailing" id="sbf-Y9-jIF"/>
                                     <constraint firstItem="XQi-pD-Mc2" firstAttribute="bottom" secondItem="MJP-0x-NF6" secondAttribute="bottomMargin" id="wpF-bu-gHP"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="eQ7-hc-ETn" secondAttribute="trailing" id="wqX-o4-8dI"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="RJi-C8-ws6"/>
-                                        <exclude reference="sbf-Y9-jIF"/>
-                                    </mask>
-                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="we8-4f-Pqe">
                                 <rect key="frame" x="0.0" y="500" width="600" height="100"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yxi-xz-jG1">
-                                        <rect key="frame" x="300" y="18" width="292" height="64"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="32"/>
-                                        <state key="normal" title="$/gal">
-                                            <color key="titleColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4bv-A7-m32">
                                         <rect key="frame" x="8" y="18" width="292" height="64"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -506,9 +490,36 @@
                                             <color key="titleColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.55686274509803924" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.BorderWidth">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.MasksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.BorderColor">
+                                                <color key="value" red="0.59215686274509804" green="0.59215686274509804" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yxi-xz-jG1">
+                                        <rect key="frame" x="300" y="18" width="292" height="64"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="32"/>
+                                        <state key="normal" title="$/gal">
+                                            <color key="titleColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.BorderWidth">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.MasksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.BorderColor">
+                                                <color key="value" red="0.59215686270000001" green="0.59215686270000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottomMargin" secondItem="4bv-A7-m32" secondAttribute="bottom" constant="10" id="3MJ-ki-0PW"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="Yxi-xz-jG1" secondAttribute="bottom" constant="10" id="GSQ-s5-sER"/>
@@ -521,15 +532,124 @@
                                     <constraint firstItem="Yxi-xz-jG1" firstAttribute="width" secondItem="4bv-A7-m32" secondAttribute="width" id="xe4-ZF-8PY"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QXy-AN-9X9">
+                                <rect key="frame" x="0.0" y="360" width="600" height="240"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cu1-jR-NY6">
+                                        <rect key="frame" x="185" y="48" width="230" height="40"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="230" id="4WZ-NM-9rc"/>
+                                            <constraint firstAttribute="height" constant="40" id="8zh-Fe-WMw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                                        <state key="normal" title="Don't know the gas price?">
+                                            <color key="titleColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.BorderWidth">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.MasksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.BorderColor">
+                                                <color key="value" red="0.59215686270000001" green="0.59215686270000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edJ-3d-nPW">
+                                        <rect key="frame" x="207" y="168" width="186" height="62"/>
+                                        <color key="backgroundColor" red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="6qs-zZ-isd"/>
+                                            <constraint firstAttribute="width" constant="160" id="NQb-cH-8iW"/>
+                                            <constraint firstAttribute="width" secondItem="edJ-3d-nPW" secondAttribute="height" multiplier="3:1" id="YPd-un-m3b"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="32"/>
+                                        <state key="normal" title="Done">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="6qs-zZ-isd"/>
+                                                <exclude reference="NQb-cH-8iW"/>
+                                            </mask>
+                                        </variation>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sw5-1a-E2D">
+                                        <rect key="frame" x="270" y="8" width="60" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="bGb-kE-skh"/>
+                                            <constraint firstAttribute="height" constant="30" id="n1N-OB-jm1"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H4T-9w-Ia7">
+                                        <rect key="frame" x="282" y="98" width="36" height="57"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
+                                        <state key="normal" title="Plus">
+                                            <color key="titleColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.55686274509803924" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9YF-dY-bjp">
+                                        <rect key="frame" x="173" y="107" width="69" height="40"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
+                                        <state key="normal" title="Regular">
+                                            <color key="titleColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YND-4x-9qt">
+                                        <rect key="frame" x="358" y="105" width="79" height="40"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
+                                        <state key="normal" title="Premium">
+                                            <color key="titleColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="H4T-9w-Ia7" secondAttribute="centerX" id="7B5-Le-sOy"/>
+                                    <constraint firstAttribute="centerX" secondItem="Cu1-jR-NY6" secondAttribute="centerX" id="Mp6-NC-iwF"/>
+                                    <constraint firstItem="Sw5-1a-E2D" firstAttribute="top" secondItem="QXy-AN-9X9" secondAttribute="topMargin" id="Mz7-TW-m0F"/>
+                                    <constraint firstAttribute="height" constant="240" id="NPg-sb-psC"/>
+                                    <constraint firstItem="H4T-9w-Ia7" firstAttribute="centerY" secondItem="9YF-dY-bjp" secondAttribute="centerY" constant="-0.5" id="OaP-aH-iq1"/>
+                                    <constraint firstItem="edJ-3d-nPW" firstAttribute="top" secondItem="H4T-9w-Ia7" secondAttribute="bottom" constant="13" id="P13-2C-eDJ"/>
+                                    <constraint firstAttribute="centerX" secondItem="Sw5-1a-E2D" secondAttribute="centerX" id="PVX-cm-oPQ"/>
+                                    <constraint firstItem="H4T-9w-Ia7" firstAttribute="top" secondItem="Cu1-jR-NY6" secondAttribute="bottom" constant="10" id="QGP-Sg-Zoh"/>
+                                    <constraint firstAttribute="bottom" secondItem="edJ-3d-nPW" secondAttribute="bottom" constant="10" id="QOC-SG-mSk"/>
+                                    <constraint firstItem="YND-4x-9qt" firstAttribute="leading" secondItem="H4T-9w-Ia7" secondAttribute="trailing" constant="40" id="XDh-dh-ihI"/>
+                                    <constraint firstItem="Cu1-jR-NY6" firstAttribute="top" secondItem="Sw5-1a-E2D" secondAttribute="bottom" constant="10" id="Zub-ZG-hiU"/>
+                                    <constraint firstItem="H4T-9w-Ia7" firstAttribute="leading" secondItem="9YF-dY-bjp" secondAttribute="trailing" constant="40" id="gvX-6e-Gg7"/>
+                                    <constraint firstAttribute="centerX" secondItem="edJ-3d-nPW" secondAttribute="centerX" id="p0u-TJ-LAy"/>
+                                    <constraint firstItem="edJ-3d-nPW" firstAttribute="top" secondItem="Cu1-jR-NY6" secondAttribute="bottom" constant="80" id="rEr-qd-IW7"/>
+                                    <constraint firstItem="H4T-9w-Ia7" firstAttribute="centerY" secondItem="YND-4x-9qt" secondAttribute="centerY" constant="1.5" id="xaY-Kb-1Pt"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="MJP-0x-NF6" firstAttribute="top" secondItem="uU7-yq-ZnO" secondAttribute="bottom" id="4is-ho-nXI"/>
                             <constraint firstAttribute="trailing" secondItem="we8-4f-Pqe" secondAttribute="trailing" id="5GU-bM-FaR"/>
+                            <constraint firstItem="QXy-AN-9X9" firstAttribute="leading" secondItem="Y4c-Kj-vFd" secondAttribute="leading" id="8QI-3Z-Pde"/>
                             <constraint firstItem="MJP-0x-NF6" firstAttribute="leading" secondItem="Y4c-Kj-vFd" secondAttribute="leading" id="Afv-au-KO2"/>
                             <constraint firstItem="we8-4f-Pqe" firstAttribute="leading" secondItem="Y4c-Kj-vFd" secondAttribute="leading" id="NhH-gO-g4r"/>
+                            <constraint firstItem="bg5-jq-cFE" firstAttribute="top" secondItem="QXy-AN-9X9" secondAttribute="bottom" id="QMv-7G-RHj"/>
                             <constraint firstItem="we8-4f-Pqe" firstAttribute="top" secondItem="MJP-0x-NF6" secondAttribute="bottom" id="XJp-c4-Bx1"/>
                             <constraint firstAttribute="bottom" secondItem="we8-4f-Pqe" secondAttribute="bottom" id="a9Q-cZ-cHc"/>
+                            <constraint firstAttribute="trailing" secondItem="QXy-AN-9X9" secondAttribute="trailing" id="sla-7b-huy"/>
                             <constraint firstAttribute="trailing" secondItem="MJP-0x-NF6" secondAttribute="trailing" id="vkO-ui-GyI"/>
                         </constraints>
                     </view>
