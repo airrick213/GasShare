@@ -432,35 +432,93 @@
                                         </constraints>
                                         <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                     </searchBar>
-                                    <searchBar alpha="0.69999998807907104" contentMode="redraw" misplaced="YES" placeholder="End Location" translatesAutoresizingMaskIntoConstraints="NO" id="WH9-Iz-Bvx">
+                                    <searchBar alpha="0.69999998807907104" contentMode="redraw" placeholder="End Location" translatesAutoresizingMaskIntoConstraints="NO" id="WH9-Iz-Bvx">
                                         <rect key="frame" x="8" y="52" width="584" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="s8c-sV-gPN"/>
                                         </constraints>
                                         <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                     </searchBar>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XQi-pD-Mc2">
-                                        <rect key="frame" x="8" y="442" width="46" height="30"/>
-                                        <state key="normal" title="Button">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XQi-pD-Mc2">
+                                        <rect key="frame" x="8" y="428" width="120" height="44"/>
+                                        <color key="backgroundColor" red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="E6U-BZ-L0e"/>
+                                            <constraint firstAttribute="width" constant="120" id="MeO-Br-Wd3"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
+                                        <state key="normal" title="Done">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="POd-XV-zJF">
+                                        <rect key="frame" x="548" y="428" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="Q3x-2S-TuY"/>
+                                            <constraint firstAttribute="height" constant="44" id="YJ5-G5-zGp"/>
+                                        </constraints>
+                                        <state key="normal" image="Location">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" image="Location-Color"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="XQi-pD-Mc2" firstAttribute="leading" secondItem="MJP-0x-NF6" secondAttribute="leadingMargin" id="2Gp-QA-7oX"/>
                                     <constraint firstItem="eQ7-hc-ETn" firstAttribute="top" secondItem="MJP-0x-NF6" secondAttribute="topMargin" id="6Wt-hh-qgj"/>
+                                    <constraint firstItem="POd-XV-zJF" firstAttribute="bottom" secondItem="MJP-0x-NF6" secondAttribute="bottomMargin" id="Hsi-jL-4Hn"/>
                                     <constraint firstItem="eQ7-hc-ETn" firstAttribute="leading" secondItem="MJP-0x-NF6" secondAttribute="leadingMargin" id="NCI-T6-8oH"/>
                                     <constraint firstItem="WH9-Iz-Bvx" firstAttribute="leading" secondItem="MJP-0x-NF6" secondAttribute="leading" id="RJi-C8-ws6"/>
+                                    <constraint firstItem="WH9-Iz-Bvx" firstAttribute="leading" secondItem="MJP-0x-NF6" secondAttribute="leadingMargin" id="SFe-4O-LcL"/>
+                                    <constraint firstItem="POd-XV-zJF" firstAttribute="trailing" secondItem="MJP-0x-NF6" secondAttribute="trailingMargin" id="bNi-lV-uRV"/>
                                     <constraint firstItem="WH9-Iz-Bvx" firstAttribute="top" secondItem="eQ7-hc-ETn" secondAttribute="bottom" id="ePz-jp-Trf"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="WH9-Iz-Bvx" secondAttribute="trailing" id="eUU-4e-VQL"/>
                                     <constraint firstAttribute="trailing" secondItem="WH9-Iz-Bvx" secondAttribute="trailing" id="sbf-Y9-jIF"/>
+                                    <constraint firstItem="XQi-pD-Mc2" firstAttribute="bottom" secondItem="MJP-0x-NF6" secondAttribute="bottomMargin" id="wpF-bu-gHP"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="eQ7-hc-ETn" secondAttribute="trailing" id="wqX-o4-8dI"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="RJi-C8-ws6"/>
+                                        <exclude reference="sbf-Y9-jIF"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="we8-4f-Pqe">
                                 <rect key="frame" x="0.0" y="500" width="600" height="100"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yxi-xz-jG1">
+                                        <rect key="frame" x="300" y="18" width="292" height="64"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="32"/>
+                                        <state key="normal" title="$/gal">
+                                            <color key="titleColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4bv-A7-m32">
+                                        <rect key="frame" x="8" y="18" width="292" height="64"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="32"/>
+                                        <state key="normal" title="mi/gal">
+                                            <color key="titleColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.55686274509803924" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="biH-JZ-24M"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="4bv-A7-m32" secondAttribute="bottom" constant="10" id="3MJ-ki-0PW"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="Yxi-xz-jG1" secondAttribute="bottom" constant="10" id="GSQ-s5-sER"/>
+                                    <constraint firstAttribute="height" constant="100" id="Jpi-oF-XcC"/>
+                                    <constraint firstItem="4bv-A7-m32" firstAttribute="top" secondItem="we8-4f-Pqe" secondAttribute="topMargin" constant="10" id="a8G-ev-9UC"/>
+                                    <constraint firstItem="Yxi-xz-jG1" firstAttribute="top" secondItem="we8-4f-Pqe" secondAttribute="topMargin" constant="10" id="cwS-a0-x5d"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="Yxi-xz-jG1" secondAttribute="trailing" id="gsM-wQ-qW3"/>
+                                    <constraint firstItem="4bv-A7-m32" firstAttribute="leading" secondItem="we8-4f-Pqe" secondAttribute="leadingMargin" id="ifM-qp-0mL"/>
+                                    <constraint firstItem="Yxi-xz-jG1" firstAttribute="leading" secondItem="4bv-A7-m32" secondAttribute="trailing" id="qFz-5Y-P1m"/>
+                                    <constraint firstItem="Yxi-xz-jG1" firstAttribute="width" secondItem="4bv-A7-m32" secondAttribute="width" id="xe4-ZF-8PY"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -573,6 +631,10 @@
             <point key="canvasLocation" x="1686" y="305"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Location" width="32" height="32"/>
+        <image name="Location-Color" width="32" height="32"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="IbY-sc-XQy"/>
     </inferredMetricsTieBreakers>
