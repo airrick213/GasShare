@@ -19,7 +19,6 @@ class RouteSearchViewController: UIViewController {
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var startSearchBar: UISearchBar!
     @IBOutlet weak var endSearchBar: UISearchBar!
-    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var useCurrentLocationButtonTopConstraint: NSLayoutConstraint!
     
     var gasMileage: Double!
