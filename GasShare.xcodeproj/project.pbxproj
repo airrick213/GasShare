@@ -22,6 +22,11 @@
 		079DB15B1B58501200D21C77 /* HTMLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079DB1591B58501200D21C77 /* HTMLNode.swift */; };
 		079DB15C1B58501200D21C77 /* HTMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079DB15A1B58501200D21C77 /* HTMLParser.swift */; };
 		079DB15F1B58519A00D21C77 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 079DB15E1B58519A00D21C77 /* libxml2.dylib */; };
+		07A8E1BB1B612F3500D81518 /* MainToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A8E1BA1B612F3500D81518 /* MainToolbar.swift */; };
+		07A8E1BD1B61325F00D81518 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A8E1BC1B61325F00D81518 /* MainViewController.swift */; };
+		07A8E1BF1B61328900D81518 /* GasMileageToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A8E1BE1B61328900D81518 /* GasMileageToolbar.swift */; };
+		07A8E1C11B61329300D81518 /* GasPriceToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A8E1C01B61329300D81518 /* GasPriceToolbar.swift */; };
+		07A8E1C31B6137FC00D81518 /* Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A8E1C21B6137FC00D81518 /* Toolbar.swift */; };
 		07E52A9F1B505595006FFB7A /* CalculationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E52A9E1B505595006FFB7A /* CalculationViewController.swift */; };
 		839D6984ECB623561649FDAB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E31020FC501B7AB4336490 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -58,6 +63,11 @@
 		079DB15A1B58501200D21C77 /* HTMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLParser.swift; sourceTree = "<group>"; };
 		079DB15D1B58502000D21C77 /* Swift-HTML-Parser-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Swift-HTML-Parser-Bridging-Header.h"; sourceTree = "<group>"; };
 		079DB15E1B58519A00D21C77 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		07A8E1BA1B612F3500D81518 /* MainToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainToolbar.swift; sourceTree = "<group>"; };
+		07A8E1BC1B61325F00D81518 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		07A8E1BE1B61328900D81518 /* GasMileageToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GasMileageToolbar.swift; sourceTree = "<group>"; };
+		07A8E1C01B61329300D81518 /* GasPriceToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GasPriceToolbar.swift; sourceTree = "<group>"; };
+		07A8E1C21B6137FC00D81518 /* Toolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toolbar.swift; sourceTree = "<group>"; };
 		07E52A9E1B505595006FFB7A /* CalculationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculationViewController.swift; sourceTree = "<group>"; };
 		7D7B2130FDE731CD7F287A96 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E071A125770EC0D0267D96EE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -117,6 +127,7 @@
 				07E52A9E1B505595006FFB7A /* CalculationViewController.swift */,
 				072892911B4DB7530060960A /* AppDelegate.swift */,
 				072892951B4DB7530060960A /* Main.storyboard */,
+				07A8E1BC1B61325F00D81518 /* MainViewController.swift */,
 				072892981B4DB7530060960A /* Images.xcassets */,
 				0728929A1B4DB7530060960A /* LaunchScreen.xib */,
 				0728928F1B4DB7530060960A /* Supporting Files */,
@@ -153,6 +164,10 @@
 			isa = PBXGroup;
 			children = (
 				074A1F691B4DB88D00F01CB2 /* InputTextField.swift */,
+				07A8E1BA1B612F3500D81518 /* MainToolbar.swift */,
+				07A8E1C21B6137FC00D81518 /* Toolbar.swift */,
+				07A8E1BE1B61328900D81518 /* GasMileageToolbar.swift */,
+				07A8E1C01B61329300D81518 /* GasPriceToolbar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -378,6 +393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0791F3F41B56DC44006FEED8 /* AlamofireHelper.swift in Sources */,
+				07A8E1BD1B61325F00D81518 /* MainViewController.swift in Sources */,
 				07E52A9F1B505595006FFB7A /* CalculationViewController.swift in Sources */,
 				074A1F6B1B4DB88D00F01CB2 /* GasPriceViewController.swift in Sources */,
 				072892921B4DB7530060960A /* AppDelegate.swift in Sources */,
@@ -385,6 +401,10 @@
 				074A1F6A1B4DB88D00F01CB2 /* GasMileageViewController.swift in Sources */,
 				0789A6E51B54389C00E206AD /* RouteSearchViewController.swift in Sources */,
 				079DB15B1B58501200D21C77 /* HTMLNode.swift in Sources */,
+				07A8E1BB1B612F3500D81518 /* MainToolbar.swift in Sources */,
+				07A8E1BF1B61328900D81518 /* GasMileageToolbar.swift in Sources */,
+				07A8E1C31B6137FC00D81518 /* Toolbar.swift in Sources */,
+				07A8E1C11B61329300D81518 /* GasPriceToolbar.swift in Sources */,
 				074A1F6F1B4DB88D00F01CB2 /* InputTextField.swift in Sources */,
 				079DB15C1B58501200D21C77 /* HTMLParser.swift in Sources */,
 				074A1F6C1B4DB88D00F01CB2 /* MapSearchViewController.swift in Sources */,
