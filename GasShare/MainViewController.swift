@@ -29,11 +29,20 @@ class MainViewController: UIViewController {
     @IBOutlet weak var baseView: UIView!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var currentLocationButtonBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var gasPriceTextField: UITextField!
+    @IBOutlet weak var gasMileageTextField: UITextField!
+    @IBOutlet weak var gasMileageToolbarBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var gasPriceToolbarBottomConstraint: NSLayoutConstraint!
     
     var screenHeight: CGFloat!
     var keyboardNotificationHandler = KeyboardNotificationHandler()
     var routeDistance: Double = -1
     var searchingStartLocation = true
+    var usingGasMileageTextField = false
+    var usingGasPriceTextField = false
+    var gasMileageText = "Don't know the gas mileage?"
+    var gasMileage: Double?
+    @IBOutlet weak var gasMileagesSuggestionsButton: UIButton!
     
     // map variables
     let locationManager = CLLocationManager()
@@ -57,10 +66,29 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func gasMileageDoneButtonPressed(sender: AnyObject) {
-        animate(mainToolbar, over: gasMileageToolbar)
+        if !gasMileageTextField.text.isEmpty || !gasMileageTextField.enabled {
+            if gasMileageTextField.enabled {
+                gasMileage = NSString(string: gasMileageTextField.text).doubleValue
+            }
+            else {
+                let doubleString = gasMileageText.substringFromIndex(advance(gasMileageText.startIndex, count(gasMileageText) - 2))
+                gasMileage = NSString(string: doubleString).doubleValue
+            }
+            
+            gasMileageTextField.resignFirstResponder()
+            animate(mainToolbar, over: gasMileageToolbar)
+        }
+        else {
+            let alert = UIAlertView()
+            alert.title = "No Gas Mileage"
+            alert.message = "Please enter your car's gas mileage or choose one from the suggestions list"
+            alert.addButtonWithTitle("OK")
+            alert.show()
+        }
     }
     
     @IBAction func gasPriceDoneButtonPressed(sender: AnyObject) {
+        gasPriceTextField.resignFirstResponder()
         animate(mainToolbar, over: gasPriceToolbar)
     }
     
@@ -94,15 +122,15 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func gasMileageBackButtonTapped(sender: AnyObject) {
+        gasMileageTextField.resignFirstResponder()
         animate(mainToolbar, over: gasMileageToolbar)
     }
     
     @IBAction func gasPriceBackButtonTapped(sender: AnyObject) {
+        gasPriceTextField.resignFirstResponder()
         animate(mainToolbar, over: gasPriceToolbar)
     }
     
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -136,14 +164,34 @@ class MainViewController: UIViewController {
         distanceLabel.hidden = true
         
         keyboardNotificationHandler.keyboardWillBeHiddenHandler = { (height: CGFloat) in UIView.animateWithDuration(0.3) {
-            self.currentLocationButtonBottomConstraint.constant = 10
-            self.view.layoutIfNeeded()
+                if self.usingGasMileageTextField {
+                    self.gasMileageToolbarBottomConstraint.constant = 0
+                    self.view.layoutIfNeeded()
+                }
+                else if self.usingGasPriceTextField {
+                    self.gasPriceToolbarBottomConstraint.constant = 0
+                    self.view.layoutIfNeeded()
+                }
+                else {
+                    self.currentLocationButtonBottomConstraint.constant = 10
+                    self.view.layoutIfNeeded()
+                }
             }
         }
-        
+    
         keyboardNotificationHandler.keyboardWillBeShownHandler = { (height: CGFloat) in UIView.animateWithDuration(0.4) {
-            self.currentLocationButtonBottomConstraint.constant = (10 + height - self.mainToolbarHeight.constant)
-            self.view.layoutIfNeeded()
+                if self.usingGasMileageTextField {
+                    self.gasMileageToolbarBottomConstraint.constant = height
+                    self.view.layoutIfNeeded()
+                }
+                else if self.usingGasPriceTextField {
+                    self.gasPriceToolbarBottomConstraint.constant = height
+                    self.view.layoutIfNeeded()
+                }
+                else {
+                    self.currentLocationButtonBottomConstraint.constant = (10 + height - self.mainToolbarHeight.constant)
+                    self.view.layoutIfNeeded()
+                }
             }
         }
 
@@ -262,10 +310,33 @@ class MainViewController: UIViewController {
     
     //MARK: Navigation
     
+    @IBAction func unwindToSegue(segue: UIStoryboardSegue) {
+        let source = segue.sourceViewController as! GasMileagesViewController
+        
+        if let identifier = segue.identifier {
+            if identifier == "GasMileageDone" {
+                if let selectedCell = source.selectedCell {
+                    gasMileageText = selectedCell.gasMileageLabel.text!
+                    gasMileagesSuggestionsButton.titleLabel!.text = gasMileageText
+                    gasMileageTextField.enabled = false
+                }
+                else {
+                    gasMileageText = "Don't know the gas mileage?"
+                    gasMileagesSuggestionsButton.titleLabel!.text = gasMileageText
+                    gasMileageTextField.enabled = true
+                }
+            }
+            else if identifier == "GasMileageCancel" {
+                gasMileagesSuggestionsButton.titleLabel!.text = gasMileageText
+                gasMileageTextField.enabled = (gasMileageText == "Don't know the gas mileage?")
+            }
+        }
+    }
+    
 //    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
 //        //implement
 //    }
-//    
+
 //    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 //        //implement
 //    }
@@ -421,6 +492,31 @@ extension MainViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+    }
+    
+}
+
+extension MainViewController: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        if textField === gasPriceTextField {
+            usingGasPriceTextField = true
+            usingGasMileageTextField = false
+        }
+        else if textField === gasMileageTextField {
+            usingGasMileageTextField = true
+            usingGasPriceTextField = false
+        }
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if textField.text.rangeOfString(".") != nil {
+            if (string.rangeOfString(".") != nil || count(textField.text.componentsSeparatedByString(".")[1]) + count(string) > 2) {
+                return false
+            }
+        }
+        
+        return true
     }
     
 }

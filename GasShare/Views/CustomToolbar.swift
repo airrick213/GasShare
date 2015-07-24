@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Toolbar: UIView {
+class CustomToolbar: UIView {
 
     override func drawRect(rect: CGRect) {
         super.drawRect(rect)
