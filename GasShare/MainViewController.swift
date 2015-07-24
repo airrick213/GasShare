@@ -12,6 +12,7 @@ import CoreLocation
 import MBProgressHUD
 import SwiftyJSON
 import Alamofire
+import ConvenienceKit
 
 class MainViewController: UIViewController {
     
@@ -27,8 +28,10 @@ class MainViewController: UIViewController {
     @IBOutlet weak var endSearchBar: UISearchBar!
     @IBOutlet weak var baseView: UIView!
     @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var currentLocationButtonBottomConstraint: NSLayoutConstraint!
     
     var screenHeight: CGFloat!
+    var keyboardNotificationHandler = KeyboardNotificationHandler()
     var routeDistance: Double = -1
     var searchingStartLocation = true
     
@@ -45,39 +48,32 @@ class MainViewController: UIViewController {
     var endMarker: GMSMarker?
     
     @IBAction func gasMileageButtonPressed(sender: AnyObject) {
-        animateOut(mainToolbar, andShow: gasMileageToolbar)
+        animate(gasMileageToolbar, over: mainToolbar)
     }
 
     
     @IBAction func gasPriceButtonPressed(sender: AnyObject) {
-        animateOut(mainToolbar, andShow: gasPriceToolbar)
+        animate(gasPriceToolbar, over: mainToolbar)
     }
     
     @IBAction func gasMileageDoneButtonPressed(sender: AnyObject) {
-        animateOut(gasMileageToolbar, andShow: mainToolbar)
+        animate(mainToolbar, over: gasMileageToolbar)
     }
     
     @IBAction func gasPriceDoneButtonPressed(sender: AnyObject) {
-        animateOut(gasPriceToolbar, andShow: mainToolbar)
+        animate(mainToolbar, over: gasPriceToolbar)
     }
     
-    func animateOut(firstView: UIView, andShow secondView: UIView) {
+    func animate(secondView: UIView, over firstView: UIView) {
         secondView.frame.origin.y = screenHeight
+        secondView.hidden = false
         
-        UIView.animateWithDuration(0.25, animations: { () -> Void in
-            firstView.frame.origin.y = self.screenHeight
+        UIView.animateWithDuration(0.25) {
+            secondView.frame.origin.y = self.screenHeight - secondView.frame.height
             
             self.view.layoutIfNeeded()
-            }) { (response: Bool) -> Void in
-                firstView.hidden = true
-                secondView.hidden = false
-                
-                UIView.animateWithDuration(0.25) {
-                    secondView.frame.origin.y = self.screenHeight - secondView.frame.height
-                    
-                    self.view.layoutIfNeeded()
-                }
         }
+        firstView.hidden = true
     }
     
     @IBAction func currentLocationButtonTapped(sender: AnyObject) {
@@ -96,6 +92,15 @@ class MainViewController: UIViewController {
             UIAlertView(title: "Sorry", message: "Could not find current location, please make sure that location features are enabled", delegate: nil, cancelButtonTitle: "OK").show()
         }
     }
+    
+    @IBAction func gasMileageBackButtonTapped(sender: AnyObject) {
+        animate(mainToolbar, over: gasMileageToolbar)
+    }
+    
+    @IBAction func gasPriceBackButtonTapped(sender: AnyObject) {
+        animate(mainToolbar, over: gasPriceToolbar)
+    }
+    
     
 
     override func viewDidLoad() {
@@ -129,6 +134,18 @@ class MainViewController: UIViewController {
         
         endSearchBar.hidden = true
         distanceLabel.hidden = true
+        
+        keyboardNotificationHandler.keyboardWillBeHiddenHandler = { (height: CGFloat) in UIView.animateWithDuration(0.3) {
+            self.currentLocationButtonBottomConstraint.constant = 10
+            self.view.layoutIfNeeded()
+            }
+        }
+        
+        keyboardNotificationHandler.keyboardWillBeShownHandler = { (height: CGFloat) in UIView.animateWithDuration(0.4) {
+            self.currentLocationButtonBottomConstraint.constant = (10 + height - self.mainToolbarHeight.constant)
+            self.view.layoutIfNeeded()
+            }
+        }
 
     }
 
@@ -262,8 +279,10 @@ class MainViewController: UIViewController {
     }
     
     func setMarker(#coordinate: CLLocationCoordinate2D) {
-        if coordinate.latitude != mapView.myLocation.coordinate.latitude && coordinate.longitude != mapView.myLocation.coordinate.longitude {
-            currentLocationButton.selected = false
+        if let myLocation = mapView.myLocation {
+            if coordinate.latitude != myLocation.coordinate.latitude && coordinate.longitude != myLocation.coordinate.longitude {
+                currentLocationButton.selected = false
+            }
         }
         
         if searchingStartLocation {
@@ -393,7 +412,7 @@ extension MainViewController: UISearchBarDelegate {
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-        searchBar.alpha = 0.7
+        searchBar.alpha = 0.8
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
