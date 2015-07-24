@@ -33,6 +33,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var gasMileageTextField: UITextField!
     @IBOutlet weak var gasMileageToolbarBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var gasPriceToolbarBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var gasPriceButton: UIButton!
     
     var screenHeight: CGFloat!
     var keyboardNotificationHandler = KeyboardNotificationHandler()

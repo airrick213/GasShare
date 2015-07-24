@@ -660,6 +660,9 @@
                                                 <exclude reference="4WZ-NM-9rc"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <segue destination="StK-bm-Jfh" kind="show" identifier="ShowGasStationMap" id="6iK-iG-uwe"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edJ-3d-nPW">
                                         <rect key="frame" x="216" y="174" width="168" height="56"/>
@@ -912,6 +915,7 @@
                         <outlet property="gasMileageToolbarBottomConstraint" destination="3ei-Fr-rg1" id="3Ze-Xv-yXr"/>
                         <outlet property="gasMileageToolbarHeight" destination="XOM-6H-oTo" id="JeK-Hs-H6K"/>
                         <outlet property="gasMileagesSuggestionsButton" destination="lR8-tO-ypM" id="yTl-gh-Msy"/>
+                        <outlet property="gasPriceButton" destination="Cu1-jR-NY6" id="hi0-2p-bma"/>
                         <outlet property="gasPriceTextField" destination="Sw5-1a-E2D" id="PpE-rX-q8p"/>
                         <outlet property="gasPriceToolbar" destination="QXy-AN-9X9" id="NpU-l2-7aw"/>
                         <outlet property="gasPriceToolbarBottomConstraint" destination="dGG-vq-reS" id="hmD-G3-qHa"/>
@@ -924,6 +928,92 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W6o-j7-6sw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="294" y="1015"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="dIf-Li-Guz">
+            <objects>
+                <viewController id="StK-bm-Jfh" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ahX-ue-67l"/>
+                        <viewControllerLayoutGuide type="bottom" id="y2q-g4-Dqd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0z5-iI-kin">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uEH-95-AWY">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="5rI-Sp-t9v"/>
+                                    <constraint firstAttribute="height" constant="80" id="DuE-Of-TkD"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Enter Gas Station Location" id="DSm-Z2-o0J">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="JTY-ga-tLo">
+                                            <connections>
+                                                <segue destination="HbL-FQ-uWy" kind="unwind" identifier="GasStationCancel" unwindAction="unwindToSegue:" id="amP-vD-ETy"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Eko-Cg-kNy">
+                                            <connections>
+                                                <segue destination="HbL-FQ-uWy" kind="unwind" unwindAction="unwindToSegue:" id="0xZ-f4-68W"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AdG-Zf-61Q">
+                                <rect key="frame" x="0.0" y="80" width="600" height="520"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DNe-7Z-nLi">
+                                <rect key="frame" x="540" y="546" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="28h-SG-m8h"/>
+                                    <constraint firstAttribute="width" constant="44" id="KdH-70-wAh"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="RBw-b3-u5S"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="jew-EU-9YR"/>
+                                </constraints>
+                                <state key="normal" image="Location">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" image="Location-Color"/>
+                                <connections>
+                                    <action selector="currentLocationButtonTapped:" destination="pmW-Ru-1ob" eventType="touchUpInside" id="9uo-7k-E0a"/>
+                                </connections>
+                            </button>
+                            <searchBar alpha="0.80000001192092896" contentMode="redraw" text="" placeholder="Gas Station Location" translatesAutoresizingMaskIntoConstraints="NO" id="EbL-DN-G7v">
+                                <rect key="frame" x="16" y="90" width="568" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="mzE-cr-iN8"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                <connections>
+                                    <outlet property="delegate" destination="pmW-Ru-1ob" id="OBt-pX-nv6"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="uEH-95-AWY" firstAttribute="leading" secondItem="0z5-iI-kin" secondAttribute="leading" id="AI1-ik-v6C"/>
+                            <constraint firstAttribute="trailing" secondItem="uEH-95-AWY" secondAttribute="trailing" id="NzP-7j-lto"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="EbL-DN-G7v" secondAttribute="trailing" id="PbO-vS-8FK"/>
+                            <constraint firstAttribute="trailing" secondItem="AdG-Zf-61Q" secondAttribute="trailing" id="Q1Y-UF-ONc"/>
+                            <constraint firstAttribute="bottom" secondItem="AdG-Zf-61Q" secondAttribute="bottom" id="R2t-KL-IFQ"/>
+                            <constraint firstItem="EbL-DN-G7v" firstAttribute="top" secondItem="uEH-95-AWY" secondAttribute="bottom" constant="10" id="ZCZ-W7-zOL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="DNe-7Z-nLi" secondAttribute="trailing" id="oOq-Tv-iMg"/>
+                            <constraint firstItem="AdG-Zf-61Q" firstAttribute="leading" secondItem="0z5-iI-kin" secondAttribute="leading" id="ooK-aP-jpw"/>
+                            <constraint firstItem="uEH-95-AWY" firstAttribute="top" secondItem="0z5-iI-kin" secondAttribute="top" id="oyJ-oH-MLh"/>
+                            <constraint firstItem="AdG-Zf-61Q" firstAttribute="top" secondItem="uEH-95-AWY" secondAttribute="bottom" id="qF4-Ll-B3s"/>
+                            <constraint firstItem="y2q-g4-Dqd" firstAttribute="top" secondItem="DNe-7Z-nLi" secondAttribute="bottom" constant="10" id="qt3-is-suK"/>
+                            <constraint firstItem="EbL-DN-G7v" firstAttribute="leading" secondItem="0z5-iI-kin" secondAttribute="leadingMargin" id="rBG-Ek-HTh"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eqS-Jz-FAA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="HbL-FQ-uWy" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="294" y="1707"/>
         </scene>
         <!--Route Search-->
         <scene sceneID="Ai7-Fa-gnR">
