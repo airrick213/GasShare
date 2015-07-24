@@ -929,10 +929,10 @@
             </objects>
             <point key="canvasLocation" x="294" y="1015"/>
         </scene>
-        <!--View Controller-->
+        <!--Gas Station Map View Controller-->
         <scene sceneID="dIf-Li-Guz">
             <objects>
-                <viewController id="StK-bm-Jfh" sceneMemberID="viewController">
+                <viewController id="StK-bm-Jfh" customClass="GasStationMapViewController" customModule="GasShare" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ahX-ue-67l"/>
                         <viewControllerLayoutGuide type="bottom" id="y2q-g4-Dqd"/>
@@ -956,7 +956,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="Eko-Cg-kNy">
                                             <connections>
-                                                <segue destination="HbL-FQ-uWy" kind="unwind" unwindAction="unwindToSegue:" id="0xZ-f4-68W"/>
+                                                <segue destination="HbL-FQ-uWy" kind="unwind" identifier="GasStationDone" unwindAction="unwindToSegue:" id="0xZ-f4-68W"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -971,15 +971,13 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="28h-SG-m8h"/>
                                     <constraint firstAttribute="width" constant="44" id="KdH-70-wAh"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="RBw-b3-u5S"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="jew-EU-9YR"/>
                                 </constraints>
                                 <state key="normal" image="Location">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="selected" image="Location-Color"/>
                                 <connections>
-                                    <action selector="currentLocationButtonTapped:" destination="pmW-Ru-1ob" eventType="touchUpInside" id="9uo-7k-E0a"/>
+                                    <action selector="currentLocationButtonPressed:" destination="StK-bm-Jfh" eventType="touchUpInside" id="WMa-hL-qiI"/>
                                 </connections>
                             </button>
                             <searchBar alpha="0.80000001192092896" contentMode="redraw" text="" placeholder="Gas Station Location" translatesAutoresizingMaskIntoConstraints="NO" id="EbL-DN-G7v">
@@ -989,7 +987,7 @@
                                 </constraints>
                                 <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                 <connections>
-                                    <outlet property="delegate" destination="pmW-Ru-1ob" id="OBt-pX-nv6"/>
+                                    <outlet property="delegate" destination="StK-bm-Jfh" id="Ryu-fI-hNE"/>
                                 </connections>
                             </searchBar>
                         </subviews>
@@ -1009,6 +1007,12 @@
                             <constraint firstItem="EbL-DN-G7v" firstAttribute="leading" secondItem="0z5-iI-kin" secondAttribute="leadingMargin" id="rBG-Ek-HTh"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="baseView" destination="AdG-Zf-61Q" id="Z9m-mV-Hdc"/>
+                        <outlet property="currentLocationButton" destination="DNe-7Z-nLi" id="jyW-1A-ESf"/>
+                        <outlet property="currentLocationButtonBottomConstraint" destination="qt3-is-suK" id="rPA-an-YDR"/>
+                        <outlet property="searchBar" destination="EbL-DN-G7v" id="brX-ST-qCB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eqS-Jz-FAA" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="HbL-FQ-uWy" userLabel="Exit" sceneMemberID="exit"/>

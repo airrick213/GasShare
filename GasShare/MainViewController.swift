@@ -312,10 +312,10 @@ class MainViewController: UIViewController {
     //MARK: Navigation
     
     @IBAction func unwindToSegue(segue: UIStoryboardSegue) {
-        let source = segue.sourceViewController as! GasMileagesViewController
-        
         if let identifier = segue.identifier {
             if identifier == "GasMileageDone" {
+                let source = segue.sourceViewController as! GasMileagesViewController
+                
                 if let selectedCell = source.selectedCell {
                     gasMileageText = selectedCell.gasMileageLabel.text!
                     gasMileagesSuggestionsButton.titleLabel!.text = gasMileageText
