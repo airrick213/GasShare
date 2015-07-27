@@ -12,12 +12,8 @@
 		072892991B4DB7530060960A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 072892981B4DB7530060960A /* Images.xcassets */; };
 		0728929C1B4DB7530060960A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0728929A1B4DB7530060960A /* LaunchScreen.xib */; };
 		072892A81B4DB7530060960A /* GasShareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072892A71B4DB7530060960A /* GasShareTests.swift */; };
-		074A1F6A1B4DB88D00F01CB2 /* GasMileageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A1F631B4DB88D00F01CB2 /* GasMileageViewController.swift */; };
-		074A1F6B1B4DB88D00F01CB2 /* GasPriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A1F641B4DB88D00F01CB2 /* GasPriceViewController.swift */; };
-		074A1F6C1B4DB88D00F01CB2 /* MapSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A1F651B4DB88D00F01CB2 /* MapSearchViewController.swift */; };
 		074A1F6F1B4DB88D00F01CB2 /* InputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A1F691B4DB88D00F01CB2 /* InputTextField.swift */; };
 		077F1E771B5D4F1A0037A483 /* MapHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077F1E761B5D4F1A0037A483 /* MapHelper.swift */; };
-		0789A6E51B54389C00E206AD /* RouteSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0789A6E41B54389C00E206AD /* RouteSearchViewController.swift */; };
 		0791F3F41B56DC44006FEED8 /* AlamofireHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0791F3F31B56DC44006FEED8 /* AlamofireHelper.swift */; };
 		079DB15B1B58501200D21C77 /* HTMLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079DB1591B58501200D21C77 /* HTMLNode.swift */; };
 		079DB15C1B58501200D21C77 /* HTMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079DB15A1B58501200D21C77 /* HTMLParser.swift */; };
@@ -55,12 +51,8 @@
 		072892A11B4DB7530060960A /* GasShareTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GasShareTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		072892A61B4DB7530060960A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		072892A71B4DB7530060960A /* GasShareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasShareTests.swift; sourceTree = "<group>"; };
-		074A1F631B4DB88D00F01CB2 /* GasMileageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GasMileageViewController.swift; sourceTree = "<group>"; };
-		074A1F641B4DB88D00F01CB2 /* GasPriceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GasPriceViewController.swift; sourceTree = "<group>"; };
-		074A1F651B4DB88D00F01CB2 /* MapSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapSearchViewController.swift; sourceTree = "<group>"; };
 		074A1F691B4DB88D00F01CB2 /* InputTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
 		077F1E761B5D4F1A0037A483 /* MapHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapHelper.swift; sourceTree = "<group>"; };
-		0789A6E41B54389C00E206AD /* RouteSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteSearchViewController.swift; sourceTree = "<group>"; };
 		0791F3F31B56DC44006FEED8 /* AlamofireHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireHelper.swift; sourceTree = "<group>"; };
 		079DB1591B58501200D21C77 /* HTMLNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLNode.swift; sourceTree = "<group>"; };
 		079DB15A1B58501200D21C77 /* HTMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLParser.swift; sourceTree = "<group>"; };
@@ -126,16 +118,12 @@
 				079DB1581B58501200D21C77 /* HTMLParser */,
 				0791F3EE1B56DA26006FEED8 /* Helpers */,
 				074A1F681B4DB88D00F01CB2 /* Views */,
-				074A1F631B4DB88D00F01CB2 /* GasMileageViewController.swift */,
-				074A1F641B4DB88D00F01CB2 /* GasPriceViewController.swift */,
-				074A1F651B4DB88D00F01CB2 /* MapSearchViewController.swift */,
-				0789A6E41B54389C00E206AD /* RouteSearchViewController.swift */,
 				07E52A9E1B505595006FFB7A /* CalculationViewController.swift */,
+				07AB75311B62B3FD00AF3A5D /* GasMileagesViewController.swift */,
+				07FDCA3D1B62D5200029682B /* GasStationMapViewController.swift */,
+				07A8E1BC1B61325F00D81518 /* MainViewController.swift */,
 				072892911B4DB7530060960A /* AppDelegate.swift */,
 				072892951B4DB7530060960A /* Main.storyboard */,
-				07FDCA3D1B62D5200029682B /* GasStationMapViewController.swift */,
-				07AB75311B62B3FD00AF3A5D /* GasMileagesViewController.swift */,
-				07A8E1BC1B61325F00D81518 /* MainViewController.swift */,
 				072892981B4DB7530060960A /* Images.xcassets */,
 				0728929A1B4DB7530060960A /* LaunchScreen.xib */,
 				0728928F1B4DB7530060960A /* Supporting Files */,
@@ -409,17 +397,13 @@
 				07AB752A1B62B07300AF3A5D /* GasMileageToolbar.swift in Sources */,
 				07AB752C1B62B08400AF3A5D /* GasPriceToolbar.swift in Sources */,
 				07AB75321B62B3FD00AF3A5D /* GasMileagesViewController.swift in Sources */,
-				074A1F6B1B4DB88D00F01CB2 /* GasPriceViewController.swift in Sources */,
 				072892921B4DB7530060960A /* AppDelegate.swift in Sources */,
 				077F1E771B5D4F1A0037A483 /* MapHelper.swift in Sources */,
-				074A1F6A1B4DB88D00F01CB2 /* GasMileageViewController.swift in Sources */,
-				0789A6E51B54389C00E206AD /* RouteSearchViewController.swift in Sources */,
 				07AB75261B62B00D00AF3A5D /* CustomToolbar.swift in Sources */,
 				07FDCA3E1B62D5200029682B /* GasStationMapViewController.swift in Sources */,
 				079DB15B1B58501200D21C77 /* HTMLNode.swift in Sources */,
 				074A1F6F1B4DB88D00F01CB2 /* InputTextField.swift in Sources */,
 				079DB15C1B58501200D21C77 /* HTMLParser.swift in Sources */,
-				074A1F6C1B4DB88D00F01CB2 /* MapSearchViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

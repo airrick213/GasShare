@@ -41,7 +41,7 @@ class MainViewController: UIViewController {
     
     var screenHeight: CGFloat!
     var keyboardNotificationHandler = KeyboardNotificationHandler()
-    var routeDistance: Double = -1
+    var routeDistance: Double?
     var searchingStartLocation = true
     
     //gas mileage variables
@@ -92,6 +92,8 @@ class MainViewController: UIViewController {
             
             gasMileageTextField.resignFirstResponder()
             animate(mainToolbar, over: gasMileageToolbar)
+            
+            updateDoneButton()
         }
         else {
             UIAlertView(title: "No Gas Mileage", message: "Please enter your car's gas mileage or choose one from the suggestions list", delegate: nil, cancelButtonTitle: "OK").show()
@@ -112,6 +114,8 @@ class MainViewController: UIViewController {
             
             gasPriceTextField.resignFirstResponder()
             animate(mainToolbar, over: gasPriceToolbar)
+            
+            updateDoneButton()
         }
         else {
             UIAlertView(title: "No Gas Price", message: "Please enter the gas price or select the location of your gas station", delegate: nil, cancelButtonTitle: "OK").show()
@@ -256,6 +260,15 @@ class MainViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func updateDoneButton() {
+        if routeDistance != nil && gasMileage != nil && gasPrice != nil {
+            doneButton.hidden = false
+        }
+        else {
+            doneButton.hidden = true
+        }
+    }
+    
     //MARK: Finding Location
 
     func searchForLocation(searchText: String) {
@@ -354,9 +367,16 @@ class MainViewController: UIViewController {
         if let result = json["rows"][0]["elements"][0]["distance"]["text"].string {
             distanceLabel.text = result
             
-            let routeDistanceString = distanceLabel.text!.componentsSeparatedByString(" ")[0]
+            let distanceLabelComponents = distanceLabel.text!.componentsSeparatedByString(" ")
+            let routeDistanceString = distanceLabelComponents[0]
             let formattedString = NSString(string: routeDistanceString).stringByReplacingOccurrencesOfString(",", withString: "")
             routeDistance = NSString(string: formattedString).doubleValue
+            
+            if distanceLabelComponents[1] == "ft" {
+                routeDistance! *= 0.000189
+            }
+            
+            updateDoneButton()
         }
         else {
             distanceLabel.text = "Could not find distance"
@@ -711,16 +731,7 @@ class MainViewController: UIViewController {
                     searchForZipcode()
                 }
             }
-            else if identifier == "GasStationCancel" {
-                
-            }
         }
-    }
-    
-    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
-        //implement
-        
-        return true
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -731,6 +742,13 @@ class MainViewController: UIViewController {
                 if let selectedIndex = selectedIndex {
                     gasMileagesViewController.selectedIndex = selectedIndex
                 }
+            }
+            else if identifier == "ShowCalculation" {
+                let calculationViewController = segue.destinationViewController as! CalculationViewController
+                
+                calculationViewController.routeDistance = routeDistance!
+                calculationViewController.gasMileage = gasMileage!
+                calculationViewController.gasPrice = gasPrice!
             }
         }
     }

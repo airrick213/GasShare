@@ -23,8 +23,8 @@ class CalculationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        totalPrice = (gasPrice / gasMileage) * routeDistance
-        totalLabel.text! += NSString(format: "$%.2f", totalPrice) as String
+        totalPrice = (gasPrice! / gasMileage!) * routeDistance!
+        totalLabel.text! += NSString(format: ": $%.2f", totalPrice) as String
         
         updateNumberOfPassengersLabel(1.0)
     }
@@ -50,7 +50,7 @@ class CalculationViewController: UIViewController {
     }
     
     func updateIndividualCostLabel() {
-        individualCostLabel.text = NSString(format: "Individual Cost: $%.2f", individualCost) as String
+        individualCostLabel.text = NSString(format: "$%.2f", individualCost) as String
     }
 
     /*
