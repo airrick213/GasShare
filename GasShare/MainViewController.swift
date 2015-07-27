@@ -34,18 +34,23 @@ class MainViewController: UIViewController {
     @IBOutlet weak var gasMileageToolbarBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var gasPriceToolbarBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var gasPriceButton: UIButton!
+    @IBOutlet weak var gasMileagesSuggestionsButton: UIButton!
+    @IBOutlet weak var regularGasButton: UIButton!
+    @IBOutlet weak var plusGasButton: UIButton!
+    @IBOutlet weak var premiumGasButton: UIButton!
     
     var screenHeight: CGFloat!
     var keyboardNotificationHandler = KeyboardNotificationHandler()
     var routeDistance: Double = -1
     var searchingStartLocation = true
+    
+    //gas mileage variables
     var usingGasMileageTextField = false
-    var usingGasPriceTextField = false
     var gasMileageText = "Don't know the gas mileage?"
     var gasMileage: Double?
-    @IBOutlet weak var gasMileagesSuggestionsButton: UIButton!
+    var selectedIndex: Int?
     
-    // map variables
+    //map variables
     let locationManager = CLLocationManager()
     lazy var geocoder = GMSGeocoder()
     var placesClient: GMSPlacesClient!
@@ -56,6 +61,14 @@ class MainViewController: UIViewController {
     var endLocation = ""
     var startMarker: GMSMarker?
     var endMarker: GMSMarker?
+    
+    //gas price variables
+    var usingGasPriceTextField = false
+    var selectedLocation = ""
+    var zipcode = ""
+    var regPrice: Double = 0
+    var plusPrice: Double = 0
+    var prePrice: Double = 0
     
     @IBAction func gasMileageButtonPressed(sender: AnyObject) {
         animate(gasMileageToolbar, over: mainToolbar)
@@ -80,11 +93,8 @@ class MainViewController: UIViewController {
             animate(mainToolbar, over: gasMileageToolbar)
         }
         else {
-            let alert = UIAlertView()
-            alert.title = "No Gas Mileage"
-            alert.message = "Please enter your car's gas mileage or choose one from the suggestions list"
-            alert.addButtonWithTitle("OK")
-            alert.show()
+            UIAlertView(title: "No Gas Mileage", message: "Please enter your car's gas mileage or choose one from the suggestions list", delegate: nil, cancelButtonTitle: "OK").show()
+            MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
         }
     }
     
@@ -119,6 +129,7 @@ class MainViewController: UIViewController {
         }
         else {
             UIAlertView(title: "Sorry", message: "Could not find current location, please make sure that location features are enabled", delegate: nil, cancelButtonTitle: "OK").show()
+            MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
         }
     }
     
@@ -130,6 +141,30 @@ class MainViewController: UIViewController {
     @IBAction func gasPriceBackButtonTapped(sender: AnyObject) {
         gasPriceTextField.resignFirstResponder()
         animate(mainToolbar, over: gasPriceToolbar)
+    }
+    
+    @IBAction func regularGasButtonTapped(sender: AnyObject) {
+        reloadGasPriceButtonText(regPrice)
+        
+        regularGasButton.selected = true
+        plusGasButton.selected = false
+        premiumGasButton.selected = false
+    }
+    
+    @IBAction func plusGasButtonTapped(sender: AnyObject) {
+        reloadGasPriceButtonText(plusPrice)
+        
+        regularGasButton.selected = false
+        plusGasButton.selected = true
+        premiumGasButton.selected = false
+    }
+    
+    @IBAction func premiumGasButtonTapped(sender: AnyObject) {
+        reloadGasPriceButtonText(prePrice)
+        
+        regularGasButton.selected = false
+        plusGasButton.selected = false
+        premiumGasButton.selected = true
     }
     
     override func viewDidLoad() {
@@ -163,6 +198,8 @@ class MainViewController: UIViewController {
         
         endSearchBar.hidden = true
         distanceLabel.hidden = true
+        
+        deactivateButtons()
         
         keyboardNotificationHandler.keyboardWillBeHiddenHandler = { (height: CGFloat) in UIView.animateWithDuration(0.3) {
                 if self.usingGasMileageTextField {
@@ -203,6 +240,7 @@ class MainViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //MARK: Finding Location
 
     func searchForLocation(searchText: String) {
         let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
@@ -219,6 +257,7 @@ class MainViewController: UIViewController {
             }
             else {
                 UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again.", delegate: nil, cancelButtonTitle: "OK").show()
+                MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
             }
         }
     }
@@ -288,6 +327,7 @@ class MainViewController: UIViewController {
             }
             else {
                 UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again.", delegate: nil, cancelButtonTitle: "OK").show()
+                MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
             }
         }
     }
@@ -308,39 +348,6 @@ class MainViewController: UIViewController {
         
         distanceLabel.hidden = false
     }
-    
-    //MARK: Navigation
-    
-    @IBAction func unwindToSegue(segue: UIStoryboardSegue) {
-        if let identifier = segue.identifier {
-            if identifier == "GasMileageDone" {
-                let source = segue.sourceViewController as! GasMileagesViewController
-                
-                if let selectedCell = source.selectedCell {
-                    gasMileageText = selectedCell.gasMileageLabel.text!
-                    gasMileagesSuggestionsButton.titleLabel!.text = gasMileageText
-                    gasMileageTextField.enabled = false
-                }
-                else {
-                    gasMileageText = "Don't know the gas mileage?"
-                    gasMileagesSuggestionsButton.titleLabel!.text = gasMileageText
-                    gasMileageTextField.enabled = true
-                }
-            }
-            else if identifier == "GasMileageCancel" {
-                gasMileagesSuggestionsButton.titleLabel!.text = gasMileageText
-                gasMileageTextField.enabled = (gasMileageText == "Don't know the gas mileage?")
-            }
-        }
-    }
-    
-//    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
-//        //implement
-//    }
-
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        //implement
-//    }
     
     //MARK: Map Methods
     
@@ -467,6 +474,249 @@ class MainViewController: UIViewController {
             
             self.setMarker(coordinate: coordinate)
         })
+    }
+    
+    //MARK: Gas Price Code
+    
+    func searchForZipcode() {
+        let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
+        
+        let locationArray = selectedLocation.componentsSeparatedByString(", ")
+        if locationArray.count < 2 {
+            UIAlertView(title: "Sorry", message: "Could not find city or state, please select a different location", delegate: nil, cancelButtonTitle: "OK").show()
+            MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+            
+            return
+        }
+        
+        let apiKey = "AFxjkQ3OQOUhs8uSZu3jAGEOeqMieViOAP8VFcKw0FOtNimNMp7n6LbkcYCrTVfu"
+        let params = "\(apiKey)/city-zips.json/\(locationArray[0])/\(locationArray[1])"
+        var requestString = "http://www.zipcodeapi.com/rest/\(params)"
+        requestString = requestString.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.allZeros, range: Range<String.Index>(start: requestString.startIndex, end: requestString.endIndex))
+        
+        Alamofire.request(.GET, requestString, parameters: nil).responseJSON(options: .allZeros) { (_, response, data, error) -> Void in
+            hud.hide(true)
+            
+            if AlamofireHelper.requestSucceeded(response, error: error) {
+                self.handleSearchZipcodeResponse(data!)
+            }
+            else {
+                UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again", delegate: nil, cancelButtonTitle: "OK").show()
+                MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+            }
+        }
+    }
+    
+    func handleSearchZipcodeResponse(data: AnyObject) {
+        let json = JSON(data)
+        
+        if let result = json["zip_codes"].array {
+            if result.count > 0 {
+                self.zipcode = result[0].string!
+                findGasPrice()
+            }
+            else {
+                UIAlertView(title: "Sorry", message: "Could not find zipcode, please select a different location", delegate: nil, cancelButtonTitle: "OK").show()
+                MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+            }
+        }
+    }
+    
+    func findGasPrice() {
+        let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
+        
+        let requestString = "http://www.motortrend.com/gas_prices/34/\(zipcode)/"
+        
+        Alamofire.request(.GET, requestString, parameters: nil).responseString { (_, response, data, error) -> Void in
+            hud.hide(true)
+            
+            if AlamofireHelper.requestSucceeded(response, error: error) {
+                self.handleFindGasPriceResponse(data!)
+            }
+            else {
+                self.gasPriceButton.titleLabel!.text = "\(self.selectedLocation): Gas price could not be found"
+                
+                self.deactivateButtons()
+            }
+        }
+    }
+    
+    func handleFindGasPriceResponse(data: AnyObject) {
+        let html = data as! String
+        
+        var error: NSError?
+        var parser = HTMLParser(html: html, error: &error)
+        
+        if error != nil {
+            UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again.", delegate: nil, cancelButtonTitle: "OK").show()
+            MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+            
+            self.gasPriceButton.titleLabel!.text = "\(self.selectedLocation): Gas price could not be found"
+            deactivateButtons()
+        }
+        
+        var bodyNode = parser.body
+        
+        var regPrices = [Double]()
+        var plusPrices = [Double]()
+        var prePrices = [Double]()
+        
+        var count = 0
+        var numCells = 0
+        
+        if let priceNodes = bodyNode?.findChildTags("td") {
+            for node in priceNodes {
+                let contents = node.contents
+                
+                if !contents.isEmpty {
+                    if numCells > 10 {
+                        if contents[contents.startIndex] == "$" {
+                            let startIndex = advance(contents.startIndex, 1)
+                            let endIndex = advance(contents.startIndex, 6)
+                            let doubleValue = NSString(string: contents.substringWithRange(Range<String.Index>(start: startIndex, end: endIndex))).doubleValue
+                            
+                            if doubleValue > 0 {
+                                if count == 0 {
+                                    regPrices.append(doubleValue)
+                                }
+                                else if count == 1 {
+                                    plusPrices.append(doubleValue)
+                                }
+                                else if count == 2 {
+                                    prePrices.append(doubleValue)
+                                }
+                            }
+                            
+                            count = (count + 1) % 4
+                        }
+                            
+                        else if contents == "N/A" {
+                            count = (count + 1) % 4
+                        }
+                    }
+                    
+                    numCells++
+                    if numCells == 70 {
+                        break
+                    }
+                }
+            }
+        }
+        
+        
+        regPrice = average(regPrices)
+        plusPrice = average(plusPrices)
+        prePrice = average(prePrices)
+        
+        gasPriceTextField.enabled = false
+        reloadGasPriceButtonText(regPrice)
+        regularGasButton.selected = true
+        plusGasButton.selected = false
+        premiumGasButton.selected = false
+        
+        regularGasButton.hidden = false
+        plusGasButton.hidden = false
+        premiumGasButton.hidden = false
+        
+        gasPriceToolbarHeight.constant = screenHeight * 0.33
+    }
+    
+    func deactivateButtons() {
+        regularGasButton.selected = false
+        plusGasButton.selected = false
+        premiumGasButton.selected = false
+        
+        regularGasButton.hidden = true
+        plusGasButton.hidden = true
+        premiumGasButton.hidden = true
+        
+        gasPriceToolbarHeight.constant = gasMileageToolbarHeight.constant
+    }
+    
+    func average(nums: [Double]) -> Double {
+        var sum: Double = 0
+        var count: Double = 0
+        for num in nums {
+            sum += num
+            count++
+        }
+        
+        return sum / count
+    }
+    
+    func reloadGasPriceButtonText(price: Double) {
+        if price == 0 {
+            gasPriceButton.titleLabel!.text = "\(selectedLocation): Gas price could not be found"
+        }
+        else {
+            let priceString = NSString(format: "\(selectedLocation): $%.2f", price)
+            gasPriceButton.titleLabel!.text = priceString as String
+        }
+        
+        gasPriceButton.titleLabel!.sizeToFit()
+    }
+    
+    //MARK: Navigation
+    
+    @IBAction func unwindToSegue(segue: UIStoryboardSegue) {
+        if let identifier = segue.identifier {
+            if identifier == "GasMileageDone" {
+                let source = segue.sourceViewController as! GasMileagesViewController
+                
+                if let selectedIndex = source.selectedIndex {
+                    gasMileageText = source.suggestedMileageValues[selectedIndex]
+                    gasMileagesSuggestionsButton.titleLabel!.text = gasMileageText
+                    gasMileageTextField.enabled = false
+                }
+                else {
+                    gasMileageText = "Don't know the gas mileage?"
+                    gasMileagesSuggestionsButton.titleLabel!.text = gasMileageText
+                    gasMileageTextField.enabled = true
+                }
+                
+                selectedIndex = source.selectedIndex
+            }
+            else if identifier == "GasMileageCancel" {
+                gasMileagesSuggestionsButton.titleLabel!.text = gasMileageText
+                gasMileageTextField.enabled = (gasMileageText == "Don't know the gas mileage?")
+            }
+            else if identifier == "GasStationDone" {
+                let source = segue.sourceViewController as! GasStationMapViewController
+                
+                selectedLocation = source.selectedLocation
+                
+                if selectedLocation == "" {
+                    gasPriceButton.titleLabel!.text = "Don't know the gas price?"
+                    gasPriceTextField.enabled = true
+                    
+                    deactivateButtons()
+                }
+                else {
+                    searchForZipcode()
+                }
+            }
+            else if identifier == "GasStationCancel" {
+                
+            }
+        }
+    }
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        //implement
+        
+        return true
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let identifier = segue.identifier {
+            if identifier == "ShowGasMileagesSuggestions" {
+                let gasMileagesViewController = segue.destinationViewController as! GasMileagesViewController
+                
+                if let selectedIndex = selectedIndex {
+                    gasMileagesViewController.selectedIndex = selectedIndex
+                }
+            }
+        }
     }
     
 }

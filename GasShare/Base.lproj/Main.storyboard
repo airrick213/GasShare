@@ -370,7 +370,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="checkmark" destination="tgF-iI-tFw" id="aCa-IP-7uc"/>
-                                            <outlet property="gasMileageLabel" destination="ZOb-hh-whR" id="ZEE-pb-j1d"/>
+                                            <outlet property="gasMileageLabel" destination="ZOb-hh-whR" id="n1j-JN-4gV"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -413,6 +413,7 @@
                     </view>
                     <connections>
                         <outlet property="navigationBar" destination="rsk-8q-j7y" id="aQo-5I-mul"/>
+                        <outlet property="tableView" destination="7H1-11-iQP" id="viI-fa-uG4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ztd-O2-6Ie" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -637,7 +638,6 @@
                                         <rect key="frame" x="196" y="48" width="207" height="40"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="230" id="4WZ-NM-9rc"/>
                                             <constraint firstAttribute="height" constant="40" id="8zh-Fe-WMw"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
@@ -655,33 +655,20 @@
                                                 <color key="value" red="0.59215686270000001" green="0.59215686270000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="4WZ-NM-9rc"/>
-                                            </mask>
-                                        </variation>
                                         <connections>
                                             <segue destination="StK-bm-Jfh" kind="show" identifier="ShowGasStationMap" id="6iK-iG-uwe"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edJ-3d-nPW">
-                                        <rect key="frame" x="216" y="174" width="168" height="56"/>
+                                        <rect key="frame" x="177" y="148" width="246" height="82"/>
                                         <color key="backgroundColor" red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="6qs-zZ-isd"/>
-                                            <constraint firstAttribute="width" constant="160" id="NQb-cH-8iW"/>
                                             <constraint firstAttribute="width" secondItem="edJ-3d-nPW" secondAttribute="height" multiplier="3:1" id="YPd-un-m3b"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="32"/>
                                         <state key="normal" title="Done">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="6qs-zZ-isd"/>
-                                                <exclude reference="NQb-cH-8iW"/>
-                                            </mask>
-                                        </variation>
                                         <connections>
                                             <action selector="gasPriceDoneButtonPressed:" destination="pmW-Ru-1ob" eventType="touchUpInside" id="HKO-pY-Mzn"/>
                                         </connections>
@@ -700,7 +687,10 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H4T-9w-Ia7">
-                                        <rect key="frame" x="282" y="98" width="36" height="66"/>
+                                        <rect key="frame" x="282" y="98" width="36" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="kh5-4I-ruX"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
                                         <state key="normal" title="Plus">
                                             <color key="titleColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.55686274509803924" alpha="1" colorSpace="calibratedRGB"/>
@@ -709,9 +699,15 @@
                                         <state key="selected">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="plusGasButtonTapped:" destination="pmW-Ru-1ob" eventType="touchUpInside" id="RxO-kI-4Up"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9YF-dY-bjp">
-                                        <rect key="frame" x="173" y="111" width="69" height="40"/>
+                                        <rect key="frame" x="173" y="98" width="69" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="22z-SF-AwU"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
                                         <state key="normal" title="Regular">
                                             <color key="titleColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
@@ -720,9 +716,15 @@
                                         <state key="selected">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="regularGasButtonTapped:" destination="pmW-Ru-1ob" eventType="touchUpInside" id="N1i-dv-8D8"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YND-4x-9qt">
-                                        <rect key="frame" x="358" y="111" width="79" height="40"/>
+                                        <rect key="frame" x="358" y="98" width="79" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="QEx-0W-D2I"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
                                         <state key="normal" title="Premium">
                                             <color key="titleColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
@@ -731,6 +733,9 @@
                                         <state key="selected">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="premiumGasButtonTapped:" destination="pmW-Ru-1ob" eventType="touchUpInside" id="LgZ-3p-1Sh"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mJO-oR-XwO">
                                         <rect key="frame" x="546" y="202" width="46" height="30"/>
@@ -749,6 +754,7 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="edJ-3d-nPW" firstAttribute="top" relation="lessThanOrEqual" secondItem="Cu1-jR-NY6" secondAttribute="bottom" constant="60" id="6WN-j5-1UE"/>
                                     <constraint firstAttribute="centerX" secondItem="H4T-9w-Ia7" secondAttribute="centerX" id="7B5-Le-sOy"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="mJO-oR-XwO" secondAttribute="trailing" id="EjY-kr-uur"/>
                                     <constraint firstAttribute="centerX" secondItem="Cu1-jR-NY6" secondAttribute="centerX" id="Mp6-NC-iwF"/>
@@ -769,6 +775,7 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="P13-2C-eDJ"/>
                                         <exclude reference="U9t-tA-Tbk"/>
                                     </mask>
                                 </variation>
@@ -922,6 +929,9 @@
                         <outlet property="gasPriceToolbarHeight" destination="NPg-sb-psC" id="Rbc-fz-jka"/>
                         <outlet property="mainToolbar" destination="we8-4f-Pqe" id="ygo-8o-afD"/>
                         <outlet property="mainToolbarHeight" destination="Jpi-oF-XcC" id="WPl-e6-DV5"/>
+                        <outlet property="plusGasButton" destination="H4T-9w-Ia7" id="zd4-8p-g6c"/>
+                        <outlet property="premiumGasButton" destination="YND-4x-9qt" id="gH9-Tm-CHO"/>
+                        <outlet property="regularGasButton" destination="9YF-dY-bjp" id="my4-JB-OYn"/>
                         <outlet property="startSearchBar" destination="eQ7-hc-ETn" id="0vP-gw-3Bc"/>
                     </connections>
                 </viewController>
@@ -1017,7 +1027,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eqS-Jz-FAA" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="HbL-FQ-uWy" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="294" y="1707"/>
+            <point key="canvasLocation" x="294" y="1729"/>
         </scene>
         <!--Route Search-->
         <scene sceneID="Ai7-Fa-gnR">
