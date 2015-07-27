@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0709E6191B66BEFC00E606D9 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0709E6181B66BEFC00E606D9 /* AboutViewController.swift */; };
 		072892921B4DB7530060960A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072892911B4DB7530060960A /* AppDelegate.swift */; };
 		072892971B4DB7530060960A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 072892951B4DB7530060960A /* Main.storyboard */; };
 		072892991B4DB7530060960A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 072892981B4DB7530060960A /* Images.xcassets */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		03E31020FC501B7AB4336490 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0709E6181B66BEFC00E606D9 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		0728928C1B4DB7530060960A /* GasShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GasShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		072892901B4DB7530060960A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		072892911B4DB7530060960A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				079DB1581B58501200D21C77 /* HTMLParser */,
 				0791F3EE1B56DA26006FEED8 /* Helpers */,
 				074A1F681B4DB88D00F01CB2 /* Views */,
+				0709E6181B66BEFC00E606D9 /* AboutViewController.swift */,
 				07E52A9E1B505595006FFB7A /* CalculationViewController.swift */,
 				07AB75311B62B3FD00AF3A5D /* GasMileagesViewController.swift */,
 				07FDCA3D1B62D5200029682B /* GasStationMapViewController.swift */,
@@ -403,6 +406,7 @@
 				07FDCA3E1B62D5200029682B /* GasStationMapViewController.swift in Sources */,
 				079DB15B1B58501200D21C77 /* HTMLNode.swift in Sources */,
 				074A1F6F1B4DB88D00F01CB2 /* InputTextField.swift in Sources */,
+				0709E6191B66BEFC00E606D9 /* AboutViewController.swift in Sources */,
 				079DB15C1B58501200D21C77 /* HTMLParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -133,12 +133,13 @@ class MainViewController: UIViewController {
         secondView.frame.origin.y = screenHeight
         secondView.hidden = false
         
+        firstView.hidden = true
+        
         UIView.animateWithDuration(0.25) {
             secondView.frame.origin.y = self.screenHeight - secondView.frame.height
             
             self.view.layoutIfNeeded()
         }
-        firstView.hidden = true
     }
     
     @IBAction func currentLocationButtonTapped(sender: AnyObject) {
