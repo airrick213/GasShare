@@ -38,6 +38,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var regularGasButton: UIButton!
     @IBOutlet weak var plusGasButton: UIButton!
     @IBOutlet weak var premiumGasButton: UIButton!
+    @IBOutlet weak var gasMileageToolbarButton: UIButton!
+    @IBOutlet weak var gasPriceToolbarButton: UIButton!
     
     var screenHeight: CGFloat!
     var keyboardNotificationHandler = KeyboardNotificationHandler()
@@ -93,6 +95,8 @@ class MainViewController: UIViewController {
             gasMileageTextField.resignFirstResponder()
             animate(mainToolbar, over: gasMileageToolbar)
             
+            gasMileageToolbarButton.setTitle("\(gasMileage!) mi/gal", forState: UIControlState.Normal)
+            gasMileageToolbarButton.titleLabel!.font = UIFont(name: "Avenir", size: 24)
             updateDoneButton()
         }
         else {
@@ -115,6 +119,8 @@ class MainViewController: UIViewController {
             gasPriceTextField.resignFirstResponder()
             animate(mainToolbar, over: gasPriceToolbar)
             
+            gasPriceToolbarButton.setTitle("$\(gasPrice!)/gal", forState: UIControlState.Normal)
+            gasPriceToolbarButton.titleLabel!.font = UIFont(name: "Avenir", size: 24)
             updateDoneButton()
         }
         else {

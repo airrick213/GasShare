@@ -518,12 +518,14 @@
                         <outlet property="gasMileageTextField" destination="hcg-sL-2dk" id="f91-KD-2WL"/>
                         <outlet property="gasMileageToolbar" destination="DG5-mv-S46" id="BnL-Pq-wcG"/>
                         <outlet property="gasMileageToolbarBottomConstraint" destination="3ei-Fr-rg1" id="3Ze-Xv-yXr"/>
+                        <outlet property="gasMileageToolbarButton" destination="4bv-A7-m32" id="bRn-pS-j4u"/>
                         <outlet property="gasMileageToolbarHeight" destination="XOM-6H-oTo" id="JeK-Hs-H6K"/>
                         <outlet property="gasMileagesSuggestionsButton" destination="lR8-tO-ypM" id="yTl-gh-Msy"/>
                         <outlet property="gasPriceButton" destination="Cu1-jR-NY6" id="hi0-2p-bma"/>
                         <outlet property="gasPriceTextField" destination="Sw5-1a-E2D" id="PpE-rX-q8p"/>
                         <outlet property="gasPriceToolbar" destination="QXy-AN-9X9" id="NpU-l2-7aw"/>
                         <outlet property="gasPriceToolbarBottomConstraint" destination="dGG-vq-reS" id="hmD-G3-qHa"/>
+                        <outlet property="gasPriceToolbarButton" destination="Yxi-xz-jG1" id="6w9-nk-JfL"/>
                         <outlet property="gasPriceToolbarHeight" destination="NPg-sb-psC" id="Rbc-fz-jka"/>
                         <outlet property="mainToolbar" destination="we8-4f-Pqe" id="ygo-8o-afD"/>
                         <outlet property="mainToolbarHeight" destination="Jpi-oF-XcC" id="WPl-e6-DV5"/>
