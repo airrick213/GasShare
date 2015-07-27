@@ -259,7 +259,6 @@ class MainViewController: UIViewController {
                 }
             }
         }
-
     }
 
     override func didReceiveMemoryWarning() {
