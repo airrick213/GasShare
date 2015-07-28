@@ -203,7 +203,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XQi-pD-Mc2">
-                                        <rect key="frame" x="250" y="46" width="99" height="44"/>
+                                        <rect key="frame" x="8" y="46" width="584" height="44"/>
                                         <color key="backgroundColor" red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="E6U-BZ-L0e"/>
@@ -214,6 +214,11 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="lfN-PI-Y2C"/>
+                                            </mask>
+                                        </variation>
                                         <connections>
                                             <segue destination="csB-mT-9P3" kind="show" identifier="ShowCalculation" id="aZV-76-HM1"/>
                                         </connections>
@@ -221,7 +226,9 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="XQi-pD-Mc2" firstAttribute="leading" secondItem="we8-4f-Pqe" secondAttribute="leadingMargin" id="1H7-FF-WEf"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="4bv-A7-m32" secondAttribute="bottom" constant="10" id="3MJ-ki-0PW"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="XQi-pD-Mc2" secondAttribute="trailing" id="A5e-j7-daE"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="Yxi-xz-jG1" secondAttribute="bottom" constant="10" id="GSQ-s5-sER"/>
                                     <constraint firstAttribute="height" constant="100" id="Jpi-oF-XcC"/>
                                     <constraint firstAttribute="bottom" secondItem="XQi-pD-Mc2" secondAttribute="bottom" constant="10" id="Pm8-F0-bCJ"/>
