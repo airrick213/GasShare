@@ -16,6 +16,7 @@ class AboutViewController: UIViewController {
         super.viewDidLoad()
         
         textView.scrollRangeToVisible(NSRange(0...1))
+        textView.editable = false
     }
 
     override func didReceiveMemoryWarning() {

@@ -134,29 +134,14 @@
                                     <outlet property="delegate" destination="pmW-Ru-1ob" id="euO-Iw-i4h"/>
                                 </connections>
                             </searchBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XQi-pD-Mc2">
-                                <rect key="frame" x="16" y="446" width="120" height="44"/>
-                                <color key="backgroundColor" red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="E6U-BZ-L0e"/>
-                                    <constraint firstAttribute="width" constant="120" id="MeO-Br-Wd3"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
-                                <state key="normal" title="Done">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="csB-mT-9P3" kind="show" identifier="ShowCalculation" id="aZV-76-HM1"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fC2-bw-DJL">
-                                <rect key="frame" x="237" y="278" width="126.5" height="45"/>
+                                <rect key="frame" x="237" y="278" width="125.5" height="44"/>
+                                <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="32"/>
                                 <color key="textColor" red="1" green="0.2214862044" blue="0.22825859200000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                <size key="shadowOffset" width="1" height="1"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="POd-XV-zJF">
                                 <rect key="frame" x="540" y="446" width="44" height="44"/>
@@ -217,17 +202,35 @@
                                             <action selector="gasPriceButtonPressed:" destination="pmW-Ru-1ob" eventType="touchUpInside" id="tdD-2I-abK"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XQi-pD-Mc2">
+                                        <rect key="frame" x="250" y="46" width="99" height="44"/>
+                                        <color key="backgroundColor" red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="E6U-BZ-L0e"/>
+                                            <constraint firstAttribute="width" secondItem="XQi-pD-Mc2" secondAttribute="height" multiplier="2.25:1" id="lfN-PI-Y2C"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
+                                        <state key="normal" title="Calculate">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="csB-mT-9P3" kind="show" identifier="ShowCalculation" id="aZV-76-HM1"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottomMargin" secondItem="4bv-A7-m32" secondAttribute="bottom" constant="10" id="3MJ-ki-0PW"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="Yxi-xz-jG1" secondAttribute="bottom" constant="10" id="GSQ-s5-sER"/>
                                     <constraint firstAttribute="height" constant="100" id="Jpi-oF-XcC"/>
+                                    <constraint firstAttribute="bottom" secondItem="XQi-pD-Mc2" secondAttribute="bottom" constant="10" id="Pm8-F0-bCJ"/>
                                     <constraint firstItem="4bv-A7-m32" firstAttribute="top" secondItem="we8-4f-Pqe" secondAttribute="topMargin" constant="10" id="a8G-ev-9UC"/>
                                     <constraint firstItem="Yxi-xz-jG1" firstAttribute="top" secondItem="we8-4f-Pqe" secondAttribute="topMargin" constant="10" id="cwS-a0-x5d"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="Yxi-xz-jG1" secondAttribute="trailing" id="gsM-wQ-qW3"/>
                                     <constraint firstItem="4bv-A7-m32" firstAttribute="leading" secondItem="we8-4f-Pqe" secondAttribute="leadingMargin" id="ifM-qp-0mL"/>
                                     <constraint firstItem="Yxi-xz-jG1" firstAttribute="leading" secondItem="4bv-A7-m32" secondAttribute="trailing" id="qFz-5Y-P1m"/>
+                                    <constraint firstAttribute="centerX" secondItem="XQi-pD-Mc2" secondAttribute="centerX" id="tzu-i5-EYx"/>
                                     <constraint firstItem="Yxi-xz-jG1" firstAttribute="width" secondItem="4bv-A7-m32" secondAttribute="width" id="xe4-ZF-8PY"/>
                                 </constraints>
                             </view>
@@ -260,10 +263,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edJ-3d-nPW">
-                                        <rect key="frame" x="177" y="148" width="246" height="82"/>
+                                        <rect key="frame" x="208" y="148" width="184.5" height="82"/>
                                         <color key="backgroundColor" red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="edJ-3d-nPW" secondAttribute="height" multiplier="3:1" id="YPd-un-m3b"/>
+                                            <constraint firstAttribute="width" secondItem="edJ-3d-nPW" secondAttribute="height" multiplier="2.25:1" id="YPd-un-m3b"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="32"/>
                                         <state key="normal" title="Done">
@@ -361,24 +364,16 @@
                                     <constraint firstItem="Sw5-1a-E2D" firstAttribute="top" secondItem="QXy-AN-9X9" secondAttribute="topMargin" id="Mz7-TW-m0F"/>
                                     <constraint firstAttribute="height" constant="240" id="NPg-sb-psC"/>
                                     <constraint firstItem="H4T-9w-Ia7" firstAttribute="centerY" secondItem="9YF-dY-bjp" secondAttribute="centerY" id="OaP-aH-iq1"/>
-                                    <constraint firstItem="edJ-3d-nPW" firstAttribute="top" secondItem="H4T-9w-Ia7" secondAttribute="bottom" constant="10" id="P13-2C-eDJ"/>
                                     <constraint firstAttribute="centerX" secondItem="Sw5-1a-E2D" secondAttribute="centerX" id="PVX-cm-oPQ"/>
                                     <constraint firstItem="H4T-9w-Ia7" firstAttribute="top" secondItem="Cu1-jR-NY6" secondAttribute="bottom" constant="10" id="QGP-Sg-Zoh"/>
                                     <constraint firstAttribute="bottom" secondItem="edJ-3d-nPW" secondAttribute="bottom" constant="10" id="QOC-SG-mSk"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="mJO-oR-XwO" secondAttribute="bottom" id="RYm-Aa-AzH"/>
-                                    <constraint firstItem="mJO-oR-XwO" firstAttribute="leading" secondItem="QXy-AN-9X9" secondAttribute="leadingMargin" id="U9t-tA-Tbk"/>
                                     <constraint firstItem="YND-4x-9qt" firstAttribute="leading" secondItem="H4T-9w-Ia7" secondAttribute="trailing" constant="40" id="XDh-dh-ihI"/>
                                     <constraint firstItem="Cu1-jR-NY6" firstAttribute="top" secondItem="Sw5-1a-E2D" secondAttribute="bottom" constant="10" id="Zub-ZG-hiU"/>
                                     <constraint firstItem="H4T-9w-Ia7" firstAttribute="leading" secondItem="9YF-dY-bjp" secondAttribute="trailing" constant="40" id="gvX-6e-Gg7"/>
                                     <constraint firstAttribute="centerX" secondItem="edJ-3d-nPW" secondAttribute="centerX" id="p0u-TJ-LAy"/>
                                     <constraint firstItem="H4T-9w-Ia7" firstAttribute="centerY" secondItem="YND-4x-9qt" secondAttribute="centerY" id="xaY-Kb-1Pt"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="P13-2C-eDJ"/>
-                                        <exclude reference="U9t-tA-Tbk"/>
-                                    </mask>
-                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DG5-mv-S46" customClass="GasMileageToolbar" customModule="GasShare" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="440" width="600" height="160"/>
@@ -415,23 +410,15 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gjy-1h-lzp">
-                                        <rect key="frame" x="222" y="98" width="156" height="52"/>
+                                        <rect key="frame" x="241" y="98" width="117" height="52"/>
                                         <color key="backgroundColor" red="0.66274509800000003" green="0.66274509800000003" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="gjy-1h-lzp" secondAttribute="height" multiplier="3:1" id="8qC-qU-Ps9"/>
-                                            <constraint firstAttribute="height" constant="44" id="daz-i0-dAd"/>
-                                            <constraint firstAttribute="width" constant="160" id="rY6-cF-HxL"/>
+                                            <constraint firstAttribute="width" secondItem="gjy-1h-lzp" secondAttribute="height" multiplier="2.25:1" id="8qC-qU-Ps9"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="32"/>
                                         <state key="normal" title="Done">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="daz-i0-dAd"/>
-                                                <exclude reference="rY6-cF-HxL"/>
-                                            </mask>
-                                        </variation>
                                         <connections>
                                             <action selector="gasMileageDoneButtonPressed:" destination="pmW-Ru-1ob" eventType="touchUpInside" id="sWm-ed-eFw"/>
                                         </connections>
@@ -495,14 +482,12 @@
                             <constraint firstItem="WH9-Iz-Bvx" firstAttribute="top" secondItem="eQ7-hc-ETn" secondAttribute="bottom" id="PdN-aM-w9h"/>
                             <constraint firstAttribute="trailing" secondItem="DG5-mv-S46" secondAttribute="trailing" id="Qa9-G4-6y2"/>
                             <constraint firstItem="eQ7-hc-ETn" firstAttribute="leading" secondItem="Y4c-Kj-vFd" secondAttribute="leadingMargin" id="SNc-z9-gjn"/>
-                            <constraint firstItem="XQi-pD-Mc2" firstAttribute="leading" secondItem="Y4c-Kj-vFd" secondAttribute="leadingMargin" id="VpN-cy-h7a"/>
                             <constraint firstAttribute="bottom" secondItem="we8-4f-Pqe" secondAttribute="bottom" id="a9Q-cZ-cHc"/>
                             <constraint firstItem="bg5-jq-cFE" firstAttribute="top" secondItem="QXy-AN-9X9" secondAttribute="bottom" id="dGG-vq-reS"/>
                             <constraint firstItem="eQ7-hc-ETn" firstAttribute="top" secondItem="uU7-yq-ZnO" secondAttribute="bottom" constant="10" id="oNW-wm-zXp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="POd-XV-zJF" secondAttribute="trailing" id="p9p-HR-6DQ"/>
                             <constraint firstItem="bg5-jq-cFE" firstAttribute="top" secondItem="MJP-0x-NF6" secondAttribute="bottom" id="pQb-Zr-jSr"/>
                             <constraint firstAttribute="trailingMargin" secondItem="eQ7-hc-ETn" secondAttribute="trailing" id="qQb-bc-u9N"/>
-                            <constraint firstItem="we8-4f-Pqe" firstAttribute="top" secondItem="XQi-pD-Mc2" secondAttribute="bottom" constant="10" id="ser-qq-eLm"/>
                             <constraint firstAttribute="trailing" secondItem="QXy-AN-9X9" secondAttribute="trailing" id="sla-7b-huy"/>
                             <constraint firstAttribute="trailing" secondItem="MJP-0x-NF6" secondAttribute="trailing" id="vkO-ui-GyI"/>
                             <constraint firstAttribute="centerX" secondItem="WH9-Iz-Bvx" secondAttribute="centerX" id="vu8-1s-bpA"/>
@@ -512,15 +497,17 @@
                     </view>
                     <connections>
                         <outlet property="baseView" destination="MJP-0x-NF6" id="Bhd-QT-hiZ"/>
+                        <outlet property="calculateButton" destination="XQi-pD-Mc2" id="SPc-cc-kDx"/>
+                        <outlet property="calculateButtonHeight" destination="E6U-BZ-L0e" id="RgZ-Z7-4Bn"/>
                         <outlet property="currentLocationButton" destination="POd-XV-zJF" id="fav-4G-QRb"/>
                         <outlet property="currentLocationButtonBottomConstraint" destination="Ago-Cz-Qmi" id="z81-8R-Osw"/>
                         <outlet property="distanceLabel" destination="fC2-bw-DJL" id="86D-zd-L1X"/>
-                        <outlet property="doneButton" destination="XQi-pD-Mc2" id="Hoo-aU-9yE"/>
                         <outlet property="endSearchBar" destination="WH9-Iz-Bvx" id="2DY-JH-IZJ"/>
                         <outlet property="gasMileageTextField" destination="hcg-sL-2dk" id="f91-KD-2WL"/>
                         <outlet property="gasMileageToolbar" destination="DG5-mv-S46" id="BnL-Pq-wcG"/>
                         <outlet property="gasMileageToolbarBottomConstraint" destination="3ei-Fr-rg1" id="3Ze-Xv-yXr"/>
                         <outlet property="gasMileageToolbarButton" destination="4bv-A7-m32" id="bRn-pS-j4u"/>
+                        <outlet property="gasMileageToolbarButtonBottomConstraint" destination="3MJ-ki-0PW" id="qZ3-He-nW4"/>
                         <outlet property="gasMileageToolbarHeight" destination="XOM-6H-oTo" id="JeK-Hs-H6K"/>
                         <outlet property="gasMileagesSuggestionsButton" destination="lR8-tO-ypM" id="yTl-gh-Msy"/>
                         <outlet property="gasPriceButton" destination="Cu1-jR-NY6" id="hi0-2p-bma"/>
@@ -528,6 +515,7 @@
                         <outlet property="gasPriceToolbar" destination="QXy-AN-9X9" id="NpU-l2-7aw"/>
                         <outlet property="gasPriceToolbarBottomConstraint" destination="dGG-vq-reS" id="hmD-G3-qHa"/>
                         <outlet property="gasPriceToolbarButton" destination="Yxi-xz-jG1" id="6w9-nk-JfL"/>
+                        <outlet property="gasPriceToolbarButtonBottomConstraint" destination="GSQ-s5-sER" id="rO8-9L-1gH"/>
                         <outlet property="gasPriceToolbarHeight" destination="NPg-sb-psC" id="Rbc-fz-jka"/>
                         <outlet property="mainToolbar" destination="we8-4f-Pqe" id="ygo-8o-afD"/>
                         <outlet property="mainToolbarHeight" destination="Jpi-oF-XcC" id="WPl-e6-DV5"/>

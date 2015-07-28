@@ -22,7 +22,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var mainToolbarHeight: NSLayoutConstraint!
     @IBOutlet weak var gasMileageToolbarHeight: NSLayoutConstraint!
     @IBOutlet weak var gasPriceToolbarHeight: NSLayoutConstraint!
-    @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var calculateButton: UIButton!
     @IBOutlet weak var currentLocationButton: UIButton!
     @IBOutlet weak var startSearchBar: UISearchBar!
     @IBOutlet weak var endSearchBar: UISearchBar!
@@ -40,6 +40,9 @@ class MainViewController: UIViewController {
     @IBOutlet weak var premiumGasButton: UIButton!
     @IBOutlet weak var gasMileageToolbarButton: UIButton!
     @IBOutlet weak var gasPriceToolbarButton: UIButton!
+    @IBOutlet weak var gasMileageToolbarButtonBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var gasPriceToolbarButtonBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var calculateButtonHeight: NSLayoutConstraint!
     
     var screenHeight: CGFloat!
     var keyboardNotificationHandler = KeyboardNotificationHandler()
@@ -97,7 +100,7 @@ class MainViewController: UIViewController {
             
             gasMileageToolbarButton.setTitle("\(gasMileage!) mi/gal", forState: UIControlState.Normal)
             gasMileageToolbarButton.titleLabel!.font = UIFont(name: "Avenir", size: 24)
-            updateDoneButton()
+            updateCalculateButton()
         }
         else {
             UIAlertView(title: "No Gas Mileage", message: "Please enter your car's gas mileage or choose one from the suggestions list", delegate: nil, cancelButtonTitle: "OK").show()
@@ -119,9 +122,10 @@ class MainViewController: UIViewController {
             gasPriceTextField.resignFirstResponder()
             animate(mainToolbar, over: gasPriceToolbar)
             
-            gasPriceToolbarButton.setTitle("$\(gasPrice!)/gal", forState: UIControlState.Normal)
+            let priceString = NSString(format: "$%.2f/gal", gasPrice!) as String
+            gasPriceToolbarButton.setTitle(priceString, forState: UIControlState.Normal)
             gasPriceToolbarButton.titleLabel!.font = UIFont(name: "Avenir", size: 24)
-            updateDoneButton()
+            updateCalculateButton()
         }
         else {
             UIAlertView(title: "No Gas Price", message: "Please enter the gas price or select the location of your gas station", delegate: nil, cancelButtonTitle: "OK").show()
@@ -197,13 +201,13 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        doneButton.hidden = true
+        calculateButton.hidden = true
         
         screenHeight = self.view.frame.height
         
         mainToolbarHeight.constant = screenHeight * 0.16
         gasMileageToolbarHeight.constant = screenHeight * 0.25
-        gasPriceToolbarHeight.constant = screenHeight * 0.33
+        gasPriceToolbarHeight.constant = screenHeight * 0.32
         
         gasMileageToolbar.hidden = true
         gasPriceToolbar.hidden = true
@@ -266,12 +270,13 @@ class MainViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func updateDoneButton() {
+    func updateCalculateButton() {
         if routeDistance != nil && gasMileage != nil && gasPrice != nil {
-            doneButton.hidden = false
-        }
-        else {
-            doneButton.hidden = true
+            calculateButton.hidden = false
+            gasMileageToolbarButtonBottomConstraint.constant = 10 + screenHeight * 0.09
+            gasPriceToolbarButtonBottomConstraint.constant = 10 + screenHeight * 0.09
+            mainToolbarHeight.constant = gasMileageToolbarHeight.constant
+            calculateButtonHeight.constant = mainToolbarHeight.constant - gasMileageToolbarButton.frame.origin.y - gasMileageToolbarButton.frame.height - 10 - 10
         }
     }
     
@@ -382,7 +387,7 @@ class MainViewController: UIViewController {
                 routeDistance! *= 0.000189
             }
             
-            updateDoneButton()
+            updateCalculateButton()
         }
         else {
             distanceLabel.text = "Could not find distance"
@@ -660,7 +665,7 @@ class MainViewController: UIViewController {
         plusGasButton.hidden = false
         premiumGasButton.hidden = false
         
-        gasPriceToolbarHeight.constant = screenHeight * 0.33
+        gasPriceToolbarHeight.constant = screenHeight * 0.32
     }
     
     func deactivateButtons() {
