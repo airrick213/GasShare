@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "car.png"
+      "filename" : "circle.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "car@2x.png"
+      "filename" : "circle@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "car@3x.png"
+      "filename" : "circle@3x.png"
     }
   ],
   "info" : {

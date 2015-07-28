@@ -143,6 +143,13 @@
                                 <color key="shadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Circle" translatesAutoresizingMaskIntoConstraints="NO" id="eET-oi-cmK">
+                                <rect key="frame" x="537" y="443" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="TLO-vC-iES"/>
+                                    <constraint firstAttribute="height" constant="50" id="gWc-o1-2ml"/>
+                                </constraints>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="POd-XV-zJF">
                                 <rect key="frame" x="540" y="446" width="44" height="44"/>
                                 <constraints>
@@ -486,6 +493,7 @@
                             <constraint firstItem="we8-4f-Pqe" firstAttribute="top" secondItem="POd-XV-zJF" secondAttribute="bottom" constant="10" id="Ago-Cz-Qmi"/>
                             <constraint firstItem="WH9-Iz-Bvx" firstAttribute="leading" secondItem="Y4c-Kj-vFd" secondAttribute="leadingMargin" id="E8r-Ao-Zfg"/>
                             <constraint firstItem="we8-4f-Pqe" firstAttribute="leading" secondItem="Y4c-Kj-vFd" secondAttribute="leading" id="NhH-gO-g4r"/>
+                            <constraint firstItem="eET-oi-cmK" firstAttribute="centerX" secondItem="POd-XV-zJF" secondAttribute="centerX" id="P32-2x-zgI"/>
                             <constraint firstItem="WH9-Iz-Bvx" firstAttribute="top" secondItem="eQ7-hc-ETn" secondAttribute="bottom" id="PdN-aM-w9h"/>
                             <constraint firstAttribute="trailing" secondItem="DG5-mv-S46" secondAttribute="trailing" id="Qa9-G4-6y2"/>
                             <constraint firstItem="eQ7-hc-ETn" firstAttribute="leading" secondItem="Y4c-Kj-vFd" secondAttribute="leadingMargin" id="SNc-z9-gjn"/>
@@ -496,6 +504,7 @@
                             <constraint firstItem="bg5-jq-cFE" firstAttribute="top" secondItem="MJP-0x-NF6" secondAttribute="bottom" id="pQb-Zr-jSr"/>
                             <constraint firstAttribute="trailingMargin" secondItem="eQ7-hc-ETn" secondAttribute="trailing" id="qQb-bc-u9N"/>
                             <constraint firstAttribute="trailing" secondItem="QXy-AN-9X9" secondAttribute="trailing" id="sla-7b-huy"/>
+                            <constraint firstItem="eET-oi-cmK" firstAttribute="centerY" secondItem="POd-XV-zJF" secondAttribute="centerY" id="tsR-V3-2qw"/>
                             <constraint firstAttribute="trailing" secondItem="MJP-0x-NF6" secondAttribute="trailing" id="vkO-ui-GyI"/>
                             <constraint firstAttribute="centerX" secondItem="WH9-Iz-Bvx" secondAttribute="centerX" id="vu8-1s-bpA"/>
                             <constraint firstAttribute="centerX" secondItem="fC2-bw-DJL" secondAttribute="centerX" id="x8B-Y8-5Hc"/>
@@ -812,6 +821,7 @@ Special thanks to MakeSchool for mentorship throughout the construction of the a
     </scenes>
     <resources>
         <image name="Check" width="32" height="32"/>
+        <image name="Circle" width="50" height="50"/>
         <image name="Location" width="32" height="32"/>
         <image name="Location-Color" width="32" height="32"/>
     </resources>
