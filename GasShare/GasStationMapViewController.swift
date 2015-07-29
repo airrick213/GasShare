@@ -117,13 +117,13 @@ class GasStationMapViewController: UIViewController {
         searchBar.showsCancelButton = true
         
         keyboardNotificationHandler.keyboardWillBeHiddenHandler = { (height: CGFloat) in UIView.animateWithDuration(0.3) {
-            self.currentLocationButtonBottomConstraint.constant = 10
+            self.currentLocationButtonBottomConstraint.constant = 14
             self.view.layoutIfNeeded()
             }
         }
         
         keyboardNotificationHandler.keyboardWillBeShownHandler = { (height: CGFloat) in UIView.animateWithDuration(0.4) {
-            self.currentLocationButtonBottomConstraint.constant = 10 + height
+            self.currentLocationButtonBottomConstraint.constant = 14 + height
             self.view.layoutIfNeeded()
             }
         }

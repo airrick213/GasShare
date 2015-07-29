@@ -164,6 +164,13 @@ class MainViewController: UIViewController {
         UIView.animateWithDuration(0.25) {
             secondView.frame.origin.y = self.screenHeight - secondView.frame.height
             
+            if secondView === self.mainToolbar {
+                self.currentLocationButtonBottomConstraint.constant = 14
+            }
+            else {
+                self.currentLocationButtonBottomConstraint.constant = 14 + secondView.frame.height - firstView.frame.height
+            }
+            
             self.view.layoutIfNeeded()
         }
     }
@@ -318,7 +325,7 @@ class MainViewController: UIViewController {
                     self.view.layoutIfNeeded()
                 }
                 else {
-                    self.currentLocationButtonBottomConstraint.constant = 10
+                    self.currentLocationButtonBottomConstraint.constant = 14
                     self.view.layoutIfNeeded()
                 }
             }
@@ -334,7 +341,7 @@ class MainViewController: UIViewController {
                     self.view.layoutIfNeeded()
                 }
                 else {
-                    self.currentLocationButtonBottomConstraint.constant = (10 + height - self.mainToolbarHeight.constant)
+                    self.currentLocationButtonBottomConstraint.constant = (14 + height - self.mainToolbarHeight.constant)
                     self.view.layoutIfNeeded()
                 }
             }
