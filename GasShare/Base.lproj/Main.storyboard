@@ -175,6 +175,9 @@
                                             <color key="titleColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.55686274509803924" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="selected">
+                                            <color key="titleColor" red="1" green="0.2214862044" blue="0.22825859200000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.BorderWidth">
                                                 <real key="value" value="0.5"/>
@@ -195,6 +198,9 @@
                                         <state key="normal" title="$/gal">
                                             <color key="titleColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" red="1" green="0.2214862044" blue="0.22825859200000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.BorderWidth">
@@ -260,7 +266,7 @@
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                         <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                         <state key="normal" title="Don't know the gas price?">
-                                            <color key="titleColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -416,7 +422,7 @@
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                         <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                         <state key="normal" title="Don't know the gas mileage?">
-                                            <color key="titleColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -543,6 +549,7 @@
                         <outlet property="currentLocationButtonBottomConstraint" destination="Ago-Cz-Qmi" id="z81-8R-Osw"/>
                         <outlet property="distanceLabel" destination="fC2-bw-DJL" id="86D-zd-L1X"/>
                         <outlet property="endSearchBar" destination="WH9-Iz-Bvx" id="2DY-JH-IZJ"/>
+                        <outlet property="gasMileageClearButton" destination="204-fO-v58" id="cXs-fT-CjG"/>
                         <outlet property="gasMileageTextField" destination="hcg-sL-2dk" id="f91-KD-2WL"/>
                         <outlet property="gasMileageToolbar" destination="DG5-mv-S46" id="BnL-Pq-wcG"/>
                         <outlet property="gasMileageToolbarBottomConstraint" destination="3ei-Fr-rg1" id="3Ze-Xv-yXr"/>
@@ -551,6 +558,7 @@
                         <outlet property="gasMileageToolbarHeight" destination="XOM-6H-oTo" id="JeK-Hs-H6K"/>
                         <outlet property="gasMileagesSuggestionsButton" destination="lR8-tO-ypM" id="yTl-gh-Msy"/>
                         <outlet property="gasPriceButton" destination="Cu1-jR-NY6" id="hi0-2p-bma"/>
+                        <outlet property="gasPriceClearButton" destination="RKQ-eV-2GA" id="Qbf-D9-X63"/>
                         <outlet property="gasPriceTextField" destination="Sw5-1a-E2D" id="PpE-rX-q8p"/>
                         <outlet property="gasPriceToolbar" destination="QXy-AN-9X9" id="NpU-l2-7aw"/>
                         <outlet property="gasPriceToolbarBottomConstraint" destination="dGG-vq-reS" id="hmD-G3-qHa"/>
@@ -601,6 +609,11 @@
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="5rI-Sp-t9v"/>
+                                    </mask>
+                                </variation>
                             </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AdG-Zf-61Q">
                                 <rect key="frame" x="0.0" y="80" width="600" height="520"/>
@@ -681,96 +694,118 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Cost" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="33I-I0-fYx">
-                                <rect key="frame" x="245" y="80" width="110" height="33"/>
+                                <rect key="frame" x="245" y="120" width="110" height="33"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
                                 <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Passengers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b5f-bq-dsA">
-                                <rect key="frame" x="176" y="118" width="248" height="33"/>
+                                <rect key="frame" x="176" y="158" width="248" height="33"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
                                 <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Individual Cost" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f8S-0r-j2r">
-                                <rect key="frame" x="192" y="234" width="216" height="44"/>
+                                <rect key="frame" x="192" y="278" width="216" height="44"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="32"/>
                                 <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cost" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3YQ-3B-Fij">
-                                <rect key="frame" x="266" y="278" width="68" height="44"/>
+                                <rect key="frame" x="266" y="322" width="68" height="44"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="32"/>
-                                <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.1803921568627451" green="0.80000000000000004" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="2ae-5f-2Hw">
-                                <rect key="frame" x="253" y="156" width="94" height="29"/>
+                                <rect key="frame" x="253" y="196" width="94" height="29"/>
                                 <connections>
                                     <action selector="numberOfPassengersChanged:" destination="csB-mT-9P3" eventType="valueChanged" id="XxP-Px-DJ9"/>
                                 </connections>
                             </stepper>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rpj-XY-hlS">
-                                <rect key="frame" x="183" y="415" width="234" height="60"/>
-                                <color key="backgroundColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zzN-gg-Pgm">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="IYt-j1-eqm"/>
+                                    <constraint firstAttribute="height" constant="80" id="0G9-WD-Sgc"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
-                                <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
-                                <state key="normal" title="Charge with Venmo">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c89-Ck-4zg">
-                                <rect key="frame" x="260" y="495" width="80" height="45"/>
-                                <color key="backgroundColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <navigationItem title="Gas Share" id="OE6-dn-tZ7">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="ILc-EP-667">
+                                            <connections>
+                                                <segue destination="RNb-eu-1i5" kind="unwind" unwindAction="unwindToSegue:" id="lSA-Yn-gNc"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="About" id="i48-VA-GEc">
+                                            <connections>
+                                                <segue destination="uhd-in-UYC" kind="show" identifier="ShowAboutPage" id="wAq-b5-wcF"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nd1-6w-4to" customClass="MainToolbar" customModule="GasShare" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="500" width="600" height="100"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rpj-XY-hlS">
+                                        <rect key="frame" x="8" y="18" width="584" height="64"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="IYt-j1-eqm"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="32"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                                        <state key="normal" title="Charge with Venmo">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="IYt-j1-eqm"/>
+                                            </mask>
+                                        </variation>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="0Rz-WO-j7L"/>
-                                    <constraint firstAttribute="height" constant="45" id="dKq-hg-u2b"/>
+                                    <constraint firstItem="rpj-XY-hlS" firstAttribute="top" secondItem="nd1-6w-4to" secondAttribute="topMargin" constant="10" id="1DF-s7-LGJ"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="rpj-XY-hlS" secondAttribute="trailing" id="Fdk-de-6GE"/>
+                                    <constraint firstAttribute="height" constant="100" id="ZZt-xq-Bey"/>
+                                    <constraint firstItem="rpj-XY-hlS" firstAttribute="leading" secondItem="nd1-6w-4to" secondAttribute="leadingMargin" id="o5Z-4H-JQh"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="rpj-XY-hlS" secondAttribute="bottom" constant="10" id="ubH-fL-w03"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
-                                <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
-                                <state key="normal" title="Back">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="RNb-eu-1i5" kind="unwind" identifier="Back" unwindAction="unwindToSegue:" id="0q8-8r-1aJ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JYs-cw-NCT">
-                                <rect key="frame" x="279" y="560" width="42" height="30"/>
-                                <state key="normal" title="About">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="uhd-in-UYC" kind="show" id="vf0-97-r51"/>
-                                </connections>
-                            </button>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="zzN-gg-Pgm" secondAttribute="trailing" id="0ug-1h-EGr"/>
                             <constraint firstAttribute="centerX" secondItem="f8S-0r-j2r" secondAttribute="centerX" id="3g9-1g-ftH"/>
-                            <constraint firstItem="NL5-Qq-pFU" firstAttribute="top" secondItem="JYs-cw-NCT" secondAttribute="bottom" constant="10" id="3m7-fB-Lc8"/>
+                            <constraint firstItem="zzN-gg-Pgm" firstAttribute="leading" secondItem="lAQ-Dr-8wD" secondAttribute="leading" id="4AE-Jb-52d"/>
+                            <constraint firstAttribute="trailing" secondItem="nd1-6w-4to" secondAttribute="trailing" id="619-CZ-PVy"/>
                             <constraint firstAttribute="centerY" secondItem="3YQ-3B-Fij" secondAttribute="centerY" id="8vL-h1-Fzl"/>
-                            <constraint firstAttribute="centerX" secondItem="JYs-cw-NCT" secondAttribute="centerX" id="CVL-Jz-m7Z"/>
                             <constraint firstItem="b5f-bq-dsA" firstAttribute="top" secondItem="33I-I0-fYx" secondAttribute="bottom" constant="5" id="Dfv-3y-hvH"/>
+                            <constraint firstItem="zzN-gg-Pgm" firstAttribute="top" secondItem="lAQ-Dr-8wD" secondAttribute="top" id="Fcv-KM-kWf"/>
+                            <constraint firstItem="NL5-Qq-pFU" firstAttribute="top" secondItem="nd1-6w-4to" secondAttribute="bottom" id="JJr-kV-Xfx"/>
                             <constraint firstAttribute="centerX" secondItem="33I-I0-fYx" secondAttribute="centerX" id="Ja5-xy-GZv"/>
                             <constraint firstItem="33I-I0-fYx" firstAttribute="top" secondItem="eEj-t6-gIE" secondAttribute="bottom" constant="60" id="P05-Jy-2u4"/>
                             <constraint firstItem="3YQ-3B-Fij" firstAttribute="top" secondItem="f8S-0r-j2r" secondAttribute="bottom" id="T35-m5-4xI"/>
-                            <constraint firstAttribute="centerX" secondItem="rpj-XY-hlS" secondAttribute="centerX" id="bGH-oC-cgZ"/>
+                            <constraint firstItem="nd1-6w-4to" firstAttribute="leading" secondItem="lAQ-Dr-8wD" secondAttribute="leading" id="bLd-zP-cYd"/>
                             <constraint firstItem="2ae-5f-2Hw" firstAttribute="top" secondItem="b5f-bq-dsA" secondAttribute="bottom" constant="5" id="cKH-Uy-xWh"/>
-                            <constraint firstItem="c89-Ck-4zg" firstAttribute="top" secondItem="rpj-XY-hlS" secondAttribute="bottom" constant="20" id="fci-R9-6Xg"/>
-                            <constraint firstItem="NL5-Qq-pFU" firstAttribute="top" secondItem="c89-Ck-4zg" secondAttribute="bottom" constant="60" id="o1R-kJ-E50"/>
+                            <constraint firstItem="33I-I0-fYx" firstAttribute="top" secondItem="zzN-gg-Pgm" secondAttribute="bottom" constant="40" id="jjU-D1-bGo"/>
                             <constraint firstAttribute="centerX" secondItem="b5f-bq-dsA" secondAttribute="centerX" id="p4f-Hl-38j"/>
+                            <constraint firstAttribute="centerY" secondItem="f8S-0r-j2r" secondAttribute="centerY" id="tia-Yo-fC4"/>
                             <constraint firstAttribute="centerX" secondItem="3YQ-3B-Fij" secondAttribute="centerX" id="x74-lE-WQO"/>
                             <constraint firstAttribute="centerX" secondItem="2ae-5f-2Hw" secondAttribute="centerX" id="y58-zr-EeL"/>
-                            <constraint firstAttribute="centerX" secondItem="c89-Ck-4zg" secondAttribute="centerX" id="z6E-1q-WYb"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="P05-Jy-2u4"/>
+                                <exclude reference="8vL-h1-Fzl"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="individualCostLabel" destination="3YQ-3B-Fij" id="dDZ-Wq-Jmh"/>
                         <outlet property="numberOfPassengersLabel" destination="b5f-bq-dsA" id="LdL-kA-zdk"/>
+                        <outlet property="toolbarHeight" destination="ZZt-xq-Bey" id="Aw4-ib-oQQ"/>
                         <outlet property="totalLabel" destination="33I-I0-fYx" id="5Xi-cC-pJh"/>
                     </connections>
                 </viewController>
@@ -791,20 +826,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ie-RW-u0P">
-                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
-                                <items>
-                                    <navigationItem title="About" id="b9X-mT-qYz">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="Hpk-lz-lg7">
-                                            <connections>
-                                                <segue destination="csB-mT-9P3" kind="custom" identifier="AboutPageBack" customClass="DismissSegue" id="fFk-FM-Hfx"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HGz-Zn-Myg">
-                                <rect key="frame" x="16" y="64" width="568" height="536"/>
+                                <rect key="frame" x="16" y="80" width="568" height="520"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <mutableString key="text">Copyright (c) 2015 Eric Kim. Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files, to deal
@@ -831,6 +854,21 @@ Special thanks to MakeSchool for mentorship throughout the construction of the a
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ie-RW-u0P">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="I1H-BJ-DiY"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="About" id="b9X-mT-qYz">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="Hpk-lz-lg7">
+                                            <connections>
+                                                <segue destination="csB-mT-9P3" kind="custom" identifier="AboutPageBack" customClass="DismissSegue" id="fFk-FM-Hfx"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -841,7 +879,13 @@ Special thanks to MakeSchool for mentorship throughout the construction of the a
                             <constraint firstAttribute="trailingMargin" secondItem="HGz-Zn-Myg" secondAttribute="trailing" id="Y7F-yJ-JpK"/>
                             <constraint firstItem="4ie-RW-u0P" firstAttribute="top" secondItem="DnT-Va-Aqg" secondAttribute="bottom" id="bNH-IP-TeN"/>
                             <constraint firstItem="4ie-RW-u0P" firstAttribute="leading" secondItem="izP-cS-XIB" secondAttribute="leading" id="fJ5-St-9EF"/>
+                            <constraint firstItem="4ie-RW-u0P" firstAttribute="top" secondItem="izP-cS-XIB" secondAttribute="topMargin" id="nEZ-5c-FLj"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="bNH-IP-TeN"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="textView" destination="HGz-Zn-Myg" id="A5f-6B-2R9"/>

@@ -43,6 +43,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var gasMileageToolbarButtonBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var gasPriceToolbarButtonBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var calculateButtonHeight: NSLayoutConstraint!
+    @IBOutlet weak var gasPriceClearButton: UIButton!
+    @IBOutlet weak var gasMileageClearButton: UIButton!
     
     var screenHeight: CGFloat!
     var keyboardNotificationHandler = KeyboardNotificationHandler()
@@ -93,15 +95,20 @@ class MainViewController: UIViewController {
                 gasMileage = NSString(string: doubleString).doubleValue
             }
             
-            gasMileageTextField.resignFirstResponder()
-            animate(mainToolbar, over: gasMileageToolbar)
-            
-            gasMileageToolbarButton.setTitle("\(gasMileage!) mi/gal", forState: UIControlState.Normal)
-            gasMileageToolbarButton.titleLabel!.font = UIFont(name: "Avenir", size: 24)
-            updateCalculateButton()
-            
-            if let gasMileage = gasMileage {
-                gasMileageTextField.text = String(format: "%.1f", gasMileage)
+            if gasMileage > 0 {
+                gasMileageTextField.resignFirstResponder()
+                animate(mainToolbar, over: gasMileageToolbar)
+                
+                gasMileageToolbarButton.setTitle("\(gasMileage!) mi/gal", forState: UIControlState.Normal)
+                gasMileageToolbarButton.titleLabel!.font = UIFont(name: "Avenir", size: 24)
+                gasMileageToolbarButton.selected = true
+                updateCalculateButton()
+                
+                gasMileageTextField.text = String(format: "%.1f", gasMileage!)
+            }
+            else {
+                UIAlertView(title: "No Gas Mileage", message: "Please enter your car's gas mileage or choose one from the suggestions list", delegate: nil, cancelButtonTitle: "OK").show()
+                MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
             }
         }
         else {
@@ -121,16 +128,21 @@ class MainViewController: UIViewController {
                 gasPrice = NSString(string: doubleString).doubleValue
             }
             
-            gasPriceTextField.resignFirstResponder()
-            animate(mainToolbar, over: gasPriceToolbar)
-            
-            let priceString = NSString(format: "$%.2f/gal", gasPrice!) as String
-            gasPriceToolbarButton.setTitle(priceString, forState: UIControlState.Normal)
-            gasPriceToolbarButton.titleLabel!.font = UIFont(name: "Avenir", size: 24)
-            updateCalculateButton()
-            
-            if let gasPrice = gasPrice {
-                gasPriceTextField.text = String(format: "%.2f", gasPrice)
+            if gasPrice > 0 {
+                gasPriceTextField.resignFirstResponder()
+                animate(mainToolbar, over: gasPriceToolbar)
+                
+                let priceString = NSString(format: "$%.2f/gal", gasPrice!) as String
+                gasPriceToolbarButton.setTitle(priceString, forState: UIControlState.Normal)
+                gasPriceToolbarButton.titleLabel!.font = UIFont(name: "Avenir", size: 24)
+                gasPriceToolbarButton.selected = true
+                updateCalculateButton()
+                
+                gasPriceTextField.text = String(format: "%.2f", gasPrice!)
+            }
+            else {
+                UIAlertView(title: "No Gas Price", message: "Please enter the gas price or select the location of your gas station", delegate: nil, cancelButtonTitle: "OK").show()
+                MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
             }
         }
         else {
@@ -182,6 +194,8 @@ class MainViewController: UIViewController {
             else {
                 gasMileageTextField.text = ""
             }
+            
+            gasMileageClearButton.hidden = false
         }
     }
     
@@ -239,12 +253,14 @@ class MainViewController: UIViewController {
         gasMileagesSuggestionsButton.setTitle("Don't know the gas mileage?", forState: UIControlState.Normal)
         gasMileageTextField.enabled = true
         selectedIndex = nil
+        gasMileageClearButton.hidden = true
     }
     
     @IBAction func gasPriceClearButtonTapped(sender: AnyObject) {
         gasPriceButton.setTitle("Don't know the gas price?", forState: UIControlState.Normal)
         hideGasPriceButtons()
         gasPriceTextField.enabled = true
+        gasPriceClearButton.hidden = true
     }
     
     override func viewDidLoad() {
@@ -279,6 +295,9 @@ class MainViewController: UIViewController {
         
         endSearchBar.hidden = true
         distanceLabel.hidden = true
+        
+        gasMileageClearButton.hidden = true
+        gasPriceClearButton.hidden = true
         
         hideGasPriceButtons()
         
@@ -752,6 +771,7 @@ class MainViewController: UIViewController {
         }
         
         gasPriceButton.sizeToFit()
+        gasPriceClearButton.hidden = false
     }
     
     //MARK: Navigation
@@ -762,13 +782,15 @@ class MainViewController: UIViewController {
                 let source = segue.sourceViewController as! GasMileagesViewController
                 
                 if let selectedIndex = source.selectedIndex {
-                    if gasMileageText != source.suggestedMileageValues[selectedIndex] {
+                    if gasMileagesSuggestionsButton.titleLabel!.text != source.suggestedMileageValues[selectedIndex] {
                         gasMileageText = source.suggestedMileageValues[selectedIndex]
                         gasMileagesSuggestionsButton.setTitle(gasMileageText, forState: UIControlState.Normal)
                         gasMileageTextField.enabled = false
                         
                         gasMileagesSuggestionsButton.sizeToFit()
                     }
+                    
+                    gasMileageClearButton.hidden = false
                 }
                 else if gasMileagesSuggestionsButton.titleLabel!.text != "Don't know the gas mileage?" {
                     gasMileageText = "Don't know the gas mileage?"
@@ -776,13 +798,11 @@ class MainViewController: UIViewController {
                     gasMileageTextField.enabled = true
                     
                     gasMileagesSuggestionsButton.sizeToFit()
+                    
+                    gasMileageClearButton.hidden = true
                 }
                 
                 selectedIndex = source.selectedIndex
-            }
-            else if identifier == "GasMileageCancel" {
-                gasMileagesSuggestionsButton.setTitle(gasMileageText, forState: UIControlState.Normal)
-                gasMileageTextField.enabled = (gasMileageText == "Don't know the gas mileage?")
             }
             else if identifier == "GasStationDone" {
                 let source = segue.sourceViewController as! GasStationMapViewController
@@ -845,8 +865,15 @@ extension MainViewController: UITextFieldDelegate {
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         if textField.text.rangeOfString(".") != nil {
-            if (string.rangeOfString(".") != nil || count(textField.text.componentsSeparatedByString(".")[1]) + count(string) > 2) {
-                return false
+            if textField === gasMileageTextField {
+                if (string.rangeOfString(".") != nil || count(textField.text.componentsSeparatedByString(".")[1]) + count(string) > 1) {
+                    return false
+                }
+            }
+            else if textField === gasPriceTextField {
+                if (string.rangeOfString(".") != nil || count(textField.text.componentsSeparatedByString(".")[1]) + count(string) > 2) {
+                    return false
+                }
             }
         }
         
