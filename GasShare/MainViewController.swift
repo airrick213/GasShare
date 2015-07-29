@@ -274,9 +274,9 @@ class MainViewController: UIViewController {
         
         screenHeight = self.view.frame.height
         
-        mainToolbarHeight.constant = screenHeight * 0.16
-        gasMileageToolbarHeight.constant = screenHeight * 0.25
-        gasPriceToolbarHeight.constant = screenHeight * 0.32
+        mainToolbarHeight.constant = 100
+        gasMileageToolbarHeight.constant = 160
+        gasPriceToolbarHeight.constant = 210
         
         gasMileageToolbar.hidden = true
         gasPriceToolbar.hidden = true
@@ -349,10 +349,10 @@ class MainViewController: UIViewController {
     func updateCalculateButton() {
         if routeDistance != nil && gasMileage != nil && gasPrice != nil {
             calculateButton.hidden = false
-            gasMileageToolbarButtonBottomConstraint.constant = 10 + screenHeight * 0.09
-            gasPriceToolbarButtonBottomConstraint.constant = 10 + screenHeight * 0.09
+            gasMileageToolbarButtonBottomConstraint.constant = 70
+            gasPriceToolbarButtonBottomConstraint.constant = 70
             mainToolbarHeight.constant = gasMileageToolbarHeight.constant
-            calculateButtonHeight.constant = mainToolbarHeight.constant - gasMileageToolbarButton.frame.origin.y - gasMileageToolbarButton.frame.height - 10 - 10
+            calculateButtonHeight.constant = 60
         }
     }
     
@@ -749,7 +749,7 @@ class MainViewController: UIViewController {
         plusGasButtonTopConstraint.constant = 10
         plusGasButtonBottomConstraint.constant = 10
         
-        gasPriceToolbarHeight.constant = screenHeight * 0.32
+        gasPriceToolbarHeight.constant = 210
     }
     
     func hideGasPriceButtons() {
