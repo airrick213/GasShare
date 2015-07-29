@@ -148,7 +148,8 @@ class GasStationMapViewController: UIViewController {
                 self.handleSearchLocationResponse(data!)
             }
             else {
-                UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again.", delegate: nil, cancelButtonTitle: "OK").show()
+                UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again", delegate: nil, cancelButtonTitle: "OK").show()
+                MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
             }
         }
     }
@@ -224,6 +225,17 @@ class GasStationMapViewController: UIViewController {
                 self.searchBar.text = self.selectedLocation
             }
         })
+    }
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        if identifier == "GasStationDone" {
+            if selectedLocation == "" {
+                UIAlertView(title: "No Location Selected", message: "Please select the location of your gas station", delegate: nil, cancelButtonTitle: "OK").show()
+                MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+                return false
+            }
+        }
+        return true
     }
     
 }
