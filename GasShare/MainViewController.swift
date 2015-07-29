@@ -50,7 +50,6 @@ class MainViewController: UIViewController {
     var searchingStartLocation = true
     
     //gas mileage variables
-    var usingGasMileageTextField = false
     var gasMileageText = "Don't know the gas mileage?"
     var gasMileage: Double?
     var selectedIndex: Int?
@@ -68,7 +67,6 @@ class MainViewController: UIViewController {
     var endMarker: GMSMarker?
     
     //gas price variables
-    var usingGasPriceTextField = false
     var selectedLocation = ""
     var zipcode = ""
     var regPrice: Double = 0
@@ -221,6 +219,7 @@ class MainViewController: UIViewController {
         mapView = GMSMapView.mapWithFrame(self.view.bounds, camera: camera)
         
         mapView.myLocationEnabled = true
+        mapView.delegate = self
         
         baseView.addSubview(mapView)
         
@@ -233,11 +232,11 @@ class MainViewController: UIViewController {
         deactivateButtons()
         
         keyboardNotificationHandler.keyboardWillBeHiddenHandler = { (height: CGFloat) in UIView.animateWithDuration(0.3) {
-                if self.usingGasMileageTextField {
+                if self.gasMileageTextField.isFirstResponder() {
                     self.gasMileageToolbarBottomConstraint.constant = 0
                     self.view.layoutIfNeeded()
                 }
-                else if self.usingGasPriceTextField {
+                else if self.gasPriceTextField.isFirstResponder() {
                     self.gasPriceToolbarBottomConstraint.constant = 0
                     self.view.layoutIfNeeded()
                 }
@@ -249,11 +248,11 @@ class MainViewController: UIViewController {
         }
     
         keyboardNotificationHandler.keyboardWillBeShownHandler = { (height: CGFloat) in UIView.animateWithDuration(0.4) {
-                if self.usingGasMileageTextField {
+                if self.gasMileageTextField.isFirstResponder() {
                     self.gasMileageToolbarBottomConstraint.constant = height
                     self.view.layoutIfNeeded()
                 }
-                else if self.usingGasPriceTextField {
+                else if self.gasPriceTextField.isFirstResponder() {
                     self.gasPriceToolbarBottomConstraint.constant = height
                     self.view.layoutIfNeeded()
                 }
@@ -794,17 +793,6 @@ extension MainViewController: UISearchBarDelegate {
 
 extension MainViewController: UITextFieldDelegate {
     
-    func textFieldDidBeginEditing(textField: UITextField) {
-        if textField === gasPriceTextField {
-            usingGasPriceTextField = true
-            usingGasMileageTextField = false
-        }
-        else if textField === gasMileageTextField {
-            usingGasMileageTextField = true
-            usingGasPriceTextField = false
-        }
-    }
-    
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         if textField.text.rangeOfString(".") != nil {
             if (string.rangeOfString(".") != nil || count(textField.text.componentsSeparatedByString(".")[1]) + count(string) > 2) {
@@ -813,6 +801,25 @@ extension MainViewController: UITextFieldDelegate {
         }
         
         return true
+    }
+    
+}
+
+extension MainViewController: GMSMapViewDelegate {
+    
+    func mapView(mapView: GMSMapView!, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
+        if startSearchBar.isFirstResponder() {
+            startSearchBar.resignFirstResponder()
+        }
+        else if endSearchBar.isFirstResponder() {
+            endSearchBar.resignFirstResponder()
+        }
+        else if gasMileageTextField.isFirstResponder() {
+            gasMileageTextField.resignFirstResponder()
+        }
+        else if gasPriceTextField.isFirstResponder() {
+            gasPriceTextField.resignFirstResponder()
+        }
     }
     
 }

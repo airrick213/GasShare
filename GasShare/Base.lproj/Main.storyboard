@@ -582,6 +582,13 @@
                                 <rect key="frame" x="0.0" y="80" width="600" height="520"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Circle" translatesAutoresizingMaskIntoConstraints="NO" id="o76-7j-Mbv">
+                                <rect key="frame" x="537" y="543" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="7rW-wW-ko0"/>
+                                    <constraint firstAttribute="height" constant="50" id="nKQ-1X-hmH"/>
+                                </constraints>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DNe-7Z-nLi">
                                 <rect key="frame" x="540" y="546" width="44" height="44"/>
                                 <constraints>
@@ -610,6 +617,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="uEH-95-AWY" firstAttribute="leading" secondItem="0z5-iI-kin" secondAttribute="leading" id="AI1-ik-v6C"/>
+                            <constraint firstItem="DNe-7Z-nLi" firstAttribute="centerX" secondItem="o76-7j-Mbv" secondAttribute="centerX" id="FRU-yS-HEc"/>
                             <constraint firstAttribute="trailing" secondItem="uEH-95-AWY" secondAttribute="trailing" id="NzP-7j-lto"/>
                             <constraint firstAttribute="trailingMargin" secondItem="EbL-DN-G7v" secondAttribute="trailing" id="PbO-vS-8FK"/>
                             <constraint firstAttribute="trailing" secondItem="AdG-Zf-61Q" secondAttribute="trailing" id="Q1Y-UF-ONc"/>
@@ -621,6 +629,7 @@
                             <constraint firstItem="AdG-Zf-61Q" firstAttribute="top" secondItem="uEH-95-AWY" secondAttribute="bottom" id="qF4-Ll-B3s"/>
                             <constraint firstItem="y2q-g4-Dqd" firstAttribute="top" secondItem="DNe-7Z-nLi" secondAttribute="bottom" constant="10" id="qt3-is-suK"/>
                             <constraint firstItem="EbL-DN-G7v" firstAttribute="leading" secondItem="0z5-iI-kin" secondAttribute="leadingMargin" id="rBG-Ek-HTh"/>
+                            <constraint firstItem="DNe-7Z-nLi" firstAttribute="centerY" secondItem="o76-7j-Mbv" secondAttribute="centerY" id="rx1-bb-UL9"/>
                         </constraints>
                     </view>
                     <connections>
@@ -826,6 +835,6 @@ Special thanks to MakeSchool for mentorship throughout the construction of the a
         <image name="Location-Color" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aZV-76-HM1"/>
+        <segue reference="fFk-FM-Hfx"/>
     </inferredMetricsTieBreakers>
 </document>

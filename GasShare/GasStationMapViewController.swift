@@ -22,6 +22,57 @@ class GasStationMapViewController: UIViewController {
     @IBOutlet weak var currentLocationButtonBottomConstraint: NSLayoutConstraint!
     
     let keyboardNotificationHandler = KeyboardNotificationHandler()
+    let stateAbbreviations = [
+        "Alabama" : "AL",
+        "Montana" : "MT",
+        "Alaska" : "AK",
+        "Nebraska" : "NE",
+        "Arizona" : "AZ",
+        "Nevada" : "NV",
+        "Arkansas" : "AR",
+        "New Hampshire" : "NH",
+        "California" : "CA",
+        "New Jersey" : "NJ",
+        "Colorado" : "CO",
+        "New Mexico" : "NM",
+        "Connecticut" : "CT",
+        "New York" : "NY",
+        "Delaware" : "DE",
+        "North Carolina" : "NC",
+        "Florida" : "FL",
+        "North Dakota" : "ND",
+        "Georgia" : "GA",
+        "Ohio" : "OH",
+        "Hawaii" : "HI",
+        "Oklahoma" : "OK",
+        "Idaho" : "ID",
+        "Oregon" : "OR",
+        "Illinois" : "IL",
+        "Pennsylvania" : "PA",
+        "Indiana" : "IN",
+        "Rhode Island" : "RI",
+        "Iowa" : "IA",
+        "South Carolina" : "SC",
+        "Kansas"  : "KS",
+        "South Dakota" : "SD",
+        "Kentucky" : "KY",
+        "Tennessee" : "TN",
+        "Louisiana" : "LA",
+        "Texas" : "TX",
+        "Maine" : "ME",
+        "Utah" : "UT",
+        "Maryland" : "MD",
+        "Vermont" : "VT",
+        "Massachusetts" : "MA",
+        "Virginia" : "VA",
+        "Michigan" : "MI",
+        "Washington" : "WA",
+        "Minnesota" : "MN",
+        "West Virginia" : "WV",
+        "Mississippi" : "MS",
+        "Wisconsin" : "WI",
+        "Missouri" : "MO",
+        "Wyoming" : "WY"]
     
     // map variables
     let locationManager = CLLocationManager()
@@ -121,6 +172,7 @@ class GasStationMapViewController: UIViewController {
             
             usedSearchBar = true
             MapHelper.moveCamera(mapView: mapView, coordinate: selectedCoordinate)
+            setMarker(coordinate: selectedCoordinate)
         }
     }
     
@@ -166,8 +218,10 @@ class GasStationMapViewController: UIViewController {
                         self.selectedLocation += ", "
                     }
                     
-                    self.selectedLocation += administrativeArea.capitalizedString
+                    self.selectedLocation += self.stateAbbreviations[administrativeArea.capitalizedString]!
                 }
+                
+                self.searchBar.text = self.selectedLocation
             }
         })
     }
@@ -202,16 +256,12 @@ extension GasStationMapViewController: UISearchBarDelegate {
 
 extension GasStationMapViewController: GMSMapViewDelegate {
     
-    func mapView(mapView: GMSMapView!, didLongPressAtCoordinate coordinate: CLLocationCoordinate2D) {
-        MapHelper.moveCamera(mapView: mapView, coordinate: coordinate)
-    }
-    
-    func mapView(mapView: GMSMapView!, idleAtCameraPosition position: GMSCameraPosition!) {
-        if !firstLocation {
-            setMarker(coordinate: position.target)
+    func mapView(mapView: GMSMapView!, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
+        if searchBar.isFirstResponder() {
+            searchBar.resignFirstResponder()
         }
         else {
-            firstLocation = false
+            setMarker(coordinate: coordinate)
         }
     }
     
