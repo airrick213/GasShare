@@ -111,7 +111,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MJP-0x-NF6">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <searchBar alpha="0.80000000000000004" contentMode="redraw" text="" placeholder="Route Start Location" translatesAutoresizingMaskIntoConstraints="NO" id="eQ7-hc-ETn">
@@ -514,7 +514,6 @@
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="fC2-bw-DJL" secondAttribute="centerY" id="2hy-E2-Pjg"/>
                             <constraint firstItem="bg5-jq-cFE" firstAttribute="top" secondItem="DG5-mv-S46" secondAttribute="bottom" id="3ei-Fr-rg1"/>
-                            <constraint firstItem="MJP-0x-NF6" firstAttribute="top" secondItem="uU7-yq-ZnO" secondAttribute="bottom" id="4is-ho-nXI"/>
                             <constraint firstAttribute="trailing" secondItem="we8-4f-Pqe" secondAttribute="trailing" id="5GU-bM-FaR"/>
                             <constraint firstAttribute="centerX" secondItem="eQ7-hc-ETn" secondAttribute="centerX" id="7zS-HZ-Z0C"/>
                             <constraint firstItem="QXy-AN-9X9" firstAttribute="leading" secondItem="Y4c-Kj-vFd" secondAttribute="leading" id="8QI-3Z-Pde"/>
@@ -529,6 +528,7 @@
                             <constraint firstItem="eQ7-hc-ETn" firstAttribute="leading" secondItem="Y4c-Kj-vFd" secondAttribute="leadingMargin" id="SNc-z9-gjn"/>
                             <constraint firstAttribute="bottom" secondItem="we8-4f-Pqe" secondAttribute="bottom" id="a9Q-cZ-cHc"/>
                             <constraint firstItem="bg5-jq-cFE" firstAttribute="top" secondItem="QXy-AN-9X9" secondAttribute="bottom" id="dGG-vq-reS"/>
+                            <constraint firstItem="MJP-0x-NF6" firstAttribute="top" secondItem="Y4c-Kj-vFd" secondAttribute="topMargin" id="exE-mJ-xQS"/>
                             <constraint firstItem="eQ7-hc-ETn" firstAttribute="top" secondItem="uU7-yq-ZnO" secondAttribute="bottom" constant="10" id="oNW-wm-zXp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="POd-XV-zJF" secondAttribute="trailing" id="p9p-HR-6DQ"/>
                             <constraint firstItem="bg5-jq-cFE" firstAttribute="top" secondItem="MJP-0x-NF6" secondAttribute="bottom" id="pQb-Zr-jSr"/>
@@ -712,8 +712,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cost" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3YQ-3B-Fij">
-                                <rect key="frame" x="266" y="322" width="68" height="44"/>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="32"/>
+                                <rect key="frame" x="249" y="322" width="101.5" height="66"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="48"/>
                                 <color key="textColor" red="0.1803921568627451" green="0.80000000000000004" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -743,69 +743,42 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nd1-6w-4to" customClass="MainToolbar" customModule="GasShare" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="500" width="600" height="100"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rpj-XY-hlS">
-                                        <rect key="frame" x="8" y="18" width="584" height="64"/>
-                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="IYt-j1-eqm"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="32"/>
-                                        <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
-                                        <state key="normal" title="Charge with Venmo">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="IYt-j1-eqm"/>
-                                            </mask>
-                                        </variation>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rpj-XY-hlS">
+                                <rect key="frame" x="16" y="516" width="568" height="64"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="rpj-XY-hlS" firstAttribute="top" secondItem="nd1-6w-4to" secondAttribute="topMargin" constant="10" id="1DF-s7-LGJ"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="rpj-XY-hlS" secondAttribute="trailing" id="Fdk-de-6GE"/>
-                                    <constraint firstAttribute="height" constant="100" id="ZZt-xq-Bey"/>
-                                    <constraint firstItem="rpj-XY-hlS" firstAttribute="leading" secondItem="nd1-6w-4to" secondAttribute="leadingMargin" id="o5Z-4H-JQh"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="rpj-XY-hlS" secondAttribute="bottom" constant="10" id="ubH-fL-w03"/>
+                                    <constraint firstAttribute="height" constant="64" id="7dx-eA-omx"/>
                                 </constraints>
-                            </view>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="32"/>
+                                <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                                <state key="normal" title="Charge with Venmo">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="zzN-gg-Pgm" secondAttribute="trailing" id="0ug-1h-EGr"/>
                             <constraint firstAttribute="centerX" secondItem="f8S-0r-j2r" secondAttribute="centerX" id="3g9-1g-ftH"/>
                             <constraint firstItem="zzN-gg-Pgm" firstAttribute="leading" secondItem="lAQ-Dr-8wD" secondAttribute="leading" id="4AE-Jb-52d"/>
-                            <constraint firstAttribute="trailing" secondItem="nd1-6w-4to" secondAttribute="trailing" id="619-CZ-PVy"/>
-                            <constraint firstAttribute="centerY" secondItem="3YQ-3B-Fij" secondAttribute="centerY" id="8vL-h1-Fzl"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rpj-XY-hlS" secondAttribute="trailing" id="Adw-4A-0l6"/>
                             <constraint firstItem="b5f-bq-dsA" firstAttribute="top" secondItem="33I-I0-fYx" secondAttribute="bottom" constant="5" id="Dfv-3y-hvH"/>
                             <constraint firstItem="zzN-gg-Pgm" firstAttribute="top" secondItem="lAQ-Dr-8wD" secondAttribute="top" id="Fcv-KM-kWf"/>
-                            <constraint firstItem="NL5-Qq-pFU" firstAttribute="top" secondItem="nd1-6w-4to" secondAttribute="bottom" id="JJr-kV-Xfx"/>
                             <constraint firstAttribute="centerX" secondItem="33I-I0-fYx" secondAttribute="centerX" id="Ja5-xy-GZv"/>
-                            <constraint firstItem="33I-I0-fYx" firstAttribute="top" secondItem="eEj-t6-gIE" secondAttribute="bottom" constant="60" id="P05-Jy-2u4"/>
+                            <constraint firstItem="NL5-Qq-pFU" firstAttribute="top" secondItem="rpj-XY-hlS" secondAttribute="bottom" constant="20" id="SBP-oz-adE"/>
                             <constraint firstItem="3YQ-3B-Fij" firstAttribute="top" secondItem="f8S-0r-j2r" secondAttribute="bottom" id="T35-m5-4xI"/>
-                            <constraint firstItem="nd1-6w-4to" firstAttribute="leading" secondItem="lAQ-Dr-8wD" secondAttribute="leading" id="bLd-zP-cYd"/>
                             <constraint firstItem="2ae-5f-2Hw" firstAttribute="top" secondItem="b5f-bq-dsA" secondAttribute="bottom" constant="5" id="cKH-Uy-xWh"/>
                             <constraint firstItem="33I-I0-fYx" firstAttribute="top" secondItem="zzN-gg-Pgm" secondAttribute="bottom" constant="40" id="jjU-D1-bGo"/>
+                            <constraint firstItem="rpj-XY-hlS" firstAttribute="leading" secondItem="lAQ-Dr-8wD" secondAttribute="leadingMargin" id="kxz-7H-ZOw"/>
                             <constraint firstAttribute="centerX" secondItem="b5f-bq-dsA" secondAttribute="centerX" id="p4f-Hl-38j"/>
                             <constraint firstAttribute="centerY" secondItem="f8S-0r-j2r" secondAttribute="centerY" id="tia-Yo-fC4"/>
                             <constraint firstAttribute="centerX" secondItem="3YQ-3B-Fij" secondAttribute="centerX" id="x74-lE-WQO"/>
                             <constraint firstAttribute="centerX" secondItem="2ae-5f-2Hw" secondAttribute="centerX" id="y58-zr-EeL"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="P05-Jy-2u4"/>
-                                <exclude reference="8vL-h1-Fzl"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="individualCostLabel" destination="3YQ-3B-Fij" id="dDZ-Wq-Jmh"/>
                         <outlet property="numberOfPassengersLabel" destination="b5f-bq-dsA" id="LdL-kA-zdk"/>
-                        <outlet property="toolbarHeight" destination="ZZt-xq-Bey" id="Aw4-ib-oQQ"/>
                         <outlet property="totalLabel" destination="33I-I0-fYx" id="5Xi-cC-pJh"/>
                     </connections>
                 </viewController>

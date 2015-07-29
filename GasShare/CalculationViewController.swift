@@ -13,7 +13,6 @@ class CalculationViewController: UIViewController {
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var numberOfPassengersLabel: UILabel!
     @IBOutlet weak var individualCostLabel: UILabel!
-    @IBOutlet weak var toolbarHeight: NSLayoutConstraint!
     
     var gasMileage: Double!
     var gasPrice: Double!
@@ -23,8 +22,6 @@ class CalculationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        toolbarHeight.constant = self.view.frame.height * 0.16
         
         totalPrice = (gasPrice! / gasMileage!) * routeDistance!
         totalLabel.text! += NSString(format: ": $%.2f", totalPrice) as String
