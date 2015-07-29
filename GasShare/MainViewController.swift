@@ -45,6 +45,10 @@ class MainViewController: UIViewController {
     @IBOutlet weak var calculateButtonHeight: NSLayoutConstraint!
     @IBOutlet weak var gasPriceClearButton: UIButton!
     @IBOutlet weak var gasMileageClearButton: UIButton!
+    @IBOutlet weak var gasMileageDoneButton: UIButton!
+    @IBOutlet weak var gasPriceDoneButton: UIButton!
+    @IBOutlet weak var plusGasButtonBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var plusGasButtonTopConstraint: NSLayoutConstraint!
     
     var screenHeight: CGFloat!
     var keyboardNotificationHandler = KeyboardNotificationHandler()
@@ -277,6 +281,9 @@ class MainViewController: UIViewController {
         gasMileageToolbar.hidden = true
         gasPriceToolbar.hidden = true
         
+        gasMileageDoneButton.titleLabel!.adjustsFontSizeToFitWidth = true
+        gasPriceDoneButton.titleLabel!.adjustsFontSizeToFitWidth = true
+        
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
@@ -445,14 +452,14 @@ class MainViewController: UIViewController {
         let json = JSON(data)
         
         if let result = json["rows"][0]["elements"][0]["distance"]["text"].string {
-            distanceLabel.text = result
+            distanceLabel.text = " " + result + ". "
             
             let distanceLabelComponents = distanceLabel.text!.componentsSeparatedByString(" ")
-            let routeDistanceString = distanceLabelComponents[0]
+            let routeDistanceString = distanceLabelComponents[1]
             let formattedString = NSString(string: routeDistanceString).stringByReplacingOccurrencesOfString(",", withString: "")
             routeDistance = NSString(string: formattedString).doubleValue
             
-            if distanceLabelComponents[1] == "ft" {
+            if distanceLabelComponents[2] == "ft." {
                 routeDistance! *= 0.000189
             }
             
@@ -739,6 +746,9 @@ class MainViewController: UIViewController {
         plusGasButton.hidden = false
         premiumGasButton.hidden = false
         
+        plusGasButtonTopConstraint.constant = 10
+        plusGasButtonBottomConstraint.constant = 10
+        
         gasPriceToolbarHeight.constant = screenHeight * 0.32
     }
     
@@ -746,6 +756,9 @@ class MainViewController: UIViewController {
         regularGasButton.hidden = true
         plusGasButton.hidden = true
         premiumGasButton.hidden = true
+        
+        plusGasButtonTopConstraint.constant = -15
+        plusGasButtonBottomConstraint.constant = -15
         
         gasPriceToolbarHeight.constant = gasMileageToolbarHeight.constant
     }

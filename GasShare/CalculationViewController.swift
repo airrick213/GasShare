@@ -13,6 +13,7 @@ class CalculationViewController: UIViewController {
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var numberOfPassengersLabel: UILabel!
     @IBOutlet weak var individualCostLabel: UILabel!
+    @IBOutlet weak var venmoButton: UIButton!
     
     var gasMileage: Double!
     var gasPrice: Double!
@@ -22,6 +23,8 @@ class CalculationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        venmoButton.titleLabel!.adjustsFontSizeToFitWidth = true
         
         totalPrice = (gasPrice! / gasMileage!) * routeDistance!
         totalLabel.text! += NSString(format: ": $%.2f", totalPrice) as String
