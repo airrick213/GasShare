@@ -14,7 +14,7 @@ class InputTextField: UITextField {
         super.drawRect(rect)
         
         if !self.enabled {
-            self.backgroundColor = UIColor(red: 149/225.0, green: 165/225.0, blue: 166/225.0, alpha: 1.0)
+            self.backgroundColor = UIColor(red: 199.0/225.0, green: 199.0/225.0, blue: 204.0/225.0, alpha: 1.0)
         }
         else {
             self.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)

@@ -71,6 +71,7 @@ class MainViewController: UIViewController {
     var endLocation = ""
     var startMarker: GMSMarker?
     var endMarker: GMSMarker?
+    var didChangeSearchBarText = false
     
     //gas price variables
     var selectedLocation = ""
@@ -104,7 +105,6 @@ class MainViewController: UIViewController {
                 animate(mainToolbar, over: gasMileageToolbar)
                 
                 gasMileageToolbarButton.setTitle("\(gasMileage!) mi/gal", forState: UIControlState.Normal)
-                gasMileageToolbarButton.titleLabel!.font = UIFont(name: "Avenir", size: 24)
                 gasMileageToolbarButton.selected = true
                 updateCalculateButton()
                 
@@ -138,7 +138,6 @@ class MainViewController: UIViewController {
                 
                 let priceString = NSString(format: "$%.2f/gal", gasPrice!) as String
                 gasPriceToolbarButton.setTitle(priceString, forState: UIControlState.Normal)
-                gasPriceToolbarButton.titleLabel!.font = UIFont(name: "Avenir", size: 24)
                 gasPriceToolbarButton.selected = true
                 updateCalculateButton()
                 
@@ -291,6 +290,11 @@ class MainViewController: UIViewController {
         gasMileageDoneButton.titleLabel!.adjustsFontSizeToFitWidth = true
         gasPriceDoneButton.titleLabel!.adjustsFontSizeToFitWidth = true
         
+        startSearchBar.barTintColor = UIColor(red: 91.0/255.0, green: 202.0/255.0, blue: 1.0, alpha: 1.0)
+
+        endSearchBar.barTintColor = UIColor(red: 91.0/255.0, green: 202.0/255.0, blue: 1.0, alpha: 1.0)
+
+        
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
@@ -303,9 +307,6 @@ class MainViewController: UIViewController {
         mapView.delegate = self
         
         baseView.addSubview(mapView)
-        
-        startSearchBar.showsCancelButton = true
-        endSearchBar.showsCancelButton = true
         
         endSearchBar.hidden = true
         distanceLabel.hidden = true
@@ -365,7 +366,7 @@ class MainViewController: UIViewController {
     
     //MARK: Finding Location
 
-    func searchForLocation(searchText: String) {
+    func searchForLocation(searchText: String, searchingStartLocation: Bool) {
         let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
         
         let htmlString = searchText.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.allZeros, range: Range<String.Index>(start: searchText.startIndex, end: searchText.endIndex))
@@ -376,7 +377,7 @@ class MainViewController: UIViewController {
             hud.hide(true)
             
             if AlamofireHelper.requestSucceeded(response, error: error) {
-                self.handleLocationSearchResponse(data!)
+                self.handleLocationSearchResponse(data!, searchingStartLocation: searchingStartLocation)
             }
             else {
                 UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again.", delegate: nil, cancelButtonTitle: "OK").show()
@@ -385,7 +386,7 @@ class MainViewController: UIViewController {
         }
     }
     
-    func handleLocationSearchResponse(data: AnyObject) {
+    func handleLocationSearchResponse(data: AnyObject, searchingStartLocation: Bool) {
         let json = JSON(data)
         
         if let result = json["results"][0].dictionary {
@@ -413,7 +414,7 @@ class MainViewController: UIViewController {
                 startCoordinate.latitude = latitude!
                 startCoordinate.longitude = longitude!
                 
-                setMarker(coordinate: startCoordinate)
+                setMarker(coordinate: startCoordinate, searchingStartLocation: searchingStartLocation)
             }
             else {
                 endLocation = ""
@@ -427,7 +428,7 @@ class MainViewController: UIViewController {
                 endCoordinate.latitude = latitude!
                 endCoordinate.longitude = longitude!
                 
-                setMarker(coordinate: endCoordinate)
+                setMarker(coordinate: endCoordinate, searchingStartLocation: searchingStartLocation)
             }
         }
     }
@@ -487,7 +488,7 @@ class MainViewController: UIViewController {
         mapView.animateWithCameraUpdate(cameraUpdate)
     }
     
-    func setMarker(#coordinate: CLLocationCoordinate2D) {
+    func setMarker(#coordinate: CLLocationCoordinate2D, searchingStartLocation: Bool) {
         if let myLocation = mapView.myLocation {
             if coordinate.latitude != myLocation.coordinate.latitude && coordinate.longitude != myLocation.coordinate.longitude {
                 currentLocationButton.selected = false
@@ -533,7 +534,7 @@ class MainViewController: UIViewController {
     }
     
     func checkSearchBar() {
-        if searchingStartLocation {
+        if startSearchBar.isFirstResponder() {
             if endSearchBar.hidden == true {
                 endSearchBar.hidden = false
                 endSearchBar.becomeFirstResponder()
@@ -602,7 +603,7 @@ class MainViewController: UIViewController {
                 }
             }
             
-            self.setMarker(coordinate: coordinate)
+            self.setMarker(coordinate: coordinate, searchingStartLocation: self.searchingStartLocation)
         })
     }
     
@@ -843,6 +844,13 @@ class MainViewController: UIViewController {
                     gasMileagesViewController.selectedIndex = selectedIndex
                 }
             }
+            else if identifier == "ShowGasStationMap" {
+                if !startLocation.isEmpty {
+                    let gasStationMapViewController = segue.destinationViewController as! GasStationMapViewController
+                    
+                    gasStationMapViewController.defaultLocation = startLocation
+                }
+            }
             else if identifier == "ShowCalculation" {
                 let calculationViewController = segue.destinationViewController as! CalculationViewController
                 
@@ -859,24 +867,41 @@ extension MainViewController: UISearchBarDelegate {
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         searchBar.alpha = 1.0
+        
+        didChangeSearchBarText = true
     }
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
         searchBar.alpha = 1.0
         
         searchingStartLocation = (searchBar === startSearchBar)
+        
+        if startSearchBar === searchBar || endSearchBar === searchBar {
+            UIView.animateWithDuration(0.3) {
+                self.gasMileageToolbarBottomConstraint.constant = 0
+                self.gasPriceToolbarBottomConstraint.constant = 0
+                self.view.layoutIfNeeded()
+            }
+        }
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
         searchBar.alpha = 0.8
+        
+        if didChangeSearchBarText {
+            if startSearchBar === searchBar {
+                searchForLocation(startSearchBar.text, searchingStartLocation: true)
+            }
+            else if endSearchBar === searchBar {
+                searchForLocation(endSearchBar.text, searchingStartLocation: false)
+            }
+        }
+        
+        didChangeSearchBarText = false
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        searchForLocation(searchBar.text)
-    }
-    
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
+        searchForLocation(searchBar.text, searchingStartLocation: searchingStartLocation)
     }
     
 }

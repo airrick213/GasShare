@@ -83,6 +83,7 @@ class GasStationMapViewController: UIViewController {
     var selectedLocation = ""
     var firstLocation = true
     var usedSearchBar = false
+    var defaultLocation = ""
     
     @IBAction func currentLocationButtonPressed(sender: AnyObject) {
         if let myLocation = mapView.myLocation {
@@ -100,6 +101,8 @@ class GasStationMapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        searchBar.barTintColor = UIColor(red: 91.0/255.0, green: 202.0/255.0, blue: 1.0, alpha: 1.0)
+        
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
@@ -113,9 +116,7 @@ class GasStationMapViewController: UIViewController {
         mapView.myLocationEnabled = true
         
         baseView.addSubview(mapView)
-        
-        searchBar.showsCancelButton = true
-        
+                
         keyboardNotificationHandler.keyboardWillBeHiddenHandler = { (height: CGFloat) in UIView.animateWithDuration(0.3) {
             self.currentLocationButtonBottomConstraint.constant = 14
             self.view.layoutIfNeeded()
@@ -126,6 +127,11 @@ class GasStationMapViewController: UIViewController {
             self.currentLocationButtonBottomConstraint.constant = 14 + height
             self.view.layoutIfNeeded()
             }
+        }
+        
+        if !defaultLocation.isEmpty {
+            searchBar.text = defaultLocation
+            searchForLocation(searchBar.text)
         }
     }
     
@@ -260,10 +266,6 @@ extension GasStationMapViewController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
     }
     
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-    }
-    
 }
 
 extension GasStationMapViewController: GMSMapViewDelegate {
@@ -271,6 +273,7 @@ extension GasStationMapViewController: GMSMapViewDelegate {
     func mapView(mapView: GMSMapView!, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
         if searchBar.isFirstResponder() {
             searchBar.resignFirstResponder()
+            searchForLocation(searchBar.text)
         }
         else {
             setMarker(coordinate: coordinate)

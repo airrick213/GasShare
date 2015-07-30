@@ -13,7 +13,7 @@ class GasMileagesViewController: UIViewController {
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var tableView: UITableView!
     
-    let suggestedMileageValues = ["Compact Car: 26", "Large Car: 21", "Midsize Car: 25", "Minicompact Car: 24", "Minivan: 21", "Pickup Truck: 19", "Small Pickup: 20", "Small SUV: 23", "Subcompact Car: 24", "SUV: 18", "Two-Seater Car: 23", "Wagon: 26"]
+    let suggestedMileageValues = ["Compact Car: 26", "Wagon: 26", "Midsize Car: 25", "Minicompact Car: 24", "Subcompact Car: 24", "Small SUV: 23", "Two-Seater Car: 23", "Large Car: 21", "Minivan: 21", "Small Pickup: 20", "Pickup Truck: 19", "SUV: 18"]
     var selectedIndex: Int?
 
     override func viewDidLoad() {
