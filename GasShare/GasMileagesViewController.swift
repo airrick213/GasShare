@@ -13,7 +13,7 @@ class GasMileagesViewController: UIViewController {
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var tableView: UITableView!
     
-    let suggestedMileageValues = ["Compact Car: 26", "Wagon: 26", "Midsize Car: 25", "Minicompact Car: 24", "Subcompact Car: 24", "Small SUV: 23", "Two-Seater Car: 23", "Large Car: 21", "Minivan: 21", "Small Pickup: 20", "Pickup Truck: 19", "SUV: 18"]
+    let suggestedMileageValues = ["Compact Car: 26", "Wagon: 26", "Midsize Car: 25", "Minicompact Car: 24", "Subcompact Car: 24", "Small SUV: 23", "Two-Seater Car: 23", "Large Car: 21", "Minivan: 21", "Small Pickup: 20", "Pickup Truck: 19", "SUV: 18", "Jeep: 17"]
     var selectedIndex: Int?
 
     override func viewDidLoad() {
@@ -48,7 +48,7 @@ extension GasMileagesViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("GasMileageCell", forIndexPath: indexPath) as! GasMileageCell
         
-        cell.gasMileageLabel.text = suggestedMileageValues[indexPath.row]
+        cell.gasMileageLabel.text = suggestedMileageValues[indexPath.row] + " mi/gal"
         
         cell.checkmark.hidden = true
         
