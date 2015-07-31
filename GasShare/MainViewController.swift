@@ -13,6 +13,7 @@ import MBProgressHUD
 import SwiftyJSON
 import Alamofire
 import ConvenienceKit
+import Kanna
 
 class MainViewController: UIViewController {
     
@@ -675,29 +676,16 @@ class MainViewController: UIViewController {
     func handleFindGasPriceResponse(data: AnyObject) {
         let html = data as! String
         
-        var error: NSError?
-        var parser = HTMLParser(html: html, error: &error)
-        
-        if error != nil {
-            UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again.", delegate: nil, cancelButtonTitle: "OK").show()
-            MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+        if let doc = Kanna.HTML(html: html, encoding: NSUTF8StringEncoding) {
+            var regPrices = [Double]()
+            var plusPrices = [Double]()
+            var prePrices = [Double]()
             
-            self.gasPriceButton.setTitle("\(self.selectedLocation): Gas price could not be found", forState: UIControlState.Normal)
-            hideGasPriceButtons()
-        }
-        
-        var bodyNode = parser.body
-        
-        var regPrices = [Double]()
-        var plusPrices = [Double]()
-        var prePrices = [Double]()
-        
-        var count = 0
-        var numCells = 0
-        
-        if let priceNodes = bodyNode?.findChildTags("td") {
-            for node in priceNodes {
-                let contents = node.contents
+            var count = 0
+            var numCells = 0
+            
+            for node in doc.css("td") {
+                let contents = node.text!
                 
                 if !contents.isEmpty {
                     if numCells > 10 {
@@ -732,21 +720,28 @@ class MainViewController: UIViewController {
                     }
                 }
             }
+            
+            
+            regPrice = average(regPrices)
+            plusPrice = average(plusPrices)
+            prePrice = average(prePrices)
+            
+            gasPriceTextField.enabled = false
+            reloadGasPriceButtonText(regPrice)
+            
+            regularGasButton.selected = true
+            plusGasButton.selected = false
+            premiumGasButton.selected = false
+            
+            showGasPriceButtons()
         }
-        
-        
-        regPrice = average(regPrices)
-        plusPrice = average(plusPrices)
-        prePrice = average(prePrices)
-        
-        gasPriceTextField.enabled = false
-        reloadGasPriceButtonText(regPrice)
-        
-        regularGasButton.selected = true
-        plusGasButton.selected = false
-        premiumGasButton.selected = false
-        
-        showGasPriceButtons()
+        else {
+            UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again.", delegate: nil, cancelButtonTitle: "OK").show()
+            MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+            
+            self.gasPriceButton.setTitle("\(self.selectedLocation): Gas price could not be found", forState: UIControlState.Normal)
+            hideGasPriceButtons()
+        }
     }
     
     func showGasPriceButtons() {
