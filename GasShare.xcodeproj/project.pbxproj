@@ -14,6 +14,7 @@
 		0728929C1B4DB7530060960A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0728929A1B4DB7530060960A /* LaunchScreen.xib */; };
 		072892A81B4DB7530060960A /* GasShareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072892A71B4DB7530060960A /* GasShareTests.swift */; };
 		074A1F6F1B4DB88D00F01CB2 /* InputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A1F691B4DB88D00F01CB2 /* InputTextField.swift */; };
+		074DF28B1B6BF9DE00F86ADF /* CarPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074DF28A1B6BF9DE00F86ADF /* CarPickerViewController.swift */; };
 		077F1E771B5D4F1A0037A483 /* MapHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077F1E761B5D4F1A0037A483 /* MapHelper.swift */; };
 		0791F3F41B56DC44006FEED8 /* AlamofireHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0791F3F31B56DC44006FEED8 /* AlamofireHelper.swift */; };
 		079DB15B1B58501200D21C77 /* HTMLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079DB1591B58501200D21C77 /* HTMLNode.swift */; };
@@ -54,6 +55,7 @@
 		072892A61B4DB7530060960A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		072892A71B4DB7530060960A /* GasShareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasShareTests.swift; sourceTree = "<group>"; };
 		074A1F691B4DB88D00F01CB2 /* InputTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
+		074DF28A1B6BF9DE00F86ADF /* CarPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarPickerViewController.swift; sourceTree = "<group>"; };
 		077F1E761B5D4F1A0037A483 /* MapHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapHelper.swift; sourceTree = "<group>"; };
 		0791F3F31B56DC44006FEED8 /* AlamofireHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireHelper.swift; sourceTree = "<group>"; };
 		079DB1591B58501200D21C77 /* HTMLNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLNode.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				0709E6181B66BEFC00E606D9 /* AboutViewController.swift */,
 				07E52A9E1B505595006FFB7A /* CalculationViewController.swift */,
 				07AB75311B62B3FD00AF3A5D /* GasMileagesViewController.swift */,
+				074DF28A1B6BF9DE00F86ADF /* CarPickerViewController.swift */,
 				07FDCA3D1B62D5200029682B /* GasStationMapViewController.swift */,
 				07A8E1BC1B61325F00D81518 /* MainViewController.swift */,
 				072892911B4DB7530060960A /* AppDelegate.swift */,
@@ -402,6 +405,7 @@
 				07AB75321B62B3FD00AF3A5D /* GasMileagesViewController.swift in Sources */,
 				072892921B4DB7530060960A /* AppDelegate.swift in Sources */,
 				077F1E771B5D4F1A0037A483 /* MapHelper.swift in Sources */,
+				074DF28B1B6BF9DE00F86ADF /* CarPickerViewController.swift in Sources */,
 				07AB75261B62B00D00AF3A5D /* CustomToolbar.swift in Sources */,
 				07FDCA3E1B62D5200029682B /* GasStationMapViewController.swift in Sources */,
 				079DB15B1B58501200D21C77 /* HTMLNode.swift in Sources */,
