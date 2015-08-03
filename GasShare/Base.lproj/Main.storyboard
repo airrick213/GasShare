@@ -942,7 +942,7 @@ Special thanks to MakeSchool for mentorship throughout the construction of the a
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gas Mileage?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7vH-t7-6mk">
-                                <rect key="frame" x="152" y="160" width="295.5" height="60"/>
+                                <rect key="frame" x="152" y="449" width="295.5" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="GrW-Lg-64L"/>
                                 </constraints>
@@ -950,44 +950,119 @@ Special thanks to MakeSchool for mentorship throughout the construction of the a
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J72-Mg-pma">
-                                <rect key="frame" x="16" y="418" width="568" height="162"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="NuG-hR-FYV" id="321-uJ-y61"/>
-                                    <outlet property="delegate" destination="NuG-hR-FYV" id="EXD-xY-u0n"/>
-                                </connections>
-                            </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose the car's year, make, and model" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="db5-tc-N5q">
-                                <rect key="frame" x="85" y="375" width="429" height="33"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ji-HC-Fc1">
+                                <rect key="frame" x="264" y="283" width="70.5" height="33"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gt5-Nj-bGA">
+                                <rect key="frame" x="272" y="210" width="57" height="33"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Model?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GZz-iq-qkp">
+                                <rect key="frame" x="259" y="356" width="81" height="33"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="67" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="XTa-yJ-pfe">
+                                <rect key="frame" x="0.0" y="124" width="600" height="476"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="CarCell" rowHeight="60" id="JoS-mT-YcM" customClass="CarPickerTableViewCell" customModule="GasShare" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JoS-mT-YcM" id="Hi0-wf-nxM">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EmL-SH-9tO">
+                                                    <rect key="frame" x="8" y="13" width="58.5" height="33"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="24"/>
+                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="EmL-SH-9tO" firstAttribute="leading" secondItem="Hi0-wf-nxM" secondAttribute="leadingMargin" id="GkF-nu-aKR"/>
+                                                <constraint firstAttribute="centerY" secondItem="EmL-SH-9tO" secondAttribute="centerY" id="epT-sy-2gz"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="carLabel" destination="EmL-SH-9tO" id="fsc-aF-J6u"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="NuG-hR-FYV" id="Oa4-jb-ojp"/>
+                                    <outlet property="delegate" destination="NuG-hR-FYV" id="cb2-XU-fzC"/>
+                                </connections>
+                            </tableView>
+                            <searchBar contentMode="redraw" placeholder="Enter your car's information" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="onW-Pg-KHp">
+                                <rect key="frame" x="0.0" y="80" width="600" height="44"/>
+                                <color key="barTintColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                <scopeButtonTitles>
+                                    <string>Year</string>
+                                    <string>Make</string>
+                                    <string>Model</string>
+                                </scopeButtonTitles>
+                                <connections>
+                                    <outlet property="delegate" destination="NuG-hR-FYV" id="diD-qV-nIs"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="0.35686274509999999" green="0.79215686269999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="J72-Mg-pma" firstAttribute="top" secondItem="db5-tc-N5q" secondAttribute="bottom" constant="10" id="0k9-1O-n4W"/>
-                            <constraint firstItem="J72-Mg-pma" firstAttribute="leading" secondItem="6fu-r4-Jju" secondAttribute="leadingMargin" id="5Da-hW-sde"/>
-                            <constraint firstItem="NFX-pP-NyF" firstAttribute="top" secondItem="J72-Mg-pma" secondAttribute="bottom" constant="20" id="7J2-jh-rKy"/>
-                            <constraint firstAttribute="centerX" secondItem="db5-tc-N5q" secondAttribute="centerX" id="7OI-nf-eBA"/>
-                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="db5-tc-N5q" secondAttribute="trailing" id="930-BR-eb5"/>
+                            <constraint firstItem="NFX-pP-NyF" firstAttribute="top" secondItem="7vH-t7-6mk" secondAttribute="bottom" constant="140" id="4No-Kb-DNU"/>
+                            <constraint firstItem="8ji-HC-Fc1" firstAttribute="top" secondItem="gt5-Nj-bGA" secondAttribute="bottom" constant="40" id="5gd-W0-2tW"/>
                             <constraint firstItem="BQc-cn-yQq" firstAttribute="leading" secondItem="6fu-r4-Jju" secondAttribute="leading" id="BGw-qN-ecL"/>
-                            <constraint firstAttribute="centerX" secondItem="J72-Mg-pma" secondAttribute="centerX" id="Ize-Z5-hbu"/>
-                            <constraint firstItem="db5-tc-N5q" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6fu-r4-Jju" secondAttribute="leadingMargin" id="SVA-ix-Dbk"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="J72-Mg-pma" secondAttribute="trailing" id="TLH-cN-Z3H"/>
+                            <constraint firstItem="NFX-pP-NyF" firstAttribute="top" secondItem="XTa-yJ-pfe" secondAttribute="bottom" id="BKg-ib-H2T"/>
+                            <constraint firstItem="XTa-yJ-pfe" firstAttribute="leading" secondItem="6fu-r4-Jju" secondAttribute="leading" id="F7l-Bj-NqB"/>
+                            <constraint firstItem="7vH-t7-6mk" firstAttribute="top" secondItem="GZz-iq-qkp" secondAttribute="bottom" constant="60" id="JLh-nV-a30"/>
+                            <constraint firstAttribute="centerX" secondItem="GZz-iq-qkp" secondAttribute="centerX" id="Ps0-z4-ckk"/>
                             <constraint firstAttribute="trailing" secondItem="BQc-cn-yQq" secondAttribute="trailing" id="Tcq-jl-V6R"/>
                             <constraint firstItem="BQc-cn-yQq" firstAttribute="top" secondItem="6fu-r4-Jju" secondAttribute="top" id="YeZ-iK-PzN"/>
+                            <constraint firstItem="XTa-yJ-pfe" firstAttribute="top" secondItem="onW-Pg-KHp" secondAttribute="bottom" id="bAT-7k-7NV"/>
                             <constraint firstAttribute="centerX" secondItem="7vH-t7-6mk" secondAttribute="centerX" id="gtE-K2-cMd"/>
-                            <constraint firstItem="7vH-t7-6mk" firstAttribute="top" secondItem="BQc-cn-yQq" secondAttribute="bottom" constant="80" id="nkQ-vw-DtR"/>
+                            <constraint firstAttribute="centerX" secondItem="onW-Pg-KHp" secondAttribute="centerX" id="jbL-YX-HiS"/>
+                            <constraint firstItem="GZz-iq-qkp" firstAttribute="top" secondItem="8ji-HC-Fc1" secondAttribute="bottom" constant="40" id="lIn-yS-t2m"/>
+                            <constraint firstAttribute="trailing" secondItem="onW-Pg-KHp" secondAttribute="trailing" id="nsU-zi-Poq"/>
+                            <constraint firstAttribute="centerX" secondItem="8ji-HC-Fc1" secondAttribute="centerX" id="o8f-x3-aBY"/>
+                            <constraint firstItem="onW-Pg-KHp" firstAttribute="leading" secondItem="6fu-r4-Jju" secondAttribute="leading" id="oop-dc-Mf4"/>
+                            <constraint firstAttribute="centerY" secondItem="8ji-HC-Fc1" secondAttribute="centerY" id="q7x-BK-BAO"/>
+                            <constraint firstItem="onW-Pg-KHp" firstAttribute="top" secondItem="BQc-cn-yQq" secondAttribute="bottom" id="rWw-Td-oc6"/>
+                            <constraint firstAttribute="centerX" secondItem="gt5-Nj-bGA" secondAttribute="centerX" id="xQU-Zb-rp6"/>
+                            <constraint firstAttribute="trailing" secondItem="XTa-yJ-pfe" secondAttribute="trailing" id="yDe-ej-fKa"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="4No-Kb-DNU"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
-                        <outlet property="carPickerView" destination="J72-Mg-pma" id="5cU-L2-vOB"/>
                         <outlet property="gasMileageLabel" destination="7vH-t7-6mk" id="hGK-Ev-GXN"/>
+                        <outlet property="makeLabel" destination="8ji-HC-Fc1" id="hq6-QV-Dfl"/>
+                        <outlet property="modelLabel" destination="GZz-iq-qkp" id="zYs-cX-7Ao"/>
+                        <outlet property="searchBar" destination="onW-Pg-KHp" id="qZs-3U-cgu"/>
+                        <outlet property="searchDisplayController" destination="AGz-Tk-3RC" id="iBC-L0-QgC"/>
+                        <outlet property="tableView" destination="XTa-yJ-pfe" id="Luz-y1-J60"/>
+                        <outlet property="yearLabel" destination="gt5-Nj-bGA" id="Gfq-8b-GiN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P7l-G3-wct" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="MgD-t9-jfA" userLabel="Exit" sceneMemberID="exit"/>
+                <searchDisplayController id="AGz-Tk-3RC">
+                    <connections>
+                        <outlet property="delegate" destination="NuG-hR-FYV" id="96G-RL-bDh"/>
+                        <outlet property="searchContentsController" destination="NuG-hR-FYV" id="lUp-IW-Z3h"/>
+                        <outlet property="searchResultsDataSource" destination="NuG-hR-FYV" id="UPv-Aw-cyi"/>
+                        <outlet property="searchResultsDelegate" destination="NuG-hR-FYV" id="7lF-ix-rK6"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="400" y="-745"/>
         </scene>

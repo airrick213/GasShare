@@ -12,8 +12,12 @@ import MBProgressHUD
 
 class CarPickerViewController: UIViewController {
     
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var gasMileageLabel: UILabel!
-    @IBOutlet weak var carPickerView: UIPickerView!
+    @IBOutlet weak var yearLabel: UILabel!
+    @IBOutlet weak var makeLabel: UILabel!
+    @IBOutlet weak var modelLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
     
     var years: [String] = []
     var makes: [String] = []
@@ -28,6 +32,8 @@ class CarPickerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        searchBar.showsScopeBar = false
+        tableView.hidden = true
         AlamofireHelper.scrapeHTMLForURL("http://www.fueleconomy.gov/ws/rest/vehicle/menu/year", responseHandler: handleLoadYearsResponse, view: self.view)
     }
     
@@ -44,7 +50,7 @@ class CarPickerViewController: UIViewController {
                 self.years.append(node.text!)
             }
             
-            self.carPickerView.reloadComponent(0)
+            self.tableView.reloadData()
         }
     }
     
@@ -56,7 +62,7 @@ class CarPickerViewController: UIViewController {
                 self.makes.append(node.text!)
             }
             
-            self.carPickerView.reloadComponent(1)
+            self.tableView.reloadData()
         }
     }
     
@@ -68,7 +74,7 @@ class CarPickerViewController: UIViewController {
                 self.models.append(node.text!)
             }
             
-            self.carPickerView.reloadComponent(2)
+            self.tableView.reloadData()
         }
     }
     
@@ -113,17 +119,58 @@ class CarPickerViewController: UIViewController {
     
 }
 
-extension CarPickerViewController: UIPickerViewDataSource {
+extension CarPickerViewController: UISearchBarDelegate {
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 3
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        tableView.hidden = false
+        searchBar.showsScopeBar = true
+        
+        if searchBar.selectedScopeButtonIndex == 0 {
+            searchBar.keyboardType = UIKeyboardType.NumberPad
+        }
+        else {
+            searchBar.keyboardType = UIKeyboardType.ASCIICapable
+        }
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if component == 0 {
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        tableView.hidden = true
+        searchBar.showsScopeBar = false
+    }
+    
+    func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        if (selectedScope == 1 || selectedScope == 2) && yearLabel.text == "Year?" {
+            UIAlertView(title: "No Year Selected", message: "Please select the year of your car model", delegate: nil, cancelButtonTitle: "OK").show()
+            
+            searchBar.selectedScopeButtonIndex = 0
+        }
+        else if selectedScope == 2 && makeLabel.text == "Make?" {
+            UIAlertView(title: "No Make Selected", message: "Please select the make of your car model", delegate: nil, cancelButtonTitle: "OK").show()
+            
+            searchBar.selectedScopeButtonIndex = 1
+        }
+        else {
+            tableView.reloadData()
+            
+            searchBar.resignFirstResponder()
+            searchBar.becomeFirstResponder()
+        }
+    }
+    
+}
+
+extension CarPickerViewController: UITableViewDataSource {
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchBar.selectedScopeButtonIndex == 0 {
             return years.count
         }
-        else if component == 1 {
+        else if searchBar.selectedScopeButtonIndex == 1 {
             return makes.count
         }
         else {
@@ -131,45 +178,75 @@ extension CarPickerViewController: UIPickerViewDataSource {
         }
     }
     
-    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView {
-        var label = UILabel()
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("CarCell", forIndexPath: indexPath) as! CarPickerTableViewCell
         
-        if component == 0 {
-            label.text = years[row]
+        if searchBar.selectedScopeButtonIndex == 0 {
+            cell.carLabel.text = years[indexPath.row]
         }
-        else if component == 1 {
-            label.text = makes[row]
+        else if searchBar.selectedScopeButtonIndex == 1 {
+            cell.carLabel.text = makes[indexPath.row]
         }
         else {
-            label.text = models[row]
+            cell.carLabel.text = models[indexPath.row]
         }
-        
-        label.font = UIFont(name: "Avenir", size: 24)
-        label.textColor = UIColor.whiteColor()
-        
-        return label
+                
+        return cell
     }
     
 }
 
-extension CarPickerViewController: UIPickerViewDelegate {
+extension CarPickerViewController: UITableViewDelegate {
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if component == 0 {
-            year = years[row]
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if searchBar.selectedScopeButtonIndex == 0 {
+            year = years[indexPath.row]
+            
+            yearLabel.text = year
+            makeLabel.text = "Make?"
+            modelLabel.text = "Model?"
+            gasMileageLabel.text = "Gas Mileage?"
+            
+            searchBar.text = ""
+            searchBar.selectedScopeButtonIndex = 1
             
             AlamofireHelper.scrapeHTMLForURL("http://www.fueleconomy.gov/ws/rest/vehicle/menu/make?year=\(year)", responseHandler: handleLoadMakesResponse, view: self.view)
-        }
-        else if component == 1 {
-            make = NSString(string: makes[row]).stringByReplacingOccurrencesOfString(" ", withString: "%20") as String
             
+            searchBar.resignFirstResponder()
+            searchBar.becomeFirstResponder()
+        }
+        else if searchBar.selectedScopeButtonIndex == 1 {
+            make = NSString(string: makes[indexPath.row]).stringByReplacingOccurrencesOfString(" ", withString: "%20") as String
+            
+            makeLabel.text = makes[indexPath.row]
+            modelLabel.text = "Model?"
+            gasMileageLabel.text = "Gas Mileage?"
+            
+            searchBar.text = ""
+            searchBar.selectedScopeButtonIndex = 2
+
             AlamofireHelper.scrapeHTMLForURL("http://www.fueleconomy.gov/ws/rest/vehicle/menu/model?year=\(year)&make=\(make)", responseHandler: handleLoadModelsResponse, view: self.view)
+            
+            searchBar.resignFirstResponder()
+            searchBar.becomeFirstResponder()
         }
         else {
-            model = NSString(string: models[row]).stringByReplacingOccurrencesOfString(" ", withString: "%20") as String
+            model = NSString(string: models[indexPath.row]).stringByReplacingOccurrencesOfString(" ", withString: "%20") as String
+            modelLabel.text = models[indexPath.row]
             
             AlamofireHelper.scrapeHTMLForURL("http://www.fueleconomy.gov/ws/rest/vehicle/menu/options?year=\(year)&make=\(make)&model=\(model)", responseHandler: handleLoadIDResponse, view: self.view)
+            
+            searchBar.text = ""
+            searchBar.showsScopeBar = false
+            searchBar.selectedScopeButtonIndex = 0
+            searchBar.resignFirstResponder()
+            tableView.reloadData()
+            tableView.hidden = true
         }
+    }
+    
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        searchBar.resignFirstResponder()
     }
     
 }
