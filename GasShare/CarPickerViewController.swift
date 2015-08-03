@@ -7,10 +7,8 @@
 //
 
 import UIKit
-import MBProgressHUD
-import SwiftyJSON
-import Alamofire
 import Kanna
+import MBProgressHUD
 
 class CarPickerViewController: UIViewController {
     
@@ -21,10 +19,16 @@ class CarPickerViewController: UIViewController {
     var makes: [String] = []
     var models: [String] = []
     
+    var year: String!
+    var make: String!
+    var model: String!
+    var carID: String!
+    var gasMileageText: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadYears()
+        AlamofireHelper.scrapeHTMLForURL("http://www.fueleconomy.gov/ws/rest/vehicle/menu/year", responseHandler: handleLoadYearsResponse, view: self.view)
     }
     
     override func didReceiveMemoryWarning() {
@@ -32,51 +36,80 @@ class CarPickerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func loadYears() {
-        let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
-        
-        let requestString = "http://www.fueleconomy.gov/ws/rest/vehicle/menu/year"
-        
-        Alamofire.request(.GET, requestString, parameters: nil).responseString { (_, response, data, error) -> Void in
-            hud.hide(true)
+    func handleLoadYearsResponse(data: AnyObject) {
+        KannaHelper.ParseXMLFromData(data, view: self.view) { (doc: XMLDocument) -> Void in
+            self.years = []
             
-            if AlamofireHelper.requestSucceeded(response, error: error) {
-                self.handleLoadYearsResponse(data!)
+            for node in doc.css("value") {
+                self.years.append(node.text!)
             }
+            
+            self.carPickerView.reloadComponent(0)
+        }
+    }
+    
+    func handleLoadMakesResponse(data: AnyObject) {
+        KannaHelper.ParseXMLFromData(data, view: self.view) { (doc: XMLDocument) -> Void in
+            self.makes = []
+            
+            for node in doc.css("value") {
+                self.makes.append(node.text!)
+            }
+            
+            self.carPickerView.reloadComponent(1)
+        }
+    }
+    
+    func handleLoadModelsResponse(data: AnyObject) {
+        KannaHelper.ParseXMLFromData(data, view: self.view) { (doc: XMLDocument) -> Void in
+            self.models = []
+            
+            for node in doc.css("value") {
+                self.models.append(node.text!)
+            }
+            
+            self.carPickerView.reloadComponent(2)
+        }
+    }
+    
+    func handleLoadIDResponse(data: AnyObject) {
+        KannaHelper.ParseXMLFromData(data, view: self.view) { (doc: XMLDocument) -> Void in
+            if let node = doc.at_css("value") {
+                self.carID = node.text!
+                
+                AlamofireHelper.scrapeHTMLForURL("http://www.fueleconomy.gov/ws/rest/vehicle/\(self.carID)", responseHandler: self.handleLoadGasMileageResponse, view: self.view)
+            }
+        }
+    }
+    
+    func handleLoadGasMileageResponse(data: AnyObject) {
+        KannaHelper.ParseXMLFromData(data, view: self.view) { (doc: XMLDocument) -> Void in
+            if let node = doc.at_css("comb08") {
+                self.gasMileageText = NSString(format: "%.1f", NSString(string: node.text!).doubleValue) as String
+                
+                self.gasMileageLabel.text = "\(self.gasMileageText) mi/gal"
+            }
+            
             else {
-                UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again.", delegate: nil, cancelButtonTitle: "OK").show()
+                UIAlertView(title: "Sorry", message: "Could not find gas mileage, please try a different car", delegate: nil, cancelButtonTitle: "OK").show()
+                self.gasMileageLabel.text = "Gas Mileage?"
                 MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
             }
         }
     }
     
-    func handleLoadYearsResponse(data: AnyObject) {
-        let xml = data as! String
-        
-        if let doc = Kanna.XML(xml: xml, encoding: NSUTF8StringEncoding) {
-            var count = 0
-            
-            for node in doc.css("value") {
-                years.append(node.text!)
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        if identifier == "CarPickerDone" {
+            if gasMileageLabel.text == "Gas Mileage?" {
+                UIAlertView(title: "No Car Selected", message: "Please select your car model", delegate: nil, cancelButtonTitle: "OK").show()
+                self.gasMileageLabel.text = "Gas Mileage?"
+                MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+                return false
             }
-            
-            carPickerView.reloadComponent(0)
+            return true
         }
-        else {
-            UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again.", delegate: nil, cancelButtonTitle: "OK").show()
-            MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
-        }
+        return true
     }
-    
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
     
 }
 
@@ -111,7 +144,7 @@ extension CarPickerViewController: UIPickerViewDataSource {
             label.text = models[row]
         }
         
-        label.font = UIFont(name: "Avenir", size: 28)
+        label.font = UIFont(name: "Avenir", size: 24)
         label.textColor = UIColor.whiteColor()
         
         return label
@@ -121,6 +154,22 @@ extension CarPickerViewController: UIPickerViewDataSource {
 
 extension CarPickerViewController: UIPickerViewDelegate {
     
-    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if component == 0 {
+            year = years[row]
+            
+            AlamofireHelper.scrapeHTMLForURL("http://www.fueleconomy.gov/ws/rest/vehicle/menu/make?year=\(year)", responseHandler: handleLoadMakesResponse, view: self.view)
+        }
+        else if component == 1 {
+            make = NSString(string: makes[row]).stringByReplacingOccurrencesOfString(" ", withString: "%20") as String
+            
+            AlamofireHelper.scrapeHTMLForURL("http://www.fueleconomy.gov/ws/rest/vehicle/menu/model?year=\(year)&make=\(make)", responseHandler: handleLoadModelsResponse, view: self.view)
+        }
+        else {
+            model = NSString(string: models[row]).stringByReplacingOccurrencesOfString(" ", withString: "%20") as String
+            
+            AlamofireHelper.scrapeHTMLForURL("http://www.fueleconomy.gov/ws/rest/vehicle/menu/options?year=\(year)&make=\(make)&model=\(model)", responseHandler: handleLoadIDResponse, view: self.view)
+        }
+    }
     
 }

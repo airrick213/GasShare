@@ -7,6 +7,9 @@
 //
 
 import SwiftyJSON
+import Alamofire
+import MBProgressHUD
+import UIKit
 
 class AlamofireHelper {
     
@@ -18,4 +21,19 @@ class AlamofireHelper {
         return false
     }
     
-}
+    static func scrapeHTMLForURL(url: String, responseHandler: (data: AnyObject) -> Void, view: UIView) {
+        let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
+        
+        Alamofire.request(.GET, url, parameters: nil).responseString { (_, response, data, error) -> Void in
+            if self.requestSucceeded(response, error: error) {
+                responseHandler(data: data!)
+            }
+            else {
+                UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again", delegate: nil, cancelButtonTitle: "OK").show()
+            }
+            
+            MBProgressHUD.hideAllHUDsForView(view, animated: true)
+        }
+    }
+    
+};

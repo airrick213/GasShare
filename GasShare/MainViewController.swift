@@ -35,7 +35,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var gasMileageToolbarBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var gasPriceToolbarBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var gasPriceButton: UIButton!
-    @IBOutlet weak var gasMileagesSuggestionsButton: UIButton!
+    @IBOutlet weak var gasMileageButton: UIButton!
     @IBOutlet weak var regularGasButton: UIButton!
     @IBOutlet weak var plusGasButton: UIButton!
     @IBOutlet weak var premiumGasButton: UIButton!
@@ -59,7 +59,6 @@ class MainViewController: UIViewController {
     //gas mileage variables
     var gasMileageText = "Don't know the gas mileage?"
     var gasMileage: Double?
-    var selectedIndex: Int?
     
     //map variables
     let locationManager = CLLocationManager()
@@ -97,8 +96,7 @@ class MainViewController: UIViewController {
                 gasMileage = NSString(string: gasMileageTextField.text).doubleValue
             }
             else {
-                let doubleString = gasMileageText.substringFromIndex(advance(gasMileageText.startIndex, count(gasMileageText) - 2))
-                gasMileage = NSString(string: doubleString).doubleValue
+                gasMileage = NSString(string: gasMileageText).doubleValue
             }
             
             if gasMileage > 0 {
@@ -112,12 +110,12 @@ class MainViewController: UIViewController {
                 gasMileageTextField.text = String(format: "%.1f", gasMileage!)
             }
             else {
-                UIAlertView(title: "No Gas Mileage", message: "Please enter your car's gas mileage or choose one from the suggestions list", delegate: nil, cancelButtonTitle: "OK").show()
+                UIAlertView(title: "No Gas Mileage", message: "Please enter your car's gas mileage or select your car model", delegate: nil, cancelButtonTitle: "OK").show()
                 MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
             }
         }
         else {
-            UIAlertView(title: "No Gas Mileage", message: "Please enter your car's gas mileage or choose one from the suggestions list", delegate: nil, cancelButtonTitle: "OK").show()
+            UIAlertView(title: "No Gas Mileage", message: "Please enter your car's gas mileage or select your car model", delegate: nil, cancelButtonTitle: "OK").show()
             MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
         }
     }
@@ -196,11 +194,11 @@ class MainViewController: UIViewController {
     @IBAction func gasMileageBackButtonTapped(sender: AnyObject) {
         gasMileageTextField.resignFirstResponder()
         animate(mainToolbar, over: gasMileageToolbar)
-        gasMileagesSuggestionsButton.setTitle(gasMileageText, forState: UIControlState.Normal)
-        if gasMileageText != "Don't know the gas mileage?" {
+        gasMileageButton.setTitle("\(gasMileageText) mi/gal", forState: UIControlState.Normal)
+        if gasMileageButton.titleLabel!.text != "Don't know the gas mileage?" {
             gasMileageTextField.enabled = false
             if let gasMileage = gasMileage {
-                gasMileageTextField.text = String(format: "%.1f", gasMileage)
+                gasMileageTextField.text = gasMileageText
             }
             else {
                 gasMileageTextField.text = ""
@@ -261,9 +259,8 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func gasMileageClearButtonTapped(sender: AnyObject) {
-        gasMileagesSuggestionsButton.setTitle("Don't know the gas mileage?", forState: UIControlState.Normal)
+        gasMileageButton.setTitle("Don't know the gas mileage?", forState: UIControlState.Normal)
         gasMileageTextField.enabled = true
-        selectedIndex = nil
         gasMileageClearButton.hidden = true
     }
     
@@ -381,7 +378,7 @@ class MainViewController: UIViewController {
                 self.handleLocationSearchResponse(data!, searchingStartLocation: searchingStartLocation)
             }
             else {
-                UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again.", delegate: nil, cancelButtonTitle: "OK").show()
+                UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again", delegate: nil, cancelButtonTitle: "OK").show()
                 MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
             }
         }
@@ -451,7 +448,7 @@ class MainViewController: UIViewController {
                 self.handleDistanceCalculationResponse(data!)
             }
             else {
-                UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again.", delegate: nil, cancelButtonTitle: "OK").show()
+                UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again", delegate: nil, cancelButtonTitle: "OK").show()
                 MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
             }
         }
@@ -535,7 +532,7 @@ class MainViewController: UIViewController {
     }
     
     func checkSearchBar() {
-        if startSearchBar.isFirstResponder() {
+        if searchingStartLocation {
             if endSearchBar.hidden == true {
                 endSearchBar.hidden = false
                 endSearchBar.becomeFirstResponder()
@@ -736,7 +733,7 @@ class MainViewController: UIViewController {
             showGasPriceButtons()
         }
         else {
-            UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again.", delegate: nil, cancelButtonTitle: "OK").show()
+            UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again", delegate: nil, cancelButtonTitle: "OK").show()
             MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
             
             self.gasPriceButton.setTitle("\(self.selectedLocation): Gas price could not be found", forState: UIControlState.Normal)
@@ -794,6 +791,8 @@ class MainViewController: UIViewController {
     
     @IBAction func unwindToSegue(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
+            
+            /* Gas Mileage List Code
             if identifier == "GasMileageDone" {
                 let source = segue.sourceViewController as! GasMileagesViewController
                 
@@ -820,6 +819,21 @@ class MainViewController: UIViewController {
                 
                 selectedIndex = source.selectedIndex
             }
+            */
+            
+            if identifier == "CarPickerDone" {
+                let source = segue.sourceViewController as! CarPickerViewController
+                
+                gasMileageText = source.gasMileageText
+                gasMileageButton.setTitle("\(gasMileageText) mi/gal", forState: UIControlState.Normal)
+                
+                gasMileageTextField.sizeToFit()
+                
+                gasMileageClearButton.hidden = false
+                
+                gasMileageTextField.enabled = false
+            }
+            
             else if identifier == "GasStationDone" {
                 let source = segue.sourceViewController as! GasStationMapViewController
                 
@@ -832,6 +846,8 @@ class MainViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
+            
+            /* Gas Mileage List Code
             if identifier == "ShowGasMileagesSuggestions" {
                 let gasMileagesViewController = segue.destinationViewController as! GasMileagesViewController
                 
@@ -839,7 +855,9 @@ class MainViewController: UIViewController {
                     gasMileagesViewController.selectedIndex = selectedIndex
                 }
             }
-            else if identifier == "ShowGasStationMap" {
+            */
+            
+            if identifier == "ShowGasStationMap" {
                 if !startLocation.isEmpty {
                     let gasStationMapViewController = segue.destinationViewController as! GasStationMapViewController
                     

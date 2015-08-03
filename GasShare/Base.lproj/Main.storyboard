@@ -557,6 +557,7 @@
                         <outlet property="currentLocationButtonBottomConstraint" destination="Ago-Cz-Qmi" id="z81-8R-Osw"/>
                         <outlet property="distanceLabel" destination="fC2-bw-DJL" id="86D-zd-L1X"/>
                         <outlet property="endSearchBar" destination="WH9-Iz-Bvx" id="2DY-JH-IZJ"/>
+                        <outlet property="gasMileageButton" destination="lR8-tO-ypM" id="RXs-7f-nyt"/>
                         <outlet property="gasMileageClearButton" destination="204-fO-v58" id="cXs-fT-CjG"/>
                         <outlet property="gasMileageDoneButton" destination="gjy-1h-lzp" id="ZMk-R2-EKY"/>
                         <outlet property="gasMileageTextField" destination="hcg-sL-2dk" id="f91-KD-2WL"/>
@@ -565,7 +566,6 @@
                         <outlet property="gasMileageToolbarButton" destination="4bv-A7-m32" id="bRn-pS-j4u"/>
                         <outlet property="gasMileageToolbarButtonBottomConstraint" destination="3MJ-ki-0PW" id="qZ3-He-nW4"/>
                         <outlet property="gasMileageToolbarHeight" destination="XOM-6H-oTo" id="JeK-Hs-H6K"/>
-                        <outlet property="gasMileagesSuggestionsButton" destination="lR8-tO-ypM" id="yTl-gh-Msy"/>
                         <outlet property="gasPriceButton" destination="Cu1-jR-NY6" id="hi0-2p-bma"/>
                         <outlet property="gasPriceClearButton" destination="RKQ-eV-2GA" id="Qbf-D9-X63"/>
                         <outlet property="gasPriceDoneButton" destination="edJ-3d-nPW" id="Qy6-wU-Jfz"/>
@@ -843,7 +843,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HGz-Zn-Myg">
                                 <rect key="frame" x="16" y="80" width="568" height="520"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Copyright (c) 2015 Eric Kim. Permission is hereby granted, free of charge, to any person obtaining a copy
+                                <mutableString key="text">Copyright (c) 2015 Eric Kim. Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files, to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -861,9 +861,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
-Attribution is given to Icons8 (https://icons8.com/) for use of the Center Location icon (ic8.link/3396), the Checked icon (ic8.link/15431), and the Cancel icon (ic8.link/3062).
+Attribution is given to Icons8 (https://icons8.com/) for use of the Car icon (ic8.link/245), Center Location icon (ic8.link/3396), the Checked icon (ic8.link/15431), and the Cancel icon (ic8.link/3062).
 
-Special thanks to MakeSchool for mentorship throughout the construction of the app.</string>
+Special thanks to MakeSchool for mentorship throughout the construction of the app.</mutableString>
                                 <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1001,6 +1001,6 @@ Special thanks to MakeSchool for mentorship throughout the construction of the a
         <image name="Location-Color" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aZV-76-HM1"/>
+        <segue reference="fFk-FM-Hfx"/>
     </inferredMetricsTieBreakers>
 </document>

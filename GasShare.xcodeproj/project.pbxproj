@@ -20,6 +20,7 @@
 		079DB15B1B58501200D21C77 /* HTMLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079DB1591B58501200D21C77 /* HTMLNode.swift */; };
 		079DB15C1B58501200D21C77 /* HTMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079DB15A1B58501200D21C77 /* HTMLParser.swift */; };
 		079DB15F1B58519A00D21C77 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 079DB15E1B58519A00D21C77 /* libxml2.dylib */; };
+		07A2B2B01B6FC61F006F654D /* KannaHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A2B2AF1B6FC61F006F654D /* KannaHelper.swift */; };
 		07A8E1BD1B61325F00D81518 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A8E1BC1B61325F00D81518 /* MainViewController.swift */; };
 		07AB75261B62B00D00AF3A5D /* CustomToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AB75251B62B00D00AF3A5D /* CustomToolbar.swift */; };
 		07AB75281B62B05600AF3A5D /* MainToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AB75271B62B05600AF3A5D /* MainToolbar.swift */; };
@@ -62,6 +63,7 @@
 		079DB15A1B58501200D21C77 /* HTMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLParser.swift; sourceTree = "<group>"; };
 		079DB15D1B58502000D21C77 /* Swift-HTML-Parser-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Swift-HTML-Parser-Bridging-Header.h"; sourceTree = "<group>"; };
 		079DB15E1B58519A00D21C77 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		07A2B2AF1B6FC61F006F654D /* KannaHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KannaHelper.swift; sourceTree = "<group>"; };
 		07A8E1BC1B61325F00D81518 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		07AB75251B62B00D00AF3A5D /* CustomToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomToolbar.swift; sourceTree = "<group>"; };
 		07AB75271B62B05600AF3A5D /* MainToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainToolbar.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			children = (
 				0791F3F31B56DC44006FEED8 /* AlamofireHelper.swift */,
 				077F1E761B5D4F1A0037A483 /* MapHelper.swift */,
+				07A2B2AF1B6FC61F006F654D /* KannaHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				07E52A9F1B505595006FFB7A /* CalculationViewController.swift in Sources */,
 				07AB752A1B62B07300AF3A5D /* GasMileageToolbar.swift in Sources */,
 				07AB752C1B62B08400AF3A5D /* GasPriceToolbar.swift in Sources */,
+				07A2B2B01B6FC61F006F654D /* KannaHelper.swift in Sources */,
 				07AB75321B62B3FD00AF3A5D /* GasMileagesViewController.swift in Sources */,
 				072892921B4DB7530060960A /* AppDelegate.swift in Sources */,
 				077F1E771B5D4F1A0037A483 /* MapHelper.swift in Sources */,
