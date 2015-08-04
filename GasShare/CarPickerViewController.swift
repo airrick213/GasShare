@@ -187,7 +187,7 @@ extension CarPickerViewController: UISearchBarDelegate {
         }
         else {
             if searchBar.selectedScopeButtonIndex == 0 {
-                searchedYears = years.filter { $0.lowercaseString.rangeOfString(searchText.lowercaseString) != nil }
+                searchedYears = years.filter { $0.rangeOfString(searchText) != nil }
             }
             else if searchBar.selectedScopeButtonIndex == 1 {
                 searchedMakes = makes.filter { $0.lowercaseString.rangeOfString(searchText.lowercaseString) != nil }

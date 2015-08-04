@@ -291,7 +291,6 @@ class MainViewController: UIViewController {
         startSearchBar.barTintColor = UIColor(red: 91.0/255.0, green: 202.0/255.0, blue: 1.0, alpha: 1.0)
 
         endSearchBar.barTintColor = UIColor(red: 91.0/255.0, green: 202.0/255.0, blue: 1.0, alpha: 1.0)
-
         
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
