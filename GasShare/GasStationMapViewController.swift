@@ -82,13 +82,12 @@ class GasStationMapViewController: UIViewController {
     var selectedCoordinate = CLLocationCoordinate2D()
     var selectedLocation = ""
     var firstLocation = true
-    var usedSearchBar = false
     var defaultLocation = ""
     
     @IBAction func currentLocationButtonPressed(sender: AnyObject) {
         if let myLocation = mapView.myLocation {
             MapHelper.moveCamera(mapView: mapView, coordinate: myLocation.coordinate)
-            setMarker(coordinate: myLocation.coordinate)
+            reverseGeocode(coordinate: myLocation.coordinate)
             
             currentLocationButton.selected = true
             searchBar.resignFirstResponder()
@@ -177,7 +176,6 @@ class GasStationMapViewController: UIViewController {
             selectedCoordinate.latitude = latitude!
             selectedCoordinate.longitude = longitude!
             
-            usedSearchBar = true
             MapHelper.moveCamera(mapView: mapView, coordinate: selectedCoordinate)
             setMarker(coordinate: selectedCoordinate)
         }
@@ -193,13 +191,6 @@ class GasStationMapViewController: UIViewController {
         }
         
         self.selectedCoordinate = coordinate
-        
-        if usedSearchBar {
-            usedSearchBar = false
-        }
-        else {
-            reverseGeocode(coordinate: coordinate)
-        }
         
         mapView.clear()
         
@@ -230,6 +221,8 @@ class GasStationMapViewController: UIViewController {
                 
                 self.searchBar.text = self.selectedLocation
             }
+            
+            self.setMarker(coordinate: coordinate)
         })
     }
     
@@ -276,7 +269,7 @@ extension GasStationMapViewController: GMSMapViewDelegate {
             searchForLocation(searchBar.text)
         }
         else {
-            setMarker(coordinate: coordinate)
+            reverseGeocode(coordinate: coordinate)
         }
     }
     

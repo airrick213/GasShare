@@ -35,9 +35,10 @@ class CarPickerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        searchBar.showsScopeBar = false
-        tableView.hidden = true
         AlamofireHelper.scrapeHTMLForURL("http://www.fueleconomy.gov/ws/rest/vehicle/menu/year", responseHandler: handleLoadYearsResponse, view: self.view)
+        searchBar.showsScopeBar = true
+        searchBar.becomeFirstResponder()
+        tableView.hidden = false
     }
     
     override func didReceiveMemoryWarning() {

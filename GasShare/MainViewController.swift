@@ -211,7 +211,7 @@ class MainViewController: UIViewController {
     @IBAction func gasPriceBackButtonTapped(sender: AnyObject) {
         gasPriceTextField.resignFirstResponder()
         animate(mainToolbar, over: gasPriceToolbar)
-        if selectedLocation != "" {
+        if !regularGasButton.hidden {
             if regularGasButton.selected == true {
                 reloadGasPriceButtonText(regPrice)
             }
