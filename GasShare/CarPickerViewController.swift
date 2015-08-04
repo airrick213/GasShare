@@ -22,6 +22,9 @@ class CarPickerViewController: UIViewController {
     var years: [String] = []
     var makes: [String] = []
     var models: [String] = []
+    var searchedYears: [String] = []
+    var searchedMakes: [String] = []
+    var searchedModels: [String] = []
     
     var year: String!
     var make: String!
@@ -50,6 +53,8 @@ class CarPickerViewController: UIViewController {
                 self.years.append(node.text!)
             }
             
+            self.searchedYears = self.years
+            
             self.tableView.reloadData()
         }
     }
@@ -62,6 +67,8 @@ class CarPickerViewController: UIViewController {
                 self.makes.append(node.text!)
             }
             
+            self.searchedMakes = self.makes
+            
             self.tableView.reloadData()
         }
     }
@@ -73,6 +80,8 @@ class CarPickerViewController: UIViewController {
             for node in doc.css("value") {
                 self.models.append(node.text!)
             }
+            
+            self.searchedModels = self.models
             
             self.tableView.reloadData()
         }
@@ -157,9 +166,37 @@ extension CarPickerViewController: UISearchBarDelegate {
         else {
             tableView.reloadData()
             
+            searchBar.text = ""
             searchBar.resignFirstResponder()
             searchBar.becomeFirstResponder()
         }
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText == "" {
+            if searchBar.selectedScopeButtonIndex == 0 {
+                searchedYears = years
+            }
+            else if searchBar.selectedScopeButtonIndex == 1 {
+                searchedMakes = makes
+            }
+            else {
+                searchedModels = models
+            }
+        }
+        else {
+            if searchBar.selectedScopeButtonIndex == 0 {
+                searchedYears = years.filter { $0.lowercaseString.rangeOfString(searchText.lowercaseString) != nil }
+            }
+            else if searchBar.selectedScopeButtonIndex == 1 {
+                searchedMakes = makes.filter { $0.lowercaseString.rangeOfString(searchText.lowercaseString) != nil }
+            }
+            else {
+                searchedModels = models.filter { $0.lowercaseString.rangeOfString(searchText.lowercaseString) != nil }
+            }
+        }
+        
+        tableView.reloadData()
     }
     
 }
@@ -168,13 +205,13 @@ extension CarPickerViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchBar.selectedScopeButtonIndex == 0 {
-            return years.count
+            return searchedYears.count
         }
         else if searchBar.selectedScopeButtonIndex == 1 {
-            return makes.count
+            return searchedMakes.count
         }
         else {
-            return models.count
+            return searchedModels.count
         }
     }
     
@@ -182,13 +219,13 @@ extension CarPickerViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier("CarCell", forIndexPath: indexPath) as! CarPickerTableViewCell
         
         if searchBar.selectedScopeButtonIndex == 0 {
-            cell.carLabel.text = years[indexPath.row]
+            cell.carLabel.text = searchedYears[indexPath.row]
         }
         else if searchBar.selectedScopeButtonIndex == 1 {
-            cell.carLabel.text = makes[indexPath.row]
+            cell.carLabel.text = searchedMakes[indexPath.row]
         }
         else {
-            cell.carLabel.text = models[indexPath.row]
+            cell.carLabel.text = searchedModels[indexPath.row]
         }
                 
         return cell
@@ -200,7 +237,7 @@ extension CarPickerViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if searchBar.selectedScopeButtonIndex == 0 {
-            year = years[indexPath.row]
+            year = searchedYears[indexPath.row]
             
             yearLabel.text = year
             makeLabel.text = "Make?"
@@ -212,13 +249,14 @@ extension CarPickerViewController: UITableViewDelegate {
             
             AlamofireHelper.scrapeHTMLForURL("http://www.fueleconomy.gov/ws/rest/vehicle/menu/make?year=\(year)", responseHandler: handleLoadMakesResponse, view: self.view)
             
+            searchedYears = years
             searchBar.resignFirstResponder()
             searchBar.becomeFirstResponder()
         }
         else if searchBar.selectedScopeButtonIndex == 1 {
-            make = NSString(string: makes[indexPath.row]).stringByReplacingOccurrencesOfString(" ", withString: "%20") as String
+            make = NSString(string: searchedMakes[indexPath.row]).stringByReplacingOccurrencesOfString(" ", withString: "%20") as String
             
-            makeLabel.text = makes[indexPath.row]
+            makeLabel.text = searchedMakes[indexPath.row]
             modelLabel.text = "Model?"
             gasMileageLabel.text = "Gas Mileage?"
             
@@ -227,15 +265,17 @@ extension CarPickerViewController: UITableViewDelegate {
 
             AlamofireHelper.scrapeHTMLForURL("http://www.fueleconomy.gov/ws/rest/vehicle/menu/model?year=\(year)&make=\(make)", responseHandler: handleLoadModelsResponse, view: self.view)
             
+            searchedMakes = makes
             searchBar.resignFirstResponder()
             searchBar.becomeFirstResponder()
         }
         else {
-            model = NSString(string: models[indexPath.row]).stringByReplacingOccurrencesOfString(" ", withString: "%20") as String
-            modelLabel.text = models[indexPath.row]
+            model = NSString(string: searchedModels[indexPath.row]).stringByReplacingOccurrencesOfString(" ", withString: "%20") as String
+            modelLabel.text = searchedModels[indexPath.row]
             
             AlamofireHelper.scrapeHTMLForURL("http://www.fueleconomy.gov/ws/rest/vehicle/menu/options?year=\(year)&make=\(make)&model=\(model)", responseHandler: handleLoadIDResponse, view: self.view)
             
+            searchedModels = models
             searchBar.text = ""
             searchBar.showsScopeBar = false
             searchBar.selectedScopeButtonIndex = 0
