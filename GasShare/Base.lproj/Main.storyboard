@@ -6,97 +6,81 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Gas Mileages View Controller-->
-        <scene sceneID="lCD-Fk-Nhd">
+        <!--View Controller-->
+        <scene sceneID="NDs-Gp-9Zf">
             <objects>
-                <viewController id="dKp-qa-MG8" customClass="GasMileagesViewController" customModule="GasShare" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7SC-Ns-u85" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="aop-s7-tm7"/>
-                        <viewControllerLayoutGuide type="bottom" id="zDO-5V-Y41"/>
+                        <viewControllerLayoutGuide type="top" id="OZv-FL-6jZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="g8j-Bk-WLi"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="KeP-SO-xF7">
+                    <view key="view" contentMode="scaleToFill" id="uZY-n8-daB">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7H1-11-iQP">
-                                <rect key="frame" x="0.0" y="80" width="600" height="520"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GasMileageCell" rowHeight="60" id="coR-ml-sHt" customClass="GasMileageCell" customModule="GasShare" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="coR-ml-sHt" id="4cT-hO-dUB">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZOb-hh-whR">
-                                                    <rect key="frame" x="8" y="11" width="68" height="38.5"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="28"/>
-                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Check" translatesAutoresizingMaskIntoConstraints="NO" id="tgF-iI-tFw">
-                                                    <rect key="frame" x="560" y="14" width="32" height="32"/>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="tgF-iI-tFw" firstAttribute="trailing" secondItem="4cT-hO-dUB" secondAttribute="trailingMargin" id="k8m-Nk-huD"/>
-                                                <constraint firstAttribute="centerY" secondItem="ZOb-hh-whR" secondAttribute="centerY" id="mr2-h1-zrV"/>
-                                                <constraint firstAttribute="centerY" secondItem="tgF-iI-tFw" secondAttribute="centerY" id="oTM-mO-MvZ"/>
-                                                <constraint firstItem="ZOb-hh-whR" firstAttribute="leading" secondItem="4cT-hO-dUB" secondAttribute="leadingMargin" id="w4T-ML-OnE"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="checkmark" destination="tgF-iI-tFw" id="aCa-IP-7uc"/>
-                                            <outlet property="gasMileageLabel" destination="ZOb-hh-whR" id="n1j-JN-4gV"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="dKp-qa-MG8" id="CW4-te-umM"/>
-                                    <outlet property="delegate" destination="dKp-qa-MG8" id="kxs-PU-Clq"/>
-                                </connections>
-                            </tableView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rsk-8q-j7y">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="BZc-Ji-2YV"/>
-                                </constraints>
-                                <items>
-                                    <navigationItem title="Choose a Value" id="T5H-q6-MHG">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Tls-Nd-7PS">
-                                            <connections>
-                                                <segue destination="mKV-Ep-4Tv" kind="unwind" identifier="GasMileageCancel" unwindAction="unwindToSegue:" id="Fvv-Kx-y7t"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="oV6-hD-FXu">
-                                            <connections>
-                                                <segue destination="mKV-Ep-4Tv" kind="unwind" identifier="GasMileageDone" unwindAction="unwindToSegue:" id="WkJ-T6-oqC"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lu6-sa-BBJ">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HHA-Dz-nbg">
+                                <rect key="frame" x="270.5" y="30" width="59" height="33"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="7H1-11-iQP" firstAttribute="top" secondItem="rsk-8q-j7y" secondAttribute="bottom" id="2r2-g3-FHM"/>
-                            <constraint firstItem="7H1-11-iQP" firstAttribute="leading" secondItem="KeP-SO-xF7" secondAttribute="leading" id="Aia-Ii-uWi"/>
-                            <constraint firstAttribute="trailing" secondItem="7H1-11-iQP" secondAttribute="trailing" id="BF3-W4-k9A"/>
-                            <constraint firstItem="rsk-8q-j7y" firstAttribute="top" secondItem="KeP-SO-xF7" secondAttribute="top" id="ft6-Yu-zlG"/>
-                            <constraint firstAttribute="trailing" secondItem="rsk-8q-j7y" secondAttribute="trailing" id="jEj-UN-ftB"/>
-                            <constraint firstItem="zDO-5V-Y41" firstAttribute="top" secondItem="7H1-11-iQP" secondAttribute="bottom" id="lx0-tm-aHL"/>
-                            <constraint firstItem="rsk-8q-j7y" firstAttribute="leading" secondItem="KeP-SO-xF7" secondAttribute="leading" id="uwz-ib-2Up"/>
+                            <constraint firstItem="lu6-sa-BBJ" firstAttribute="top" secondItem="uZY-n8-daB" secondAttribute="top" id="NqJ-67-2qn"/>
+                            <constraint firstItem="HHA-Dz-nbg" firstAttribute="top" secondItem="OZv-FL-6jZ" secondAttribute="bottom" constant="10" id="ONc-U0-Ov6"/>
+                            <constraint firstAttribute="trailing" secondItem="lu6-sa-BBJ" secondAttribute="trailing" id="YBU-mu-jgX"/>
+                            <constraint firstItem="lu6-sa-BBJ" firstAttribute="leading" secondItem="uZY-n8-daB" secondAttribute="leading" id="bjH-Eq-t9g"/>
+                            <constraint firstAttribute="centerX" secondItem="HHA-Dz-nbg" secondAttribute="centerX" id="d3B-mN-ou8"/>
+                            <constraint firstItem="g8j-Bk-WLi" firstAttribute="top" secondItem="lu6-sa-BBJ" secondAttribute="bottom" id="r4b-lA-hFP"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="navigationBar" destination="rsk-8q-j7y" id="aQo-5I-mul"/>
-                        <outlet property="tableView" destination="7H1-11-iQP" id="viI-fa-uG4"/>
-                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ztd-O2-6Ie" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="mKV-Ep-4Tv" userLabel="Exit" sceneMemberID="exit"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3vs-SG-g2B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="400" y="-1459"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Geb-Vs-P97">
+            <objects>
+                <viewController id="Fq9-zb-edt" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3Bg-YU-DrV"/>
+                        <viewControllerLayoutGuide type="bottom" id="LJu-Sr-KhF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kkh-jh-WcD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tmb-2Z-wfP">
+                                <rect key="frame" x="277" y="535" width="46" height="45"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="24"/>
+                                <state key="normal" title="Skip">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LJu-Sr-KhF" firstAttribute="top" secondItem="tmb-2Z-wfP" secondAttribute="bottom" constant="20" id="PAs-CC-e3Y"/>
+                            <constraint firstAttribute="centerX" secondItem="tmb-2Z-wfP" secondAttribute="centerX" id="pIQ-Ut-Uy8"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cVd-sR-mxj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-288" y="-745"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="X5D-60-cVQ">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="dao-0Y-dta" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ozM-VE-bNe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-288" y="-1459"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="KOE-Ju-f7F">
@@ -602,10 +586,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uEH-95-AWY">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="5rI-Sp-t9v"/>
-                                    <constraint firstAttribute="height" constant="80" id="DuE-Of-TkD"/>
+                                    <constraint firstAttribute="height" constant="60" id="DuE-Of-TkD"/>
                                 </constraints>
                                 <items>
                                     <navigationItem title="Enter Gas Station Location" id="DSm-Z2-o0J">
@@ -628,7 +612,7 @@
                                 </variation>
                             </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AdG-Zf-61Q">
-                                <rect key="frame" x="0.0" y="80" width="600" height="520"/>
+                                <rect key="frame" x="0.0" y="60" width="600" height="540"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Circle" translatesAutoresizingMaskIntoConstraints="NO" id="o76-7j-Mbv">
@@ -653,7 +637,7 @@
                                 </connections>
                             </button>
                             <searchBar alpha="0.80000001192092896" contentMode="redraw" text="" placeholder="Gas Station Location" translatesAutoresizingMaskIntoConstraints="NO" id="EbL-DN-G7v">
-                                <rect key="frame" x="10" y="90" width="580" height="44"/>
+                                <rect key="frame" x="10" y="70" width="580" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="mzE-cr-iN8"/>
                                 </constraints>
@@ -714,13 +698,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Cost" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="33I-I0-fYx">
-                                <rect key="frame" x="245" y="120" width="110" height="33"/>
+                                <rect key="frame" x="245" y="100" width="110" height="33"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
                                 <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Passengers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b5f-bq-dsA">
-                                <rect key="frame" x="176" y="153" width="248" height="33"/>
+                                <rect key="frame" x="176" y="133" width="248" height="33"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
                                 <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -741,15 +725,15 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="2ae-5f-2Hw">
-                                <rect key="frame" x="253" y="191" width="94" height="29"/>
+                                <rect key="frame" x="253" y="171" width="94" height="29"/>
                                 <connections>
                                     <action selector="numberOfPassengersChanged:" destination="csB-mT-9P3" eventType="valueChanged" id="XxP-Px-DJ9"/>
                                 </connections>
                             </stepper>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zzN-gg-Pgm">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="0G9-WD-Sgc"/>
+                                    <constraint firstAttribute="height" constant="60" id="0G9-WD-Sgc"/>
                                 </constraints>
                                 <items>
                                     <navigationItem title="Gas Share" id="OE6-dn-tZ7">
@@ -841,9 +825,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HGz-Zn-Myg">
-                                <rect key="frame" x="16" y="80" width="568" height="520"/>
+                                <rect key="frame" x="16" y="60" width="568" height="540"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">Copyright (c) 2015 Eric Kim. Permission is hereby granted, free of charge, to any person obtaining a copy
+                                <string key="text">Copyright (c) 2015 Eric Kim. Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files, to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -863,15 +847,15 @@ THE SOFTWARE.
 
 Attribution is given to Icons8 (https://icons8.com/) for use of the Car icon (ic8.link/245), Center Location icon (ic8.link/3396), the Checked icon (ic8.link/15431), and the Cancel icon (ic8.link/3062).
 
-Special thanks to MakeSchool for mentorship throughout the construction of the app.</mutableString>
+Special thanks to MakeSchool for mentorship throughout the construction of the app.</string>
                                 <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ie-RW-u0P">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="I1H-BJ-DiY"/>
+                                    <constraint firstAttribute="height" constant="60" id="I1H-BJ-DiY"/>
                                 </constraints>
                                 <items>
                                     <navigationItem title="About" id="b9X-mT-qYz">
@@ -922,9 +906,9 @@ Special thanks to MakeSchool for mentorship throughout the construction of the a
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BQc-cn-yQq">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="TcT-k1-zRA"/>
+                                    <constraint firstAttribute="height" constant="60" id="TcT-k1-zRA"/>
                                 </constraints>
                                 <items>
                                     <navigationItem title="Select Your Car" id="kkx-bX-FgL">
@@ -969,7 +953,7 @@ Special thanks to MakeSchool for mentorship throughout the construction of the a
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="67" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="XTa-yJ-pfe">
-                                <rect key="frame" x="0.0" y="124" width="600" height="476"/>
+                                <rect key="frame" x="0.0" y="104" width="600" height="496"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="CarCell" rowHeight="60" id="JoS-mT-YcM" customClass="CarPickerTableViewCell" customModule="GasShare" customModuleProvider="target">
@@ -1001,7 +985,7 @@ Special thanks to MakeSchool for mentorship throughout the construction of the a
                                 </connections>
                             </tableView>
                             <searchBar contentMode="redraw" placeholder="Enter your car's information" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="onW-Pg-KHp">
-                                <rect key="frame" x="0.0" y="80" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="60" width="600" height="44"/>
                                 <color key="barTintColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                 <scopeButtonTitles>
@@ -1069,13 +1053,12 @@ Special thanks to MakeSchool for mentorship throughout the construction of the a
     </scenes>
     <resources>
         <image name="Car" width="170" height="170"/>
-        <image name="Check" width="32" height="32"/>
         <image name="Circle" width="50" height="50"/>
         <image name="Clear" width="32" height="32"/>
         <image name="Location" width="32" height="32"/>
         <image name="Location-Color" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fFk-FM-Hfx"/>
+        <segue reference="aZV-76-HM1"/>
     </inferredMetricsTieBreakers>
 </document>

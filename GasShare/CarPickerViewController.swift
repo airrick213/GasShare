@@ -245,6 +245,8 @@ extension CarPickerViewController: UITableViewDelegate {
             modelLabel.text = "Model?"
             gasMileageLabel.text = "Gas Mileage?"
             
+            searchBar.scopeButtonTitles = [year, "Make", "Model"] as [AnyObject]?
+            
             searchBar.text = ""
             searchBar.selectedScopeButtonIndex = 1
             
@@ -261,6 +263,8 @@ extension CarPickerViewController: UITableViewDelegate {
             modelLabel.text = "Model?"
             gasMileageLabel.text = "Gas Mileage?"
             
+            searchBar.scopeButtonTitles = [year, makeLabel.text!, "Model"] as [AnyObject]?
+            
             searchBar.text = ""
             searchBar.selectedScopeButtonIndex = 2
 
@@ -273,6 +277,8 @@ extension CarPickerViewController: UITableViewDelegate {
         else {
             model = NSString(string: searchedModels[indexPath.row]).stringByReplacingOccurrencesOfString(" ", withString: "%20") as String
             modelLabel.text = searchedModels[indexPath.row]
+            
+            searchBar.scopeButtonTitles = [year, makeLabel.text!, modelLabel.text!] as [AnyObject]?
             
             AlamofireHelper.scrapeHTMLForURL("http://www.fueleconomy.gov/ws/rest/vehicle/menu/options?year=\(year)&make=\(make)&model=\(model)", responseHandler: handleLoadIDResponse, view: self.view)
             

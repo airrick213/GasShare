@@ -194,9 +194,12 @@ class MainViewController: UIViewController {
     @IBAction func gasMileageBackButtonTapped(sender: AnyObject) {
         gasMileageTextField.resignFirstResponder()
         animate(mainToolbar, over: gasMileageToolbar)
-        gasMileageButton.setTitle("\(gasMileageText) mi/gal", forState: UIControlState.Normal)
+        
         if gasMileageButton.titleLabel!.text != "Don't know the gas mileage?" {
+            gasMileageButton.setTitle("\(gasMileageText) mi/gal", forState: UIControlState.Normal)
+            
             gasMileageTextField.enabled = false
+            
             if let gasMileage = gasMileage {
                 gasMileageTextField.text = gasMileageText
             }
@@ -205,6 +208,14 @@ class MainViewController: UIViewController {
             }
             
             gasMileageClearButton.hidden = false
+        }
+        else {
+            gasMileageButton.setTitle("Don't know the gas mileage?", forState: UIControlState.Normal)
+            
+            gasMileageTextField.enabled = true
+            
+            
+            gasMileageClearButton.hidden = true
         }
     }
     
