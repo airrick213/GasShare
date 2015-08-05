@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "Car.png"
+      "filename" : "gas_price.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "Car@2x.png"
+      "filename" : "gas_price@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "Car@3x.png"
+      "filename" : "gas_price@3x.png"
     }
   ],
   "info" : {

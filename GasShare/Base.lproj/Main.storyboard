@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pmW-Ru-1ob">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Fq9-zb-edt">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Tutorial View Controller-->
         <scene sceneID="NDs-Gp-9Zf">
             <objects>
-                <viewController id="7SC-Ns-u85" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TutorialViewController" id="7SC-Ns-u85" customClass="TutorialViewController" customModule="GasShare" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OZv-FL-6jZ"/>
                         <viewControllerLayoutGuide type="bottom" id="g8j-Bk-WLi"/>
@@ -18,11 +18,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lu6-sa-BBJ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lu6-sa-BBJ">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HHA-Dz-nbg">
-                                <rect key="frame" x="270.5" y="30" width="59" height="33"/>
+                                <rect key="frame" x="270" y="30" width="59" height="33"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -32,21 +32,33 @@
                         <constraints>
                             <constraint firstItem="lu6-sa-BBJ" firstAttribute="top" secondItem="uZY-n8-daB" secondAttribute="top" id="NqJ-67-2qn"/>
                             <constraint firstItem="HHA-Dz-nbg" firstAttribute="top" secondItem="OZv-FL-6jZ" secondAttribute="bottom" constant="10" id="ONc-U0-Ov6"/>
+                            <constraint firstItem="lu6-sa-BBJ" firstAttribute="top" secondItem="uZY-n8-daB" secondAttribute="topMargin" id="XLp-44-YLD"/>
                             <constraint firstAttribute="trailing" secondItem="lu6-sa-BBJ" secondAttribute="trailing" id="YBU-mu-jgX"/>
                             <constraint firstItem="lu6-sa-BBJ" firstAttribute="leading" secondItem="uZY-n8-daB" secondAttribute="leading" id="bjH-Eq-t9g"/>
                             <constraint firstAttribute="centerX" secondItem="HHA-Dz-nbg" secondAttribute="centerX" id="d3B-mN-ou8"/>
+                            <constraint firstItem="lu6-sa-BBJ" firstAttribute="top" secondItem="HHA-Dz-nbg" secondAttribute="bottom" constant="40" id="dKi-x9-kd7"/>
                             <constraint firstItem="g8j-Bk-WLi" firstAttribute="top" secondItem="lu6-sa-BBJ" secondAttribute="bottom" id="r4b-lA-hFP"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="NqJ-67-2qn"/>
+                                <exclude reference="dKi-x9-kd7"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="HHA-Dz-nbg" id="3pd-uX-fXg"/>
+                        <outlet property="imageView" destination="lu6-sa-BBJ" id="91h-Hy-dQH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3vs-SG-g2B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="400" y="-1459"/>
         </scene>
-        <!--View Controller-->
+        <!--Tutorial Root View Controller-->
         <scene sceneID="Geb-Vs-P97">
             <objects>
-                <viewController id="Fq9-zb-edt" sceneMemberID="viewController">
+                <viewController id="Fq9-zb-edt" customClass="TutorialRootViewController" customModule="GasShare" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3Bg-YU-DrV"/>
                         <viewControllerLayoutGuide type="bottom" id="LJu-Sr-KhF"/>
@@ -56,16 +68,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tmb-2Z-wfP">
-                                <rect key="frame" x="277" y="535" width="46" height="45"/>
+                                <rect key="frame" x="277" y="545" width="46" height="45"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="24"/>
                                 <state key="normal" title="Skip">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="skipButtonTapped:" destination="Fq9-zb-edt" eventType="touchUpInside" id="AXw-Df-eAF"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="LJu-Sr-KhF" firstAttribute="top" secondItem="tmb-2Z-wfP" secondAttribute="bottom" constant="20" id="PAs-CC-e3Y"/>
+                            <constraint firstItem="LJu-Sr-KhF" firstAttribute="top" secondItem="tmb-2Z-wfP" secondAttribute="bottom" constant="10" id="PAs-CC-e3Y"/>
                             <constraint firstAttribute="centerX" secondItem="tmb-2Z-wfP" secondAttribute="centerX" id="pIQ-Ut-Uy8"/>
                         </constraints>
                     </view>
@@ -77,7 +92,7 @@
         <!--Page View Controller-->
         <scene sceneID="X5D-60-cVQ">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="dao-0Y-dta" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="dao-0Y-dta" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ozM-VE-bNe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-288" y="-1459"/>
