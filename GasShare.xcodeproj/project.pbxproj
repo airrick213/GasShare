@@ -13,7 +13,6 @@
 		072892991B4DB7530060960A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 072892981B4DB7530060960A /* Images.xcassets */; };
 		0728929C1B4DB7530060960A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0728929A1B4DB7530060960A /* LaunchScreen.xib */; };
 		072892A81B4DB7530060960A /* GasShareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072892A71B4DB7530060960A /* GasShareTests.swift */; };
-		073FEECC1B728902008AB8A3 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073FEECB1B728902008AB8A3 /* TutorialViewController.swift */; };
 		073FEECE1B7289CA008AB8A3 /* TutorialRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073FEECD1B7289CA008AB8A3 /* TutorialRootViewController.swift */; };
 		074A1F6F1B4DB88D00F01CB2 /* InputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A1F691B4DB88D00F01CB2 /* InputTextField.swift */; };
 		074DF28B1B6BF9DE00F86ADF /* CarPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074DF28A1B6BF9DE00F86ADF /* CarPickerViewController.swift */; };
@@ -57,7 +56,6 @@
 		072892A11B4DB7530060960A /* GasShareTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GasShareTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		072892A61B4DB7530060960A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		072892A71B4DB7530060960A /* GasShareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasShareTests.swift; sourceTree = "<group>"; };
-		073FEECB1B728902008AB8A3 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		073FEECD1B7289CA008AB8A3 /* TutorialRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialRootViewController.swift; sourceTree = "<group>"; };
 		074A1F691B4DB88D00F01CB2 /* InputTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
 		074DF28A1B6BF9DE00F86ADF /* CarPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarPickerViewController.swift; sourceTree = "<group>"; };
@@ -133,7 +131,6 @@
 				074DF28A1B6BF9DE00F86ADF /* CarPickerViewController.swift */,
 				07FDCA3D1B62D5200029682B /* GasStationMapViewController.swift */,
 				07A8E1BC1B61325F00D81518 /* MainViewController.swift */,
-				073FEECB1B728902008AB8A3 /* TutorialViewController.swift */,
 				073FEECD1B7289CA008AB8A3 /* TutorialRootViewController.swift */,
 				072892911B4DB7530060960A /* AppDelegate.swift */,
 				072892951B4DB7530060960A /* Main.storyboard */,
@@ -413,7 +410,6 @@
 				07AB752A1B62B07300AF3A5D /* GasMileageToolbar.swift in Sources */,
 				07AB752C1B62B08400AF3A5D /* GasPriceToolbar.swift in Sources */,
 				07A2B2B01B6FC61F006F654D /* KannaHelper.swift in Sources */,
-				073FEECC1B728902008AB8A3 /* TutorialViewController.swift in Sources */,
 				072892921B4DB7530060960A /* AppDelegate.swift in Sources */,
 				07B9BE781B7001CA00DE26E4 /* CarPickerTableViewCell.swift in Sources */,
 				077F1E771B5D4F1A0037A483 /* MapHelper.swift in Sources */,
