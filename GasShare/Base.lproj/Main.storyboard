@@ -18,33 +18,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lu6-sa-BBJ">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HHA-Dz-nbg">
-                                <rect key="frame" x="270" y="30" width="59" height="33"/>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HHA-Dz-nbg">
+                                <rect key="frame" x="275" y="30" width="49" height="27.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                                <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lu6-sa-BBJ">
+                                <rect key="frame" x="0.0" y="57.5" width="600" height="542.5"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="lu6-sa-BBJ" firstAttribute="top" secondItem="uZY-n8-daB" secondAttribute="top" id="NqJ-67-2qn"/>
+                            <constraint firstItem="lu6-sa-BBJ" firstAttribute="top" secondItem="HHA-Dz-nbg" secondAttribute="bottom" id="2fr-RC-LOx"/>
+                            <constraint firstItem="HHA-Dz-nbg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uZY-n8-daB" secondAttribute="leadingMargin" id="2s2-T8-iWb"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="HHA-Dz-nbg" secondAttribute="trailing" id="3eC-6L-Pql"/>
                             <constraint firstItem="HHA-Dz-nbg" firstAttribute="top" secondItem="OZv-FL-6jZ" secondAttribute="bottom" constant="10" id="ONc-U0-Ov6"/>
-                            <constraint firstItem="lu6-sa-BBJ" firstAttribute="top" secondItem="uZY-n8-daB" secondAttribute="topMargin" id="XLp-44-YLD"/>
                             <constraint firstAttribute="trailing" secondItem="lu6-sa-BBJ" secondAttribute="trailing" id="YBU-mu-jgX"/>
+                            <constraint firstAttribute="centerX" secondItem="lu6-sa-BBJ" secondAttribute="centerX" id="a20-xj-qva"/>
                             <constraint firstItem="lu6-sa-BBJ" firstAttribute="leading" secondItem="uZY-n8-daB" secondAttribute="leading" id="bjH-Eq-t9g"/>
                             <constraint firstAttribute="centerX" secondItem="HHA-Dz-nbg" secondAttribute="centerX" id="d3B-mN-ou8"/>
-                            <constraint firstItem="lu6-sa-BBJ" firstAttribute="top" secondItem="HHA-Dz-nbg" secondAttribute="bottom" constant="40" id="dKi-x9-kd7"/>
                             <constraint firstItem="g8j-Bk-WLi" firstAttribute="top" secondItem="lu6-sa-BBJ" secondAttribute="bottom" id="r4b-lA-hFP"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="NqJ-67-2qn"/>
-                                <exclude reference="dKi-x9-kd7"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="descriptionLabel" destination="HHA-Dz-nbg" id="3pd-uX-fXg"/>
@@ -58,7 +53,7 @@
         <!--Tutorial Root View Controller-->
         <scene sceneID="Geb-Vs-P97">
             <objects>
-                <viewController id="Fq9-zb-edt" customClass="TutorialRootViewController" customModule="GasShare" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TutorialRootViewController" id="Fq9-zb-edt" customClass="TutorialRootViewController" customModule="GasShare" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3Bg-YU-DrV"/>
                         <viewControllerLayoutGuide type="bottom" id="LJu-Sr-KhF"/>
@@ -74,7 +69,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="skipButtonTapped:" destination="Fq9-zb-edt" eventType="touchUpInside" id="AXw-Df-eAF"/>
+                                    <segue destination="pmW-Ru-1ob" kind="show" identifier="FinishTutorial" id="Kho-IJ-Nmc"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -84,6 +79,9 @@
                             <constraint firstAttribute="centerX" secondItem="tmb-2Z-wfP" secondAttribute="centerX" id="pIQ-Ut-Uy8"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="skipButton" destination="tmb-2Z-wfP" id="2ZH-I1-Fa4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cVd-sR-mxj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -92,15 +90,15 @@
         <!--Page View Controller-->
         <scene sceneID="X5D-60-cVQ">
             <objects>
-                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="dao-0Y-dta" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ozM-VE-bNe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="dao-0Y-dta" sceneMemberID="viewController"/>
             </objects>
             <point key="canvasLocation" x="-288" y="-1459"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="KOE-Ju-f7F">
             <objects>
-                <viewController id="pmW-Ru-1ob" customClass="MainViewController" customModule="GasShare" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainViewController" id="pmW-Ru-1ob" customClass="MainViewController" customModule="GasShare" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uU7-yq-ZnO"/>
                         <viewControllerLayoutGuide type="bottom" id="bg5-jq-cFE"/>

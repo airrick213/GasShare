@@ -9,19 +9,18 @@
 import UIKit
 
 class TutorialRootViewController: UIViewController {
+        
+    @IBOutlet weak var skipButton: UIButton!
     
     var pageViewController: UIPageViewController!
     var pageDescriptions: [String]!
     var pageImages: [String]!
     
-    @IBAction func skipButtonTapped(sender: AnyObject) {
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         pageDescriptions = [
-            "Enter the route start and end locations",
+            "Enter the route's start and end locations",
             "Enter your car's gas mileage",
             "Or select your car model",
             "Enter the gas price",
@@ -72,15 +71,20 @@ class TutorialRootViewController: UIViewController {
         return tutorialViewController
     }
 
-    /*
+    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let identifier = segue.identifier {
+            if identifier == "FinishTutorial" {
+                let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+                defaults.setBool(true, forKey: "usedAppBefore")
+                
+                defaults.synchronize()
+            }
+        }
     }
-    */
+    
 
 }
 
@@ -102,6 +106,7 @@ extension TutorialRootViewController: UIPageViewControllerDataSource {
         let index = tutorialViewController.pageIndex
         
         if index == pageDescriptions.count - 1 || index == NSNotFound {
+            skipButton.setTitle("Done", forState: UIControlState.Normal)
             return nil
         }
         

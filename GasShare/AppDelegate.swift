@@ -14,9 +14,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         GMSServices.provideAPIKey("AIzaSyBazJ2z6FlEblgXnM5x4Z0lnYf8rof9-GM")
+        
+        if NSUserDefaults.standardUserDefaults().boolForKey("usedAppBefore") {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let mainViewController = storyboard.instantiateViewControllerWithIdentifier("MainViewController") as! MainViewController
+            
+            self.window?.rootViewController = mainViewController
+            self.window?.makeKeyAndVisible()
+        }
         
         let pageControl = UIPageControl.appearance()
         pageControl.pageIndicatorTintColor = UIColor.lightGrayColor()
