@@ -18,18 +18,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tmb-2Z-wfP">
-                                <rect key="frame" x="270" y="545" width="59" height="45"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="24"/>
-                                <state key="normal" title="Done">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" directionalLockEnabled="YES" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NhS-Uw-rOo">
+                                <rect key="frame" x="0.0" y="67.5" width="600" height="477.5"/>
                                 <connections>
-                                    <segue destination="pmW-Ru-1ob" kind="show" identifier="FinishTutorial" id="Kho-IJ-Nmc"/>
+                                    <outlet property="delegate" destination="Fq9-zb-edt" id="MsQ-Ua-sKR"/>
                                 </connections>
-                            </button>
+                            </scrollView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="vIb-lG-rq9">
-                                <rect key="frame" x="273" y="500" width="55" height="37"/>
+                                <rect key="frame" x="272" y="553" width="55" height="37"/>
                                 <color key="pageIndicatorTintColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="currentPageIndicatorTintColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                             </pageControl>
@@ -39,46 +35,32 @@
                                 <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" directionalLockEnabled="YES" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NhS-Uw-rOo">
-                                <rect key="frame" x="0.0" y="67" width="600" height="477.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="NhS-Uw-rOo" secondAttribute="height" multiplier="1:1" id="smv-Ck-4CJ"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="smv-Ck-4CJ"/>
-                                    </mask>
-                                </variation>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tmb-2Z-wfP">
+                                <rect key="frame" x="525" y="545" width="59" height="45"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
-                                    <outlet property="delegate" destination="Fq9-zb-edt" id="MsQ-Ua-sKR"/>
+                                    <segue destination="pmW-Ru-1ob" kind="show" identifier="FinishTutorial" id="Kho-IJ-Nmc"/>
                                 </connections>
-                            </scrollView>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="NhS-Uw-rOo" firstAttribute="leading" secondItem="kkh-jh-WcD" secondAttribute="leading" id="1RB-LV-atu"/>
                             <constraint firstAttribute="centerX" secondItem="HHA-Dz-nbg" secondAttribute="centerX" id="27V-zb-4NW"/>
-                            <constraint firstItem="NhS-Uw-rOo" firstAttribute="top" secondItem="HHA-Dz-nbg" secondAttribute="bottom" id="6dy-Oj-U3q"/>
+                            <constraint firstItem="NhS-Uw-rOo" firstAttribute="top" secondItem="HHA-Dz-nbg" secondAttribute="bottom" id="6Xp-6P-cHc"/>
                             <constraint firstAttribute="centerX" secondItem="vIb-lG-rq9" secondAttribute="centerX" id="AUl-y4-VxN"/>
-                            <constraint firstItem="tmb-2Z-wfP" firstAttribute="top" secondItem="NhS-Uw-rOo" secondAttribute="bottom" id="JgE-Zv-Ry6"/>
+                            <constraint firstItem="tmb-2Z-wfP" firstAttribute="trailing" secondItem="kkh-jh-WcD" secondAttribute="trailingMargin" id="F1b-aZ-n3T"/>
                             <constraint firstItem="LJu-Sr-KhF" firstAttribute="top" secondItem="tmb-2Z-wfP" secondAttribute="bottom" constant="10" id="PAs-CC-e3Y"/>
                             <constraint firstItem="HHA-Dz-nbg" firstAttribute="top" secondItem="3Bg-YU-DrV" secondAttribute="bottom" constant="20" id="R1n-4G-Iaf"/>
-                            <constraint firstItem="tmb-2Z-wfP" firstAttribute="top" secondItem="vIb-lG-rq9" secondAttribute="bottom" constant="8" id="Xng-vg-1Tk"/>
-                            <constraint firstAttribute="centerX" secondItem="NhS-Uw-rOo" secondAttribute="centerX" id="bWv-vP-N0q"/>
+                            <constraint firstItem="LJu-Sr-KhF" firstAttribute="top" secondItem="vIb-lG-rq9" secondAttribute="bottom" constant="10" id="WLl-sB-MzL"/>
                             <constraint firstItem="NhS-Uw-rOo" firstAttribute="leading" secondItem="kkh-jh-WcD" secondAttribute="leading" id="nl2-vs-hQk"/>
-                            <constraint firstAttribute="centerX" secondItem="tmb-2Z-wfP" secondAttribute="centerX" id="pIQ-Ut-Uy8"/>
+                            <constraint firstItem="tmb-2Z-wfP" firstAttribute="top" secondItem="NhS-Uw-rOo" secondAttribute="bottom" id="rQj-C0-apq"/>
                             <constraint firstAttribute="trailing" secondItem="NhS-Uw-rOo" secondAttribute="trailing" id="sc8-bq-bdW"/>
-                            <constraint firstAttribute="trailing" secondItem="NhS-Uw-rOo" secondAttribute="trailing" id="vHd-01-0E3"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="HHA-Dz-nbg" secondAttribute="trailing" id="vIV-6T-n8D"/>
                             <constraint firstItem="HHA-Dz-nbg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kkh-jh-WcD" secondAttribute="leadingMargin" id="wIh-we-DLR"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="1RB-LV-atu"/>
-                                <exclude reference="bWv-vP-N0q"/>
-                                <exclude reference="vHd-01-0E3"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="descriptionLabel" destination="HHA-Dz-nbg" id="pS9-20-dx9"/>

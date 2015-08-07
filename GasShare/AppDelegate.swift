@@ -21,13 +21,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Venmo.startWithAppId("2842", secret: "FqF947VRnYGzxUfnHyfgVULZQBRFUZxE", name: "Gas Share")
         
-        if NSUserDefaults.standardUserDefaults().boolForKey("usedAppBefore") {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let mainViewController = storyboard.instantiateViewControllerWithIdentifier("MainViewController") as! MainViewController
-            
-            self.window?.rootViewController = mainViewController
-            self.window?.makeKeyAndVisible()
-        }
+//        if NSUserDefaults.standardUserDefaults().boolForKey("usedAppBefore") {
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            let mainViewController = storyboard.instantiateViewControllerWithIdentifier("MainViewController") as! MainViewController
+//            
+//            self.window?.rootViewController = mainViewController
+//            self.window?.makeKeyAndVisible()
+//        }
         
         return true
     }
