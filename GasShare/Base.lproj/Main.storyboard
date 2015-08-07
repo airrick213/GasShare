@@ -719,7 +719,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Car" translatesAutoresizingMaskIntoConstraints="NO" id="zHe-tQ-PlW">
-                                <rect key="frame" x="226.5" y="366" width="147" height="130"/>
+                                <rect key="frame" x="226" y="366" width="147" height="130"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="zHe-tQ-PlW" secondAttribute="height" multiplier="17:15" id="p39-Cm-0DD"/>
                                 </constraints>
@@ -765,9 +765,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="7dx-eA-omx"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="32"/>
-                                <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
-                                <state key="normal" title="Charge with Venmo">
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="28"/>
+                                <state key="normal" title="Charge or Pay with Venmo">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -775,6 +774,9 @@
                                         <integer key="value" value="3"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="venmoButtonTapped:" destination="csB-mT-9P3" eventType="touchUpInside" id="eWn-0r-ent"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cost" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3YQ-3B-Fij">
                                 <rect key="frame" x="250" y="322" width="101.5" height="44"/>
@@ -814,12 +816,132 @@
                         <outlet property="numberOfPassengersLabel" destination="b5f-bq-dsA" id="LdL-kA-zdk"/>
                         <outlet property="totalLabel" destination="33I-I0-fYx" id="5Xi-cC-pJh"/>
                         <outlet property="venmoButton" destination="rpj-XY-hlS" id="Tta-Bw-rQW"/>
+                        <segue destination="c5V-cF-5E5" kind="show" identifier="UseVenmo" id="4k9-ea-UQn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8gj-ij-b2B" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="RNb-eu-1i5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="400" y="-43"/>
+        </scene>
+        <!--Venmo View Controller-->
+        <scene sceneID="SgD-0j-pVm">
+            <objects>
+                <viewController storyboardIdentifier="VenmoViewController" id="c5V-cF-5E5" customClass="VenmoViewController" customModule="GasShare" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lxM-fy-aN0"/>
+                        <viewControllerLayoutGuide type="bottom" id="nt1-eJ-mDW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8df-m9-4fi">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gDG-TH-X3Z">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="EvO-ld-tHw"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Venmo Payment" id="z8c-8h-z9H">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="ygm-M9-35I">
+                                            <connections>
+                                                <segue destination="xru-SZ-KQj" kind="unwind" unwindAction="unwindToSegue:" id="cxH-85-AzJ"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username, email, or phone number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q4g-Iv-0cP">
+                                <rect key="frame" x="156" y="100" width="428" height="30"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="c5V-cF-5E5" id="GIk-S9-Ama"/>
+                                </connections>
+                            </textField>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5bA-9B-N0Z">
+                                <rect key="frame" x="16" y="100" width="120" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="9Vs-YG-Ryr"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Charge"/>
+                                    <segment title="Pay"/>
+                                </segments>
+                            </segmentedControl>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Payment note" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Htf-1o-HEf">
+                                <rect key="frame" x="16" y="150" width="568" height="30"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="c5V-cF-5E5" id="9ew-cg-nbe"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cost" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kNv-6L-cSF">
+                                <rect key="frame" x="250" y="278" width="101.5" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Uim-dd-Zm0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="48"/>
+                                <color key="textColor" red="0.18039215689999999" green="0.80000000000000004" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="39H-ZI-4QS">
+                                <rect key="frame" x="16" y="516" width="568" height="64"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="IFC-l8-fjm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="32"/>
+                                <state key="normal" title="Send">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendButtonTapped:" destination="c5V-cF-5E5" eventType="touchUpInside" id="jVT-ki-ZCN"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gDG-TH-X3Z" firstAttribute="leading" secondItem="8df-m9-4fi" secondAttribute="leading" id="40k-le-sfC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="q4g-Iv-0cP" secondAttribute="trailing" id="56s-Dn-BeE"/>
+                            <constraint firstItem="nt1-eJ-mDW" firstAttribute="top" secondItem="39H-ZI-4QS" secondAttribute="bottom" constant="20" id="7iT-wk-ndf"/>
+                            <constraint firstItem="gDG-TH-X3Z" firstAttribute="top" secondItem="8df-m9-4fi" secondAttribute="top" id="D8a-mJ-Se9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Htf-1o-HEf" secondAttribute="trailing" id="Fd7-jE-JEh"/>
+                            <constraint firstItem="Htf-1o-HEf" firstAttribute="leading" secondItem="8df-m9-4fi" secondAttribute="leadingMargin" id="GC2-dz-TTk"/>
+                            <constraint firstAttribute="trailing" secondItem="gDG-TH-X3Z" secondAttribute="trailing" id="K1e-P0-4xd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="39H-ZI-4QS" secondAttribute="trailing" id="KGw-Za-3rZ"/>
+                            <constraint firstAttribute="centerY" secondItem="kNv-6L-cSF" secondAttribute="centerY" id="LKB-qS-N63"/>
+                            <constraint firstItem="39H-ZI-4QS" firstAttribute="top" secondItem="kNv-6L-cSF" secondAttribute="bottom" constant="40" id="MCs-ba-DTG"/>
+                            <constraint firstAttribute="centerX" secondItem="kNv-6L-cSF" secondAttribute="centerX" id="Rk4-km-a1v"/>
+                            <constraint firstItem="q4g-Iv-0cP" firstAttribute="top" secondItem="gDG-TH-X3Z" secondAttribute="bottom" constant="40" id="Rqz-ka-RTM"/>
+                            <constraint firstAttribute="centerX" secondItem="Htf-1o-HEf" secondAttribute="centerX" id="U35-kF-s4e"/>
+                            <constraint firstItem="Htf-1o-HEf" firstAttribute="top" secondItem="q4g-Iv-0cP" secondAttribute="bottom" constant="20" id="UOe-pm-i4f"/>
+                            <constraint firstItem="q4g-Iv-0cP" firstAttribute="leading" secondItem="5bA-9B-N0Z" secondAttribute="trailing" constant="20" id="aTg-SW-PTg"/>
+                            <constraint firstItem="39H-ZI-4QS" firstAttribute="leading" secondItem="8df-m9-4fi" secondAttribute="leadingMargin" id="c4C-tm-lcS"/>
+                            <constraint firstItem="5bA-9B-N0Z" firstAttribute="top" secondItem="gDG-TH-X3Z" secondAttribute="bottom" constant="40" id="cb8-wy-9cO"/>
+                            <constraint firstItem="5bA-9B-N0Z" firstAttribute="leading" secondItem="8df-m9-4fi" secondAttribute="leadingMargin" id="exK-kE-8SU"/>
+                            <constraint firstAttribute="centerX" secondItem="39H-ZI-4QS" secondAttribute="centerX" id="hKe-cj-Ki0"/>
+                            <constraint firstItem="kNv-6L-cSF" firstAttribute="top" secondItem="Htf-1o-HEf" secondAttribute="bottom" constant="60" id="iJK-as-0aQ"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="iJK-as-0aQ"/>
+                                <exclude reference="MCs-ba-DTG"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="costLabel" destination="kNv-6L-cSF" id="Ccg-cP-sQM"/>
+                        <outlet property="paymentNoteTextField" destination="Htf-1o-HEf" id="dwr-J6-hLh"/>
+                        <outlet property="recipientTextField" destination="q4g-Iv-0cP" id="2Qr-1D-e53"/>
+                        <outlet property="transactionTypeControl" destination="5bA-9B-N0Z" id="sal-kd-IJU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LAs-hd-BGe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="xru-SZ-KQj" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1079" y="-43"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="1Un-B2-M8a">

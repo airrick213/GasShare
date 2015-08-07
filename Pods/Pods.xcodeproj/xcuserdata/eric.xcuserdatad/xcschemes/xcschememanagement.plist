@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>CMDQueryStringSerialization.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>ConvenienceKit-ConvenienceKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -34,7 +39,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SSKeychain.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SwiftyJSON.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>VENCore.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Venmo-iOS-SDK.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -42,22 +62,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>3E850E27D2A56D43373E1BED273A1679</key>
+		<key>068762E59322EC48FA9F673E192508C7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4775BB101FD2598B878EF3C18AD7EA05</key>
+		<key>5D090B2DC1CA6472ADFFB771E5C640E1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4CD3B90D4032319493AAD7A219B6DBA5</key>
+		<key>674A1327A66A6F62C5207CC6130A2CC3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5244AE69503935672955E531914250AB</key>
+		<key>6B5BAD08689FC79ACF4D8396EBFD0D13</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>82D29A59AC4A19BF8018774640D4CAC5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>89D1B7D73A3C91317DEA04DB61BF10DF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -67,12 +97,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D53E06862F0931B2E84E71675CB994F9</key>
+		<key>DAB418CFB9EF702B2C23221881AE797F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E7A557AC11BFC9DE29A2774B201B612F</key>
+		<key>E1AB6D7653B71FD421E12043BA7C8C34</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EC3C348D4327824414B6041DFF240244</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F28586DB07C29D2357219B76AEBAE034</key>
 		<dict>
 			<key>primary</key>
 			<true/>

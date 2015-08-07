@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Venmo_iOS_SDK
 
 class CalculationViewController: UIViewController {
 
@@ -20,6 +21,17 @@ class CalculationViewController: UIViewController {
     var routeDistance: Double!
     var totalPrice: Double!
     var individualCost: Double!
+    
+    @IBAction func venmoButtonTapped(sender: AnyObject) {
+        Venmo.sharedInstance().requestPermissions(["make_payments"], withCompletionHandler: { (success: Bool, error: NSError!) -> Void in
+            if success {
+                self.performSegueWithIdentifier("UseVenmo", sender: self)
+            }
+            else {
+                UIAlertView(title: "Authorization failed", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "OK")
+            }
+        })
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,5 +69,19 @@ class CalculationViewController: UIViewController {
     }
 
     // MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let identifier = segue.identifier {
+            if identifier == "UseVenmo" {
+                let venmoViewController = segue.destinationViewController as! VenmoViewController
+                
+                venmoViewController.cost = individualCost
+            }
+        }
+    }
+    
+    @IBAction func unwindToSegue(segue: UIStoryboardSegue) {
+        
+    }
     
 }

@@ -27,6 +27,7 @@
 		07AB75281B62B05600AF3A5D /* MainToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AB75271B62B05600AF3A5D /* MainToolbar.swift */; };
 		07AB752A1B62B07300AF3A5D /* GasMileageToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AB75291B62B07300AF3A5D /* GasMileageToolbar.swift */; };
 		07AB752C1B62B08400AF3A5D /* GasPriceToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AB752B1B62B08400AF3A5D /* GasPriceToolbar.swift */; };
+		07AC1C0C1B7501D0004618D6 /* VenmoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AC1C0B1B7501D0004618D6 /* VenmoViewController.swift */; };
 		07B9BE781B7001CA00DE26E4 /* CarPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B9BE771B7001CA00DE26E4 /* CarPickerTableViewCell.swift */; };
 		07E52A9F1B505595006FFB7A /* CalculationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E52A9E1B505595006FFB7A /* CalculationViewController.swift */; };
 		07FDCA381B62B5320029682B /* GasMileageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FDCA371B62B5320029682B /* GasMileageCell.swift */; };
@@ -71,6 +72,7 @@
 		07AB75271B62B05600AF3A5D /* MainToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainToolbar.swift; sourceTree = "<group>"; };
 		07AB75291B62B07300AF3A5D /* GasMileageToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GasMileageToolbar.swift; sourceTree = "<group>"; };
 		07AB752B1B62B08400AF3A5D /* GasPriceToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GasPriceToolbar.swift; sourceTree = "<group>"; };
+		07AC1C0B1B7501D0004618D6 /* VenmoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenmoViewController.swift; sourceTree = "<group>"; };
 		07B9BE771B7001CA00DE26E4 /* CarPickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarPickerTableViewCell.swift; sourceTree = "<group>"; };
 		07E52A9E1B505595006FFB7A /* CalculationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculationViewController.swift; sourceTree = "<group>"; };
 		07FDCA371B62B5320029682B /* GasMileageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GasMileageCell.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				07FDCA3D1B62D5200029682B /* GasStationMapViewController.swift */,
 				07A8E1BC1B61325F00D81518 /* MainViewController.swift */,
 				073FEECD1B7289CA008AB8A3 /* TutorialRootViewController.swift */,
+				07AC1C0B1B7501D0004618D6 /* VenmoViewController.swift */,
 				072892911B4DB7530060960A /* AppDelegate.swift */,
 				072892951B4DB7530060960A /* Main.storyboard */,
 				072892981B4DB7530060960A /* Images.xcassets */,
@@ -413,6 +416,7 @@
 				072892921B4DB7530060960A /* AppDelegate.swift in Sources */,
 				07B9BE781B7001CA00DE26E4 /* CarPickerTableViewCell.swift in Sources */,
 				077F1E771B5D4F1A0037A483 /* MapHelper.swift in Sources */,
+				07AC1C0C1B7501D0004618D6 /* VenmoViewController.swift in Sources */,
 				074DF28B1B6BF9DE00F86ADF /* CarPickerViewController.swift in Sources */,
 				07AB75261B62B00D00AF3A5D /* CustomToolbar.swift in Sources */,
 				07FDCA3E1B62D5200029682B /* GasStationMapViewController.swift in Sources */,
@@ -573,6 +577,7 @@
 				INFOPLIST_FILE = GasShare/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "/usr/include/libxml2 $(SRCROOT)/Pods/Venmo-iOS-SDK/**";
 			};
 			name = Debug;
 		};
@@ -589,6 +594,7 @@
 				INFOPLIST_FILE = GasShare/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "/usr/include/libxml2 $(SRCROOT)/Pods/Venmo-iOS-SDK/**";
 			};
 			name = Release;
 		};

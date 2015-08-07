@@ -53,15 +53,23 @@ code_sign_if_enabled() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods/Alamofire.framework'
+  install_framework 'Pods/CMDQueryStringSerialization.framework'
   install_framework 'Pods/ConvenienceKit.framework'
   install_framework 'Pods/Kanna.framework'
   install_framework 'Pods/MBProgressHUD.framework'
+  install_framework 'Pods/SSKeychain.framework'
   install_framework 'Pods/SwiftyJSON.framework'
+  install_framework 'Pods/VENCore.framework'
+  install_framework 'Pods/Venmo_iOS_SDK.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods/Alamofire.framework'
+  install_framework 'Pods/CMDQueryStringSerialization.framework'
   install_framework 'Pods/ConvenienceKit.framework'
   install_framework 'Pods/Kanna.framework'
   install_framework 'Pods/MBProgressHUD.framework'
+  install_framework 'Pods/SSKeychain.framework'
   install_framework 'Pods/SwiftyJSON.framework'
+  install_framework 'Pods/VENCore.framework'
+  install_framework 'Pods/Venmo_iOS_SDK.framework'
 fi

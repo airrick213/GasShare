@@ -7,7 +7,9 @@
 //
 
 import UIKit
+import Foundation
 import GoogleMaps
+import Venmo_iOS_SDK
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         GMSServices.provideAPIKey("AIzaSyBazJ2z6FlEblgXnM5x4Z0lnYf8rof9-GM")
+        
+        Venmo.startWithAppId("2842", secret: "FqF947VRnYGzxUfnHyfgVULZQBRFUZxE", name: "Gas Share")
         
         if NSUserDefaults.standardUserDefaults().boolForKey("usedAppBefore") {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -26,6 +30,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         return true
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+        if Venmo.sharedInstance().handleOpenURL(url) {
+            return true
+        }
+        
+        return false
     }
 
     func applicationWillResignActive(application: UIApplication) {
