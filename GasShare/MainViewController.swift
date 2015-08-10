@@ -422,6 +422,8 @@ class MainViewController: UIViewController {
                 startCoordinate.latitude = latitude!
                 startCoordinate.longitude = longitude!
                 
+                startSearchBar.text = startLocation
+                
                 setMarker(coordinate: startCoordinate, searchingStartLocation: searchingStartLocation)
             }
             else {
@@ -435,6 +437,8 @@ class MainViewController: UIViewController {
                 
                 endCoordinate.latitude = latitude!
                 endCoordinate.longitude = longitude!
+                
+                endSearchBar.text = endLocation
                 
                 setMarker(coordinate: endCoordinate, searchingStartLocation: searchingStartLocation)
             }
