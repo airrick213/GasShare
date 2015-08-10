@@ -18,6 +18,7 @@ class CarPickerViewController: UIViewController {
     @IBOutlet weak var makeLabel: UILabel!
     @IBOutlet weak var modelLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBarHeight: NSLayoutConstraint!
     
     var years: [String] = []
     var makes: [String] = []
@@ -36,14 +37,26 @@ class CarPickerViewController: UIViewController {
         super.viewDidLoad()
         
         AlamofireHelper.scrapeHTMLForURL("http://www.fueleconomy.gov/ws/rest/vehicle/menu/year", responseHandler: handleLoadYearsResponse, view: self.view)
-        searchBar.showsScopeBar = true
-        searchBar.becomeFirstResponder()
-        tableView.hidden = false
+        showTableView()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func showTableView() {
+        searchBar.showsScopeBar = true
+        searchBarHeight.constant = 98
+        searchBar.becomeFirstResponder()
+        tableView.hidden = false
+    }
+    
+    func hideTableView() {
+        searchBar.showsScopeBar = false
+        searchBarHeight.constant = 44
+        searchBar.resignFirstResponder()
+        tableView.hidden = true
     }
     
     func handleLoadYearsResponse(data: AnyObject) {
@@ -132,8 +145,11 @@ class CarPickerViewController: UIViewController {
 extension CarPickerViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        tableView.hidden = false
-        searchBar.showsScopeBar = true
+        if tableView.hidden {
+            showTableView()
+        }
+        
+        searchBar.showsCancelButton = true
         
         if searchBar.selectedScopeButtonIndex == 0 {
             searchBar.keyboardType = UIKeyboardType.NumberPad
@@ -143,14 +159,16 @@ extension CarPickerViewController: UISearchBarDelegate {
         }
     }
     
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+    }
+    
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-        tableView.hidden = true
-        searchBar.showsScopeBar = false
+        hideTableView()
     }
     
     func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
@@ -284,11 +302,9 @@ extension CarPickerViewController: UITableViewDelegate {
             
             searchedModels = models
             searchBar.text = ""
-            searchBar.showsScopeBar = false
             searchBar.selectedScopeButtonIndex = 0
-            searchBar.resignFirstResponder()
             tableView.reloadData()
-            tableView.hidden = true
+            hideTableView()
         }
     }
     

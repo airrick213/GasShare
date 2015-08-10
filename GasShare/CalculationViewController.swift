@@ -23,7 +23,7 @@ class CalculationViewController: UIViewController {
     var individualCost: Double!
     
     @IBAction func venmoButtonTapped(sender: AnyObject) {
-        Venmo.sharedInstance().requestPermissions(["make_payments"], withCompletionHandler: { (success: Bool, error: NSError!) -> Void in
+        Venmo.sharedInstance().requestPermissions(["make_payments", "access_friends"], withCompletionHandler: { (success: Bool, error: NSError!) -> Void in
             if success {
                 self.performSegueWithIdentifier("UseVenmo", sender: self)
             }
@@ -70,12 +70,25 @@ class CalculationViewController: UIViewController {
 
     // MARK: - Navigation
     
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        if identifier == "UseVenmo" {
+            if individualCost < 0.02 {
+                UIAlertView(title: "Not Enough Cost", message: "The cost must be at least $0", delegate: nil, cancelButtonTitle: "OK")
+                return false
+            }
+            
+            return true
+        }
+        
+        return true
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
             if identifier == "UseVenmo" {
                 let venmoViewController = segue.destinationViewController as! VenmoViewController
                 
-                venmoViewController.cost = individualCost
+                venmoViewController.cost = NSString(string: individualCostLabel.text!.substringFromIndex(advance(individualCostLabel.text!.startIndex, 1))).doubleValue
             }
         }
     }

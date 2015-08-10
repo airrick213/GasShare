@@ -27,7 +27,7 @@ class TutorialRootViewController: UIViewController {
             "Enter the route's start and end locations",
             "Enter your car's gas mileage",
             "Enter the gas price",
-            "See how much everyone has to pay"
+            "See how much everyone has to pay!"
         ]
         
         pageImages = [

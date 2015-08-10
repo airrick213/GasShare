@@ -18,23 +18,31 @@ class VenmoViewController: UIViewController {
     @IBOutlet weak var costLabel: UILabel!
     
     var cost: Double!
+    var recipients: [String]?
+    var recipientCount = 0
     
     @IBAction func sendButtonTapped(sender: AnyObject) {
         let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
         
+        recipients = recipientTextField.text.componentsSeparatedByString(",")
+        
         if transactionTypeControl.selectedSegmentIndex == 0 {
-            Venmo.sharedInstance().sendRequestTo(
-                recipientTextField.text,
-                amount: UInt(cost * 100),
-                note: paymentNoteTextField.text,
-                completionHandler: paymentHandler)
+            for recipient in recipients! {
+                Venmo.sharedInstance().sendRequestTo(
+                    recipient,
+                    amount: UInt(cost * 100),
+                    note: paymentNoteTextField.text,
+                    completionHandler: paymentHandler)
+            }
         }
         else if transactionTypeControl.selectedSegmentIndex == 1 {
-            Venmo.sharedInstance().sendPaymentTo(
-                recipientTextField.text,
-                amount: UInt(cost * 100),
-                note: paymentNoteTextField.text,
-                completionHandler: paymentHandler)
+            for recipient in recipients! {
+                Venmo.sharedInstance().sendPaymentTo(
+                    recipient,
+                    amount: UInt(cost * 100),
+                    note: paymentNoteTextField.text,
+                    completionHandler: paymentHandler)
+            }
         }
     }
     
@@ -65,7 +73,12 @@ class VenmoViewController: UIViewController {
             UIAlertView(title: error.localizedDescription, message: error.localizedRecoverySuggestion, delegate: nil, cancelButtonTitle: "OK").show()
         }
         else {
-            UIAlertView(title: "Congratulations!", message: "Your transaction is complete", delegate: nil, cancelButtonTitle: "OK").show()
+            let recipientString = recipients![recipientCount]
+            recipientCount++
+            
+            UIAlertView(title: "Congratulations!", message: "Your transaction with \(recipientString) is complete", delegate: nil, cancelButtonTitle: "OK").show()
+            
+            self.performSegueWithIdentifier("VenmoBack", sender: self)
         }
         
         MBProgressHUD.hideAllHUDsForView(view, animated: true)
