@@ -79,10 +79,10 @@ class GasStationMapViewController: UIViewController {
     let geocoder = GMSGeocoder()
     var placesClient: GMSPlacesClient!
     var mapView: GMSMapView!
-    var selectedCoordinate = CLLocationCoordinate2D()
     var selectedLocation = ""
     var firstLocation = true
     var defaultLocation = ""
+    var zipcode: String? = nil
     
     @IBAction func currentLocationButtonPressed(sender: AnyObject) {
         if let myLocation = mapView.myLocation {
@@ -163,21 +163,14 @@ class GasStationMapViewController: UIViewController {
         let json = JSON(data)
         
         if let result = json["results"][0].dictionary {
-            let addressComponents = result["address_components"]!.array
-            let location = addressComponents!
-                .filter { $0["types"][0] == "locality" || $0["types"][0] == "administrative_area_level_1" }
-                .map { $0["short_name"].string! }
-            
-            selectedLocation = ", ".join(location)
-            
             let latitude = result["geometry"]!["location"]["lat"].double
             let longitude = result["geometry"]!["location"]["lng"].double
             
-            selectedCoordinate.latitude = latitude!
-            selectedCoordinate.longitude = longitude!
+            let selectedCoordinate = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
             
             MapHelper.moveCamera(mapView: mapView, coordinate: selectedCoordinate)
-            setMarker(coordinate: selectedCoordinate)
+            
+            reverseGeocode(coordinate: selectedCoordinate)
         }
     }
     
@@ -189,8 +182,6 @@ class GasStationMapViewController: UIViewController {
                 currentLocationButton.selected = false
             }
         }
-        
-        self.selectedCoordinate = coordinate
         
         mapView.clear()
         
@@ -217,6 +208,13 @@ class GasStationMapViewController: UIViewController {
                     }
                     
                     self.selectedLocation += self.stateAbbreviations[administrativeArea.capitalizedString]!
+                }
+                
+                if let postalCode = address.postalCode {
+                    self.zipcode = postalCode
+                }
+                else {
+                    self.zipcode = nil
                 }
                 
                 self.searchBar.text = self.selectedLocation

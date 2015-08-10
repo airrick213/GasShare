@@ -127,6 +127,8 @@ class CarPickerViewController: UIViewController {
         }
     }
     
+    //MARK: Navigation
+    
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
         if identifier == "CarPickerDone" {
             if gasMileageLabel.text == "Gas Mileage?" {

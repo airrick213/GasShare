@@ -849,7 +849,13 @@ class MainViewController: UIViewController {
                 
                 selectedLocation = source.selectedLocation
                 
-                searchForZipcode()
+                if source.zipcode != nil {
+                    self.zipcode = source.zipcode!
+                    findGasPrice()                    
+                }
+                else {
+                    searchForZipcode()
+                }
             }
         }
     }
