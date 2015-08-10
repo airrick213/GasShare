@@ -1031,8 +1031,8 @@ Special thanks to MakeSchool for mentorship throughout the construction of the a
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Year?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gt5-Nj-bGA">
-                                <rect key="frame" x="0.0" y="104" width="600" height="80"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gt5-Nj-bGA">
+                                <rect key="frame" x="0.0" y="104" width="600" height="99.5"/>
                                 <color key="backgroundColor" red="0.76862745098039209" green="0.8784313725490196" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="80" id="OmY-7I-1jJ"/>
@@ -1041,9 +1041,14 @@ Special thanks to MakeSchool for mentorship throughout the construction of the a
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="OmY-7I-1jJ"/>
+                                    </mask>
+                                </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Make?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ji-HC-Fc1">
-                                <rect key="frame" x="0.0" y="183.5" width="600" height="80.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ji-HC-Fc1">
+                                <rect key="frame" x="0.0" y="203" width="600" height="99.5"/>
                                 <color key="backgroundColor" red="0.35686274509999999" green="0.79215686269999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="80" id="IdH-ma-x5F"/>
@@ -1057,8 +1062,8 @@ Special thanks to MakeSchool for mentorship throughout the construction of the a
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Model?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GZz-iq-qkp">
-                                <rect key="frame" x="0.0" y="263.5" width="600" height="80"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Model?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GZz-iq-qkp">
+                                <rect key="frame" x="0.0" y="302" width="600" height="99.5"/>
                                 <color key="backgroundColor" red="0.60784313729999995" green="0.74117647060000003" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="CaZ-fn-ac2"/>
@@ -1072,8 +1077,8 @@ Special thanks to MakeSchool for mentorship throughout the construction of the a
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Gas Mileage?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7vH-t7-6mk">
-                                <rect key="frame" x="0.0" y="343.5" width="600" height="192.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gas Mileage?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="36" translatesAutoresizingMaskIntoConstraints="NO" id="7vH-t7-6mk">
+                                <rect key="frame" x="0.0" y="401.5" width="600" height="99"/>
                                 <color key="backgroundColor" red="0.64313725489999995" green="0.56862745100000001" blue="0.82745098039999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="5Hz-tt-kXQ"/>
@@ -1081,18 +1086,28 @@ Special thanks to MakeSchool for mentorship throughout the construction of the a
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="48"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="5Hz-tt-kXQ"/>
+                                    </mask>
+                                </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uUx-Uj-aNb">
-                                <rect key="frame" x="0.0" y="536" width="600" height="64"/>
+                                <rect key="frame" x="0.0" y="500.5" width="600" height="99.5"/>
                                 <color key="backgroundColor" red="0.64313725489999995" green="0.90588235289999997" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="WMQ-Zh-qZG"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="32"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="48"/>
                                 <state key="normal" title="Done">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="WMQ-Zh-qZG"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <segue destination="MgD-t9-jfA" kind="unwind" identifier="CarPickerDone" unwindAction="unwindToSegue:" id="Tyf-gM-Q4k"/>
                                 </connections>
@@ -1153,10 +1168,12 @@ Special thanks to MakeSchool for mentorship throughout the construction of the a
                             <constraint firstAttribute="trailing" secondItem="GZz-iq-qkp" secondAttribute="trailing" id="39F-Rj-bac"/>
                             <constraint firstAttribute="trailing" secondItem="uUx-Uj-aNb" secondAttribute="trailing" id="5Ln-0H-T8Y"/>
                             <constraint firstItem="8ji-HC-Fc1" firstAttribute="top" secondItem="gt5-Nj-bGA" secondAttribute="bottom" id="5gd-W0-2tW"/>
+                            <constraint firstItem="7vH-t7-6mk" firstAttribute="height" secondItem="gt5-Nj-bGA" secondAttribute="height" id="9YV-JH-Prj"/>
                             <constraint firstItem="BQc-cn-yQq" firstAttribute="leading" secondItem="6fu-r4-Jju" secondAttribute="leading" id="BGw-qN-ecL"/>
                             <constraint firstItem="NFX-pP-NyF" firstAttribute="top" secondItem="XTa-yJ-pfe" secondAttribute="bottom" id="BKg-ib-H2T"/>
                             <constraint firstAttribute="trailing" secondItem="gt5-Nj-bGA" secondAttribute="trailing" id="CyI-7z-ZYh"/>
                             <constraint firstItem="XTa-yJ-pfe" firstAttribute="leading" secondItem="6fu-r4-Jju" secondAttribute="leading" id="F7l-Bj-NqB"/>
+                            <constraint firstItem="gt5-Nj-bGA" firstAttribute="height" secondItem="uUx-Uj-aNb" secondAttribute="height" id="HQ6-6y-Njp"/>
                             <constraint firstItem="7vH-t7-6mk" firstAttribute="top" secondItem="GZz-iq-qkp" secondAttribute="bottom" id="JLh-nV-a30"/>
                             <constraint firstItem="7vH-t7-6mk" firstAttribute="leading" secondItem="6fu-r4-Jju" secondAttribute="leading" id="KuY-xw-LCP"/>
                             <constraint firstItem="8ji-HC-Fc1" firstAttribute="leading" secondItem="6fu-r4-Jju" secondAttribute="leading" id="LrX-L4-PJ5"/>
