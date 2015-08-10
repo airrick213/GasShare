@@ -701,13 +701,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Car" translatesAutoresizingMaskIntoConstraints="NO" id="zHe-tQ-PlW">
-                                <rect key="frame" x="203" y="346" width="193" height="170"/>
+                                <rect key="frame" x="206" y="351" width="187" height="165"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="zHe-tQ-PlW" secondAttribute="height" multiplier="17:15" id="p39-Cm-0DD"/>
                                 </constraints>
                             </imageView>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="2ae-5f-2Hw">
-                                <rect key="frame" x="253" y="317" width="94" height="29"/>
+                                <rect key="frame" x="253" y="322" width="94" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="29" id="Ykt-3F-JfQ"/>
                                 </constraints>
@@ -785,7 +785,7 @@
                             <constraint firstItem="NL5-Qq-pFU" firstAttribute="top" secondItem="rpj-XY-hlS" secondAttribute="bottom" id="SBP-oz-adE"/>
                             <constraint firstItem="zHe-tQ-PlW" firstAttribute="top" secondItem="3YQ-3B-Fij" secondAttribute="bottom" id="YZL-ui-sNu"/>
                             <constraint firstAttribute="trailing" secondItem="rpj-XY-hlS" secondAttribute="trailing" id="bxf-js-Th4"/>
-                            <constraint firstItem="2ae-5f-2Hw" firstAttribute="top" secondItem="b5f-bq-dsA" secondAttribute="bottom" id="cKH-Uy-xWh"/>
+                            <constraint firstItem="2ae-5f-2Hw" firstAttribute="top" secondItem="b5f-bq-dsA" secondAttribute="bottom" constant="5" id="cKH-Uy-xWh"/>
                             <constraint firstAttribute="centerX" secondItem="zHe-tQ-PlW" secondAttribute="centerX" id="cjP-kM-tdA"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="3YQ-3B-Fij" secondAttribute="trailing" id="fgH-of-O7j"/>
                             <constraint firstItem="zHe-tQ-PlW" firstAttribute="top" secondItem="2ae-5f-2Hw" secondAttribute="bottom" id="gWW-oU-yNp"/>
