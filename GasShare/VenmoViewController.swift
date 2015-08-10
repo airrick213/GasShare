@@ -18,13 +18,16 @@ class VenmoViewController: UIViewController {
     @IBOutlet weak var costLabel: UILabel!
     
     var cost: Double!
-    var recipients: [String]?
+    var recipients: [String]!
     var recipientCount = 0
     
     @IBAction func sendButtonTapped(sender: AnyObject) {
         let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
         
         recipients = recipientTextField.text.componentsSeparatedByString(",")
+        for x in 0 ..< recipients.count {
+            recipients[x] = NSString(string: recipients[x]).stringByReplacingOccurrencesOfString(" ", withString: "")
+        }
         
         if transactionTypeControl.selectedSegmentIndex == 0 {
             for recipient in recipients! {
@@ -73,10 +76,11 @@ class VenmoViewController: UIViewController {
             UIAlertView(title: error.localizedDescription, message: error.localizedRecoverySuggestion, delegate: nil, cancelButtonTitle: "OK").show()
         }
         else {
-            let recipientString = recipients![recipientCount]
-            recipientCount++
+            let recipientString = recipients[recipientCount]
             
             UIAlertView(title: "Congratulations!", message: "Your transaction with \(recipientString) is complete", delegate: nil, cancelButtonTitle: "OK").show()
+            
+            recipientCount++
             
             self.performSegueWithIdentifier("VenmoBack", sender: self)
         }

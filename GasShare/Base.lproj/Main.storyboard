@@ -583,7 +583,7 @@
                                     <constraint firstAttribute="height" constant="60" id="DuE-Of-TkD"/>
                                 </constraints>
                                 <textAttributes key="titleTextAttributes">
-                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Enter Gas Station Location" id="DSm-Z2-o0J">
@@ -693,6 +693,9 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Passengers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b5f-bq-dsA">
                                 <rect key="frame" x="176" y="282" width="248" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="Tbr-b9-S9Q"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
                                 <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -705,6 +708,9 @@
                             </imageView>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="2ae-5f-2Hw">
                                 <rect key="frame" x="253" y="317" width="94" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="29" id="Ykt-3F-JfQ"/>
+                                </constraints>
                                 <connections>
                                     <action selector="numberOfPassengersChanged:" destination="csB-mT-9P3" eventType="valueChanged" id="XxP-Px-DJ9"/>
                                 </connections>
@@ -715,7 +721,7 @@
                                     <constraint firstAttribute="height" constant="60" id="0G9-WD-Sgc"/>
                                 </constraints>
                                 <textAttributes key="titleTextAttributes">
-                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Gas Share" id="OE6-dn-tZ7">
@@ -824,7 +830,7 @@
                                     <constraint firstAttribute="height" constant="60" id="EvO-ld-tHw"/>
                                 </constraints>
                                 <textAttributes key="titleTextAttributes">
-                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Venmo Payment" id="z8c-8h-z9H">
@@ -858,15 +864,6 @@
                                     <outlet property="delegate" destination="c5V-cF-5E5" id="9ew-cg-nbe"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cost" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kNv-6L-cSF">
-                                <rect key="frame" x="250" y="278" width="101.5" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Uim-dd-Zm0"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="48"/>
-                                <color key="textColor" red="0.18039215689999999" green="0.80000000000000004" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="39H-ZI-4QS">
                                 <rect key="frame" x="0.0" y="536" width="600" height="64"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -891,6 +888,20 @@
                                     <segment title="Pay"/>
                                 </segments>
                             </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cost" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="24" translatesAutoresizingMaskIntoConstraints="NO" id="kNv-6L-cSF">
+                                <rect key="frame" x="165" y="248" width="270.5" height="175"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Uim-dd-Zm0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="128"/>
+                                <color key="textColor" red="0.18039215689999999" green="0.80000000000000004" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Uim-dd-Zm0"/>
+                                    </mask>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.94509803920000002" green="1" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -909,9 +920,12 @@
                             <constraint firstItem="q4g-Iv-0cP" firstAttribute="top" secondItem="gDG-TH-X3Z" secondAttribute="bottom" constant="40" id="Rqz-ka-RTM"/>
                             <constraint firstAttribute="centerX" secondItem="Htf-1o-HEf" secondAttribute="centerX" id="U35-kF-s4e"/>
                             <constraint firstItem="Htf-1o-HEf" firstAttribute="top" secondItem="q4g-Iv-0cP" secondAttribute="bottom" constant="20" id="UOe-pm-i4f"/>
+                            <constraint firstItem="39H-ZI-4QS" firstAttribute="top" relation="greaterThanOrEqual" secondItem="kNv-6L-cSF" secondAttribute="bottom" id="YDv-by-f6P"/>
                             <constraint firstItem="39H-ZI-4QS" firstAttribute="leading" secondItem="8df-m9-4fi" secondAttribute="leading" id="ee1-uP-f6o"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="kNv-6L-cSF" secondAttribute="trailing" id="fsq-fj-ysn"/>
                             <constraint firstAttribute="centerX" secondItem="39H-ZI-4QS" secondAttribute="centerX" id="hKe-cj-Ki0"/>
-                            <constraint firstItem="kNv-6L-cSF" firstAttribute="top" secondItem="5bA-9B-N0Z" secondAttribute="bottom" constant="30" id="tg5-U5-ffe"/>
+                            <constraint firstItem="kNv-6L-cSF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8df-m9-4fi" secondAttribute="leadingMargin" id="qce-hu-Zt2"/>
+                            <constraint firstItem="kNv-6L-cSF" firstAttribute="top" secondItem="5bA-9B-N0Z" secondAttribute="bottom" id="tg5-U5-ffe"/>
                         </constraints>
                     </view>
                     <connections>
@@ -941,7 +955,9 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HGz-Zn-Myg">
                                 <rect key="frame" x="16" y="60" width="568" height="540"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Copyright (c) 2015 Eric Kim. Permission is hereby granted, free of charge, to any person obtaining a copy
+                                <mutableString key="text">Copyright (c) 2015 Eric Kim.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files, to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -961,7 +977,7 @@ THE SOFTWARE.
 
 Attribution is given to Icons8 (https://icons8.com/) for use of the Car icon (ic8.link/245), Center Location icon (ic8.link/3396), the Checked icon (ic8.link/15431), and the Cancel icon (ic8.link/3062).
 
-Special thanks to MakeSchool for mentorship throughout the construction of the app.</string>
+Special thanks to MakeSchool for mentorship throughout the construction of the app.</mutableString>
                                 <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -972,7 +988,7 @@ Special thanks to MakeSchool for mentorship throughout the construction of the a
                                     <constraint firstAttribute="height" constant="60" id="I1H-BJ-DiY"/>
                                 </constraints>
                                 <textAttributes key="titleTextAttributes">
-                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="About" id="b9X-mT-qYz">
@@ -1028,7 +1044,7 @@ Special thanks to MakeSchool for mentorship throughout the construction of the a
                                     <constraint firstAttribute="height" constant="60" id="TcT-k1-zRA"/>
                                 </constraints>
                                 <textAttributes key="titleTextAttributes">
-                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Select Your Car" id="kkx-bX-FgL">
