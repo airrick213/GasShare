@@ -18,9 +18,6 @@
 		074DF28B1B6BF9DE00F86ADF /* CarPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074DF28A1B6BF9DE00F86ADF /* CarPickerViewController.swift */; };
 		077F1E771B5D4F1A0037A483 /* MapHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077F1E761B5D4F1A0037A483 /* MapHelper.swift */; };
 		0791F3F41B56DC44006FEED8 /* AlamofireHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0791F3F31B56DC44006FEED8 /* AlamofireHelper.swift */; };
-		079DB15B1B58501200D21C77 /* HTMLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079DB1591B58501200D21C77 /* HTMLNode.swift */; };
-		079DB15C1B58501200D21C77 /* HTMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079DB15A1B58501200D21C77 /* HTMLParser.swift */; };
-		079DB15F1B58519A00D21C77 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 079DB15E1B58519A00D21C77 /* libxml2.dylib */; };
 		07A2B2B01B6FC61F006F654D /* KannaHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A2B2AF1B6FC61F006F654D /* KannaHelper.swift */; };
 		07A8E1BD1B61325F00D81518 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A8E1BC1B61325F00D81518 /* MainViewController.swift */; };
 		07AB75261B62B00D00AF3A5D /* CustomToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AB75251B62B00D00AF3A5D /* CustomToolbar.swift */; };
@@ -62,9 +59,6 @@
 		074DF28A1B6BF9DE00F86ADF /* CarPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarPickerViewController.swift; sourceTree = "<group>"; };
 		077F1E761B5D4F1A0037A483 /* MapHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapHelper.swift; sourceTree = "<group>"; };
 		0791F3F31B56DC44006FEED8 /* AlamofireHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireHelper.swift; sourceTree = "<group>"; };
-		079DB1591B58501200D21C77 /* HTMLNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLNode.swift; sourceTree = "<group>"; };
-		079DB15A1B58501200D21C77 /* HTMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLParser.swift; sourceTree = "<group>"; };
-		079DB15D1B58502000D21C77 /* Swift-HTML-Parser-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Swift-HTML-Parser-Bridging-Header.h"; sourceTree = "<group>"; };
 		079DB15E1B58519A00D21C77 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		07A2B2AF1B6FC61F006F654D /* KannaHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KannaHelper.swift; sourceTree = "<group>"; };
 		07A8E1BC1B61325F00D81518 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -86,7 +80,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				079DB15F1B58519A00D21C77 /* libxml2.dylib in Frameworks */,
 				839D6984ECB623561649FDAB /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -104,7 +97,6 @@
 		072892831B4DB7530060960A = {
 			isa = PBXGroup;
 			children = (
-				079DB15D1B58502000D21C77 /* Swift-HTML-Parser-Bridging-Header.h */,
 				0728928E1B4DB7530060960A /* GasShare */,
 				072892A41B4DB7530060960A /* GasShareTests */,
 				0728928D1B4DB7530060960A /* Products */,
@@ -125,7 +117,6 @@
 		0728928E1B4DB7530060960A /* GasShare */ = {
 			isa = PBXGroup;
 			children = (
-				079DB1581B58501200D21C77 /* HTMLParser */,
 				0791F3EE1B56DA26006FEED8 /* Helpers */,
 				074A1F681B4DB88D00F01CB2 /* Views */,
 				0709E6181B66BEFC00E606D9 /* AboutViewController.swift */,
@@ -191,15 +182,6 @@
 				07A2B2AF1B6FC61F006F654D /* KannaHelper.swift */,
 			);
 			path = Helpers;
-			sourceTree = "<group>";
-		};
-		079DB1581B58501200D21C77 /* HTMLParser */ = {
-			isa = PBXGroup;
-			children = (
-				079DB1591B58501200D21C77 /* HTMLNode.swift */,
-				079DB15A1B58501200D21C77 /* HTMLParser.swift */,
-			);
-			path = HTMLParser;
 			sourceTree = "<group>";
 		};
 		B1990ED3CE4DD1473E383DD8 /* Pods */ = {
@@ -420,10 +402,8 @@
 				074DF28B1B6BF9DE00F86ADF /* CarPickerViewController.swift in Sources */,
 				07AB75261B62B00D00AF3A5D /* CustomToolbar.swift in Sources */,
 				07FDCA3E1B62D5200029682B /* GasStationMapViewController.swift in Sources */,
-				079DB15B1B58501200D21C77 /* HTMLNode.swift in Sources */,
 				074A1F6F1B4DB88D00F01CB2 /* InputTextField.swift in Sources */,
 				0709E6191B66BEFC00E606D9 /* AboutViewController.swift in Sources */,
-				079DB15C1B58501200D21C77 /* HTMLParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,17 +484,16 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					/usr/include/libxml2,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "Swift-HTML-Parser-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -551,15 +530,14 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					/usr/include/libxml2,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "Swift-HTML-Parser-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -577,7 +555,7 @@
 				INFOPLIST_FILE = GasShare/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "/usr/include/libxml2 $(SRCROOT)/Pods/Venmo-iOS-SDK/**";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Pods/Venmo-iOS-SDK/**";
 			};
 			name = Debug;
 		};
@@ -594,7 +572,7 @@
 				INFOPLIST_FILE = GasShare/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "/usr/include/libxml2 $(SRCROOT)/Pods/Venmo-iOS-SDK/**";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Pods/Venmo-iOS-SDK/**";
 			};
 			name = Release;
 		};
