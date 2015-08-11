@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "gas_mileage.png"
+      "filename" : "gas-mileage.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "gas_mileage@2x.png"
+      "filename" : "gas-mileage@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "gas_mileage@3x.png"
+      "filename" : "gas-mileage@3x.png"
     }
   ],
   "info" : {

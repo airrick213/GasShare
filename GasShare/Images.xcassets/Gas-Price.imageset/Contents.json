@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "gas_price.png"
+      "filename" : "gas-price.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "gas_price@2x.png"
+      "filename" : "gas-price@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "gas_price@3x.png"
+      "filename" : "gas-price@3x.png"
     }
   ],
   "info" : {
