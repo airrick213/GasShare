@@ -555,6 +555,7 @@
 				INFOPLIST_FILE = GasShare/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "34a5a1e3-a99f-4f24-ada2-4eaa14739fe6";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Pods/Venmo-iOS-SDK/**";
 			};
 			name = Debug;
@@ -564,6 +565,8 @@
 			baseConfigurationReference = 7D7B2130FDE731CD7F287A96 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Eric Kim (D8MW36R8H3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Eric Kim (D8MW36R8H3)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/GoogleMaps/Frameworks",
@@ -572,6 +575,7 @@
 				INFOPLIST_FILE = GasShare/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "34a5a1e3-a99f-4f24-ada2-4eaa14739fe6";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Pods/Venmo-iOS-SDK/**";
 			};
 			name = Release;
