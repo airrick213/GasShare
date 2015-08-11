@@ -18,12 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" directionalLockEnabled="YES" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NhS-Uw-rOo">
-                                <rect key="frame" x="0.0" y="67.5" width="600" height="477.5"/>
-                                <connections>
-                                    <outlet property="delegate" destination="Fq9-zb-edt" id="MsQ-Ua-sKR"/>
-                                </connections>
-                            </scrollView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="vIb-lG-rq9">
                                 <rect key="frame" x="272" y="553" width="55" height="37"/>
                                 <color key="pageIndicatorTintColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -45,6 +39,12 @@
                                     <segue destination="pmW-Ru-1ob" kind="show" identifier="FinishTutorial" id="Kho-IJ-Nmc"/>
                                 </connections>
                             </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" directionalLockEnabled="YES" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NhS-Uw-rOo">
+                                <rect key="frame" x="0.0" y="67" width="600" height="477.5"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Fq9-zb-edt" id="MsQ-Ua-sKR"/>
+                                </connections>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

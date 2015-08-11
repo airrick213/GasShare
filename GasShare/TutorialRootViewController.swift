@@ -37,16 +37,16 @@ class TutorialRootViewController: UIViewController {
             "Calculation"
         ]
         
+        let imageSideDimension = doneButton.frame.origin.y - descriptionLabel.frame.origin.y - descriptionLabel.frame.height
         
-        scrollView.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
+        scrollView.frame = CGRectMake(0, 0, self.view.frame.width, imageSideDimension)
         let scrollViewWidth:CGFloat = scrollView.frame.width
         let scrollViewHeight:CGFloat = scrollView.frame.height
         
-        let imageSideDimension = doneButton.frame.origin.y - descriptionLabel.frame.origin.y - descriptionLabel.frame.height
-        
         for x in 0 ..< pageImages.count {
-            var imageView = UIImageView(frame: CGRectMake((scrollViewWidth * CGFloat(x)) - ((imageSideDimension - self.view.frame.width) / 2), 0, imageSideDimension, imageSideDimension))
-            imageView.image = UIImage(named: pageImages[x])
+            var imageView = UIImageView(image: UIImage(named: pageImages[x]))
+            
+            imageView.frame = CGRectMake((scrollViewWidth * CGFloat(x)) - ((imageSideDimension - self.view.frame.width) / 2), 0, imageSideDimension, imageSideDimension)
             
             scrollView.addSubview(imageView)
         }
