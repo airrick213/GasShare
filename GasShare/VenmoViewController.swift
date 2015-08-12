@@ -62,13 +62,19 @@ class VenmoViewController: UIViewController {
         else {
             Venmo.sharedInstance().defaultTransactionMethod = VENTransactionMethod.API
         }
-
-        // Do any additional setup after loading the view.
+        
+        let tap = UITapGestureRecognizer(target: self, action: Selector("dismissKeyboard"))
+        
+        self.view.addGestureRecognizer(tap)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func dismissKeyboard() {
+        self.view.endEditing(true)
     }
     
     func paymentHandler(transaction: VENTransaction!, success: Bool, error: NSError!) -> Void {
@@ -93,7 +99,12 @@ class VenmoViewController: UIViewController {
 extension VenmoViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        if textField === recipientTextField {
+            paymentNoteTextField.becomeFirstResponder()
+        }
+        else {
+            textField.resignFirstResponder()
+        }
         
         return true
     }
