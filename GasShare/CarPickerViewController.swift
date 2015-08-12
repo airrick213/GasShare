@@ -36,6 +36,15 @@ class CarPickerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let yearTap = UITapGestureRecognizer(target: self, action: Selector("yearLabelTapped"))
+        yearLabel.addGestureRecognizer(yearTap)
+        
+        let makeTap = UITapGestureRecognizer(target: self, action: Selector("makeLabelTapped"))
+        makeLabel.addGestureRecognizer(makeTap)
+        
+        let modelTap = UITapGestureRecognizer(target: self, action: Selector("modelLabelTapped"))
+        modelLabel.addGestureRecognizer(modelTap)
+        
         AlamofireHelper.scrapeHTMLForURL("http://www.fueleconomy.gov/ws/rest/vehicle/menu/year", responseHandler: handleLoadYearsResponse, view: self.view)
         showTableView()
     }
@@ -45,11 +54,37 @@ class CarPickerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func yearLabelTapped() {
+        searchBar.selectedScopeButtonIndex = 0
+        showTableView()
+    }
+    
+    func makeLabelTapped() {
+        if yearLabel.text != "Year?" {
+            searchBar.selectedScopeButtonIndex = 1
+            showTableView()
+        }
+        else {
+            UIAlertView(title: "No Year Selected", message: "Please select the year of your car model", delegate: nil, cancelButtonTitle: "OK").show()
+        }
+    }
+    
+    func modelLabelTapped() {
+        if makeLabel.text != "Make?" {
+            searchBar.selectedScopeButtonIndex = 2
+            showTableView()
+        }
+        else {
+            UIAlertView(title: "No Make Selected", message: "Please select the make of your car model", delegate: nil, cancelButtonTitle: "OK").show()
+        }
+    }
+    
     func showTableView() {
         searchBar.showsScopeBar = true
         searchBarHeight.constant = 98
         searchBar.becomeFirstResponder()
         tableView.hidden = false
+        tableView.reloadData()
     }
     
     func hideTableView() {

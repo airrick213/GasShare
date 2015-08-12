@@ -1060,7 +1060,7 @@ Special thanks to MakeSchool for mentorship throughout the construction of the a
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="gt5-Nj-bGA">
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="gt5-Nj-bGA">
                                 <rect key="frame" x="0.0" y="104" width="600" height="99.5"/>
                                 <color key="backgroundColor" red="0.35686274509803922" green="0.95294117647058818" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -1076,7 +1076,7 @@ Special thanks to MakeSchool for mentorship throughout the construction of the a
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="8ji-HC-Fc1">
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="8ji-HC-Fc1">
                                 <rect key="frame" x="0.0" y="203" width="600" height="99.5"/>
                                 <color key="backgroundColor" red="0.35686274509803922" green="0.89803921568627454" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -1091,7 +1091,7 @@ Special thanks to MakeSchool for mentorship throughout the construction of the a
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Model?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="GZz-iq-qkp">
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Model?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="GZz-iq-qkp">
                                 <rect key="frame" x="0.0" y="302" width="600" height="99.5"/>
                                 <color key="backgroundColor" red="0.35686274509803922" green="0.84705882352941175" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
