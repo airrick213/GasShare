@@ -285,6 +285,10 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if NSUserDefaults.standardUserDefaults().boolForKey("usedAppBefore") {
+            UIAlertView(title: "Helpful Tip", message: "You can use your current location both before you leave and after you arrive to get your route's start and end locations.", delegate: nil, cancelButtonTitle: "OK")
+        }
+        
         calculateButton.hidden = true
         
         screenHeight = self.view.frame.height
