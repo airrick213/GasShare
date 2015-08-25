@@ -51,14 +51,18 @@ class MainViewController: UIViewController {
     @IBOutlet weak var plusGasButtonBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var plusGasButtonTopConstraint: NSLayoutConstraint!
     
+    var user = User()
+    
     var screenHeight: CGFloat!
+    let mainToolbarHeightConstant: CGFloat = 100
+    let gasMileageToolbarHeightConstant: CGFloat = 160
+    let gasPriceToolbarHeightConstant: CGFloat = 210
+    
     var keyboardNotificationHandler = KeyboardNotificationHandler()
-    var routeDistance: Double?
     var searchingStartLocation = true
     
     //gas mileage variables
     var gasMileageText = "Don't know the gas mileage?"
-    var gasMileage: Double?
     
     //map variables
     let locationManager = CLLocationManager()
@@ -79,7 +83,6 @@ class MainViewController: UIViewController {
     var regPrice: Double = 0
     var plusPrice: Double = 0
     var prePrice: Double = 0
-    var gasPrice: Double?
     
     @IBAction func gasMileageButtonPressed(sender: AnyObject) {
         animate(gasMileageToolbar, over: mainToolbar)
@@ -93,21 +96,21 @@ class MainViewController: UIViewController {
     @IBAction func gasMileageDoneButtonPressed(sender: AnyObject) {
         if !gasMileageTextField.text.isEmpty || !gasMileageTextField.enabled {
             if gasMileageTextField.enabled {
-                gasMileage = NSString(string: gasMileageTextField.text).doubleValue
+                user.gasMileage = NSString(string: gasMileageTextField.text).doubleValue
             }
             else {
-                gasMileage = NSString(string: gasMileageText).doubleValue
+                user.gasMileage = NSString(string: gasMileageText).doubleValue
             }
             
-            if gasMileage > 0 {
+            if user.gasMileage > 0 {
                 gasMileageTextField.resignFirstResponder()
                 animate(mainToolbar, over: gasMileageToolbar)
                 
-                gasMileageToolbarButton.setTitle("\(gasMileage!) mi/gal", forState: UIControlState.Normal)
+                gasMileageToolbarButton.setTitle("\(user.gasMileage!) mi/gal", forState: UIControlState.Normal)
                 gasMileageToolbarButton.selected = true
                 updateCalculateButton()
                 
-                gasMileageTextField.text = String(format: "%.1f", gasMileage!)
+                gasMileageTextField.text = String(format: "%.1f", user.gasMileage!)
             }
             else {
                 UIAlertView(title: "No Gas Mileage", message: "Please enter your car's gas mileage or select your car model", delegate: nil, cancelButtonTitle: "OK").show()
@@ -123,24 +126,24 @@ class MainViewController: UIViewController {
     @IBAction func gasPriceDoneButtonPressed(sender: AnyObject) {
         if !gasPriceTextField.text.isEmpty || !gasPriceTextField.enabled {
             if gasPriceTextField.enabled {
-                gasPrice = NSString(string: gasPriceTextField.text).doubleValue
+                user.gasPrice = NSString(string: gasPriceTextField.text).doubleValue
             }
             else {
                 let gasPriceText = gasPriceButton.titleLabel!.text!
                 let doubleString = gasPriceText.substringFromIndex(advance(gasPriceText.startIndex, count(gasPriceText) - 4))
-                gasPrice = NSString(string: doubleString).doubleValue
+                user.gasPrice = NSString(string: doubleString).doubleValue
             }
             
-            if gasPrice > 0 {
+            if user.gasPrice > 0 {
                 gasPriceTextField.resignFirstResponder()
                 animate(mainToolbar, over: gasPriceToolbar)
                 
-                let priceString = NSString(format: "$%.2f/gal", gasPrice!) as String
+                let priceString = NSString(format: "$%.2f/gal", user.gasPrice!) as String
                 gasPriceToolbarButton.setTitle(priceString, forState: UIControlState.Normal)
                 gasPriceToolbarButton.selected = true
                 updateCalculateButton()
                 
-                gasPriceTextField.text = String(format: "%.2f", gasPrice!)
+                gasPriceTextField.text = String(format: "%.2f", user.gasPrice!)
             }
             else {
                 UIAlertView(title: "No Gas Price", message: "Please enter the gas price or select the location of your gas station", delegate: nil, cancelButtonTitle: "OK").show()
@@ -200,7 +203,7 @@ class MainViewController: UIViewController {
             
             gasMileageTextField.enabled = false
             
-            if let gasMileage = gasMileage {
+            if let gasMileage = user.gasMileage {
                 gasMileageTextField.text = gasMileageText
             }
             else {
@@ -236,7 +239,7 @@ class MainViewController: UIViewController {
             showGasPriceButtons()
             
             gasPriceTextField.enabled = false
-            if let gasPrice = gasPrice {
+            if let gasPrice = user.gasPrice {
                 gasPriceTextField.text = String(format: "%.2f", gasPrice)
             }
             else {
@@ -293,9 +296,9 @@ class MainViewController: UIViewController {
         
         screenHeight = self.view.frame.height
         
-        mainToolbarHeight.constant = 100
-        gasMileageToolbarHeight.constant = 160
-        gasPriceToolbarHeight.constant = 210
+        mainToolbarHeight.constant = mainToolbarHeightConstant
+        gasMileageToolbarHeight.constant = gasMileageToolbarHeightConstant
+        gasPriceToolbarHeight.constant = gasPriceToolbarHeightConstant
         
         gasMileageToolbar.hidden = true
         gasPriceToolbar.hidden = true
@@ -367,13 +370,20 @@ class MainViewController: UIViewController {
     }
     
     func updateCalculateButton() {
-        if routeDistance != nil && gasMileage != nil && gasPrice != nil {
+        if user.routeDistance != nil && user.gasMileage != nil && user.gasPrice != nil {
             calculateButton.hidden = false
             gasMileageToolbarButtonBottomConstraint.constant = 70
             gasPriceToolbarButtonBottomConstraint.constant = 70
-            mainToolbarHeight.constant = gasMileageToolbarHeight.constant
+            mainToolbarHeight.constant = gasMileageToolbarHeightConstant
             calculateButtonHeight.constant = 60
         }
+    }
+    
+    func hideCalculateButton() {
+        calculateButton.hidden = true
+        gasMileageToolbarButtonBottomConstraint.constant = 10
+        gasPriceToolbarButtonBottomConstraint.constant = 10
+        mainToolbarHeight.constant = mainToolbarHeightConstant
     }
     
     //MARK: Finding Location
@@ -481,10 +491,10 @@ class MainViewController: UIViewController {
             let distanceLabelComponents = distanceLabel.text!.componentsSeparatedByString(" ")
             let routeDistanceString = distanceLabelComponents[1]
             let formattedString = NSString(string: routeDistanceString).stringByReplacingOccurrencesOfString(",", withString: "")
-            routeDistance = NSString(string: formattedString).doubleValue
+            user.routeDistance = NSString(string: formattedString).doubleValue
             
             if distanceLabelComponents[2] == "ft." {
-                routeDistance! *= 0.000189
+                user.routeDistance! *= 0.000189
             }
             
             updateCalculateButton()
@@ -767,7 +777,7 @@ class MainViewController: UIViewController {
         plusGasButtonTopConstraint.constant = 10
         plusGasButtonBottomConstraint.constant = 10
         
-        gasPriceToolbarHeight.constant = 210
+        gasPriceToolbarHeight.constant = gasPriceToolbarHeightConstant
     }
     
     func hideGasPriceButtons() {
@@ -810,35 +820,6 @@ class MainViewController: UIViewController {
     @IBAction func unwindToSegue(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
             
-            /* Gas Mileage List Code
-            if identifier == "GasMileageDone" {
-                let source = segue.sourceViewController as! GasMileagesViewController
-                
-                if let selectedIndex = source.selectedIndex {
-                    if gasMileagesSuggestionsButton.titleLabel!.text != source.suggestedMileageValues[selectedIndex] {
-                        gasMileageText = source.suggestedMileageValues[selectedIndex]
-                        gasMileagesSuggestionsButton.setTitle(gasMileageText, forState: UIControlState.Normal)
-                        gasMileageTextField.enabled = false
-                        
-                        gasMileagesSuggestionsButton.sizeToFit()
-                    }
-                    
-                    gasMileageClearButton.hidden = false
-                }
-                else if gasMileagesSuggestionsButton.titleLabel!.text != "Don't know the gas mileage?" {
-                    gasMileageText = "Don't know the gas mileage?"
-                    gasMileagesSuggestionsButton.setTitle(gasMileageText, forState: UIControlState.Normal)
-                    gasMileageTextField.enabled = true
-                    
-                    gasMileagesSuggestionsButton.sizeToFit()
-                    
-                    gasMileageClearButton.hidden = true
-                }
-                
-                selectedIndex = source.selectedIndex
-            }
-            */
-            
             if identifier == "CarPickerDone" {
                 let source = segue.sourceViewController as! CarPickerViewController
                 
@@ -851,7 +832,6 @@ class MainViewController: UIViewController {
                 
                 gasMileageTextField.enabled = false
             }
-            
             else if identifier == "GasStationDone" {
                 let source = segue.sourceViewController as! GasStationMapViewController
                 
@@ -865,22 +845,47 @@ class MainViewController: UIViewController {
                     searchForZipcode()
                 }
             }
+            else if identifier == "StartOver" {
+                mapView.camera = GMSCameraPosition.cameraWithLatitude(40, longitude: -100, zoom: 3)
+                
+                user = User()
+                hideCalculateButton()
+                hideGasPriceButtons()
+                
+                startCoordinate = CLLocationCoordinate2D()
+                startLocation = ""
+                endCoordinate = CLLocationCoordinate2D()
+                endLocation = ""
+                
+                startMarker?.map = nil
+                endMarker?.map = nil
+                
+                gasMileageTextField.text = ""
+                gasMileageTextField.enabled = true
+                gasMileageButton.setTitle("Don't know the gas mileage?", forState: UIControlState.Normal)
+                gasMileageClearButton.hidden = true
+                
+                gasPriceTextField.text = ""
+                gasPriceTextField.enabled = true
+                gasPriceButton.setTitle("Don't know the gas price?", forState: UIControlState.Normal)
+                gasPriceClearButton.hidden = true
+                
+                startSearchBar.text = ""
+                endSearchBar.text = ""
+                
+                distanceLabel.hidden = true
+                
+                gasMileageToolbarButton.setTitle("Gas Mileage", forState: UIControlState.Normal)
+                gasMileageToolbarButton.selected = false
+                
+                gasPriceToolbarButton.setTitle("Gas Price", forState: UIControlState.Normal)
+                gasPriceToolbarButton.selected = false
+            }
         }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
-            
-            /* Gas Mileage List Code
-            if identifier == "ShowGasMileagesSuggestions" {
-                let gasMileagesViewController = segue.destinationViewController as! GasMileagesViewController
-                
-                if let selectedIndex = selectedIndex {
-                    gasMileagesViewController.selectedIndex = selectedIndex
-                }
-            }
-            */
-            
             if identifier == "ShowGasStationMap" {
                 if !startLocation.isEmpty {
                     let gasStationMapViewController = segue.destinationViewController as! GasStationMapViewController
@@ -891,9 +896,9 @@ class MainViewController: UIViewController {
             else if identifier == "ShowCalculation" {
                 let calculationViewController = segue.destinationViewController as! CalculationViewController
                 
-                calculationViewController.routeDistance = routeDistance!
-                calculationViewController.gasMileage = gasMileage!
-                calculationViewController.gasPrice = gasPrice!
+                calculationViewController.routeDistance = user.routeDistance!
+                calculationViewController.gasMileage = user.gasMileage!
+                calculationViewController.gasPrice = user.gasPrice!
             }
         }
     }

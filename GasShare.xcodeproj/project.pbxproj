@@ -29,6 +29,7 @@
 		07E52A9F1B505595006FFB7A /* CalculationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E52A9E1B505595006FFB7A /* CalculationViewController.swift */; };
 		07FDCA381B62B5320029682B /* GasMileageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FDCA371B62B5320029682B /* GasMileageCell.swift */; };
 		07FDCA3E1B62D5200029682B /* GasStationMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FDCA3D1B62D5200029682B /* GasStationMapViewController.swift */; };
+		07FECDCA1B8A7BB100CCAD0D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FECDC91B8A7BB100CCAD0D /* User.swift */; };
 		839D6984ECB623561649FDAB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E31020FC501B7AB4336490 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,7 @@
 		07E52A9E1B505595006FFB7A /* CalculationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculationViewController.swift; sourceTree = "<group>"; };
 		07FDCA371B62B5320029682B /* GasMileageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GasMileageCell.swift; sourceTree = "<group>"; };
 		07FDCA3D1B62D5200029682B /* GasStationMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GasStationMapViewController.swift; sourceTree = "<group>"; };
+		07FECDC91B8A7BB100CCAD0D /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7D7B2130FDE731CD7F287A96 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E071A125770EC0D0267D96EE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,6 +119,7 @@
 		0728928E1B4DB7530060960A /* GasShare */ = {
 			isa = PBXGroup;
 			children = (
+				07FECDC81B8A7BA100CCAD0D /* Classes */,
 				0791F3EE1B56DA26006FEED8 /* Helpers */,
 				074A1F681B4DB88D00F01CB2 /* Views */,
 				0709E6181B66BEFC00E606D9 /* AboutViewController.swift */,
@@ -182,6 +185,14 @@
 				07A2B2AF1B6FC61F006F654D /* KannaHelper.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		07FECDC81B8A7BA100CCAD0D /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				07FECDC91B8A7BB100CCAD0D /* User.swift */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		B1990ED3CE4DD1473E383DD8 /* Pods */ = {
@@ -405,6 +416,7 @@
 				07FDCA3E1B62D5200029682B /* GasStationMapViewController.swift in Sources */,
 				074A1F6F1B4DB88D00F01CB2 /* InputTextField.swift in Sources */,
 				0709E6191B66BEFC00E606D9 /* AboutViewController.swift in Sources */,
+				07FECDCA1B8A7BB100CCAD0D /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

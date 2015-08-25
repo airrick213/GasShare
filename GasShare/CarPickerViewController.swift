@@ -17,6 +17,7 @@ class CarPickerViewController: UIViewController {
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var makeLabel: UILabel!
     @IBOutlet weak var modelLabel: UILabel!
+    @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBarHeight: NSLayoutConstraint!
     
@@ -152,11 +153,14 @@ class CarPickerViewController: UIViewController {
                 self.gasMileageText = NSString(format: "%.1f", NSString(string: node.text!).doubleValue) as String
                 
                 self.gasMileageLabel.text = "\(self.gasMileageText) mi/gal"
+                self.doneButton.backgroundColor = UIColor(red: 164.0/255.0, green: 231.0/255.0, blue: 134.0/255.0, alpha: 1.0)
+                MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
             }
             
             else {
                 UIAlertView(title: "Sorry", message: "Could not find gas mileage, please try a different car", delegate: nil, cancelButtonTitle: "OK").show()
                 self.gasMileageLabel.text = "Gas Mileage?"
+                self.doneButton.backgroundColor = UIColor(red: 142.0/255.0, green: 142.0/255.0, blue: 142.0/255.0, alpha: 1.0)
                 MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
             }
         }
@@ -168,7 +172,6 @@ class CarPickerViewController: UIViewController {
         if identifier == "CarPickerDone" {
             if gasMileageLabel.text == "Gas Mileage?" {
                 UIAlertView(title: "No Car Selected", message: "Please select your car model", delegate: nil, cancelButtonTitle: "OK").show()
-                self.gasMileageLabel.text = "Gas Mileage?"
                 MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
                 return false
             }
@@ -299,6 +302,7 @@ extension CarPickerViewController: UITableViewDelegate {
             makeLabel.text = "Make?"
             modelLabel.text = "Model?"
             gasMileageLabel.text = "Gas Mileage?"
+            doneButton.backgroundColor = UIColor(red: 142.0/255.0, green: 142.0/255.0, blue: 142.0/255.0, alpha: 1.0)
             
             searchBar.scopeButtonTitles = [year, "Make", "Model"] as [AnyObject]?
             
@@ -317,6 +321,7 @@ extension CarPickerViewController: UITableViewDelegate {
             makeLabel.text = searchedMakes[indexPath.row]
             modelLabel.text = "Model?"
             gasMileageLabel.text = "Gas Mileage?"
+            doneButton.backgroundColor = UIColor(red: 142.0/255.0, green: 142.0/255.0, blue: 142.0/255.0, alpha: 1.0)
             
             searchBar.scopeButtonTitles = [year, makeLabel.text!, "Model"] as [AnyObject]?
             

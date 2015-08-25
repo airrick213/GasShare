@@ -109,7 +109,7 @@
                                     <outlet property="delegate" destination="pmW-Ru-1ob" id="euO-Iw-i4h"/>
                                 </connections>
                             </searchBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fC2-bw-DJL">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="fC2-bw-DJL">
                                 <rect key="frame" x="237" y="442" width="125.5" height="44"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="32"/>
@@ -500,10 +500,12 @@
                             <constraint firstAttribute="centerX" secondItem="eQ7-hc-ETn" secondAttribute="centerX" id="7zS-HZ-Z0C"/>
                             <constraint firstItem="fC2-bw-DJL" firstAttribute="centerY" secondItem="eET-oi-cmK" secondAttribute="centerY" id="8ID-JA-kK0"/>
                             <constraint firstItem="QXy-AN-9X9" firstAttribute="leading" secondItem="Y4c-Kj-vFd" secondAttribute="leading" id="8QI-3Z-Pde"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="fC2-bw-DJL" secondAttribute="trailing" id="8pB-Ml-9uy"/>
                             <constraint firstItem="DG5-mv-S46" firstAttribute="leading" secondItem="Y4c-Kj-vFd" secondAttribute="leading" id="AcO-qo-F7P"/>
                             <constraint firstItem="MJP-0x-NF6" firstAttribute="leading" secondItem="Y4c-Kj-vFd" secondAttribute="leading" id="Afv-au-KO2"/>
                             <constraint firstItem="we8-4f-Pqe" firstAttribute="top" secondItem="POd-XV-zJF" secondAttribute="bottom" constant="14" id="Ago-Cz-Qmi"/>
                             <constraint firstAttribute="trailing" secondItem="WH9-Iz-Bvx" secondAttribute="trailing" constant="10" id="B7I-B5-8S8"/>
+                            <constraint firstItem="fC2-bw-DJL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Y4c-Kj-vFd" secondAttribute="leadingMargin" id="H42-Ko-St9"/>
                             <constraint firstItem="we8-4f-Pqe" firstAttribute="leading" secondItem="Y4c-Kj-vFd" secondAttribute="leading" id="NhH-gO-g4r"/>
                             <constraint firstItem="eQ7-hc-ETn" firstAttribute="leading" secondItem="Y4c-Kj-vFd" secondAttribute="leading" constant="10" id="OcY-Aw-BmS"/>
                             <constraint firstItem="eET-oi-cmK" firstAttribute="centerX" secondItem="POd-XV-zJF" secondAttribute="centerX" id="P32-2x-zgI"/>
@@ -700,12 +702,6 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Car-White" translatesAutoresizingMaskIntoConstraints="NO" id="zHe-tQ-PlW">
-                                <rect key="frame" x="215" y="418" width="170" height="98"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="zHe-tQ-PlW" secondAttribute="height" multiplier="510:294" id="p39-Cm-0DD"/>
-                                </constraints>
-                            </imageView>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="2ae-5f-2Hw">
                                 <rect key="frame" x="253" y="322" width="94" height="29"/>
                                 <constraints>
@@ -728,7 +724,7 @@
                                     <navigationItem title="Gas Share" id="OE6-dn-tZ7">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="ILc-EP-667">
                                             <connections>
-                                                <segue destination="RNb-eu-1i5" kind="unwind" unwindAction="unwindToSegue:" id="lSA-Yn-gNc"/>
+                                                <segue destination="RNb-eu-1i5" kind="unwind" identifier="CalculationBack" unwindAction="unwindToSegue:" id="lSA-Yn-gNc"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="About" id="i48-VA-GEc">
@@ -772,6 +768,25 @@
                                     </mask>
                                 </variation>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yYz-Ni-ROA">
+                                <rect key="frame" x="227" y="486" width="146" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="yUe-hs-YOM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="32"/>
+                                <state key="normal" title="Start Over">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="RNb-eu-1i5" kind="unwind" identifier="StartOver" unwindAction="unwindToSegue:" id="60w-PR-QES"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Car-White" translatesAutoresizingMaskIntoConstraints="NO" id="zHe-tQ-PlW">
+                                <rect key="frame" x="226" y="391" width="148" height="85"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="zHe-tQ-PlW" secondAttribute="height" multiplier="510:294" id="p39-Cm-0DD"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.35686274509999999" green="0.79215686269999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -779,17 +794,18 @@
                             <constraint firstAttribute="centerY" secondItem="b5f-bq-dsA" secondAttribute="centerY" id="3om-83-LnD"/>
                             <constraint firstItem="zzN-gg-Pgm" firstAttribute="leading" secondItem="lAQ-Dr-8wD" secondAttribute="leading" id="4AE-Jb-52d"/>
                             <constraint firstItem="b5f-bq-dsA" firstAttribute="top" secondItem="3YQ-3B-Fij" secondAttribute="bottom" id="5tA-AJ-9rd"/>
+                            <constraint firstItem="rpj-XY-hlS" firstAttribute="top" secondItem="yYz-Ni-ROA" secondAttribute="bottom" constant="10" id="70g-5f-xGK"/>
                             <constraint firstItem="3YQ-3B-Fij" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lAQ-Dr-8wD" secondAttribute="leadingMargin" id="7zr-Rw-ozc"/>
+                            <constraint firstAttribute="centerX" secondItem="yYz-Ni-ROA" secondAttribute="centerX" id="Bf4-YC-rkl"/>
                             <constraint firstItem="zzN-gg-Pgm" firstAttribute="top" secondItem="lAQ-Dr-8wD" secondAttribute="top" id="Fcv-KM-kWf"/>
-                            <constraint firstItem="rpj-XY-hlS" firstAttribute="top" secondItem="zHe-tQ-PlW" secondAttribute="bottom" constant="20" id="HE9-7u-RZd"/>
                             <constraint firstItem="3YQ-3B-Fij" firstAttribute="top" relation="greaterThanOrEqual" secondItem="zzN-gg-Pgm" secondAttribute="bottom" id="HlD-yb-L9Y"/>
                             <constraint firstItem="NL5-Qq-pFU" firstAttribute="top" secondItem="rpj-XY-hlS" secondAttribute="bottom" id="SBP-oz-adE"/>
-                            <constraint firstItem="zHe-tQ-PlW" firstAttribute="top" secondItem="3YQ-3B-Fij" secondAttribute="bottom" id="YZL-ui-sNu"/>
+                            <constraint firstItem="yYz-Ni-ROA" firstAttribute="top" secondItem="zHe-tQ-PlW" secondAttribute="bottom" constant="10" id="W8u-49-yNZ"/>
                             <constraint firstAttribute="trailing" secondItem="rpj-XY-hlS" secondAttribute="trailing" id="bxf-js-Th4"/>
                             <constraint firstItem="2ae-5f-2Hw" firstAttribute="top" secondItem="b5f-bq-dsA" secondAttribute="bottom" constant="5" id="cKH-Uy-xWh"/>
                             <constraint firstAttribute="centerX" secondItem="zHe-tQ-PlW" secondAttribute="centerX" id="cjP-kM-tdA"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="3YQ-3B-Fij" secondAttribute="trailing" id="fgH-of-O7j"/>
-                            <constraint firstItem="zHe-tQ-PlW" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2ae-5f-2Hw" secondAttribute="bottom" constant="60" id="gWW-oU-yNp"/>
+                            <constraint firstItem="zHe-tQ-PlW" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2ae-5f-2Hw" secondAttribute="bottom" constant="40" id="gWW-oU-yNp"/>
                             <constraint firstAttribute="centerX" secondItem="b5f-bq-dsA" secondAttribute="centerX" id="p4f-Hl-38j"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="zHe-tQ-PlW" secondAttribute="trailing" id="uYN-1Q-LRy"/>
                             <constraint firstItem="zHe-tQ-PlW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lAQ-Dr-8wD" secondAttribute="leadingMargin" id="veK-ji-98P"/>
@@ -797,11 +813,6 @@
                             <constraint firstAttribute="centerX" secondItem="2ae-5f-2Hw" secondAttribute="centerX" id="y58-zr-EeL"/>
                             <constraint firstItem="rpj-XY-hlS" firstAttribute="leading" secondItem="lAQ-Dr-8wD" secondAttribute="leading" id="zQj-cV-sx3"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="YZL-ui-sNu"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="individualCostLabel" destination="3YQ-3B-Fij" id="dDZ-Wq-Jmh"/>
@@ -1123,7 +1134,7 @@ Special thanks to MakeSchool for mentorship throughout the construction of the a
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uUx-Uj-aNb">
                                 <rect key="frame" x="0.0" y="500.5" width="600" height="99.5"/>
-                                <color key="backgroundColor" red="0.64313725490196072" green="0.90588235294117647" blue="0.52549019607843139" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="WMQ-Zh-qZG"/>
                                 </constraints>
@@ -1227,6 +1238,7 @@ Special thanks to MakeSchool for mentorship throughout the construction of the a
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="doneButton" destination="uUx-Uj-aNb" id="9FG-mT-61v"/>
                         <outlet property="gasMileageLabel" destination="7vH-t7-6mk" id="hGK-Ev-GXN"/>
                         <outlet property="makeLabel" destination="8ji-HC-Fc1" id="hq6-QV-Dfl"/>
                         <outlet property="modelLabel" destination="GZz-iq-qkp" id="zYs-cX-7Ao"/>
