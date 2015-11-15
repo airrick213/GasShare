@@ -11,7 +11,7 @@ import CoreLocation
 
 class MapHelper {
     
-    static func moveCamera(#mapView: GMSMapView, coordinate: CLLocationCoordinate2D) {
+    static func moveCamera(mapView mapView: GMSMapView, coordinate: CLLocationCoordinate2D) {
         let camera = GMSCameraPosition.cameraWithTarget(coordinate, zoom: 13, bearing: 0, viewingAngle: 0)
         let cameraUpdate = GMSCameraUpdate.setCamera(camera)
         

@@ -94,9 +94,9 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func gasMileageDoneButtonPressed(sender: AnyObject) {
-        if !gasMileageTextField.text.isEmpty || !gasMileageTextField.enabled {
+        if !gasMileageTextField.text!.isEmpty || !gasMileageTextField.enabled {
             if gasMileageTextField.enabled {
-                user.gasMileage = NSString(string: gasMileageTextField.text).doubleValue
+                user.gasMileage = NSString(string: gasMileageTextField.text!).doubleValue
             }
             else {
                 user.gasMileage = NSString(string: gasMileageText).doubleValue
@@ -124,13 +124,13 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func gasPriceDoneButtonPressed(sender: AnyObject) {
-        if !gasPriceTextField.text.isEmpty || !gasPriceTextField.enabled {
+        if !gasPriceTextField.text!.isEmpty || !gasPriceTextField.enabled {
             if gasPriceTextField.enabled {
-                user.gasPrice = NSString(string: gasPriceTextField.text).doubleValue
+                user.gasPrice = NSString(string: gasPriceTextField.text!).doubleValue
             }
             else {
                 let gasPriceText = gasPriceButton.titleLabel!.text!
-                let doubleString = gasPriceText.substringFromIndex(advance(gasPriceText.startIndex, count(gasPriceText) - 4))
+                let doubleString = gasPriceText.substringFromIndex(gasPriceText.startIndex.advancedBy(gasPriceText.characters.count - 4))
                 user.gasPrice = NSString(string: doubleString).doubleValue
             }
             
@@ -391,15 +391,15 @@ class MainViewController: UIViewController {
     func searchForLocation(searchText: String, searchingStartLocation: Bool) {
         let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
         
-        let htmlString = searchText.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.allZeros, range: Range<String.Index>(start: searchText.startIndex, end: searchText.endIndex))
+        let htmlString = searchText.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions(), range: Range<String.Index>(start: searchText.startIndex, end: searchText.endIndex))
         let params = "address=\(htmlString)&key=AIzaSyCqna5DDHzVmJBuBYwC3WELjmq8EbGTnAQ"
         let requestString = "https://maps.googleapis.com/maps/api/geocode/json?\(params)"
         
-        Alamofire.request(.POST, requestString, parameters: nil).responseJSON(options: .allZeros) { (_, response, data, error) -> Void in
+        Alamofire.request(.POST, requestString, parameters: nil).responseJSON(options: []) { (_, response, result) -> Void in
             hud.hide(true)
             
-            if AlamofireHelper.requestSucceeded(response, error: error) {
-                self.handleLocationSearchResponse(data!, searchingStartLocation: searchingStartLocation)
+            if result.isSuccess {
+                self.handleLocationSearchResponse(result.data!, searchingStartLocation: searchingStartLocation)
             }
             else {
                 UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again", delegate: nil, cancelButtonTitle: "OK").show()
@@ -428,10 +428,10 @@ class MainViewController: UIViewController {
                 startLocation = ""
                 
                 if thoroughfare.count > 1 {
-                    startLocation = " ".join(thoroughfare) + ", "
+                    startLocation = thoroughfare.joinWithSeparator(" ") + ", "
                 }
                 
-                startLocation += ", ".join(location)
+                startLocation += location.joinWithSeparator(", ")
                 
                 startCoordinate.latitude = latitude!
                 startCoordinate.longitude = longitude!
@@ -444,10 +444,10 @@ class MainViewController: UIViewController {
                 endLocation = ""
                 
                 if thoroughfare.count > 1 {
-                    endLocation = " ".join(thoroughfare) + ", "
+                    endLocation = thoroughfare.joinWithSeparator(" ") + ", "
                 }
                 
-                endLocation += ", ".join(location)
+                endLocation += location.joinWithSeparator(", ")
                 
                 endCoordinate.latitude = latitude!
                 endCoordinate.longitude = longitude!
@@ -461,7 +461,7 @@ class MainViewController: UIViewController {
     
     //MARK: Calculating Distance
     
-    func calculateDistance(#origin: CLLocationCoordinate2D, destination: CLLocationCoordinate2D) {
+    func calculateDistance(origin origin: CLLocationCoordinate2D, destination: CLLocationCoordinate2D) {
         let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
         
         let apiKey = "AIzaSyBQG_Le3xsE49W7dprNafDCgZ0vhdWIytw"
@@ -469,11 +469,11 @@ class MainViewController: UIViewController {
         let destinationParam = "destinations=\(destination.latitude),\(destination.longitude)"
         let requestString = "https://maps.googleapis.com/maps/api/distancematrix/json?\(originParam)&\(destinationParam)&units=imperial&key=\(apiKey)"
         
-        Alamofire.request(.POST, requestString, parameters: nil).responseJSON(options: .allZeros) { (_, response, data, error) -> Void in
+        Alamofire.request(.POST, requestString, parameters: nil).responseJSON(options: []) { (_, response, result) -> Void in
             hud.hide(true)
             
-            if AlamofireHelper.requestSucceeded(response, error: error) {
-                self.handleDistanceCalculationResponse(data!)
+            if result.isSuccess {
+                self.handleDistanceCalculationResponse(result.data!)
             }
             else {
                 UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again", delegate: nil, cancelButtonTitle: "OK").show()
@@ -508,13 +508,13 @@ class MainViewController: UIViewController {
     
     //MARK: Map Methods
     
-    func moveCameraBetweenPoints(#coordinate1: CLLocationCoordinate2D, coordinate2: CLLocationCoordinate2D) {
+    func moveCameraBetweenPoints(coordinate1 coordinate1: CLLocationCoordinate2D, coordinate2: CLLocationCoordinate2D) {
         let cameraUpdate = GMSCameraUpdate.fitBounds(GMSCoordinateBounds(coordinate: coordinate1, coordinate: coordinate2))
         
         mapView.animateWithCameraUpdate(cameraUpdate)
     }
     
-    func setMarker(#coordinate: CLLocationCoordinate2D, searchingStartLocation: Bool) {
+    func setMarker(coordinate coordinate: CLLocationCoordinate2D, searchingStartLocation: Bool) {
         if let myLocation = mapView.myLocation {
             if coordinate.latitude != myLocation.coordinate.latitude && coordinate.longitude != myLocation.coordinate.longitude {
                 currentLocationButton.selected = false
@@ -574,7 +574,7 @@ class MainViewController: UIViewController {
         }
     }
     
-    func reverseGeocode(#coordinate: CLLocationCoordinate2D) {
+    func reverseGeocode(coordinate coordinate: CLLocationCoordinate2D) {
         self.geocoder.reverseGeocodeCoordinate(coordinate, completionHandler: { (result: GMSReverseGeocodeResponse?, error: NSError?) -> Void in
             if let address = result?.firstResult() {
                 if self.searchingStartLocation {
@@ -649,13 +649,13 @@ class MainViewController: UIViewController {
         let apiKey = "AFxjkQ3OQOUhs8uSZu3jAGEOeqMieViOAP8VFcKw0FOtNimNMp7n6LbkcYCrTVfu"
         let params = "\(apiKey)/city-zips.json/\(locationArray[0])/\(locationArray[1])"
         var requestString = "http://www.zipcodeapi.com/rest/\(params)"
-        requestString = requestString.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.allZeros, range: Range<String.Index>(start: requestString.startIndex, end: requestString.endIndex))
+        requestString = requestString.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions(), range: Range<String.Index>(start: requestString.startIndex, end: requestString.endIndex))
         
-        Alamofire.request(.GET, requestString, parameters: nil).responseJSON(options: .allZeros) { (_, response, data, error) -> Void in
+        Alamofire.request(.GET, requestString, parameters: nil).responseJSON(options: []) { (_, response, result) -> Void in
             hud.hide(true)
             
-            if AlamofireHelper.requestSucceeded(response, error: error) {
-                self.handleSearchZipcodeResponse(data!)
+            if result.isSuccess {
+                self.handleSearchZipcodeResponse(result.data!)
             }
             else {
                 UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again", delegate: nil, cancelButtonTitle: "OK").show()
@@ -684,11 +684,11 @@ class MainViewController: UIViewController {
         
         let requestString = "http://www.motortrend.com/gas_prices/34/\(zipcode)/"
         
-        Alamofire.request(.GET, requestString, parameters: nil).responseString { (_, response, data, error) -> Void in
+        Alamofire.request(.GET, requestString, parameters: nil).responseString { (_, response, result) -> Void in
             hud.hide(true)
             
-            if AlamofireHelper.requestSucceeded(response, error: error) {
-                self.handleFindGasPriceResponse(data!)
+            if result.isSuccess {
+                self.handleFindGasPriceResponse(result.data!)
             }
             else {
                 self.gasPriceButton.setTitle("\(self.selectedLocation): Gas price could not be found", forState: UIControlState.Normal)
@@ -715,8 +715,8 @@ class MainViewController: UIViewController {
                 if !contents.isEmpty {
                     if numCells > 10 {
                         if contents[contents.startIndex] == "$" {
-                            let startIndex = advance(contents.startIndex, 1)
-                            let endIndex = advance(contents.startIndex, 6)
+                            let startIndex = contents.startIndex.advancedBy(1)
+                            let endIndex = contents.startIndex.advancedBy(6)
                             let doubleValue = NSString(string: contents.substringWithRange(Range<String.Index>(start: startIndex, end: endIndex))).doubleValue
                             
                             if doubleValue > 0 {
@@ -932,10 +932,10 @@ extension MainViewController: UISearchBarDelegate {
         
         if didChangeSearchBarText {
             if startSearchBar === searchBar {
-                searchForLocation(startSearchBar.text, searchingStartLocation: true)
+                searchForLocation(startSearchBar.text!, searchingStartLocation: true)
             }
             else if endSearchBar === searchBar {
-                searchForLocation(endSearchBar.text, searchingStartLocation: false)
+                searchForLocation(endSearchBar.text!, searchingStartLocation: false)
             }
         }
         
@@ -943,7 +943,7 @@ extension MainViewController: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        searchForLocation(searchBar.text, searchingStartLocation: searchingStartLocation)
+        searchForLocation(searchBar.text!, searchingStartLocation: searchingStartLocation)
     }
     
 }
@@ -951,14 +951,14 @@ extension MainViewController: UISearchBarDelegate {
 extension MainViewController: UITextFieldDelegate {
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        if textField.text.rangeOfString(".") != nil {
+        if textField.text!.rangeOfString(".") != nil {
             if textField === gasMileageTextField {
-                if (string.rangeOfString(".") != nil || count(textField.text.componentsSeparatedByString(".")[1]) + count(string) > 1) {
+                if (string.rangeOfString(".") != nil || textField.text!.componentsSeparatedByString(".")[1].characters.count + string.characters.count > 1) {
                     return false
                 }
             }
             else if textField === gasPriceTextField {
-                if (string.rangeOfString(".") != nil || count(textField.text.componentsSeparatedByString(".")[1]) + count(string) > 2) {
+                if (string.rangeOfString(".") != nil || textField.text!.componentsSeparatedByString(".")[1].characters.count + string.characters.count > 2) {
                     return false
                 }
             }

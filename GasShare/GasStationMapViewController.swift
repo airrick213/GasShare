@@ -130,7 +130,7 @@ class GasStationMapViewController: UIViewController {
         
         if !defaultLocation.isEmpty {
             searchBar.text = defaultLocation
-            searchForLocation(searchBar.text)
+            searchForLocation(searchBar.text!)
         }
     }
     
@@ -142,15 +142,15 @@ class GasStationMapViewController: UIViewController {
     func searchForLocation(searchText: String) {
         let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
         
-        let htmlString = searchText.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.allZeros, range: Range<String.Index>(start: searchText.startIndex, end: searchText.endIndex))
+        let htmlString = searchText.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions(), range: Range<String.Index>(start: searchText.startIndex, end: searchText.endIndex))
         let params = "address=\(htmlString)&key=AIzaSyCqna5DDHzVmJBuBYwC3WELjmq8EbGTnAQ"
         let requestString = "https://maps.googleapis.com/maps/api/geocode/json?\(params)"
         
-        Alamofire.request(.POST, requestString, parameters: nil).responseJSON(options: .allZeros) { (_, response, data, error) -> Void in
+        Alamofire.request(.POST, requestString, parameters: nil).responseJSON(options: []) { (_, response, result) -> Void in
             hud.hide(true)
             
-            if AlamofireHelper.requestSucceeded(response, error: error) {
-                self.handleSearchLocationResponse(data!)
+            if result.isSuccess {
+                self.handleSearchLocationResponse(result.data!)
             }
             else {
                 UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again", delegate: nil, cancelButtonTitle: "OK").show()
@@ -176,7 +176,7 @@ class GasStationMapViewController: UIViewController {
     
     //MARK: Map Methods
     
-    func setMarker(#coordinate: CLLocationCoordinate2D) {
+    func setMarker(coordinate coordinate: CLLocationCoordinate2D) {
         if let myLocation = mapView.myLocation {
             if coordinate.latitude != myLocation.coordinate.latitude && coordinate.longitude != myLocation.coordinate.longitude {
                 currentLocationButton.selected = false
@@ -193,7 +193,7 @@ class GasStationMapViewController: UIViewController {
         marker.map = mapView
     }
     
-    func reverseGeocode(#coordinate: CLLocationCoordinate2D) {
+    func reverseGeocode(coordinate coordinate: CLLocationCoordinate2D) {
         self.geocoder.reverseGeocodeCoordinate(coordinate, completionHandler: { (result: GMSReverseGeocodeResponse?, error: NSError?) -> Void in
             if let address = result?.firstResult() {
                 self.selectedLocation = ""
@@ -224,7 +224,7 @@ class GasStationMapViewController: UIViewController {
         })
     }
     
-    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
         if identifier == "GasStationDone" {
             if selectedLocation == "" {
                 UIAlertView(title: "No Location Selected", message: "Please select the location of your gas station", delegate: nil, cancelButtonTitle: "OK").show()
@@ -252,7 +252,7 @@ extension GasStationMapViewController: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        searchForLocation(searchBar.text)
+        searchForLocation(searchBar.text!)
         
         searchBar.resignFirstResponder()
     }
@@ -264,7 +264,7 @@ extension GasStationMapViewController: GMSMapViewDelegate {
     func mapView(mapView: GMSMapView!, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
         if searchBar.isFirstResponder() {
             searchBar.resignFirstResponder()
-            searchForLocation(searchBar.text)
+            searchForLocation(searchBar.text!)
         }
         else {
             reverseGeocode(coordinate: coordinate)

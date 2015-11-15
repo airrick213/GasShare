@@ -168,7 +168,7 @@ class CarPickerViewController: UIViewController {
     
     //MARK: Navigation
     
-    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
         if identifier == "CarPickerDone" {
             if gasMileageLabel.text == "Gas Mileage?" {
                 UIAlertView(title: "No Car Selected", message: "Please select your car model", delegate: nil, cancelButtonTitle: "OK").show()
@@ -304,7 +304,7 @@ extension CarPickerViewController: UITableViewDelegate {
             gasMileageLabel.text = "Gas Mileage?"
             doneButton.backgroundColor = UIColor(red: 142.0/255.0, green: 142.0/255.0, blue: 142.0/255.0, alpha: 1.0)
             
-            searchBar.scopeButtonTitles = [year, "Make", "Model"] as [AnyObject]?
+            searchBar.scopeButtonTitles = [year, "Make", "Model"]
             
             searchBar.text = ""
             searchBar.selectedScopeButtonIndex = 1
@@ -323,7 +323,7 @@ extension CarPickerViewController: UITableViewDelegate {
             gasMileageLabel.text = "Gas Mileage?"
             doneButton.backgroundColor = UIColor(red: 142.0/255.0, green: 142.0/255.0, blue: 142.0/255.0, alpha: 1.0)
             
-            searchBar.scopeButtonTitles = [year, makeLabel.text!, "Model"] as [AnyObject]?
+            searchBar.scopeButtonTitles = [year, makeLabel.text!, "Model"]
             
             searchBar.text = ""
             searchBar.selectedScopeButtonIndex = 2
@@ -338,7 +338,7 @@ extension CarPickerViewController: UITableViewDelegate {
             model = NSString(string: searchedModels[indexPath.row]).stringByReplacingOccurrencesOfString(" ", withString: "%20") as String
             modelLabel.text = searchedModels[indexPath.row]
             
-            searchBar.scopeButtonTitles = [year, makeLabel.text!, modelLabel.text!] as [AnyObject]?
+            searchBar.scopeButtonTitles = [year, makeLabel.text!, modelLabel.text!]
             
             AlamofireHelper.scrapeHTMLForURL("http://www.fueleconomy.gov/ws/rest/vehicle/menu/options?year=\(year)&make=\(make)&model=\(model)", responseHandler: handleLoadIDResponse, view: self.view)
             

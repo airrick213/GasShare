@@ -13,20 +13,12 @@ import UIKit
 
 class AlamofireHelper {
     
-    static func requestSucceeded(response: NSURLResponse!, error: NSError!) -> Bool {
-        if let httpResponse = response as? NSHTTPURLResponse {
-            return error == nil && httpResponse.statusCode >= 200 && httpResponse.statusCode < 300
-        }
-        
-        return false
-    }
-    
     static func scrapeHTMLForURL(url: String, responseHandler: (data: AnyObject) -> Void, view: UIView) {
         let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
         
-        Alamofire.request(.GET, url, parameters: nil).responseString { (_, response, data, error) -> Void in
-            if self.requestSucceeded(response, error: error) {
-                responseHandler(data: data!)
+        Alamofire.request(.GET, url, parameters: nil).responseString { (_, response, result) -> Void in
+            if result.isSuccess {
+                responseHandler(data: result.data!)
             }
             else {
                 UIAlertView(title: "Sorry", message: "Network request failed, check your connection and try again", delegate: nil, cancelButtonTitle: "OK").show()

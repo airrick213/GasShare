@@ -68,7 +68,7 @@ class CalculationViewController: UIViewController {
 
     // MARK: - Navigation
     
-    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
         if identifier == "UseVenmo" {
             if individualCost < 0.02 {
                 UIAlertView(title: "Not Enough Cost", message: "The cost must be at least $0", delegate: nil, cancelButtonTitle: "OK")
@@ -86,7 +86,7 @@ class CalculationViewController: UIViewController {
             if identifier == "UseVenmo" {
                 let venmoViewController = segue.destinationViewController as! VenmoViewController
                 
-                venmoViewController.cost = NSString(string: individualCostLabel.text!.substringFromIndex(advance(individualCostLabel.text!.startIndex, 1))).doubleValue
+                venmoViewController.cost = NSString(string: individualCostLabel.text!.substringFromIndex(individualCostLabel.text!.startIndex.advancedBy(1))).doubleValue
             }
         }
     }

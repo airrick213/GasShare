@@ -44,7 +44,7 @@ class TutorialRootViewController: UIViewController {
         let scrollViewHeight:CGFloat = scrollView.frame.height
         
         for x in 0 ..< pageImages.count {
-            var imageView = UIImageView(image: UIImage(named: pageImages[x]))
+            let imageView = UIImageView(image: UIImage(named: pageImages[x]))
             
             imageView.frame = CGRectMake((scrollViewWidth * CGFloat(x)) - ((imageSideDimension - self.view.frame.width) / 2), 0, imageSideDimension, imageSideDimension)
             

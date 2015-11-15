@@ -24,7 +24,7 @@ class VenmoViewController: UIViewController {
     @IBAction func sendButtonTapped(sender: AnyObject) {
         let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
         
-        recipients = recipientTextField.text.componentsSeparatedByString(",")
+        recipients = recipientTextField.text!.componentsSeparatedByString(",")
         for x in 0 ..< recipients.count {
             recipients[x] = NSString(string: recipients[x]).stringByReplacingOccurrencesOfString(" ", withString: "")
         }

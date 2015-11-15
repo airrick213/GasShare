@@ -16,6 +16,15 @@
 		073FEECE1B7289CA008AB8A3 /* TutorialRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073FEECD1B7289CA008AB8A3 /* TutorialRootViewController.swift */; };
 		074A1F6F1B4DB88D00F01CB2 /* InputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A1F691B4DB88D00F01CB2 /* InputTextField.swift */; };
 		074DF28B1B6BF9DE00F86ADF /* CarPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074DF28A1B6BF9DE00F86ADF /* CarPickerViewController.swift */; };
+		076B13BD1BF84562001DF3CF /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 076B13B41BF84562001DF3CF /* Alamofire.framework */; };
+		076B13BE1BF84562001DF3CF /* CMDQueryStringSerialization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 076B13B51BF84562001DF3CF /* CMDQueryStringSerialization.framework */; };
+		076B13BF1BF84562001DF3CF /* ConvenienceKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 076B13B61BF84562001DF3CF /* ConvenienceKit.framework */; };
+		076B13C01BF84562001DF3CF /* Kanna.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 076B13B71BF84562001DF3CF /* Kanna.framework */; };
+		076B13C11BF84562001DF3CF /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 076B13B81BF84562001DF3CF /* MBProgressHUD.framework */; };
+		076B13C21BF84562001DF3CF /* SSKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 076B13B91BF84562001DF3CF /* SSKeychain.framework */; };
+		076B13C31BF84562001DF3CF /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 076B13BA1BF84562001DF3CF /* SwiftyJSON.framework */; };
+		076B13C41BF84562001DF3CF /* VENCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 076B13BB1BF84562001DF3CF /* VENCore.framework */; };
+		076B13C51BF84562001DF3CF /* Venmo_iOS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 076B13BC1BF84562001DF3CF /* Venmo_iOS_SDK.framework */; };
 		077F1E771B5D4F1A0037A483 /* MapHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077F1E761B5D4F1A0037A483 /* MapHelper.swift */; };
 		0791F3F41B56DC44006FEED8 /* AlamofireHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0791F3F31B56DC44006FEED8 /* AlamofireHelper.swift */; };
 		07A2B2B01B6FC61F006F654D /* KannaHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A2B2AF1B6FC61F006F654D /* KannaHelper.swift */; };
@@ -58,6 +67,15 @@
 		073FEECD1B7289CA008AB8A3 /* TutorialRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialRootViewController.swift; sourceTree = "<group>"; };
 		074A1F691B4DB88D00F01CB2 /* InputTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
 		074DF28A1B6BF9DE00F86ADF /* CarPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarPickerViewController.swift; sourceTree = "<group>"; };
+		076B13B41BF84562001DF3CF /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Debug-iphoneos/Alamofire.framework"; sourceTree = "<group>"; };
+		076B13B51BF84562001DF3CF /* CMDQueryStringSerialization.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CMDQueryStringSerialization.framework; path = "Pods/../build/Debug-iphoneos/CMDQueryStringSerialization.framework"; sourceTree = "<group>"; };
+		076B13B61BF84562001DF3CF /* ConvenienceKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ConvenienceKit.framework; path = "Pods/../build/Debug-iphoneos/ConvenienceKit.framework"; sourceTree = "<group>"; };
+		076B13B71BF84562001DF3CF /* Kanna.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kanna.framework; path = "Pods/../build/Debug-iphoneos/Kanna.framework"; sourceTree = "<group>"; };
+		076B13B81BF84562001DF3CF /* MBProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MBProgressHUD.framework; path = "Pods/../build/Debug-iphoneos/MBProgressHUD.framework"; sourceTree = "<group>"; };
+		076B13B91BF84562001DF3CF /* SSKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SSKeychain.framework; path = "Pods/../build/Debug-iphoneos/SSKeychain.framework"; sourceTree = "<group>"; };
+		076B13BA1BF84562001DF3CF /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
+		076B13BB1BF84562001DF3CF /* VENCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VENCore.framework; path = "Pods/../build/Debug-iphoneos/VENCore.framework"; sourceTree = "<group>"; };
+		076B13BC1BF84562001DF3CF /* Venmo_iOS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Venmo_iOS_SDK.framework; path = "Pods/../build/Debug-iphoneos/Venmo_iOS_SDK.framework"; sourceTree = "<group>"; };
 		077F1E761B5D4F1A0037A483 /* MapHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapHelper.swift; sourceTree = "<group>"; };
 		0791F3F31B56DC44006FEED8 /* AlamofireHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireHelper.swift; sourceTree = "<group>"; };
 		079DB15E1B58519A00D21C77 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -82,6 +100,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				076B13BD1BF84562001DF3CF /* Alamofire.framework in Frameworks */,
+				076B13BE1BF84562001DF3CF /* CMDQueryStringSerialization.framework in Frameworks */,
+				076B13BF1BF84562001DF3CF /* ConvenienceKit.framework in Frameworks */,
+				076B13C01BF84562001DF3CF /* Kanna.framework in Frameworks */,
+				076B13C11BF84562001DF3CF /* MBProgressHUD.framework in Frameworks */,
+				076B13C21BF84562001DF3CF /* SSKeychain.framework in Frameworks */,
+				076B13C31BF84562001DF3CF /* SwiftyJSON.framework in Frameworks */,
+				076B13C41BF84562001DF3CF /* VENCore.framework in Frameworks */,
+				076B13C51BF84562001DF3CF /* Venmo_iOS_SDK.framework in Frameworks */,
 				839D6984ECB623561649FDAB /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -207,6 +234,15 @@
 		F03950030880E3F5C000744F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				076B13B41BF84562001DF3CF /* Alamofire.framework */,
+				076B13B51BF84562001DF3CF /* CMDQueryStringSerialization.framework */,
+				076B13B61BF84562001DF3CF /* ConvenienceKit.framework */,
+				076B13B71BF84562001DF3CF /* Kanna.framework */,
+				076B13B81BF84562001DF3CF /* MBProgressHUD.framework */,
+				076B13B91BF84562001DF3CF /* SSKeychain.framework */,
+				076B13BA1BF84562001DF3CF /* SwiftyJSON.framework */,
+				076B13BB1BF84562001DF3CF /* VENCore.framework */,
+				076B13BC1BF84562001DF3CF /* Venmo_iOS_SDK.framework */,
 				079DB15E1B58519A00D21C77 /* libxml2.dylib */,
 				03E31020FC501B7AB4336490 /* Pods.framework */,
 			);
@@ -260,6 +296,8 @@
 		072892841B4DB7530060960A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Eric Kim";
 				TargetAttributes = {
@@ -565,6 +603,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/Pods/GoogleMaps/GoogleMapsSDKDemos",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = GasShare/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -585,6 +624,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/GoogleMaps/Frameworks",
 					"$(PROJECT_DIR)/Pods/GoogleMaps/GoogleMapsSDKDemos",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = GasShare/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

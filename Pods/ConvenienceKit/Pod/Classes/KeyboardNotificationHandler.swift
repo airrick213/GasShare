@@ -8,7 +8,7 @@
 
 import UIKit
 
-@objc(KeyboardNotificationHandler)
+//@objc(KeyboardNotificationHandler)
 public class KeyboardNotificationHandler {
   
   public typealias KeyboardHandlerCallback = (CGFloat) -> ()
@@ -44,7 +44,7 @@ public class KeyboardNotificationHandler {
   
   private func invokeHandler(notification: NSNotification, callback: KeyboardHandlerCallback?) {
     if let info = notification.userInfo, callback = callback {
-      var keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+      let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
         callback(keyboardFrame.height)
     }
   }
